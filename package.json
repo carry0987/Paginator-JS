@@ -1,0 +1,45 @@
+{
+  "name": "@carry0987/paginator",
+  "version": "1.0.0",
+  "description": "A library for create and manage paginator",
+  "type": "module",
+  "main": "dist/paginator.min.js",
+  "module": "dist/paginator.esm.js",
+  "types": "dist/paginator.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rollup --config rollup.config.js",
+    "build": "rollup --config rollup.config.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carry0987/Paginator-JS.git"
+  },
+  "keywords": [
+    "paginator"
+  ],
+  "author": "carry0987",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carry0987/Paginator-JS/issues"
+  },
+  "homepage": "https://github.com/carry0987/Paginator-JS#readme",
+  "devDependencies": {
+    "@carry0987/utils": "^3.3.13",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.17.2",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.6.2"
+  },
+  "dependencies": {
+    "preact": "^10.22.0"
+  }
+}
