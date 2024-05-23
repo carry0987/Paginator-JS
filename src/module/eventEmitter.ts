@@ -65,4 +65,18 @@ export class EventEmitter<EventTypes> {
 
         return false;
     }
+
+    once<EventName extends keyof EventTypes>(
+        event: EventName,
+        listener: (...args: EventArgs<EventTypes[EventName]>) => void
+    ): EventEmitter<EventTypes> {
+        const eventName = event as string;
+
+        const onceListener = (...args: EventArgs<EventTypes[EventName]>) => {
+            listener(...args);
+            this.off(event, onceListener);
+        };
+
+        return this.on(eventName as EventName, onceListener);
+    }
 }
