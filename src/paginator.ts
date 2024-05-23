@@ -167,7 +167,7 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
     }
 
     private renderData(dataList: DataSource<Array<any>>, pageNumber: number, customCallback?: () => void) {
-        if (this.emit('beforePaging', pageNumber) === false) return false;
+        this.emit('beforePaging', pageNumber);
 
         // Paginator direction
         this.pageData.direction = (pageNumber > this.pageData.currentPage) ? 1 : -1;
@@ -197,19 +197,6 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
         }
     }
 
-    private callHook(hook: string, ...args: Array<any>): boolean {
-        let result = true;
-        const hookFn = this.options[hook as keyof Options] as Function;
-
-        if (hookFn && typeof hookFn === 'function') {
-            if (hookFn.apply(this, args) === false) {
-                result = false;
-            }
-        }
-
-        return result;
-    }
-
     private doCallback(data: any, customCallback?: (data: any, model: any) => void) {
         if (typeof customCallback === 'function') {
             customCallback(data, this.pageData);
@@ -233,24 +220,21 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
             const pageNumber = target.getAttribute('data-num');
 
             if (target.classList.contains('J-paginator-page') && pageNumber) {
-                if (this.emit('beforePageOnClick', event, pageNumber) !== false) {
-                    this.emit('go', parseInt(pageNumber, 10));
-                    this.emit('afterPageOnClick', event, pageNumber);
-                }
+                this.emit('beforePageOnClick', event, pageNumber);
+                this.emit('go', parseInt(pageNumber, 10));
+                this.emit('afterPageOnClick', event, pageNumber);
             }
 
             if (target.classList.contains('J-paginator-previous') && pageNumber) {
-                if (this.emit('beforePreviousOnClick', event, pageNumber) !== false) {
-                    this.emit('go', parseInt(pageNumber, 10));
-                    this.emit('afterPreviousOnClick', event, pageNumber);
-                }
+                this.emit('beforePreviousOnClick', event, pageNumber);
+                this.emit('go', parseInt(pageNumber, 10));
+                this.emit('afterPreviousOnClick', event, pageNumber);
             }
 
             if (target.classList.contains('J-paginator-next') && pageNumber) {
-                if (this.emit('beforeNextOnClick', event, pageNumber) !== false) {
-                    this.emit('go', parseInt(pageNumber, 10));
-                    this.emit('afterNextOnClick', event, pageNumber);
-                }
+                this.emit('beforeNextOnClick', event, pageNumber);
+                this.emit('go', parseInt(pageNumber, 10));
+                this.emit('afterNextOnClick', event, pageNumber);
             }
 
             if (target.classList.contains('J-paginator-go-button')) {
@@ -258,26 +242,24 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
                 if (!input) return;
                 const pageno = input.value;
 
-                if (this.emit('beforeGoButtonOnClick', event, pageno) !== false) {
-                    this.emit('go', parseInt(pageno, 10));
-                    this.emit('afterGoButtonOnClick', event, pageno);
-                }
+                this.emit('beforeGoButtonOnClick', event, pageno)
+                this.emit('go', parseInt(pageno, 10));
+                this.emit('afterGoButtonOnClick', event, pageno);
             }
 
             if (target.classList.contains('J-paginator-size-select')) {
                 const size = parseInt((target as HTMLSelectElement).value, 10);
                 const currentPage = this.pageData.currentPage || this.options.pageNumber;
 
-                if (this.emit('beforeSizeSelectorChange', event, size) !== false) {
-                    this.options.pageSize = size;
-                    this.pageData.currentPage = size;
-                    this.pageData.totalPage = this.getTotalPage();
-                    if (currentPage > this.pageData.totalPage) {
-                        this.pageData.currentPage = this.pageData.totalPage;
-                    }
-                    this.emit('go', this.pageData.currentPage);
-                    this.emit('afterSizeSelectorChange', event, size);
+                this.emit('beforeSizeSelectorChange', event, size);
+                this.options.pageSize = size;
+                this.pageData.currentPage = size;
+                this.pageData.totalPage = this.getTotalPage();
+                if (currentPage > this.pageData.totalPage) {
+                    this.pageData.currentPage = this.pageData.totalPage;
                 }
+                this.emit('go', this.pageData.currentPage);
+                this.emit('afterSizeSelectorChange', event, size);
             }
         });
     }
@@ -659,7 +641,7 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
     }
 
     public destroy() {
-        if (this.emit('beforeDestroy') === false) return;
+        this.emit('beforeDestroy');
 
         // Remove the element and clear any content within the container
         if (this.element) {
@@ -691,14 +673,14 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
 
     public disable() {
         const source = this.pageData.isAsync ? 'async' : 'sync';
-        if (this.emit('beforeDisable', source) === false) return;
+        this.emit('beforeDisable', source);
         this.disabled = true;
         this.emit('afterDisable', source);
     }
 
     public enable() {
         const source = this.pageData.isAsync ? 'async' : 'sync';
-        if (this.emit('beforeEnable', source) === false) return;
+        this.emit('beforeEnable', source);
         this.disabled = false;
         this.emit('afterEnable', source);
     }
