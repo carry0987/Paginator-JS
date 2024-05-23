@@ -54,8 +54,10 @@ export class EventEmitter<EventTypes> {
     ): boolean {
         const eventName = event as string;
 
+        // Initialize the event
         this.init(eventName);
 
+        // If there are callbacks for this event
         if (this.callbacks[eventName].length > 0) {
             this.callbacks[eventName].forEach((value) => value(...args));
             return true;
