@@ -4,5 +4,5 @@ A library for create and manage paginator with TypeScript
 
 ## Installation
 ```bash
-npm i @carry0987/pagination
+npm i @carry0987/paginator
 ```
