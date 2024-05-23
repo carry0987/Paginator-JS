@@ -136,6 +136,7 @@ declare class EventEmitter<EventTypes> {
     on<EventName extends keyof EventTypes>(event: EventName, listener: (...args: EventArgs<EventTypes[EventName]>) => void): EventEmitter<EventTypes>;
     off<EventName extends keyof EventTypes>(event: EventName, listener: (...args: EventArgs<EventTypes[EventName]>) => void): EventEmitter<EventTypes>;
     emit<EventName extends keyof EventTypes>(event: EventName, ...args: EventArgs<EventTypes[EventName]>): boolean;
+    once<EventName extends keyof EventTypes>(event: EventName, listener: (...args: EventArgs<EventTypes[EventName]>) => void): EventEmitter<EventTypes>;
 }
 
 declare class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implements IPaginator {
@@ -155,7 +156,7 @@ declare class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> i
     private initPageTrigger;
     private renderHTML;
     private renderData;
-    private callHook;
+    private doCallback;
     private observer;
     private getPagingData;
     private getTotalNumber;
@@ -169,7 +170,6 @@ declare class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> i
     private generateHTML;
     private findTotalNumberFromRemoteResponse;
     go(pageNumber: number, callback?: () => void): Promise<void>;
-    private doCallback;
     destroy(): void;
     previous(callback?: () => void): Promise<void>;
     next(callback?: () => void): Promise<void>;
