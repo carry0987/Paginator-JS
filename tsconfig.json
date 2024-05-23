@@ -3,16 +3,18 @@
         "module": "ESNext",
         "target": "ESNext",
         "moduleResolution": "node",
+        "importHelpers": true,
         "strict": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
         "esModuleInterop": true,
         "declaration": true,
         "outDir": "dist"
     },
-    "importHelpers": true,
     "include": [
         "src/*",
         "src/module/config.ts",
-        "src/module/report.ts",
         "src/module/utils-ext.ts"
     ],
     "exclude": ["node_modules"]
