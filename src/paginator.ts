@@ -1,12 +1,14 @@
 import Utils from './module/utils-ext';
 import { IPaginator } from './interface/IPaginator';
 import { Options, PageData, SendFormDataOptions } from './interface/interfaces';
+import { PaginatorEvents } from './interface/events';
 import { DataSource } from './type/types';
 import { defaults } from './module/config';
 import { h, render as renderVNode, VNode, JSX } from 'preact';
 import './style/paginator.css';
+import { EventEmitter } from './module/eventEmitter';
 
-class Paginator implements IPaginator {
+class Paginator extends EventEmitter<PaginatorEvents> implements IPaginator {
     private static version: string = '__version__';
     private static instances: Paginator[] = [];
     private static firstLoad: boolean = true;
@@ -26,6 +28,7 @@ class Paginator implements IPaginator {
     private eventPrefix = 'paginator:';
 
     constructor(element: string | Element, options: Partial<Options>) {
+        super();
         this.instanceID = Utils.generateRandom(6);
         this.container = Utils.isString(element) ? Utils.getElem(element) : element;
         this.initialize(options).then((ele) => {
@@ -104,9 +107,7 @@ class Paginator implements IPaginator {
             defaultPageNumber = 1;
         }
         if (this.options.triggerPagingOnInit) {
-            Utils.dispatchEvent(this.eventPrefix + 'go', element, {
-                pageNumber: Math.min(defaultPageNumber, Math.max(this.getTotalPage(), 1))
-            });
+            this.emit('go', Math.min(defaultPageNumber, Math.max(this.getTotalPage(), 1)));
         }
     }
 
@@ -336,43 +337,27 @@ class Paginator implements IPaginator {
     }
 
     private bindEvents() {
-        const element = this.element;
-        if (!element) return;
-        Utils.addEventListener(element, this.eventPrefix + 'go', async (event: CustomEvent) => {
-            await this.go(event.detail.pageNumber, event.detail.done);
-        });
+        this.on('go', async (pageNumber, done) => await this.go(pageNumber, done));
+        this.on('previous', async (done) => await this.previous(done));
+        this.on('next', async (done) => await this.next(done));
+        this.on('refresh', async (done) => await this.refresh(done));
+        this.on('disable', () => this.disable());
+        this.on('enable', () => this.enable());
+        this.on('show', () => this.show());
+        this.on('hide', () => this.hide());
+        this.on('destroy', () => this.destroy());
+    }
 
-        Utils.addEventListener(element, this.eventPrefix + 'previous', (event: CustomEvent) => {
-            this.previous(event.detail.done);
-        });
-
-        Utils.addEventListener(element, this.eventPrefix + 'next', (event: CustomEvent) => {
-            this.next(event.detail.done);
-        });
-
-        Utils.addEventListener(element, this.eventPrefix + 'refresh', (event: CustomEvent) => {
-            this.refresh(event.detail.done);
-        });
-
-        element.addEventListener(this.eventPrefix + 'disable', () => {
-            this.disable();
-        });
-
-        element.addEventListener(this.eventPrefix + 'enable', () => {
-            this.enable();
-        });
-
-        element.addEventListener(this.eventPrefix + 'show', () => {
-            this.show();
-        });
-
-        element.addEventListener(this.eventPrefix + 'hide', () => {
-            this.hide();
-        });
-
-        element.addEventListener(this.eventPrefix + 'destroy', () => {
-            this.destroy();
-        });
+    private unbindEvents() {
+        this.off('go', async (pageNumber, done) => await this.go(pageNumber, done));
+        this.off('previous', async (done) => this.previous(done));
+        this.off('next', async (done) => this.next(done));
+        this.off('refresh', async (done) => this.refresh(done));
+        this.off('disable', () => this.disable());
+        this.off('enable', () => this.enable());
+        this.off('show', () => this.show());
+        this.off('hide', () => this.hide());
+        this.off('destroy', () => this.destroy());
     }
 
     private getPageLinkTag(index: number): JSX.Element {
@@ -696,21 +681,19 @@ class Paginator implements IPaginator {
 
     public async previous(callback?: () => void) {
         if (this.pageData.currentPage > 1) {
-            await this.go(this.pageData.currentPage - 1, callback);
+            this.emit('go', this.pageData.currentPage - 1, callback);
         }
     }
 
     public async next(callback?: () => void) {
         if (this.pageData.currentPage < this.getTotalPage()) {
-            await this.go(this.pageData.currentPage + 1, callback);
+            this.emit('go', this.pageData.currentPage + 1, callback);
         }
     }
 
     public disable() {
         const source = this.pageData.isAsync ? 'async' : 'sync';
-
         if (this.callHook('beforeDisable', source) === false) return;
-
         this.disabled = true;
         this.callHook('afterDisable', source);
     }
@@ -719,12 +702,7 @@ class Paginator implements IPaginator {
         const source = this.pageData.isAsync ? 'async' : 'sync';
         if (this.callHook('beforeEnable', source) === false) return;
         this.disabled = false;
-
         this.callHook('afterEnable', source);
-    }
-
-    public async refresh(callback?: () => void) {
-        await this.go(this.pageData.currentPage, callback);
     }
 
     public show() {
@@ -739,6 +717,15 @@ class Paginator implements IPaginator {
         }
     }
 
+    public refresh(callback?: () => void) {
+        if (this.callHook('beforeRefresh') === false) return;
+        this.renderHTML();
+        this.callHook('afterRefresh');
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
     private replaceVariables(template: string, variables: Record<string, any>): string {
         let formattedString = template;
 
@@ -750,33 +737,6 @@ class Paginator implements IPaginator {
 
         return formattedString;
     }
-
-    private unbindEvents() {
-        // Ensure all event handlers are removed
-        const element = this.element;
-        if (!element) return;
-        Utils.removeEventListener(element, this.eventPrefix + 'go', this.eventHandlers.go);
-        Utils.removeEventListener(element, this.eventPrefix + 'previous', this.eventHandlers.previous);
-        Utils.removeEventListener(element, this.eventPrefix + 'next', this.eventHandlers.next);
-        Utils.removeEventListener(element, this.eventPrefix + 'refresh', this.eventHandlers.refresh);
-        element.removeEventListener(this.eventPrefix + 'disable', this.eventHandlers.disable as EventListener);
-        element.removeEventListener(this.eventPrefix + 'enable', this.eventHandlers.enable as EventListener);
-        element.removeEventListener(this.eventPrefix + 'show', this.eventHandlers.show as EventListener);
-        element.removeEventListener(this.eventPrefix + 'hide', this.eventHandlers.hide as EventListener);
-        element.removeEventListener(this.eventPrefix + 'destroy', this.eventHandlers.destroy as EventListener);
-    }
-
-    private eventHandlers = {
-        go: async (event: CustomEvent) => await this.go(event.detail.pageNumber, event.detail.done),
-        previous: async (event: CustomEvent) => await this.previous(event.detail.done),
-        next: async (event: CustomEvent) => await this.next(event.detail.done),
-        disable: () => this.disable(),
-        enable: () => this.enable(),
-        refresh: async (event: CustomEvent) => await this.refresh(event.detail.done),
-        show: () => this.show(),
-        hide: () => this.hide(),
-        destroy: () => this.destroy()
-    };
 
     public get version(): string {
         return Paginator.version;
