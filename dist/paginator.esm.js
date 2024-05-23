@@ -103,42 +103,6 @@ function setUrlParam(url, params, overwrite = true) {
     return urlObj.toString();
 }
 
-function addEventListener(element, eventName, handler, options) {
-    element.addEventListener(eventName, handler, options);
-}
-function removeEventListener(element, eventName, handler, options) {
-    element.removeEventListener(eventName, handler, options);
-}
-function createEvent(eventName, detail, options) {
-    return new CustomEvent(eventName, { detail, ...options });
-}
-function dispatchEvent(eventOrName, element = document, detail, options) {
-    try {
-        if (typeof eventOrName === 'string') {
-            let event = createEvent(eventOrName, detail, options);
-            return element.dispatchEvent(event);
-        }
-        else if (eventOrName instanceof Event) {
-            return element.dispatchEvent(eventOrName);
-        }
-        else {
-            throwError('Invalid event type');
-        }
-    }
-    catch (e) {
-        reportError('Dispatch Event Error:', e);
-        return false;
-    }
-}
-
-var eventUtils = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    addEventListener: addEventListener,
-    createEvent: createEvent,
-    dispatchEvent: dispatchEvent,
-    removeEventListener: removeEventListener
-});
-
 // Append form data
 function appendFormData(options, formData = new FormData()) {
     const { data, parentKey = '' } = options;
@@ -305,10 +269,6 @@ class Utils {
     static isArray = isArray;
     static isString = isString;
     static isFunction = isFunction;
-    static createEvent = eventUtils.createEvent;
-    static addEventListener = eventUtils.addEventListener;
-    static removeEventListener = eventUtils.removeEventListener;
-    static dispatchEvent = eventUtils.dispatchEvent;
     static fetchData = fetchUtils.fetchData;
     static isNumeric(value) {
         return !isNaN(parseFloat(value)) && isFinite(value);
@@ -468,7 +428,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '1.0.2';
+    static version = '1.0.3';
     static instances = [];
     static firstLoad = true;
     instanceID;

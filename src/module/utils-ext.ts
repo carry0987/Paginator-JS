@@ -1,7 +1,6 @@
 import {
     getElem,
     hasParent,
-    eventUtils,
     errorUtils,
     fetchUtils,
     isEmpty,
@@ -24,10 +23,6 @@ class Utils {
     static isArray = isArray;
     static isString = isString;
     static isFunction = isFunction;
-    static createEvent = eventUtils.createEvent;
-    static addEventListener = eventUtils.addEventListener;
-    static removeEventListener = eventUtils.removeEventListener;
-    static dispatchEvent = eventUtils.dispatchEvent;
     static fetchData = fetchUtils.fetchData;
 
     static isNumeric(value: any): boolean {
