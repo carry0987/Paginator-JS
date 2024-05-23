@@ -417,8 +417,48 @@ function styleInject(css, ref) {
 var css_248z = ".paginator {\n    display: flex;\n    line-height: 1.6;\n    font-family: Arial, sans-serif;\n    font-size: 14px;\n    box-sizing: initial;\n}\n\n.paginator:after {\n    display: table;\n    content: \" \";\n    clear: both;\n}\n\n.paginator .paginator-pages {\n    float: left;\n    margin-left: 10px;\n}\n\n.paginator .paginator-pages ul {\n    float: left;\n    margin: 0;\n    padding: 0;\n}\n\n.paginator .paginator-go-button,\n.paginator .paginator-go-input,\n.paginator .paginator-size-changer {\n    margin-left: 10px;\n    float: left;\n    font-size: 14px;\n}\n\n.paginator .paginator-pages li {\n    float: left;\n    border: 1px solid #aaa;\n    border-right: none;\n    list-style: none;\n}\n\n.paginator .paginator-pages li > a {\n    min-width: 30px;\n    height: 28px;\n    line-height: 28px;\n    display: block;\n    background: #fff;\n    font-size: 14px;\n    color: #333;\n    text-decoration: none;\n    text-align: center;\n    cursor: pointer;\n}\n\n.paginator .paginator-pages li > a:hover {\n    background: #eee\n}\n\n.paginator .paginator-pages li.active {\n    border: none;\n}\n\n.paginator .paginator-pages li.active > a {\n    height: 30px;\n    line-height: 30px;\n    background: #aaa;\n    color: #fff;\n    cursor: default;\n}\n\n.paginator .paginator-pages li.disabled > a {\n    opacity: .3;\n    cursor: default;\n}\n\n.paginator .paginator-pages li.disabled > a:hover {\n    background: 0 0;\n}\n\n.paginator .paginator-pages li:first-child,\n.paginator .paginator-pages li:first-child > a {\n    border-radius: 3px 0 0 3px;\n}\n\n.paginator .paginator-pages li:last-child {\n    border-right: 1px solid #aaa;\n    border-radius: 0 3px 3px 0;\n}\n\n.paginator .paginator-pages li:last-child > a {\n    border-radius: 0 3px 3px 0;\n}\n\n.paginator .paginator-size-changer > select {\n    height: 28px;\n    background: #fff;\n    border-radius: 3px;\n    border: 1px solid #aaa;\n    padding: 0;\n    font-size: 14px;\n    text-align: center;\n    vertical-align: baseline;\n    outline: 0;\n    box-shadow: none;\n    box-sizing: initial;\n}\n\n.paginator .paginator-go-input > input[type=text] {\n    width: 30px;\n    height: 28px;\n    background: #fff;\n    border-radius: 3px;\n    border: 1px solid #aaa;\n    padding: 0;\n    font-size: 14px;\n    text-align: center;\n    vertical-align: baseline;\n    outline: 0;\n    box-shadow: none;\n    box-sizing: initial;\n}\n\n.paginator .paginator-go-button > input[type=button] {\n    min-width: 40px;\n    height: 30px;\n    line-height: 28px;\n    background: #fff;\n    border-radius: 3px;\n    border: 1px solid #aaa;\n    text-align: center;\n    padding: 0 8px;\n    font-size: 14px;\n    vertical-align: baseline;\n    outline: 0;\n    box-shadow: none;\n    color: #333;\n    cursor: pointer;\n    vertical-align: middle;\n}\n\n.paginator .paginator-go-button > input[type=button]:hover {\n    background-color: #f8f8f8;\n}\n\n.paginator .paginator-nav {\n    float: left;\n    height: 30px;\n    line-height: 30px;\n    font-size: 14px;\n}\n\n.paginator.paginator-small {\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-pages li > a {\n    min-width: 26px;\n    height: 24px;\n    line-height: 24px;\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-pages li.active > a {\n    height: 26px;\n    line-height: 26px;\n}\n\n.paginator.paginator-small .paginator-size-changer {\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-size-changer > select {\n    height: 24px;\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-go-input {\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-go-input > input[type=text] {\n    width: 26px;\n    height: 24px;\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-go-button {\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-go-button > input[type=button] {\n    min-width: 30px;\n    height: 26px;\n    line-height: 24px;\n    padding: 0 6px;\n    font-size: 12px;\n}\n\n.paginator.paginator-small .paginator-nav {\n    height: 26px;\n    line-height: 26px;\n    font-size: 12px;\n}\n\n.paginator.paginator-big {\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-pages li > a {\n    min-width: 36px;\n    height: 34px;\n    line-height: 34px;\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-pages li.active > a {\n    height: 36px;\n    line-height: 36px;\n}\n\n.paginator.paginator-big .paginator-size-changer {\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-size-changer > select {\n    height: 34px;\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-go-input {\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-go-input > input[type=text] {\n    width: 36px;\n    height: 34px;\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-go-button {\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-go-button > input[type=button] {\n    min-width: 50px;\n    height: 36px;\n    line-height: 34px;\n    padding: 0 12px;\n    font-size: 16px;\n}\n\n.paginator.paginator-big .paginator-nav {\n    height: 36px;\n    line-height: 36px;\n    font-size: 16px;\n}\n\n.paginator > :first-child {\n    margin-left: 0;\n}\n\n.paginator.paginator-theme-blue .paginator-pages li {\n    border-color: #289de9;\n}\n\n.paginator.paginator-theme-blue .paginator-pages li > a {\n    color: #289de9;\n}\n\n.paginator.paginator-theme-blue .paginator-pages li > a:hover {\n    background: #e9f4fc;\n}\n\n.paginator.paginator-theme-blue .paginator-pages li.active > a {\n    background: #289de9;\n    color: #fff;\n}\n\n.paginator.paginator-theme-blue .paginator-pages li.disabled > a:hover {\n    background: 0 0;\n}\n\n.paginator.paginator-theme-blue .paginator-go-input > input[type=text],\n.paginator.paginator-theme-blue .paginator-size-changer > select {\n    border-color: #289de9;\n}\n\n.paginator.paginator-theme-blue .paginator-go-button > input[type=button] {\n    background: #289de9;\n    border-color: #289de9;\n    color: #fff;\n}\n\n.paginator.paginator-theme-blue .paginator-go-button > input[type=button]:hover {\n    background-color: #3ca5ea;\n}\n\n.paginator .paginator-pages li.paginator-next {\n    border-right: 1px solid #aaa;\n}\n\n.paginator .paginator-size-changer {\n    margin-left: 5px;\n}\n\n.paginator .paginator-size-changer > select {\n    line-height: 28px;\n    vertical-align: middle\n}\n\n.paginator .paginator-go-input {\n    margin-left: 5px;\n}\n\n.paginator .paginator-go-input > input[type=text] {\n    line-height: 28px;\n    vertical-align: middle;\n}\n\n.paginator .paginator-go-button {\n    margin-left: 5px;\n}\n\n.paginator.paginator-big .paginator-pages li > a {\n    line-height: 36px;\n}\n\n.paginator.paginator-big .paginator-go-input > input[type=text] {\n    height: 36px;\n    line-height: 36px;\n}\n";
 styleInject(css_248z);
 
-class Paginator {
-    static version = '1.0.0';
+class EventEmitter {
+    // Initialize callbacks with an empty object
+    callbacks = {};
+    init(event) {
+        if (!this.callbacks) {
+            this.callbacks = {};
+        }
+        if (event && !this.callbacks[event]) {
+            this.callbacks[event] = [];
+        }
+    }
+    listeners() {
+        return this.callbacks;
+    }
+    on(event, listener) {
+        this.init(event);
+        this.callbacks[event].push(listener);
+        return this;
+    }
+    off(event, listener) {
+        const eventName = event;
+        this.init();
+        if (!this.callbacks[eventName] || this.callbacks[eventName].length === 0) {
+            // There is no callbacks with this key
+            return this;
+        }
+        this.callbacks[eventName] = this.callbacks[eventName].filter((value) => value != listener);
+        return this;
+    }
+    emit(event, ...args) {
+        const eventName = event;
+        this.init(eventName);
+        if (this.callbacks[eventName].length > 0) {
+            this.callbacks[eventName].forEach((value) => value(...args));
+            return true;
+        }
+        return false;
+    }
+}
+
+class Paginator extends EventEmitter {
+    static version = '1.0.1';
     static instances = [];
     static firstLoad = true;
     instanceID;
@@ -434,14 +474,14 @@ class Paginator {
     element = null;
     disabled = false;
     isDynamicTotalNumber = false;
-    eventPrefix = 'paginator:';
     constructor(element, options) {
+        super();
         this.instanceID = Utils.generateRandom(6);
         this.container = Utils.isString(element) ? Utils.getElem(element) : element;
         this.initialize(options).then((ele) => {
             this.bindEvents();
             this.observer();
-            this.callHook('afterInit', ele);
+            this.emit('afterInit', ele);
             this.initPageTrigger();
         });
         // Show the version number on first load
@@ -510,9 +550,7 @@ class Paginator {
             defaultPageNumber = 1;
         }
         if (this.options.triggerPagingOnInit) {
-            Utils.dispatchEvent(this.eventPrefix + 'go', element, {
-                pageNumber: Math.min(defaultPageNumber, Math.max(this.getTotalPage(), 1))
-            });
+            this.emit('go', Math.min(defaultPageNumber, Math.max(this.getTotalPage(), 1)));
         }
     }
     renderHTML(isBoot = false) {
@@ -536,7 +574,7 @@ class Paginator {
             this.element = ele;
         }
         const ele = this.element;
-        this.callHook('beforeRender', isBoot !== true);
+        this.emit('beforeRender', isBoot !== true);
         const currentPage = this.pageData.currentPage || options.pageNumber;
         const pageRange = options.pageRange || 0;
         let rangeStart = currentPage - pageRange;
@@ -558,11 +596,11 @@ class Paginator {
         else {
             this.element.style.display = '';
         }
-        this.callHook('afterRender', isBoot !== true);
+        this.emit('afterRender', isBoot !== true);
         return ele;
     }
     renderData(dataList, pageNumber, customCallback) {
-        if (this.callHook('beforePaging', pageNumber) === false)
+        if (this.emit('beforePaging', pageNumber) === false)
             return false;
         // Paginator direction
         this.pageData.direction = (pageNumber > this.pageData.currentPage) ? 1 : -1;
@@ -580,12 +618,12 @@ class Paginator {
             }
         }
         this.doCallback(dataList, customCallback);
-        this.callHook('afterPaging', pageNumber);
+        this.emit('afterPaging', pageNumber);
         if (pageNumber === 1) {
-            this.callHook('afterIsFirstPage');
+            this.emit('afterIsFirstPage');
         }
         else if (pageNumber === this.getTotalPage()) {
-            this.callHook('afterIsLastPage');
+            this.emit('afterIsLastPage');
         }
     }
     callHook(hook, ...args) {
@@ -610,21 +648,21 @@ class Paginator {
             }
             const pageNumber = target.getAttribute('data-num');
             if (target.classList.contains('J-paginator-page') && pageNumber) {
-                if (this.callHook('beforePageOnClick', event, pageNumber) !== false) {
+                if (this.emit('beforePageOnClick', event, pageNumber) !== false) {
                     await this.go(parseInt(pageNumber, 10));
-                    this.callHook('afterPageOnClick', event, pageNumber);
+                    this.emit('afterPageOnClick', event, pageNumber);
                 }
             }
             if (target.classList.contains('J-paginator-previous') && pageNumber) {
-                if (this.callHook('beforePreviousOnClick', event, pageNumber) !== false) {
+                if (this.emit('beforePreviousOnClick', event, pageNumber) !== false) {
                     await this.go(parseInt(pageNumber, 10));
-                    this.callHook('afterPreviousOnClick', event, pageNumber);
+                    this.emit('afterPreviousOnClick', event, pageNumber);
                 }
             }
             if (target.classList.contains('J-paginator-next') && pageNumber) {
-                if (this.callHook('beforeNextOnClick', event, pageNumber) !== false) {
+                if (this.emit('beforeNextOnClick', event, pageNumber) !== false) {
                     await this.go(parseInt(pageNumber, 10));
-                    this.callHook('afterNextOnClick', event, pageNumber);
+                    this.emit('afterNextOnClick', event, pageNumber);
                 }
             }
             if (target.classList.contains('J-paginator-go-button')) {
@@ -632,15 +670,15 @@ class Paginator {
                 if (!input)
                     return;
                 const pageno = input.value;
-                if (this.callHook('beforeGoButtonOnClick', event, pageno) !== false) {
+                if (this.emit('beforeGoButtonOnClick', event, pageno) !== false) {
                     await this.go(parseInt(pageno, 10));
-                    this.callHook('afterGoButtonOnClick', event, pageno);
+                    this.emit('afterGoButtonOnClick', event, pageno);
                 }
             }
             if (target.classList.contains('J-paginator-size-select')) {
                 const size = parseInt(target.value, 10);
                 const currentPage = this.pageData.currentPage || this.options.pageNumber;
-                if (this.callHook('beforeSizeSelectorChange', event, size) !== false) {
+                if (this.emit('beforeSizeSelectorChange', event, size) !== false) {
                     this.options.pageSize = size;
                     this.pageData.currentPage = size;
                     this.pageData.totalPage = this.getTotalPage();
@@ -648,7 +686,7 @@ class Paginator {
                         this.pageData.currentPage = this.pageData.totalPage;
                     }
                     await this.go(this.pageData.currentPage);
-                    this.callHook('afterSizeSelectorChange', event, size);
+                    this.emit('afterSizeSelectorChange', event, size);
                 }
             }
         });
@@ -706,36 +744,24 @@ class Paginator {
         return filteredData;
     }
     bindEvents() {
-        const element = this.element;
-        if (!element)
-            return;
-        Utils.addEventListener(element, this.eventPrefix + 'go', async (event) => {
-            await this.go(event.detail.pageNumber, event.detail.done);
-        });
-        Utils.addEventListener(element, this.eventPrefix + 'previous', (event) => {
-            this.previous(event.detail.done);
-        });
-        Utils.addEventListener(element, this.eventPrefix + 'next', (event) => {
-            this.next(event.detail.done);
-        });
-        Utils.addEventListener(element, this.eventPrefix + 'refresh', (event) => {
-            this.refresh(event.detail.done);
-        });
-        element.addEventListener(this.eventPrefix + 'disable', () => {
-            this.disable();
-        });
-        element.addEventListener(this.eventPrefix + 'enable', () => {
-            this.enable();
-        });
-        element.addEventListener(this.eventPrefix + 'show', () => {
-            this.show();
-        });
-        element.addEventListener(this.eventPrefix + 'hide', () => {
-            this.hide();
-        });
-        element.addEventListener(this.eventPrefix + 'destroy', () => {
-            this.destroy();
-        });
+        this.on('go', async (pageNumber, done) => await this.go(pageNumber, done));
+        this.on('previous', async (done) => await this.previous(done));
+        this.on('next', async (done) => await this.next(done));
+        this.on('disable', () => this.disable());
+        this.on('enable', () => this.enable());
+        this.on('show', () => this.show());
+        this.on('hide', () => this.hide());
+        this.on('destroy', () => this.destroy());
+    }
+    unbindEvents() {
+        this.off('go', async (pageNumber, done) => await this.go(pageNumber, done));
+        this.off('previous', async (done) => await this.previous(done));
+        this.off('next', async (done) => await this.next(done));
+        this.off('disable', () => this.disable());
+        this.off('enable', () => this.enable());
+        this.off('show', () => this.show());
+        this.off('hide', () => this.hide());
+        this.off('destroy', () => this.destroy());
     }
     getPageLinkTag(index) {
         const pageLink = this.options.pageLink;
@@ -994,7 +1020,7 @@ class Paginator {
         }
     }
     destroy() {
-        if (this.callHook('beforeDestroy') === false)
+        if (this.emit('beforeDestroy') === false)
             return;
         // Remove the element and clear any content within the container
         if (this.element) {
@@ -1007,34 +1033,31 @@ class Paginator {
         // Unbind events and clean up
         this.unbindEvents();
         Paginator.instances = Paginator.instances.filter(instance => instance !== this); // Remove this instance
-        this.callHook('afterDestroy');
+        this.emit('afterDestroy');
     }
     async previous(callback) {
         if (this.pageData.currentPage > 1) {
-            await this.go(this.pageData.currentPage - 1, callback);
+            this.emit('go', this.pageData.currentPage - 1, callback);
         }
     }
     async next(callback) {
         if (this.pageData.currentPage < this.getTotalPage()) {
-            await this.go(this.pageData.currentPage + 1, callback);
+            this.emit('go', this.pageData.currentPage + 1, callback);
         }
     }
     disable() {
         const source = this.pageData.isAsync ? 'async' : 'sync';
-        if (this.callHook('beforeDisable', source) === false)
+        if (this.emit('beforeDisable', source) === false)
             return;
         this.disabled = true;
-        this.callHook('afterDisable', source);
+        this.emit('afterDisable', source);
     }
     enable() {
         const source = this.pageData.isAsync ? 'async' : 'sync';
-        if (this.callHook('beforeEnable', source) === false)
+        if (this.emit('beforeEnable', source) === false)
             return;
         this.disabled = false;
-        this.callHook('afterEnable', source);
-    }
-    async refresh(callback) {
-        await this.go(this.pageData.currentPage, callback);
+        this.emit('afterEnable', source);
     }
     show() {
         if (this.element && this.element.style.display === 'none') {
@@ -1055,32 +1078,6 @@ class Paginator {
         }
         return formattedString;
     }
-    unbindEvents() {
-        // Ensure all event handlers are removed
-        const element = this.element;
-        if (!element)
-            return;
-        Utils.removeEventListener(element, this.eventPrefix + 'go', this.eventHandlers.go);
-        Utils.removeEventListener(element, this.eventPrefix + 'previous', this.eventHandlers.previous);
-        Utils.removeEventListener(element, this.eventPrefix + 'next', this.eventHandlers.next);
-        Utils.removeEventListener(element, this.eventPrefix + 'refresh', this.eventHandlers.refresh);
-        element.removeEventListener(this.eventPrefix + 'disable', this.eventHandlers.disable);
-        element.removeEventListener(this.eventPrefix + 'enable', this.eventHandlers.enable);
-        element.removeEventListener(this.eventPrefix + 'show', this.eventHandlers.show);
-        element.removeEventListener(this.eventPrefix + 'hide', this.eventHandlers.hide);
-        element.removeEventListener(this.eventPrefix + 'destroy', this.eventHandlers.destroy);
-    }
-    eventHandlers = {
-        go: async (event) => await this.go(event.detail.pageNumber, event.detail.done),
-        previous: async (event) => await this.previous(event.detail.done),
-        next: async (event) => await this.next(event.detail.done),
-        disable: () => this.disable(),
-        enable: () => this.enable(),
-        refresh: async (event) => await this.refresh(event.detail.done),
-        show: () => this.show(),
-        hide: () => this.hide(),
-        destroy: () => this.destroy()
-    };
     get version() {
         return Paginator.version;
     }

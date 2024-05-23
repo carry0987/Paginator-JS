@@ -6,13 +6,13 @@ interface IPaginator {
     next(callback?: () => void): void;
     disable(): void;
     enable(): void;
-    refresh(callback?: () => void): void;
     show(): void;
     hide(): void;
     destroy(): void;
 }
 
 type DataSource<T = object> = string | T | Array<T> | ((data: T) => Array<T>);
+type EventArgs<T> = [T] extends [(...args: infer U) => any] ? U : [T] extends [void] ? [] : [T];
 
 interface CommonOptions {
     dataSource: DataSource;
@@ -44,29 +44,6 @@ interface StyleOptions {
     pageClassName: string;
     prevClassName: string;
     nextClassName: string;
-}
-interface EventOptions {
-    afterInit?: (paginator: IPaginator, ...args: any[]) => boolean | void;
-    beforeRender?: (paginator: IPaginator, isBoot: boolean) => boolean | void;
-    afterRender?: (paginator: IPaginator, isBoot: boolean) => boolean | void;
-    beforePageOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterPageOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforePreviousOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterPreviousOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeNextOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterNextOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeGoButtonOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterGoButtonOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeSizeSelectorChange?: (paginator: IPaginator, event: Event, size: number) => boolean | void;
-    afterSizeSelectorChange?: (paginator: IPaginator, event: Event, size: number) => boolean | void;
-    beforeDisable?: (paginator: IPaginator, source: string) => boolean | void;
-    afterDisable?: (paginator: IPaginator, source: string) => boolean | void;
-    beforeEnable?: (paginator: IPaginator, source: string) => boolean | void;
-    afterEnable?: (paginator: IPaginator, source: string) => boolean | void;
-    beforePaging?: (paginator: IPaginator, pageNumber: number) => boolean | void;
-    afterPaging?: (paginator: IPaginator, pageNumber: number) => boolean | void;
-    beforeDestroy?: (paginator: IPaginator) => boolean | void;
-    afterDestroy?: (paginator: IPaginator) => boolean | void;
 }
 interface CustomizeOptions {
     prevText: string;
@@ -109,12 +86,59 @@ interface DataLoader {
     credentials?: RequestCredentials;
     pageNumberStartWithZero: boolean;
 }
-interface Options extends CommonOptions, DisplayControls, StyleOptions, EventOptions, CustomizeOptions, UtilitiesOptions {
+interface Options extends CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {
 }
 interface SendFormDataOptions extends Interfaces.SendFormDataOptions {
 }
 
-declare class Paginator implements IPaginator {
+interface PaginatorEvents {
+    go: (pageNumber: number, done?: () => void) => void;
+    previous: (done?: () => void) => void;
+    next: (done?: () => void) => void;
+    disable: () => void;
+    enable: () => void;
+    show: () => void;
+    hide: () => void;
+    destroy: () => void;
+}
+interface InternalEvents {
+    afterInit: (ele: HTMLElement) => boolean | void;
+    beforeRender: (isBoot: boolean) => boolean | void;
+    afterRender: (isBoot: boolean) => boolean | void;
+    beforePageOnClick: (event: Event, pageNumber: string) => boolean | void;
+    afterPageOnClick: (event: Event, pageNumber: string) => boolean | void;
+    beforePreviousOnClick: (event: Event, pageNumber: string) => boolean | void;
+    afterPreviousOnClick: (event: Event, pageNumber: string) => boolean | void;
+    beforeNextOnClick: (event: Event, pageNumber: string) => boolean | void;
+    afterNextOnClick: (event: Event, pageNumber: string) => boolean | void;
+    beforeGoButtonOnClick: (event: Event, pageNumber: string) => boolean | void;
+    afterGoButtonOnClick: (event: Event, pageNumber: string) => boolean | void;
+    beforeSizeSelectorChange: (event: Event, size: number) => boolean | void;
+    afterSizeSelectorChange: (event: Event, size: number) => boolean | void;
+    afterIsFirstPage: () => boolean | void;
+    afterIsLastPage: () => boolean | void;
+    beforeDisable: (source: string) => boolean | void;
+    afterDisable: (source: string) => boolean | void;
+    beforeEnable: (source: string) => boolean | void;
+    afterEnable: (source: string) => boolean | void;
+    beforePaging: (pageNumber: number) => boolean | void;
+    afterPaging: (pageNumber: number) => boolean | void;
+    beforeDestroy: () => boolean | void;
+    afterDestroy: () => boolean | void;
+}
+
+declare class EventEmitter<EventTypes> {
+    private callbacks;
+    private init;
+    listeners(): {
+        [event: string]: ((...args: any[]) => void)[];
+    };
+    on<EventName extends keyof EventTypes>(event: EventName, listener: (...args: EventArgs<EventTypes[EventName]>) => void): EventEmitter<EventTypes>;
+    off<EventName extends keyof EventTypes>(event: EventName, listener: (...args: EventArgs<EventTypes[EventName]>) => void): EventEmitter<EventTypes>;
+    emit<EventName extends keyof EventTypes>(event: EventName, ...args: EventArgs<EventTypes[EventName]>): boolean;
+}
+
+declare class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implements IPaginator {
     private static version;
     private static instances;
     private static firstLoad;
@@ -125,7 +149,6 @@ declare class Paginator implements IPaginator {
     private element;
     private disabled;
     private isDynamicTotalNumber;
-    private eventPrefix;
     constructor(element: string | Element, options: Partial<Options>);
     private initialize;
     private parseDataSource;
@@ -140,6 +163,7 @@ declare class Paginator implements IPaginator {
     private getLocator;
     private filterDataWithLocator;
     private bindEvents;
+    private unbindEvents;
     private getPageLinkTag;
     private generatePageNumbersHTML;
     private generateHTML;
@@ -151,12 +175,9 @@ declare class Paginator implements IPaginator {
     next(callback?: () => void): Promise<void>;
     disable(): void;
     enable(): void;
-    refresh(callback?: () => void): Promise<void>;
     show(): void;
     hide(): void;
     private replaceVariables;
-    private unbindEvents;
-    private eventHandlers;
     get version(): string;
 }
 
