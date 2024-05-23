@@ -36,30 +36,6 @@ interface StyleOptions {
     nextClassName: string;
 }
 
-interface EventOptions {
-    afterInit?: (paginator: IPaginator, ...args: any[]) => boolean | void;
-    beforeRender?: (paginator: IPaginator, isBoot: boolean) => boolean | void;
-    afterRender?: (paginator: IPaginator, isBoot: boolean) => boolean | void;
-    beforePageOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterPageOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforePreviousOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterPreviousOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeNextOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterNextOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeGoButtonOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    afterGoButtonOnClick?: (paginator: IPaginator, event: Event, pageNumber: string) => boolean | void;
-    beforeSizeSelectorChange?: (paginator: IPaginator, event: Event, size: number) => boolean | void;
-    afterSizeSelectorChange?: (paginator: IPaginator, event: Event, size: number) => boolean | void;
-    beforeDisable?: (paginator: IPaginator, source: string) => boolean | void;
-    afterDisable?: (paginator: IPaginator, source: string) => boolean | void;
-    beforeEnable?: (paginator: IPaginator, source: string) => boolean | void;
-    afterEnable?: (paginator: IPaginator, source: string) => boolean | void;
-    beforePaging?: (paginator: IPaginator, pageNumber: number) => boolean | void;
-    afterPaging?: (paginator: IPaginator, pageNumber: number) => boolean | void;
-    beforeDestroy?: (paginator: IPaginator) => boolean | void;
-    afterDestroy?: (paginator: IPaginator) => boolean | void;
-}
-
 interface CustomizeOptions {
     prevText: string;
     nextText: string;
@@ -106,5 +82,5 @@ export interface DataLoader {
     pageNumberStartWithZero: boolean;
 }
 
-export interface Options extends CommonOptions, DisplayControls, StyleOptions, EventOptions, CustomizeOptions, UtilitiesOptions {}
+export interface Options extends CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {}
 export interface SendFormDataOptions extends Interfaces.SendFormDataOptions {}
