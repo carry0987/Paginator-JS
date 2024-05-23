@@ -210,8 +210,17 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
         return result;
     }
 
+    private doCallback(data: any, customCallback?: (data: any, model: any) => void) {
+        if (typeof customCallback === 'function') {
+            customCallback(data, this.pageData);
+        } else if (typeof this.options.callback === 'function') {
+            this.options.callback(data, this);
+        }
+    }
+
     private observer(): void {
-        const ele = this.element!;
+        const ele = this.element;
+        if (!ele) return;
 
         ele.addEventListener('click', async (event) => {
             let target = event.target as HTMLElement;
@@ -225,21 +234,21 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
 
             if (target.classList.contains('J-paginator-page') && pageNumber) {
                 if (this.emit('beforePageOnClick', event, pageNumber) !== false) {
-                    await this.go(parseInt(pageNumber, 10));
+                    this.emit('go', parseInt(pageNumber, 10));
                     this.emit('afterPageOnClick', event, pageNumber);
                 }
             }
 
             if (target.classList.contains('J-paginator-previous') && pageNumber) {
                 if (this.emit('beforePreviousOnClick', event, pageNumber) !== false) {
-                    await this.go(parseInt(pageNumber, 10));
+                    this.emit('go', parseInt(pageNumber, 10));
                     this.emit('afterPreviousOnClick', event, pageNumber);
                 }
             }
 
             if (target.classList.contains('J-paginator-next') && pageNumber) {
                 if (this.emit('beforeNextOnClick', event, pageNumber) !== false) {
-                    await this.go(parseInt(pageNumber, 10));
+                    this.emit('go', parseInt(pageNumber, 10));
                     this.emit('afterNextOnClick', event, pageNumber);
                 }
             }
@@ -250,7 +259,7 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
                 const pageno = input.value;
 
                 if (this.emit('beforeGoButtonOnClick', event, pageno) !== false) {
-                    await this.go(parseInt(pageno, 10));
+                    this.emit('go', parseInt(pageno, 10));
                     this.emit('afterGoButtonOnClick', event, pageno);
                 }
             }
@@ -266,7 +275,7 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
                     if (currentPage > this.pageData.totalPage) {
                         this.pageData.currentPage = this.pageData.totalPage;
                     }
-                    await this.go(this.pageData.currentPage);
+                    this.emit('go', this.pageData.currentPage);
                     this.emit('afterSizeSelectorChange', event, size);
                 }
             }
@@ -646,14 +655,6 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implement
             this.options.dataLoaderFunction(this);
         } else {
             await Utils.fetchData(fetchOptions);
-        }
-    }
-
-    private doCallback(data: any, customCallback?: (data: any, model: any) => void) {
-        if (typeof customCallback === 'function') {
-            customCallback(data, this.pageData);
-        } else if (typeof this.options.callback === 'function') {
-            this.options.callback(data, this);
         }
     }
 
