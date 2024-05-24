@@ -221,42 +221,8 @@ async function sendData(options) {
     };
     return doFetch(fetchOptions);
 }
-// Send form data
-async function sendFormData(options) {
-    const { url, data, method = 'POST', headers, cache, mode, credentials, success, errorCallback, beforeSend } = options;
-    const fetchOptions = {
-        url: url,
-        method: method,
-        headers: headers,
-        cache: cache,
-        mode: mode,
-        credentials: credentials,
-        body: encodeFormData(data),
-        beforeSend: beforeSend,
-        success: (responseData) => {
-            success?.(responseData);
-        },
-        error: (caughtError) => {
-            errorCallback?.(caughtError);
-        }
-    };
-    return doFetch(fetchOptions)
-        .then(() => true)
-        .catch(() => false);
-}
 // Alias for sendData
 const fetchData = sendData;
-// Alias for sendFormData
-const sendForm = sendFormData;
-
-var fetchUtils = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    doFetch: doFetch,
-    fetchData: fetchData,
-    sendData: sendData,
-    sendForm: sendForm,
-    sendFormData: sendFormData
-});
 
 class Utils {
     static throwError = errorUtils.throwError;
@@ -269,7 +235,7 @@ class Utils {
     static isArray = isArray;
     static isString = isString;
     static isFunction = isFunction;
-    static fetchData = fetchUtils.fetchData;
+    static fetchData = fetchData;
     static isNumeric(value) {
         return !isNaN(parseFloat(value)) && isFinite(value);
     }
@@ -428,7 +394,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '1.0.4';
+    static version = '1.0.5';
     static instances = [];
     static firstLoad = true;
     instanceID;

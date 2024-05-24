@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A library for create and manage paginator",
   "type": "module",
   "main": "dist/paginator.min.js",

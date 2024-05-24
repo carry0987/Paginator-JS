@@ -2,12 +2,12 @@ import {
     getElem,
     hasParent,
     errorUtils,
-    fetchUtils,
     isEmpty,
     isObject,
     isArray,
     isString,
     isFunction,
+    fetchData,
     deepMerge,
     generateRandom,
 } from '@carry0987/utils';
@@ -23,7 +23,7 @@ class Utils {
     static isArray = isArray;
     static isString = isString;
     static isFunction = isFunction;
-    static fetchData = fetchUtils.fetchData;
+    static fetchData = fetchData;
 
     static isNumeric(value: any): boolean {
         return !isNaN(parseFloat(value)) && isFinite(value);
