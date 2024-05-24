@@ -381,15 +381,15 @@ class EventEmitter {
     // Initialize callbacks with an empty object
     callbacks = {};
     init(event) {
-        if (!this.callbacks) {
-            this.callbacks = {};
-        }
         if (event && !this.callbacks[event]) {
             this.callbacks[event] = [];
         }
     }
     listeners() {
         return this.callbacks;
+    }
+    addListener(event, listener) {
+        return this.on(event, listener);
     }
     on(event, listener) {
         this.init(event);
@@ -406,29 +406,29 @@ class EventEmitter {
         this.callbacks[eventName] = this.callbacks[eventName].filter((value) => value != listener);
         return this;
     }
-    emit(event, ...args) {
+    async emit(event, ...args) {
         const eventName = event;
         // Initialize the event
         this.init(eventName);
         // If there are callbacks for this event
         if (this.callbacks[eventName].length > 0) {
-            this.callbacks[eventName].forEach((value) => value(...args));
+            // Execute all callbacks and wait for them to complete if they are promises
+            await Promise.all(this.callbacks[eventName].map(async (value) => await value(...args)));
             return true;
         }
         return false;
     }
     once(event, listener) {
-        const eventName = event;
-        const onceListener = (...args) => {
-            listener(...args);
+        const onceListener = async (...args) => {
+            await listener(...args);
             this.off(event, onceListener);
         };
-        return this.on(eventName, onceListener);
+        return this.on(event, onceListener);
     }
 }
 
 class Paginator extends EventEmitter {
-    static version = '1.0.3';
+    static version = '1.0.4';
     static instances = [];
     static firstLoad = true;
     instanceID;
