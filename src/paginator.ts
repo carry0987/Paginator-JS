@@ -5,8 +5,8 @@ import { PaginatorEvents, InternalEvents } from './interface/events';
 import { DataSource } from './type/types';
 import { defaults } from './module/config';
 import { h, render as renderVNode, VNode, JSX } from 'preact';
-import './style/paginator.css';
 import { EventEmitter } from '@carry0987/event-emitter';
+import './style/paginator.css';
 
 class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> implements IPaginator {
     private static version: string = '__version__';
