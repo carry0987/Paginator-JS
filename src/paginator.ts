@@ -1,4 +1,4 @@
-import Utils from './module/utils-ext';
+import Utils from './module/utils/utils-ext';
 import { IPaginator } from './interface/IPaginator';
 import { Options, PageData, SendFormDataOptions } from './interface/interfaces';
 import { PaginatorEvents, InternalEvents } from './interface/events';

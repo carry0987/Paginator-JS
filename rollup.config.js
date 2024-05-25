@@ -9,14 +9,16 @@ import { createRequire } from 'module';
 const pkg = createRequire(import.meta.url)('./package.json');
 
 const isProduction = process.env.BUILD === 'production';
+const sourceFile = 'src/index.ts';
+const dtsFile = 'dist/dts/index.d.ts';
 
 const jsConfig = {
-    input: 'src/paginator.ts',
+    input: sourceFile,
     output: [
         {
             file: pkg.main,
             format: 'umd',
-            name: 'Paginator',
+            name: 'paginatorjs',
             plugins: isProduction ? [terser()] : []
         }
     ],
@@ -36,7 +38,7 @@ const jsConfig = {
 };
 
 const esConfig = {
-    input: 'src/paginator.ts',
+    input: sourceFile,
     output: [
         {
             file: pkg.module,
@@ -58,7 +60,7 @@ const esConfig = {
 };
 
 const dtsConfig = {
-    input: 'dist/paginator.d.ts',
+    input: dtsFile,
     output: {
         file: pkg.types,
         format: 'es'
@@ -66,7 +68,7 @@ const dtsConfig = {
     external: [/\.css$/u],
     plugins: [
         dts(),
-        del({ hook: 'buildEnd', targets: ['!dist/index.js', 'dist/*.d.ts', 'dist/interface', 'dist/module', 'dist/type'] })
+        del({ hook: 'buildEnd', targets: 'dist/dts' })
     ]
 };
 

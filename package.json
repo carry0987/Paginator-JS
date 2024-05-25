@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/paginator.min.js",
   "module": "dist/paginator.esm.js",
-  "types": "dist/paginator.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rollup --config rollup.config.js",
@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/carry0987/Paginator-JS#readme",
   "devDependencies": {
-    "@carry0987/event-emitter": "^1.1.1",
-    "@carry0987/utils": "^3.3.13",
+    "@carry0987/event-emitter": "^1.2.1",
+    "@carry0987/utils": "^3.3.15",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",

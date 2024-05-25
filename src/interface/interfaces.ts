@@ -1,4 +1,5 @@
-import { IPaginator } from './IPaginator';
+import Paginator from '../component/paginator';
+import { IConfig } from './config';
 import { DataSource } from '../type/types';
 import { Interfaces } from '@carry0987/utils';
 
@@ -10,7 +11,7 @@ interface CommonOptions {
     pageNumber: number;
     pageSize: number | null;
     pageRange: number;
-    callback?: (data: DataSource<Array<any>>, paginator: IPaginator) => void;
+    callback?: (data: DataSource<Array<any>>, paginator: Paginator) => void;
     alias: Record<string, string>;
 }
 
@@ -50,8 +51,8 @@ interface CustomizeOptions {
 
 interface UtilitiesOptions {
     formatResult: (data: DataSource<Array<any>>) => DataSource<Array<any>>;
-    dataLoader: ((data?: Array<any>, paginator?: IPaginator) => void) | DataLoader;
-    dataLoaderFunction?: (paginator: IPaginator) => void;
+    dataLoader: ((data?: Array<any>, paginator?: Paginator) => void) | DataLoader;
+    dataLoaderFunction?: (paginator: Paginator) => void;
     triggerPagingOnInit: boolean;
     resetPageNumberOnInit: boolean;
     hideOnlyOnePage: boolean;
@@ -82,5 +83,5 @@ export interface DataLoader {
     pageNumberStartWithZero: boolean;
 }
 
-export interface Options extends CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {}
+export interface Options extends IConfig, CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {}
 export interface SendFormDataOptions extends Interfaces.SendFormDataOptions {}

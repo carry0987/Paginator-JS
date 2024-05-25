@@ -75,10 +75,10 @@
 
     // Display version
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('#version').textContent = 'v' + Paginator.version;
+        document.querySelector('#version').textContent = 'v' + paginatorjs.Paginator.version;
     });
 
-    let paginator = new Paginator(document.querySelector('div#paginator-demo1'), {
+    let paginator = new paginatorjs.Paginator({
         dataSource: data,
         pageSize: 10,
         pageNumber: 3,
@@ -90,9 +90,9 @@
             dataHtml += '</ul>';
             document.querySelector('.data-container').innerHTML = dataHtml;
         }
-    });
+    }).render(document.querySelector('div#paginator-demo1'));
 
-    let paginator2 = new Paginator('div#paginator-demo2', {
+    let paginator2 = new paginatorjs.Paginator('div#paginator-demo2', {
         dataSource: data2,
         pageSize: 10,
         callback: (response, paginator) => {
@@ -105,7 +105,7 @@
         }
     });
 
-    let paginator3 = new Paginator(document.querySelector('div#paginator-demo3'), {
+    let paginator3 = new paginatorjs.Paginator(document.querySelector('div#paginator-demo3'), {
         dataSource: 'https://dummyjson.com/products/search?q=phone',
         locator: 'products',
         totalNumberLocator: (response) => {
