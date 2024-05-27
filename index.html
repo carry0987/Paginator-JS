@@ -92,7 +92,7 @@
         }
     }).render(document.querySelector('div#paginator-demo1'));
 
-    let paginator2 = new paginatorjs.Paginator('div#paginator-demo2', {
+    let paginator2 = new paginatorjs.Paginator({
         dataSource: data2,
         pageSize: 10,
         callback: (response, paginator) => {
@@ -103,9 +103,9 @@
             dataHtml += '</ul>';
             document.querySelectorAll('.data-container')[1].innerHTML = dataHtml;
         }
-    });
+    }).render(document.querySelector('div#paginator-demo2'));
 
-    let paginator3 = new paginatorjs.Paginator(document.querySelector('div#paginator-demo3'), {
+    let paginator3 = new paginatorjs.Paginator({
         dataSource: 'https://dummyjson.com/products/search?q=phone',
         locator: 'products',
         totalNumberLocator: (response) => {
@@ -127,7 +127,7 @@
             dataHtml += '</ul>';
             document.querySelectorAll('.data-container')[2].innerHTML = dataHtml;
         }
-    });
+    }).render(document.querySelector('div#paginator-demo3'));
     </script>
 </body>
 </html>
