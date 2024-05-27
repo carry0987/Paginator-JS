@@ -1,15 +1,19 @@
 import { Status } from '../type/types';
 import { Options } from '../interface/interfaces';
+import { State } from '../interface/state';
 import { createContext } from 'preact';
 import Utils from '../module/utils/utils-ext';
 import { StateManager } from '../module/state/stateManager';
+import Storage from '../module/storage/storage';
+import StorageUtils from '../module/storage/storageUtils';
 
 const defaults: Partial<Options> = {
-    store: new StateManager({
+    store: new StateManager<State>({
         status: Status.Init,
         data: null,
-    } as Partial<StateManager>),
-    dataSource: [],
+    }),
+    position: 'bottom',
+    resetPageOnUpdate: false,
     locator: 'data',
     totalNumber: 0,
     totalNumberLocator: null,
@@ -20,48 +24,43 @@ const defaults: Partial<Options> = {
         pageNumber: 'pageNumber',
         pageSize: 'pageSize',
     },
-    showPrevious: true,
-    showNext: true,
-    showPageNumbers: true,
-    showNavigator: false,
-    hideFirstOnEllipsisShow: false,
-    hideLastOnEllipsisShow: false,
-    autoHidePrevious: false,
-    autoHideNext: false,
-    classPrefix: 'pagination',
-    className: '',
-    activeClassName: 'active',
-    disableClassName: 'disabled',
-    ulClassName: '',
-    pageClassName: '',
-    prevClassName: '',
-    nextClassName: '',
-    prevText: '&laquo;',
-    nextText: '&raquo;',
-    ellipsisText: '...',
-    goButtonText: 'Go',
-    formatNavigator: '{currentPage} of {totalPage}',
-    header: '',
-    footer: '',
-    pageLink: '',
-    position: 'bottom',
-    formatResult: (data: any) => data,
-    dataLoader: {
-        method: 'GET',
-        data: {},
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        mode: 'cors',
-        beforeSend: (pagination: any) => pagination,
-        credentials: 'same-origin',
-        pageNumberStartWithZero: false
+    display: {
+        showPrevious: true,
+        showNext: true,
+        showPageNumbers: true,
+        showNavigator: false,
+        hideFirstOnEllipsisShow: false,
+        hideLastOnEllipsisShow: false,
+        autoHidePrevious: false,
+        autoHideNext: false
     },
-    triggerPagingOnInit: true,
-    resetPageNumberOnInit: false,
-    hideOnlyOnePage: false,
-    onError: (err: unknown) => console.error('Pagination error:', err)
+    className: {
+        container: '',
+        prefix: 'pagination',
+        active: 'active',
+        disable: 'disabled',
+        ul: 'pagination',
+        pageButton: 'page-item',
+        prevButton: 'page-item',
+        nextButton: 'page-item',
+        loading: 'loading',
+        notfound: 'notfound',
+        error: 'error'
+    },
+    customize: {
+        prevText: '&laquo;',
+        nextText: '&raquo;',
+        ellipsisText: '...',
+        formatNavigator: '{currentPage} of {totalPage}',
+        pageLink: ''
+    },
+    utilities: {
+        formatResult: (data: any) => data,
+        triggerPagingOnInit: true,
+        resetPageNumberOnInit: false,
+        hideOnlyOnePage: false,
+        onError: (err: unknown) => console.error('Pagination error:', err)
+    }
 };
 
 const ConfigContext = createContext<Options | undefined>(undefined);
@@ -70,11 +69,11 @@ class Config {
     public options: Options = {} as Options;
 
     constructor() {
-        this.options = Utils.deepMerge({} as Options, defaults, this.options);
+        Utils.deepMerge(this.options, defaults);
     }
 
     public assign(partialConfig: Partial<Options>): this {
-        this.options = Utils.deepMerge(this.options, partialConfig);
+        Utils.deepMerge(this.options, partialConfig);
 
         return this;
     }
@@ -82,9 +81,19 @@ class Config {
     public update(partialConfig: Partial<Options>): this {
         if (!partialConfig) return this;
 
-        Utils.deepMerge(this.options, partialConfig);
+        this.assign(Config.fromPartialConfig(partialConfig));
 
         return this;
+    }
+
+    private static fromPartialConfig(partialConfig: Partial<Options>) {
+        const config = new Config().assign(partialConfig);
+
+        config.assign({
+            storage: StorageUtils.createFromConfig(config),
+        });
+
+        return config.options;
     }
 }
 

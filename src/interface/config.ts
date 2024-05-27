@@ -2,14 +2,19 @@ import Paginator from '../component/paginator';
 import { TData } from '../type/types';
 import { PaginatorEvents, InternalEvents } from './events';
 import { ServerStorageOptions } from './storage';
+import { State } from './state';
 import { EventEmitter } from '@carry0987/event-emitter';
-import { Store } from '../module/state/stateManager';
+import { StateManager } from '../module/state/stateManager';
+import Storage from '../module/storage/storage';
 
 export interface IConfig {
     instance: Paginator;
-    store: Store;
+    store: StateManager<State>;
     eventEmitter: EventEmitter<PaginatorEvents & InternalEvents>;
+    storage: Storage<any>;
     container?: Element;
     data?: TData | (() => TData) | (() => Promise<TData>);
     server?: ServerStorageOptions;
+    position: string;
+    resetPageOnUpdate?: boolean;
 }

@@ -11,7 +11,7 @@
         "esModuleInterop": true,
         "declaration": true,
         "outDir": "dist",
-        "declarationDir": "dist/dts/"
+        "declarationDir": "dist/dts/",
     },
     "include": [
         "src/*",

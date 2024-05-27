@@ -8,10 +8,10 @@ class Logger {
         return `[Paginator] [${type.toUpperCase()}]: ${message}`;
     }
 
-    error(message: string, throwException: true): never;
-    error(message: string, throwException?: false): void;
-    error(message: string, throwException = false): void | never {
-        const msg = this.format(message, 'error');
+    error(message: unknown, throwException: true): never;
+    error(message: unknown, throwException?: false): void;
+    error(message: unknown, throwException = false): void | never {
+        const msg = this.format(message as string, 'error');
 
         if (throwException) {
             throw Error(msg);
@@ -20,12 +20,12 @@ class Logger {
         }
     }
 
-    warn(message: string): void {
-        console.warn(this.format(message, 'warn'));
+    warn(message: unknown): void {
+        console.warn(this.format(message as string, 'warn'));
     }
 
-    info(message: string): void {
-        console.info(this.format(message, 'info'));
+    info(message: unknown): void {
+        console.info(this.format(message as string, 'info'));
     }
 }
 

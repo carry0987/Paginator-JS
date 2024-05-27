@@ -4,7 +4,6 @@ import { DataSource } from '../type/types';
 import { Interfaces } from '@carry0987/utils';
 
 interface CommonOptions {
-    dataSource: DataSource;
     locator: string | (() => string);
     totalNumber: number;
     totalNumberLocator: ((response: DataSource<object>) => number) | null;
@@ -26,33 +25,30 @@ interface DisplayControls {
     autoHideNext: boolean;
 }
 
-interface StyleOptions {
-    classPrefix: string;
-    className: string;
-    activeClassName: string;
-    disableClassName: string;
-    ulClassName: string;
-    pageClassName: string;
-    prevClassName: string;
-    nextClassName: string;
+interface ClassName {
+    container: string;
+    prefix: string;
+    active: string;
+    disable: string;
+    ul: string;
+    pageButton: string;
+    prevButton: string;
+    nextButton: string;
+    loading: string;
+    notfound: string;
+    error: string;
 }
 
 interface CustomizeOptions {
     prevText: string;
     nextText: string;
     ellipsisText: string;
-    goButtonText: string;
     formatNavigator: string | ((currentPage: number, totalPage: number, totalNumber: number, rangeStart?: number, rangeEnd?: number) => string);
-    header: string | ((currentPage: number, totalPage: number, totalNumber: number) => string);
-    footer: string | ((currentPage: number, totalPage: number, totalNumber: number) => string);
     pageLink: string;
-    position: string;
 }
 
 interface UtilitiesOptions {
     formatResult: (data: DataSource<Array<any>>) => DataSource<Array<any>>;
-    dataLoader: ((data?: Array<any>, paginator?: Paginator) => void) | DataLoader;
-    dataLoaderFunction?: (paginator: Paginator) => void;
     triggerPagingOnInit: boolean;
     resetPageNumberOnInit: boolean;
     hideOnlyOnePage: boolean;
@@ -72,16 +68,11 @@ export interface PageData {
     totalPage: number;
 }
 
-export interface DataLoader {
-    method: string;
-    data: Record<string, unknown> | ((opts: DataLoader) => Promise<StorageResponse>);
-    cache?: RequestCache;
-    headers?: HeadersInit;
-    mode?: RequestMode;
-    beforeSend: (data: DataLoader) => void;
-    credentials?: RequestCredentials;
-    pageNumberStartWithZero: boolean;
+export interface Options extends IConfig, CommonOptions {
+    display: DisplayControls;
+    className: ClassName;
+    customize: CustomizeOptions;
+    utilities: UtilitiesOptions;
 }
 
-export interface Options extends IConfig, CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {}
 export interface SendFormDataOptions extends Interfaces.SendFormDataOptions {}

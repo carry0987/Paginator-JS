@@ -7,10 +7,10 @@ export class StateManager<S = Record<string, unknown>> {
         this.state = initialState;
     }
 
-    getState = () => this.state;
-    getListeners = () => this.listeners;
+    public getState = () => this.state;
+    public getListeners = () => this.listeners;
 
-    dispatch = (reducer: (state: S) => S) => {
+    public dispatch = (reducer: (state: S) => S) => {
         if (typeof reducer !== 'function') {
             throw new Error('Reducer is not a function');
         }
@@ -34,13 +34,14 @@ export class StateManager<S = Record<string, unknown>> {
         return this.state;
     };
 
-    subscribe = (listener: (current?: S, prev?: S) => void): (() => void) => {
+    public subscribe = (listener: (current?: S, prev?: S) => void): (() => void) => {
         if (typeof listener !== 'function') {
             throw new Error('Listener is not a function');
         }
 
         this.listeners = [...this.listeners, listener];
 
-        return () => (this.listeners = this.listeners.filter((lis) => lis !== listener));
+        return () =>
+            (this.listeners = this.listeners.filter((lis) => lis !== listener));
     };
 }

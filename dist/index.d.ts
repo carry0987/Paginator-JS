@@ -4,6 +4,13 @@ import { EventEmitter } from '@carry0987/event-emitter';
 export { useEffect, useRef, useState } from 'preact/hooks';
 
 type DataSource<T = object> = string | T | Array<T> | ((data: T) => Array<T>);
+declare enum Status {
+    Init = 0,
+    Loading = 1,
+    Loaded = 2,
+    Rendered = 3,
+    Error = 4
+}
 /**
  * Table cell types
  */
@@ -58,23 +65,41 @@ interface ServerStorageOptions extends RequestInit {
     then?: (data: any) => any[][];
     handle?: (response: Response) => Promise<any>;
     total?: (data: any) => number;
-    data?: (opts: ServerStorageOptions) => Promise<StorageResponse$1>;
+    data?: (opts: ServerStorageOptions) => Promise<StorageResponse>;
 }
-interface StorageResponse$1 {
+interface StorageResponse {
     data: TData;
     total: number;
 }
 
+interface State {
+    status: Status;
+    data: Record<string, unknown> | null;
+}
+
+declare class StateManager<S = Record<string, unknown>> {
+    private state;
+    private listeners;
+    private isDispatching;
+    constructor(initialState: S);
+    getState: () => S;
+    getListeners: () => ((current?: S, prev?: S) => void)[];
+    dispatch: (reducer: (state: S) => S) => S;
+    subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
+}
+
 interface IConfig {
     instance: Paginator;
+    store: StateManager<State>;
     eventEmitter: EventEmitter<PaginatorEvents & InternalEvents>;
     container?: Element;
     data?: TData | (() => TData) | (() => Promise<TData>);
     server?: ServerStorageOptions;
+    position: string;
+    resetPageOnUpdate?: boolean;
 }
 
 interface CommonOptions {
-    dataSource: DataSource;
     locator: string | (() => string);
     totalNumber: number;
     totalNumberLocator: ((response: DataSource<object>) => number) | null;
@@ -94,51 +119,38 @@ interface DisplayControls {
     autoHidePrevious: boolean;
     autoHideNext: boolean;
 }
-interface StyleOptions {
-    classPrefix: string;
-    className: string;
-    activeClassName: string;
-    disableClassName: string;
-    ulClassName: string;
-    pageClassName: string;
-    prevClassName: string;
-    nextClassName: string;
+interface ClassName {
+    container: string;
+    prefix: string;
+    active: string;
+    disable: string;
+    ul: string;
+    pageButton: string;
+    prevButton: string;
+    nextButton: string;
+    loading: string;
+    notfound: string;
+    error: string;
 }
 interface CustomizeOptions {
     prevText: string;
     nextText: string;
     ellipsisText: string;
-    goButtonText: string;
     formatNavigator: string | ((currentPage: number, totalPage: number, totalNumber: number, rangeStart?: number, rangeEnd?: number) => string);
-    header: string | ((currentPage: number, totalPage: number, totalNumber: number) => string);
-    footer: string | ((currentPage: number, totalPage: number, totalNumber: number) => string);
     pageLink: string;
-    position: string;
 }
 interface UtilitiesOptions {
     formatResult: (data: DataSource<Array<any>>) => DataSource<Array<any>>;
-    dataLoader: ((data?: Array<any>, paginator?: Paginator) => void) | DataLoader;
-    dataLoaderFunction?: (paginator: Paginator) => void;
     triggerPagingOnInit: boolean;
     resetPageNumberOnInit: boolean;
     hideOnlyOnePage: boolean;
     onError: (err: unknown) => void;
 }
-interface StorageResponse {
-    data: DataSource;
-    total: number;
-}
-interface DataLoader {
-    method: string;
-    data: Record<string, unknown> | ((opts: DataLoader) => Promise<StorageResponse>);
-    cache?: RequestCache;
-    headers?: HeadersInit;
-    mode?: RequestMode;
-    beforeSend: (data: DataLoader) => void;
-    credentials?: RequestCredentials;
-    pageNumberStartWithZero: boolean;
-}
-interface Options extends IConfig, CommonOptions, DisplayControls, StyleOptions, CustomizeOptions, UtilitiesOptions {
+interface Options extends IConfig, CommonOptions {
+    display: DisplayControls;
+    className: ClassName;
+    customize: CustomizeOptions;
+    utilities: UtilitiesOptions;
 }
 
 declare class Config {
@@ -146,6 +158,7 @@ declare class Config {
     constructor();
     assign(partialConfig: Partial<Options>): this;
     update(partialConfig: Partial<Options>): this;
+    private static fromPartialConfig;
 }
 
 declare class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> {

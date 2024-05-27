@@ -1,27 +1,14 @@
-import { h } from 'preact';
+import { useEffect, useRef, useState } from 'preact/hooks';
+import Utils from '../utils/utils-ext';
 import { useConfig } from '../hook/useConfig';
-import { useStore } from '../hook/useStore';
-import { useSelector } from '../hook/useSelector';
-import { useEffect, useRef } from 'preact/hooks';
-import log from '../utils/log';
-import * as actions from '../../component/action';
+import { HTMLElement } from './htmlElement';
+import React from 'preact/compat';
 
-export function Container() {
+export function PageRenderer() {
     const config = useConfig();
-    const { dispatch } = useStore();
-    const status = useSelector((state) => state.status);
-    const data = useSelector((state) => state.data);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        dispatch(actions.SetLoadingData());
-        try {
-            log.info(data);
-        } catch (e: unknown) {
-            log.error(e);
-            dispatch(actions.SetDataErrored());
-        }
-
         const ele = containerRef.current;
         if (ele) {
             ele.className = 'paginator';
