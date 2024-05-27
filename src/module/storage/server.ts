@@ -1,6 +1,7 @@
 import Storage from './storage';
 import { ServerStorageOptions, StorageResponse } from '../../interface/storage';
 import log from '../utils/log';
+import { fetchData } from '@carry0987/utils';
 
 class ServerStorage extends Storage<ServerStorageOptions> {
     private readonly options: ServerStorageOptions;
@@ -43,12 +44,18 @@ class ServerStorage extends Storage<ServerStorageOptions> {
             return opts.data(opts);
         }
 
-        return fetch(opts.url, opts)
+        return fetchData<StorageResponse>({
+            url: opts.url,
+            data: opts,
+        })
             .then(this.handler.bind(this))
             .then((res) => {
                 return {
                     data: opts.then(res),
-                    total: typeof opts.total === 'function' ? opts.total(res) : undefined,
+                    total:
+                        typeof opts.total === 'function'
+                            ? opts.total(res)
+                            : undefined,
                 };
             });
     }
