@@ -305,6 +305,127 @@ class StateManager {
     };
 }
 
+/**
+ * Base Storage class. All storage implementation must inherit this class
+ */
+class Storage {
+}
+
+class MemoryStorage extends Storage {
+    data = () => [];
+    constructor(data) {
+        super();
+        this.set(data);
+    }
+    async get() {
+        const data = await this.data();
+        return {
+            data: data,
+            total: data.length,
+        };
+    }
+    set(data) {
+        if (data instanceof Array) {
+            this.data = () => data;
+        }
+        else if (data instanceof Function) {
+            this.data = data;
+        }
+        return this;
+    }
+}
+
+/**
+ * Centralized logging lib
+ *
+ * This class needs some improvements but so far it has been used to have a coherent way to log
+ */
+class Logger {
+    format(message, type) {
+        return `[Paginator] [${type.toUpperCase()}]: ${message}`;
+    }
+    error(message, throwException = false) {
+        const msg = this.format(message, 'error');
+        if (throwException) {
+            throw Error(msg);
+        }
+        else {
+            console.error(msg);
+        }
+    }
+    warn(message) {
+        console.warn(this.format(message, 'warn'));
+    }
+    info(message) {
+        console.info(this.format(message, 'info'));
+    }
+}
+var log = new Logger();
+
+class ServerStorage extends Storage {
+    options;
+    constructor(options) {
+        super();
+        this.options = options;
+    }
+    handler(response) {
+        if (typeof this.options.handle === 'function') {
+            return this.options.handle(response);
+        }
+        return Promise.resolve(response.data);
+    }
+    get(options) {
+        // this.options is the initial config object
+        // options is the runtime config passed by the pipeline (e.g. search component)
+        const opts = {
+            ...this.options,
+            ...options,
+        };
+        // if `options.data` is provided, the current ServerStorage
+        // implementation will be ignored and we let options.data to
+        // handle the request. Useful when HTTP client needs to be
+        // replaced with something else
+        if (typeof opts.data === 'function') {
+            return opts.data(opts);
+        }
+        return fetchData({
+            url: opts.url,
+            data: opts,
+        }).then(this.handler.bind(this))
+            .then((res) => {
+            return {
+                data: res,
+                total: typeof opts.total === 'function' ? opts.total(res) : 0,
+            };
+        })
+            .catch((error) => {
+            log.error(`Error in get method: ${error.message}`, true);
+            return Promise.reject(error);
+        });
+    }
+}
+
+class StorageUtils {
+    /**
+     * Accepts a Config object and tries to guess and return a Storage type
+     *
+     * @param config
+     */
+    static createFromConfig(config) {
+        let storage = null;
+        if (config.options.data) {
+            storage = new MemoryStorage(config.options.data);
+        }
+        if (config.options.server) {
+            storage = new ServerStorage(config.options.server);
+        }
+        if (!storage) {
+            throw new Error('Could not determine the storage type');
+        }
+        return storage;
+    }
+}
+
 const defaults = {
     store: new StateManager({
         status: Status.Init,
@@ -378,12 +499,9 @@ class Config {
     }
     static fromPartialConfig(partialConfig) {
         const config = new Config().assign(partialConfig);
-        // config.assign({
-        //     storage: StorageUtils.createFromConfig(config),
-        // });
-        // config.assign({
-        //     pipeline: PipelineUtils.createFromConfig(config),
-        // });
+        config.assign({
+            storage: StorageUtils.createFromConfig(config),
+        });
         return config.options;
     }
 }
@@ -418,33 +536,15 @@ function useSelector(selector) {
     return current;
 }
 
-/**
- * Centralized logging lib
- *
- * This class needs some improvements but so far it has been used to have a coherent way to log
- */
-class Logger {
-    format(message, type) {
-        return `[Paginator] [${type.toUpperCase()}]: ${message}`;
-    }
-    error(message, throwException = false) {
-        const msg = this.format(message, 'error');
-        if (throwException) {
-            throw Error(msg);
-        }
-        else {
-            console.error(msg);
-        }
-    }
-    warn(message) {
-        console.warn(this.format(message, 'warn'));
-    }
-    info(message) {
-        console.info(this.format(message, 'info'));
-    }
-}
-var log = new Logger();
-
+const SetData = (data) => (state) => {
+    if (!data)
+        return state;
+    return {
+        ...state,
+        data: data,
+        status: Status.Loaded,
+    };
+};
 const SetLoadingData = () => (state) => {
     return {
         ...state,
@@ -462,13 +562,19 @@ const SetDataErrored = () => (state) => {
 function Container() {
     const config = useConfig();
     const { dispatch } = useStore();
-    useSelector((state) => state.status);
+    const status = useSelector((state) => state.status);
     const data = useSelector((state) => state.data);
     const containerRef = F(null);
+    const process = (async () => {
+        if (status === 0) {
+            dispatch(SetData(data));
+            return;
+        }
+    });
     _(() => {
         dispatch(SetLoadingData());
         try {
-            log.info(data);
+            process();
         }
         catch (e) {
             log.error(e);

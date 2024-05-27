@@ -12,7 +12,7 @@ export const SetStatusToRendered = () => (state: State) => {
     return state;
 };
 
-export const SetData = (data: null) => (state: State) => {
+export const SetData = (data: State['data']) => (state: State) => {
     if (!data) return state;
 
     return {

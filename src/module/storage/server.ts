@@ -11,27 +11,18 @@ class ServerStorage extends Storage<ServerStorageOptions> {
         this.options = options;
     }
 
-    private handler(response: Response): Promise<any> {
+    private handler(response: StorageResponse): Promise<any> {
         if (typeof this.options.handle === 'function') {
             return this.options.handle(response);
         }
 
-        if (response.ok) {
-            return response.json();
-        } else {
-            log.error(
-                `Could not fetch data: ${response.status} - ${response.statusText}`,
-                true
-            );
-        }
-
-        return Promise.reject(response);
+        return Promise.resolve(response.data);
     }
 
-    public get(options?: ServerStorageOptions): Promise<StorageResponse> {
+    public get(options?: Partial<ServerStorageOptions>): Promise<StorageResponse> {
         // this.options is the initial config object
         // options is the runtime config passed by the pipeline (e.g. search component)
-        const opts = {
+        const opts: ServerStorageOptions = {
             ...this.options,
             ...options,
         };
@@ -47,16 +38,16 @@ class ServerStorage extends Storage<ServerStorageOptions> {
         return fetchData<StorageResponse>({
             url: opts.url,
             data: opts,
-        })
-            .then(this.handler.bind(this))
+        }).then(this.handler.bind(this))
             .then((res) => {
                 return {
-                    data: opts.then(res),
-                    total:
-                        typeof opts.total === 'function'
-                            ? opts.total(res)
-                            : undefined,
+                    data: res,
+                    total: typeof opts.total === 'function' ? opts.total(res) : 0,
                 };
+            })
+            .catch((error) => {
+                log.error(`Error in get method: ${error.message}`, true);
+                return Promise.reject(error);
             });
     }
 }

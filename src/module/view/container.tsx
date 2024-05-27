@@ -13,10 +13,17 @@ export function Container() {
     const data = useSelector((state) => state.data);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const process = (async () => {
+        if (status === 0) {
+            dispatch(actions.SetData(data));
+            return;
+        }
+    });
+
     useEffect(() => {
         dispatch(actions.SetLoadingData());
         try {
-            log.info(data);
+            process();
         } catch (e: unknown) {
             log.error(e);
             dispatch(actions.SetDataErrored());

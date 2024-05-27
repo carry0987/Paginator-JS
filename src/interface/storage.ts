@@ -9,7 +9,7 @@ export interface ServerStorageOptions extends RequestInit {
     // The purpose of this function is to handle the behaviour
     // of server and either reject and resolve the initial response
     // before calling the `then` function
-    handle?: (response: Response) => Promise<any>;
+    handle?: (response: StorageResponse) => Promise<any>;
     total?: (data: any) => number;
     // to bypass the current implementation of ServerStorage and process the
     // request manually (e.g. when user wants to connect their own SDK/HTTP Client)

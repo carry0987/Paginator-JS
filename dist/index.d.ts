@@ -63,7 +63,7 @@ interface InternalEvents {
 interface ServerStorageOptions extends RequestInit {
     url: string;
     then?: (data: any) => any[][];
-    handle?: (response: Response) => Promise<any>;
+    handle?: (response: StorageResponse) => Promise<any>;
     total?: (data: any) => number;
     data?: (opts: ServerStorageOptions) => Promise<StorageResponse>;
 }
@@ -88,10 +88,28 @@ declare class StateManager<S = Record<string, unknown>> {
     subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
 }
 
+/**
+ * Base Storage class. All storage implementation must inherit this class
+ */
+declare abstract class Storage<I> {
+    /**
+     * Returns all rows based on ...args
+     * @param args
+     */
+    abstract get(...args: any[]): Promise<StorageResponse>;
+    /**
+     * To set all rows
+     *
+     * @param data
+     */
+    set?(data: I | ((...args: any[]) => void)): this;
+}
+
 interface IConfig {
     instance: Paginator;
     store: StateManager<State>;
     eventEmitter: EventEmitter<PaginatorEvents & InternalEvents>;
+    storage: Storage<any>;
     container?: Element;
     data?: TData | (() => TData) | (() => Promise<TData>);
     server?: ServerStorageOptions;

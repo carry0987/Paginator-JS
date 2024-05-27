@@ -3,7 +3,7 @@ import { StorageResponse } from '../../interface/storage';
 import { TData } from '../../type/types';
 
 class MemoryStorage extends Storage<TData> {
-    private data: (() => TData) | (() => Promise<TData>);
+    private data: (() => TData) | (() => Promise<TData>) = (): TData => [];
 
     constructor(data: TData | (() => TData) | (() => Promise<TData>)) {
         super();
