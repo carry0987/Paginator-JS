@@ -1,9 +1,8 @@
-import Storage, { StorageResponse } from '../../storage/storage';
-import {
-    PipelineProcessor,
-    PipelineProcessorProps,
-    ProcessorType,
-} from '../processor';
+import Storage from '../../storage/storage';
+import { StorageResponse } from '../../../interface/storage';
+import { PipelineProcessor } from '../processor';
+import { ProcessorType } from '../../../type/pipeline';
+import { PipelineProcessorProps } from '../../../interface/pipeline';
 
 interface StorageExtractorProps extends PipelineProcessorProps {
     storage: Storage<any>;
