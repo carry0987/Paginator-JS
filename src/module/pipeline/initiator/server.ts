@@ -1,9 +1,7 @@
-import {
-    PipelineProcessor,
-    PipelineProcessorProps,
-    ProcessorType,
-} from '../processor';
-import { ServerStorageOptions } from '../../storage/server';
+import { PipelineProcessor } from '../processor';
+import { ProcessorType } from '../../../type/pipeline';
+import { ServerStorageOptions } from '../../../interface/storage';
+import { PipelineProcessorProps } from '../../../interface/pipeline';
 
 interface ServerInitiatorProps extends PipelineProcessorProps {
     serverStorageOptions: ServerStorageOptions;

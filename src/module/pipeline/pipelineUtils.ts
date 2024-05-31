@@ -1,4 +1,4 @@
-import { Config } from '../config';
+import { Options } from '../../interface/interfaces';
 import Pipeline from './pipeline';
 import Tabular from '../tabular';
 import StorageExtractor from './extractor/storage';
@@ -8,7 +8,7 @@ import ServerInitiator from './initiator/server';
 import StorageResponseToArrayTransformer from './transformer/storageResponseToArray';
 
 class PipelineUtils {
-    static createFromConfig(config: Config): Pipeline<Tabular> {
+    static createFromConfig(config: Options): Pipeline<Tabular> {
         const pipeline = new Pipeline<Tabular>();
 
         if (config.storage instanceof ServerStorage) {

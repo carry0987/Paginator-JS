@@ -1,4 +1,6 @@
-import { PipelineProcessor, ProcessorType } from './processor';
+import { PipelineProcessor } from './processor';
+import { ProcessorType } from '../../type/pipeline';
+import { PipelineProcessorProps } from '../../interface/pipeline';
 import { ID } from '../utils/id';
 import log from '../utils/log';
 import { EventEmitter } from '@carry0987/event-emitter';
@@ -9,7 +11,7 @@ interface PipelineEvents<R> {
      * is updated, including when a new processor is registered, a processor's props
      * get updated, etc.
      */
-    updated: <T, P>(processor: PipelineProcessor<T, P>) => void;
+    updated: <T, P extends PipelineProcessorProps>(processor: PipelineProcessor<T, P>) => void;
     /**
      * Triggers the callback function when a new
      * processor is registered successfully

@@ -3,21 +3,21 @@ import Tabular from '../../tabular';
 import { ArrayResponse } from './storageResponseToArray';
 
 class ArrayToTabularTransformer extends PipelineProcessor<
-  Tabular,
-  Record<string, any>
+    Tabular,
+    Record<string, any>
 > {
-  get type(): ProcessorType {
-    return ProcessorType.Transformer;
-  }
+    get type(): ProcessorType {
+        return ProcessorType.Transformer;
+    }
 
-  _process(arrayResponse: ArrayResponse): Tabular {
-    const tabular = Tabular.fromArray(arrayResponse.data);
+    _process(arrayResponse: ArrayResponse): Tabular {
+        const tabular = Tabular.fromArray(arrayResponse.data);
 
-    // for server-side storage
-    tabular.length = arrayResponse.total;
+        // for server-side storage
+        tabular.length = arrayResponse.total;
 
-    return tabular;
-  }
+        return tabular;
+    }
 }
 
 export default ArrayToTabularTransformer;

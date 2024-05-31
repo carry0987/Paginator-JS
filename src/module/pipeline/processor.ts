@@ -3,28 +3,8 @@
 import { generateUUID, ID } from '../utils/id';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { deepEqual } from '../utils/deepEqual';
-
-export enum ProcessorType {
-    Initiator,
-    ServerFilter,
-    ServerSort,
-    ServerLimit,
-    Extractor,
-    Transformer,
-    Filter,
-    Sort,
-    Limit,
-}
-
-interface PipelineProcessorEvents {
-    propsUpdated: <T, P extends Partial<PipelineProcessorProps>>(
-        processor: PipelineProcessor<T, P>
-    ) => void;
-    beforeProcess: (...args: any[]) => void;
-    afterProcess: (...args: any[]) => void;
-}
-
-export interface PipelineProcessorProps {}
+import { ProcessorType } from '../../type/pipeline';
+import { PipelineProcessorEvents, PipelineProcessorProps } from '../../interface/pipeline';
 
 export abstract class PipelineProcessor<
     T,
