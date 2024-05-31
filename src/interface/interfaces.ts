@@ -55,11 +55,6 @@ interface UtilitiesOptions {
     onError: (err: unknown) => void;
 }
 
-interface StorageResponse {
-    data: DataSource;
-    total: number;
-}
-
 export interface PageData {
     isAsync: boolean;
     direction: number;
