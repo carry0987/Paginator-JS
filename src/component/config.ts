@@ -4,7 +4,6 @@ import { State } from '../interface/state';
 import { createContext } from 'preact';
 import Utils from '../module/utils/utils-ext';
 import { StateManager } from '../module/state/stateManager';
-import Storage from '../module/storage/storage';
 import StorageUtils from '../module/storage/storageUtils';
 
 const defaults: Partial<Options> = {

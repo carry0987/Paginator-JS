@@ -1,5 +1,6 @@
 import { ComponentChild, VNode } from 'preact';
 export { Component, createElement, createRef, h } from 'preact';
+import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 export { useEffect, useRef, useState } from 'preact/hooks';
 
@@ -60,16 +61,17 @@ interface InternalEvents {
     afterDestroy: () => boolean | void;
 }
 
-interface ServerStorageOptions extends RequestInit {
-    url: string;
-    then?: (data: any) => any[][];
-    handle?: (response: StorageResponse) => Promise<any>;
-    total?: (data: any) => number;
-    data?: (opts: ServerStorageOptions) => Promise<StorageResponse>;
-}
 interface StorageResponse {
     data: TData;
     total: number;
+}
+interface ServerStorageOptions extends RequestInit {
+    url: string;
+    then?: <T = any>(data: T) => T[][];
+    handle?: <T = StorageResponse>(response: T) => Promise<T>;
+    total?: <T = any>(data: T) => number;
+    data?: (opts: ServerStorageOptions) => Promise<StorageResponse>;
+    param?: Interfaces.FetchParams;
 }
 
 interface State {

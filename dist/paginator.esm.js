@@ -208,13 +208,14 @@ async function doFetch(options) {
         return responseData;
     }
     catch (caughtError) {
-        error?.(caughtError);
-        throw caughtError;
+        const errorObj = caughtError instanceof Error ? caughtError : new Error(String(caughtError));
+        error?.(errorObj);
+        throw errorObj;
     }
 }
 // Send data
 async function sendData(options) {
-    const { url, data, method = 'POST', headers, cache, mode, credentials, success, errorCallback, beforeSend, encode = true } = options;
+    const { url, data, method = 'POST', headers, cache, mode, credentials, success, error, beforeSend, encode = true } = options;
     const fetchOptions = {
         url: url,
         method: method,
@@ -228,7 +229,7 @@ async function sendData(options) {
             success?.(responseData);
         },
         error: (caughtError) => {
-            errorCallback?.(caughtError);
+            error?.(caughtError);
         }
     };
     return doFetch(fetchOptions);
@@ -372,9 +373,9 @@ class ServerStorage extends Storage {
         if (typeof this.options.handle === 'function') {
             return this.options.handle(response);
         }
-        return Promise.resolve(response.data);
+        return Promise.resolve(response);
     }
-    get(options) {
+    async get(options) {
         // this.options is the initial config object
         // options is the runtime config passed by the pipeline (e.g. search component)
         const opts = {
@@ -388,14 +389,15 @@ class ServerStorage extends Storage {
         if (typeof opts.data === 'function') {
             return opts.data(opts);
         }
-        return fetchData({
+        return await fetchData({
             url: opts.url,
             data: opts,
+            ...opts.param
         }).then(this.handler.bind(this))
             .then((res) => {
             return {
-                data: res,
-                total: typeof opts.total === 'function' ? opts.total(res) : 0,
+                data: opts.then ? opts.then(res) : [],
+                total: typeof opts.total === 'function' ? opts.total(res) : 0
             };
         })
             .catch((error) => {
@@ -607,6 +609,14 @@ class EventEmitter {
             this.callbacks[event] = [];
         }
     }
+    checkListener(listener) {
+        if (typeof listener !== 'function') {
+            throw new TypeError('The listener must be a function');
+        }
+    }
+    hasEvent(event) {
+        return this.callbacks[event] !== undefined;
+    }
     listeners() {
         return this.callbacks;
     }
@@ -623,11 +633,13 @@ class EventEmitter {
         return this;
     }
     on(event, listener) {
+        this.checkListener(listener);
         this.init(event);
         this.callbacks[event].push(listener);
         return this;
     }
     off(event, listener) {
+        this.checkListener(listener);
         const eventName = event;
         this.init();
         if (!this.callbacks[eventName] || this.callbacks[eventName].length === 0) {
@@ -650,6 +662,7 @@ class EventEmitter {
         return false;
     }
     once(event, listener) {
+        this.checkListener(listener);
         const onceListener = async (...args) => {
             await listener(...args);
             this.off(event, onceListener);

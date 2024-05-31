@@ -1,7 +1,7 @@
 import Paginator from '../component/paginator';
 import { IConfig } from './config';
 import { DataSource } from '../type/types';
-import { Interfaces } from '@carry0987/utils';
+import { ComponentChildren } from 'preact';
 
 interface CommonOptions {
     locator: string | (() => string);
@@ -55,6 +55,11 @@ interface UtilitiesOptions {
     onError: (err: unknown) => void;
 }
 
+export interface Instance {
+    value: Options | undefined;
+    children?: ComponentChildren;
+}
+
 export interface PageData {
     isAsync: boolean;
     direction: number;
@@ -69,5 +74,3 @@ export interface Options extends IConfig, CommonOptions {
     customize: CustomizeOptions;
     utilities: UtilitiesOptions;
 }
-
-export interface SendFormDataOptions extends Interfaces.SendFormDataOptions {}

@@ -11,18 +11,18 @@ class ServerStorage extends Storage<ServerStorageOptions> {
         this.options = options;
     }
 
-    private handler(response: StorageResponse): Promise<any> {
+    private handler<T = ServerStorage>(response: T): Promise<T> {
         if (typeof this.options.handle === 'function') {
-            return this.options.handle(response);
+            return this.options.handle<T>(response);
         }
 
-        return Promise.resolve(response.data);
+        return Promise.resolve(response);
     }
 
-    public get(options?: Partial<ServerStorageOptions>): Promise<StorageResponse> {
+    public async get(options?: Partial<ServerStorageOptions>): Promise<StorageResponse> {
         // this.options is the initial config object
         // options is the runtime config passed by the pipeline (e.g. search component)
-        const opts: ServerStorageOptions = {
+        const opts = {
             ...this.options,
             ...options,
         };
@@ -35,14 +35,15 @@ class ServerStorage extends Storage<ServerStorageOptions> {
             return opts.data(opts);
         }
 
-        return fetchData<StorageResponse>({
+        return await fetchData<StorageResponse>({
             url: opts.url,
             data: opts,
+            ...opts.param
         }).then(this.handler.bind(this))
             .then((res) => {
                 return {
-                    data: res,
-                    total: typeof opts.total === 'function' ? opts.total(res) : 0,
+                    data: opts.then ? opts.then(res) : [],
+                    total: typeof opts.total === 'function' ? opts.total(res) : 0
                 };
             })
             .catch((error) => {

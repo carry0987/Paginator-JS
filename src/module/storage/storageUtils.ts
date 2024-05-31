@@ -1,6 +1,5 @@
 import { Config } from '../../component/config';
 import MemoryStorage from './memory';
-import Storage from './storage';
 import ServerStorage from './server';
 
 class StorageUtils {
@@ -9,7 +8,7 @@ class StorageUtils {
      *
      * @param config
      */
-    public static createFromConfig(config: Config): Storage<any> {
+    public static createFromConfig(config: Config): ServerStorage | MemoryStorage {
         let storage = null;
 
         if (config.options.data) {

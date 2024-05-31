@@ -4,7 +4,7 @@ import { Container } from '../module/view/container';
 import log from '../module/utils/log';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { PaginatorEvents, InternalEvents } from '../interface/events';
-import { Options } from '../interface/interfaces';
+import { Options, Instance } from '../interface/interfaces';
 import '../style/paginator.css';
 
 class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> {
@@ -70,11 +70,11 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> {
         return this;
     }
 
-    private createElement(): VNode<any> {
-        return h(ConfigContext.Provider, {
+    private createElement(): VNode<Instance> {
+        return h<Instance>(ConfigContext.Provider, {
             value: this.config.options,
             children: h(Container, {}),
-        }) as VNode<any>;
+        });
     }
 }
 

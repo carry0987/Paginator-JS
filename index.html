@@ -106,7 +106,18 @@
     }).render(document.querySelector('div#paginator-demo2'));
 
     let paginator3 = new paginatorjs.Paginator({
-        data: 'https://dummyjson.com/products/search?q=phone',
+        server: {
+            url: 'https://dummyjson.com/products/search?q=phone',
+            then: (response) => {
+                return response.products;
+            },
+            total: (response) => {
+                return response.total;
+            },
+            param: {
+                method: 'GET',
+            }
+        },
         locator: 'products',
         totalNumberLocator: (response) => {
             // you can return totalNumber by analyzing response content
