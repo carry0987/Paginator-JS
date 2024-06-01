@@ -9,7 +9,7 @@ export interface StorageResponse {
 export interface ServerStorageOptions extends RequestInit {
     url: string;
     // to format the data and columns
-    then?: <T = any>(data: T) => T[][];
+    processData?: <T = any>(data: T) => T[][];
     // to handle the response from the server. `handle` will
     // be called first and then `then` callback will be invoked
     // The purpose of this function is to handle the behaviour

@@ -42,7 +42,7 @@ class ServerStorage extends Storage<ServerStorageOptions> {
         }).then(this.handler.bind(this))
             .then((res) => {
                 return {
-                    data: opts.then ? opts.then(res) : [],
+                    data: opts.processData ? opts.processData(res) : [],
                     total: typeof opts.total === 'function' ? opts.total(res) : 0
                 };
             })

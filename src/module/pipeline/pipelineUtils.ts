@@ -1,20 +1,20 @@
-import { Options } from '../../interface/interfaces';
-import Pipeline from './pipeline';
-import Tabular from '../tabular';
+import { Config } from '../../component/config';
+import { Pipeline } from '@carry0987/pipeline';
 import StorageExtractor from './extractor/storage';
 import ArrayToTabularTransformer from './transformer/arrayToTabular';
 import ServerStorage from '../storage/server';
 import ServerInitiator from './initiator/server';
 import StorageResponseToArrayTransformer from './transformer/storageResponseToArray';
+import { ProcessorType } from '../../type/pipeline';
 
 class PipelineUtils {
-    static createFromConfig(config: Options): Pipeline<Tabular> {
-        const pipeline = new Pipeline<Tabular>();
+    static createFromConfig(config: Config): Pipeline<any, ProcessorType> {
+        const pipeline = new Pipeline<any, ProcessorType>();
 
-        if (config.storage instanceof ServerStorage) {
+        if (config.options.storage instanceof ServerStorage) {
             pipeline.register(
                 new ServerInitiator({
-                    serverStorageOptions: config.server,
+                    serverStorageOptions: config.options.server,
                 })
             );
         }

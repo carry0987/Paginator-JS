@@ -1,21 +1,17 @@
-import { PipelineProcessor } from '../processor';
+import { Processor, ProcessorProps } from '@carry0987/pipeline';
 import { ProcessorType } from '../../../type/pipeline';
 import { ServerStorageOptions } from '../../../interface/storage';
-import { PipelineProcessorProps } from '../../../interface/pipeline';
 
-interface ServerInitiatorProps extends PipelineProcessorProps {
+interface ServerInitiatorProps extends ProcessorProps {
     serverStorageOptions: ServerStorageOptions;
 }
 
-class ServerInitiator extends PipelineProcessor<
-    ServerStorageOptions,
-    ServerInitiatorProps
-> {
-    get type(): ProcessorType {
+class ServerInitiator extends Processor<ServerStorageOptions, ProcessorType, ServerInitiatorProps> {
+    public get type(): ProcessorType {
         return ProcessorType.Initiator;
     }
 
-    _process(): ServerStorageOptions {
+    protected async _process(): Promise<ServerStorageOptions> {
         return Object.entries(this.props.serverStorageOptions)
             .filter(([_, val]) => typeof val !== 'function')
             .reduce(

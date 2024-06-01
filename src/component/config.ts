@@ -5,6 +5,7 @@ import { createContext } from 'preact';
 import Utils from '../module/utils/utils-ext';
 import { StateManager } from '../module/state/stateManager';
 import StorageUtils from '../module/storage/storageUtils';
+import PipelineUtils from '../module/pipeline/pipelineUtils';
 
 const defaults: Partial<Options> = {
     store: new StateManager<State>({
@@ -90,6 +91,10 @@ class Config {
 
         config.assign({
             storage: StorageUtils.createFromConfig(config),
+        });
+
+        config.assign({
+            pipeline: PipelineUtils.createFromConfig(config),
         });
 
         return config.options;
