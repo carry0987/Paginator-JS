@@ -12,11 +12,12 @@
         "declaration": true,
         "outDir": "dist",
         "declarationDir": "dist/dts/",
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
     "include": [
-        "src/**/*",
-        "src/component/config.ts",
-        "src/module/utils/utils-ext.ts"
+        "src/**/*"
     ],
     "exclude": ["node_modules"]
 }
