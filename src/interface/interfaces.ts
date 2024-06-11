@@ -1,16 +1,15 @@
-import Paginator from '../component/paginator';
 import { IConfig } from './config';
-import { DataSource } from '../type/types';
-import { ComponentChildren } from 'preact';
+import Paginator from '@/component/paginator';
+import { TDataArrayRow, TDataObjectRow, TCell, OneDArray, TData } from '@/type/types';
+import { ComponentChildren, ComponentChild } from 'preact';
 
 interface CommonOptions {
     locator: string | (() => string);
     totalNumber: number;
-    totalNumberLocator: ((response: DataSource<object>) => number) | null;
+    totalNumberLocator?: (response: TData) => number;
     pageNumber: number;
-    pageSize: number | null;
+    pageSize: number;
     pageRange: number;
-    callback?: (data: DataSource<Array<any>>, paginator: Paginator) => void;
     alias: Record<string, string>;
 }
 
@@ -45,10 +44,10 @@ interface CustomizeOptions {
     ellipsisText: string;
     formatNavigator: string | ((currentPage: number, totalPage: number, totalNumber: number, rangeStart?: number, rangeEnd?: number) => string);
     pageLink: string;
+    dataRenderer?: (response: TData, paginator: Paginator) => ComponentChild;
 }
 
 interface UtilitiesOptions {
-    formatResult: (data: DataSource<Array<any>>) => DataSource<Array<any>>;
     triggerPagingOnInit: boolean;
     resetPageNumberOnInit: boolean;
     hideOnlyOnePage: boolean;
@@ -73,4 +72,13 @@ export interface Options extends IConfig, CommonOptions {
     className: ClassName;
     customize: CustomizeOptions;
     utilities: UtilitiesOptions;
+}
+
+export interface TColumn {
+    id?: string;
+    // default data for all columns
+    data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
+    // column label
+    name?: string | ComponentChild;
+    columns?: OneDArray<TColumn>;
 }

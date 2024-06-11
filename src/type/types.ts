@@ -1,6 +1,6 @@
 import { ComponentChild } from 'preact';
 
-export type DataSource<T = object> = string | T | Array<T> | ((data: T) => Array<T>);
+export type ID = string;
 export type CSSDeclaration = {
     [key: string]: string | number;
 };
