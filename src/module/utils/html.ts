@@ -1,6 +1,6 @@
+import { HTMLContentProps } from '@/interface/view';
+import { HTMLElement } from '@/module/view/htmlElement';
 import { h, VNode } from 'preact';
-import { HTMLContentProps } from '../../interface/view';
-import { HTMLElement } from '../view/htmlElement';
 
 export function decode(content: string): string {
     const value = new DOMParser().parseFromString(content, 'text/html');

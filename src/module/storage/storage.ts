@@ -1,4 +1,4 @@
-import { StorageResponse } from '../../interface/storage';
+import { StorageResponse } from '@/interface/storage';
 
 /**
  * Base Storage class. All storage implementation must inherit this class

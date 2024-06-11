@@ -1,6 +1,6 @@
 import Storage from './storage';
-import { StorageResponse } from '../../interface/storage';
-import { TData } from '../../type/types';
+import { StorageResponse } from '@/interface/storage';
+import { TData } from '@/type/types';
 
 class MemoryStorage extends Storage<TData> {
     private data: (() => TData) | (() => Promise<TData>) = (): TData => [];

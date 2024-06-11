@@ -1,27 +1,24 @@
-import Tabular from '../../tabular';
-import {
-    PipelineProcessor,
-    PipelineProcessorProps,
-    ProcessorType,
-} from '../processor';
+import Tabular from '@/component/tabular';
+import { ProcessorType } from '@/type/processor';
+import { Processor, ProcessorProps } from '@carry0987/pipeline';
 
-interface PaginationLimitProps extends PipelineProcessorProps {
+interface PaginationLimitProps extends ProcessorProps {
     page: number;
     limit: number;
 }
 
-class PaginationLimit extends PipelineProcessor<Tabular, PaginationLimitProps> {
+class PaginationLimit extends Processor<Tabular, ProcessorType, PaginationLimitProps> {
     protected validateProps(): void {
         if (isNaN(Number(this.props.limit)) || isNaN(Number(this.props.page))) {
             throw Error('Invalid parameters passed');
         }
     }
 
-    get type(): ProcessorType {
+    public get type(): ProcessorType {
         return ProcessorType.Limit;
     }
 
-    protected _process(data: Tabular): Tabular {
+    protected async _process(data: Tabular): Promise<Tabular> {
         const page = this.props.page;
         const start = page * this.props.limit;
         const end = (page + 1) * this.props.limit;

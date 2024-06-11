@@ -9,7 +9,8 @@ import {
     isFunction,
     fetchData,
     deepMerge,
-    generateRandom,
+    shallowMerge,
+    generateUUID,
 } from '@carry0987/utils';
 
 class Utils {
@@ -17,7 +18,8 @@ class Utils {
     static getElem = getElem;
     static hasParent = hasParent;
     static deepMerge = deepMerge;
-    static generateRandom = generateRandom;
+    static shallowMerge = shallowMerge;
+    static generateUUID = generateUUID;
     static isEmpty = isEmpty;
     static isObject = isObject;
     static isArray = isArray;

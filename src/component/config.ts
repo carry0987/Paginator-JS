@@ -1,14 +1,14 @@
-import { Status } from '../type/types';
-import { Options } from '../interface/interfaces';
-import { State } from '../interface/state';
+import { Status } from '@/type/types';
+import { Options } from '@/interface/interfaces';
+import { State } from '@/interface/state';
+import Utils from '@/module/utils/utils-ext';
+import { StateManager } from '@/module/state/stateManager';
+import StorageUtils from '@/module/storage/storageUtils';
+import PipelineUtils from '@/module/pipeline/pipelineUtils';
 import { createContext } from 'preact';
-import Utils from '../module/utils/utils-ext';
-import { StateManager } from '../module/state/stateManager';
-import StorageUtils from '../module/storage/storageUtils';
-import PipelineUtils from '../module/pipeline/pipelineUtils';
 
 const defaults: Partial<Options> = {
-    store: new StateManager<State>({
+    state: new StateManager<State>({
         status: Status.Init,
         data: null,
     }),
@@ -16,7 +16,6 @@ const defaults: Partial<Options> = {
     resetPageOnUpdate: false,
     locator: 'data',
     totalNumber: 0,
-    totalNumberLocator: null,
     pageNumber: 1,
     pageSize: 10,
     pageRange: 2,
@@ -55,7 +54,6 @@ const defaults: Partial<Options> = {
         pageLink: ''
     },
     utilities: {
-        formatResult: (data: any) => data,
         triggerPagingOnInit: true,
         resetPageNumberOnInit: false,
         hideOnlyOnePage: false,
@@ -69,11 +67,11 @@ class Config {
     public options: Options = {} as Options;
 
     constructor() {
-        Utils.deepMerge(this.options, defaults);
+        this.assign(defaults);
     }
 
     public assign(partialConfig: Partial<Options>): this {
-        Utils.deepMerge(this.options, partialConfig);
+        Utils.shallowMerge(this.options, partialConfig);
 
         return this;
     }

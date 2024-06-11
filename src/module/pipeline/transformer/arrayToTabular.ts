@@ -1,16 +1,14 @@
-import { PipelineProcessor, ProcessorType } from '../processor';
-import Tabular from '../../tabular';
 import { ArrayResponse } from './storageResponseToArray';
+import { ProcessorType } from '@/type/processor';
+import Tabular from '@/component/tabular';
+import { Processor } from '@carry0987/pipeline';
 
-class ArrayToTabularTransformer extends PipelineProcessor<
-    Tabular,
-    Record<string, any>
-> {
-    get type(): ProcessorType {
+class ArrayToTabularTransformer extends Processor<Tabular, ProcessorType, Record<string, any>> {
+    public get type(): ProcessorType {
         return ProcessorType.Transformer;
     }
 
-    _process(arrayResponse: ArrayResponse): Tabular {
+    protected async _process(arrayResponse: ArrayResponse): Promise<Tabular> {
         const tabular = Tabular.fromArray(arrayResponse.data);
 
         // for server-side storage

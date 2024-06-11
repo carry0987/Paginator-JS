@@ -1,6 +1,6 @@
-import { Config } from '../../component/config';
 import MemoryStorage from './memory';
 import ServerStorage from './server';
+import { Config } from '@/component/config';
 
 class StorageUtils {
     /**

@@ -1,6 +1,6 @@
 import Storage from './storage';
-import { ServerStorageOptions, StorageResponse } from '../../interface/storage';
-import log from '../utils/log';
+import { ServerStorageOptions, StorageResponse } from '@/interface/storage';
+import log from '@/module/utils/log';
 import { fetchData } from '@carry0987/utils';
 
 class ServerStorage extends Storage<ServerStorageOptions> {

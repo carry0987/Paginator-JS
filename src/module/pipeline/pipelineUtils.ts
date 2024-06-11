@@ -1,11 +1,10 @@
-import { Config } from '../../component/config';
-import { Pipeline } from '@carry0987/pipeline';
 import StorageExtractor from './extractor/storage';
-import ArrayToTabularTransformer from './transformer/arrayToTabular';
-import ServerStorage from '../storage/server';
 import ServerInitiator from './initiator/server';
 import StorageResponseToArrayTransformer from './transformer/storageResponseToArray';
-import { ProcessorType } from '../../type/pipeline';
+import { Config } from '@/component/config';
+import ServerStorage from '@/module/storage/server';
+import { ProcessorType } from '@/type/processor';
+import { Pipeline } from '@carry0987/pipeline';
 
 class PipelineUtils {
     static createFromConfig(config: Config): Pipeline<any, ProcessorType> {
@@ -19,11 +18,8 @@ class PipelineUtils {
             );
         }
 
-        pipeline.register(new StorageExtractor({ storage: config.storage }));
-        pipeline.register(
-            new StorageResponseToArrayTransformer({ header: config.header })
-        );
-        pipeline.register(new ArrayToTabularTransformer());
+        pipeline.register(new StorageExtractor({ storage: config.options.storage }));
+        pipeline.register(new StorageResponseToArrayTransformer());
 
         return pipeline;
     }

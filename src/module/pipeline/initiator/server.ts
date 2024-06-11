@@ -1,6 +1,6 @@
+import { ProcessorType } from '@/type/processor';
+import { ServerStorageOptions } from '@/interface/storage';
 import { Processor, ProcessorProps } from '@carry0987/pipeline';
-import { ProcessorType } from '../../../type/pipeline';
-import { ServerStorageOptions } from '../../../interface/storage';
 
 interface ServerInitiatorProps extends ProcessorProps {
     serverStorageOptions: ServerStorageOptions;

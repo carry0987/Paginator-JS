@@ -1,22 +1,18 @@
-import Storage from '../../storage/storage';
-import { StorageResponse } from '../../../interface/storage';
-import { PipelineProcessor } from '../processor';
-import { ProcessorType } from '../../../type/pipeline';
-import { PipelineProcessorProps } from '../../../interface/pipeline';
+import Storage from '@/module/storage/storage';
+import { StorageResponse } from '@/interface/storage';
+import { ProcessorType } from '@/type/processor';
+import { Processor, ProcessorProps } from '@carry0987/pipeline';
 
-interface StorageExtractorProps extends PipelineProcessorProps {
+interface StorageExtractorProps extends ProcessorProps {
     storage: Storage<any>;
 }
 
-class StorageExtractor extends PipelineProcessor<
-    StorageResponse,
-    StorageExtractorProps
-> {
-    get type(): ProcessorType {
+class StorageExtractor extends Processor<StorageResponse, ProcessorType, StorageExtractorProps> {
+    public get type(): ProcessorType {
         return ProcessorType.Extractor;
     }
 
-    async _process(opts: any): Promise<StorageResponse> {
+    protected async _process(opts: any): Promise<StorageResponse> {
         return await this.props.storage.get(opts);
     }
 }

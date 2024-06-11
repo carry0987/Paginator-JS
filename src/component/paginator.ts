@@ -1,11 +1,11 @@
 import { Config, ConfigContext } from './config';
+import { Container } from '@/module/view/container';
+import log from '@/module/utils/log';
+import { PaginatorEvents, InternalEvents } from '@/interface/events';
+import { Options, Instance } from '@/interface/interfaces';
 import { h, render as renderVNode, VNode } from 'preact';
-import { Container } from '../module/view/container';
-import log from '../module/utils/log';
 import { EventEmitter } from '@carry0987/event-emitter';
-import { PaginatorEvents, InternalEvents } from '../interface/events';
-import { Options, Instance } from '../interface/interfaces';
-import '../style/paginator.css';
+import '@/style/paginator.css';
 
 class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> {
     private static version: string = '__version__';
@@ -46,6 +46,7 @@ class Paginator extends EventEmitter<PaginatorEvents & InternalEvents> {
 
     public destroy(): void {
         // Clear cache or perform other cleanup tasks if needed
+        this.config.options.pipeline.clearCache();
         if (!this.config.options.container) {
             return log.error('Container is empty. Make sure you call render() before destroy()', true);
         }

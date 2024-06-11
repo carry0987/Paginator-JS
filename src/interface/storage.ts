@@ -1,4 +1,4 @@
-import { TData } from '../type/types';
+import { TData } from '@/type/types';
 import { Interfaces } from '@carry0987/utils';
 
 export interface StorageResponse {

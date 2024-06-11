@@ -1,28 +1,19 @@
-import {
-    PipelineProcessor,
-    PipelineProcessorProps,
-    ProcessorType,
-} from '../processor';
-import { StorageResponse } from '../../storage/storage';
-import { TCell, TData, TDataArray, TDataObject, TwoDArray } from '../../types';
-import Header from '../../header';
-import logger from '../../util/log';
+import { ProcessorType } from '@/type/processor';
+import { StorageResponse } from '@/interface/storage';
+import { OneDArray, TCell, TData, TDataArray, TDataObject, TwoDArray } from '@/type/types';
+import { TColumn } from '@/interface/interfaces';
+import logger from '@/module/utils/log';
+import { Processor, ProcessorProps } from '@carry0987/pipeline';
 
 export interface ArrayResponse {
     data: TwoDArray<TCell>;
     total: number;
 }
 
-interface StorageResponseToArrayTransformerProps
-    extends PipelineProcessorProps {
-    header: Header;
-}
+interface StorageResponseToArrayTransformerProps extends ProcessorProps {}
 
-class StorageResponseToArrayTransformer extends PipelineProcessor<
-    ArrayResponse,
-    StorageResponseToArrayTransformerProps
-> {
-    get type(): ProcessorType {
+class StorageResponseToArrayTransformer extends Processor<ArrayResponse, ProcessorType, StorageResponseToArrayTransformerProps> {
+    public get type(): ProcessorType {
         return ProcessorType.Transformer;
     }
 
@@ -31,11 +22,7 @@ class StorageResponseToArrayTransformer extends PipelineProcessor<
             return [];
         }
 
-        if (!this.props.header || !this.props.header.columns) {
-            return data as TwoDArray<TCell>;
-        }
-
-        const columns = Header.leafColumns(this.props.header.columns);
+        const columns: OneDArray<TColumn> = [];
 
         // if it's a 2d array already
         if (data[0] instanceof Array) {
@@ -72,8 +59,7 @@ class StorageResponseToArrayTransformer extends PipelineProcessor<
                     } else if (column.id) {
                         return row[column.id];
                     } else {
-                        logger.error(`Could not find the correct cell for column at position ${i}.
-                          Make sure either 'id' or 'selector' is defined for all columns.`);
+                        logger.error(`Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`);
                         return null;
                     }
                 })
@@ -83,7 +69,7 @@ class StorageResponseToArrayTransformer extends PipelineProcessor<
         return [];
     }
 
-    _process(storageResponse: StorageResponse): ArrayResponse {
+    protected async _process(storageResponse: StorageResponse): Promise<ArrayResponse> {
         return {
             data: this.castData(storageResponse.data),
             total: storageResponse.total,

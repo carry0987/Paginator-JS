@@ -1,5 +1,5 @@
-import { Status } from '../type/types';
-import { State } from '../interface/state';
+import { Status } from '@/type/types';
+import { State } from '@/interface/state';
 
 export const SetStatusToRendered = () => (state: State) => {
     if (state.status === Status.Loaded) {
@@ -12,7 +12,7 @@ export const SetStatusToRendered = () => (state: State) => {
     return state;
 };
 
-export const SetData = (data: State['data']) => (state: State) => {
+export const SetData = (data?: State['data']) => (state: State) => {
     if (!data) return state;
 
     return {
