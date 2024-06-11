@@ -82,7 +82,7 @@
         data: data,
         pageSize: 10,
         pageNumber: 3,
-        callback: (response, paginator) => {
+        dataRenderer: (response, paginator) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
                 dataHtml += '<li>' + item + '</li>';
@@ -95,7 +95,7 @@
     let paginator2 = new paginatorjs.Paginator({
         data: data2,
         pageSize: 10,
-        callback: (response, paginator) => {
+        dataRenderer: (response, paginator) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
                 dataHtml += '<li>' + item.a + '</li>';
@@ -130,7 +130,7 @@
                 document.querySelectorAll('.data-container')[2].innerHTML = 'Loading data from dummyjson.com ...';
             }
         },
-        callback: (response, paginator) => {
+        dataRenderer: (response, paginator) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
                 dataHtml += '<li><a href="' + item.html_url + '">' + item.title + '</a></li>';
