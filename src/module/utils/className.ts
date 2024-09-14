@@ -6,7 +6,7 @@ export function className(...args: string[]): string {
     return `${prefix}${args.reduce((prev: string, cur: string) => `${prev}-${cur}`, '')}`;
 }
 
-export function classJoin(...classNames: (undefined | string | JSX.SignalLike<string>)[]): string {
+export function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string {
     return classNames
         .map((x) => (x ? x.toString() : ''))
         .filter((x) => x)
