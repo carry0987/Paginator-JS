@@ -1,15 +1,20 @@
 {
   "name": "@carry0987/paginator",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "A library for create and manage paginator",
   "type": "module",
   "main": "dist/paginator.min.js",
-  "module": "dist/paginator.esm.js",
-  "types": "dist/paginator.d.ts",
+  "exports": {
+    ".": {
+      "umd": "./dist/paginator.min.js",
+      "import": "./dist/paginator.esm.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rollup --config rollup.config.js",
-    "build": "rollup --config rollup.config.js --environment BUILD:production"
+    "start": "rollup --config rollup.config.ts --configPlugin typescript",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production"
   },
   "files": [
     "dist"
@@ -28,19 +33,20 @@
   },
   "homepage": "https://github.com/carry0987/Paginator-JS#readme",
   "devDependencies": {
-    "@carry0987/event-emitter": "^1.1.1",
-    "@carry0987/utils": "^3.3.13",
+    "@carry0987/event-emitter": "^1.4.4",
+    "@carry0987/pipeline": "^1.3.8",
+    "@carry0987/utils": "^3.7.2",
+    "@preact/signals": "^1.3.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "rollup": "^4.18.0",
-    "rollup-plugin-delete": "^2.0.0",
+    "preact": "^10.24.0",
+    "rollup": "^4.21.3",
+    "rollup-plugin-delete": "^2.1.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",
-    "tslib": "^2.6.2"
-  },
-  "dependencies": {
-    "preact": "^10.22.0"
+    "rollup-plugin-tsconfig-paths": "^1.5.2",
+    "tslib": "^2.7.0"
   }
 }

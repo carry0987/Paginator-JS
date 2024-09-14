@@ -55,7 +55,7 @@
         let result = [];
 
         for (let i = 1; i < number + 1; i++) {
-            result.push(i);
+            result.push([i]);
         }
 
         return result;
@@ -70,63 +70,88 @@
 
         return result;
     };
-    let data = generateData(200);
-    let data2 = generateObjData(100);
+    const data = generateData(200);
+    const data2 = generateObjData(100);
 
     // Display version
     document.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('#version').textContent = 'v' + Paginator.version;
+        document.querySelector('#version').textContent = 'v' + paginatorjs.Paginator.version;
     });
 
-    let paginator = new Paginator(document.querySelector('div#paginator-demo1'), {
-        dataSource: data,
+    let paginator1 = new paginatorjs.Paginator({
+        data: data,
+        columns: ["Name1"],
         pageSize: 10,
         pageNumber: 3,
-        callback: (response, paginator) => {
+        pageRange: 2,
+        dataRender: (response) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
                 dataHtml += '<li>' + item + '</li>';
             });
             dataHtml += '</ul>';
-            document.querySelector('.data-container').innerHTML = dataHtml;
+            document.querySelectorAll('.data-container')[0].innerHTML = dataHtml;
         }
-    });
+    }).render(document.querySelector('div#paginator-demo1'));
 
-    let paginator2 = new Paginator('div#paginator-demo2', {
-        dataSource: data2,
+    let paginator2 = new paginatorjs.Paginator({
+        data: data2,
+        columns: ['a'],
         pageSize: 10,
-        callback: (response, paginator) => {
+        pageRange: 0,
+        dataRender: (response) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
-                dataHtml += '<li>' + item.a + '</li>';
+                dataHtml += '<li>' + item[0] + '</li>';
             });
             dataHtml += '</ul>';
             document.querySelectorAll('.data-container')[1].innerHTML = dataHtml;
         }
-    });
+    }).render(document.querySelector('div#paginator-demo2'));
 
-    let paginator3 = new Paginator(document.querySelector('div#paginator-demo3'), {
-        dataSource: 'https://dummyjson.com/products/search?q=phone',
-        locator: 'products',
-        totalNumberLocator: (response) => {
-            // you can return totalNumber by analyzing response content
-            return response.total;
-        },
-        pageRange: null,
-        hideOnlyOnePage: true,
-        dataLoader: {
-            beforeSend: () =>{
-                document.querySelectorAll('.data-container')[2].innerHTML = 'Loading data from dummyjson.com ...';
+    let paginator3 = new paginatorjs.Paginator({
+        columns: [
+            {
+                id: 'name',
+                name: 'Pokemon',
+            },
+            {
+                id: 'url',
+                name: 'URL',
+            }
+        ],
+        server: {
+            url: 'https://pokeapi.co/api/v2/pokemon',
+            param: {
+                method: 'GET'
+            },
+            processData: data => data.results,
+            total: data => data.count,
+            pageBody: (prevBody, page, limit) => {
+                return {
+                    limit: limit,
+                    offset: (page - 1) * limit
+                };
             }
         },
-        callback: (response, paginator) => {
+        pageSize: 5,
+        beforeDataLoad: () => {
+            document.querySelectorAll('.data-container')[2].innerHTML = 'Loading data from dummyjson.com ...';
+        },
+        dataRender: (response) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
-                dataHtml += '<li><a href="' + item.html_url + '">' + item.title + '</a></li>';
+                dataHtml += '<li><a href="' + item[1] + '" target="_blank">' + item[0] + '</a></li>';
             });
             dataHtml += '</ul>';
             document.querySelectorAll('.data-container')[2].innerHTML = dataHtml;
         }
+    }).render(document.querySelector('div#paginator-demo3'));
+    paginator3.on('afterPaging', (page) => {
+        console.log('afterPaging', page);
+    });
+    paginator3.on('pageClick', (page) => {
+        console.log('pageClick', page);
     });
     </script>
 </body>
