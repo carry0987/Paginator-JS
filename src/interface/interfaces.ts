@@ -38,6 +38,6 @@ export interface Instance {
 }
 
 export interface Options extends Config, CommonOptions {
-    display: DisplayControls;
-    className: ClassName;
+    display: Partial<DisplayControls>;
+    className: Partial<ClassName>;
 }
