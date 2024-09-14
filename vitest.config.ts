@@ -8,10 +8,7 @@ export default defineConfig({
         },
     },
     test: {
-        environment: 'node',
-        typecheck: {
-            tsconfig: 'tsconfig.json',
-        },
+        environment: 'happy-dom',
         coverage: {
             // Test coverage options (optional)
             reporter: ['text', 'json', 'html'],
