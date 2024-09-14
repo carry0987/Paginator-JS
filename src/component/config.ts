@@ -27,7 +27,10 @@ class Config {
     public update(partialConfig: Partial<Options>): this {
         if (!partialConfig) return this;
 
-        this.assign(Config.fromPartialConfig(partialConfig));
+        this.assign(Config.fromPartialConfig({
+            ...this.options,
+            ...partialConfig
+        }));
 
         return this;
     }

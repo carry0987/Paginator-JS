@@ -1,4 +1,4 @@
-export function camelCase(str: string): string {
+export function camelCase(str?: string | null): string {
     if (!str) return '';
 
     const words = str.split(' ');
