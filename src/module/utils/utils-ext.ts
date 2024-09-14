@@ -8,8 +8,11 @@ import {
     isString,
     isFunction,
     fetchData,
+    encodeFormData,
     deepMerge,
-    generateRandom,
+    shallowMerge,
+    generateUUID,
+    Interfaces
 } from '@carry0987/utils';
 
 class Utils {
@@ -17,13 +20,15 @@ class Utils {
     static getElem = getElem;
     static hasParent = hasParent;
     static deepMerge = deepMerge;
-    static generateRandom = generateRandom;
+    static shallowMerge = shallowMerge;
+    static generateUUID = generateUUID;
     static isEmpty = isEmpty;
     static isObject = isObject;
     static isArray = isArray;
     static isString = isString;
     static isFunction = isFunction;
     static fetchData = fetchData;
+    static encodeFormData = encodeFormData;
 
     static isNumeric(value: any): boolean {
         return !isNaN(parseFloat(value)) && isFinite(value);
@@ -49,4 +54,4 @@ class Utils {
     }
 }
 
-export default Utils;
+export { Utils as default, Interfaces };
