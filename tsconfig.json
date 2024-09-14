@@ -19,5 +19,5 @@
         "src/**/*",
         "l10n"
     ],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "dist", "**/__tests__/**/*"]
 }
