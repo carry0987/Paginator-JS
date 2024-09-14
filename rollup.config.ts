@@ -11,6 +11,7 @@ import { createRequire } from 'module';
 const pkg = createRequire(import.meta.url)('./package.json');
 const isProduction = process.env.BUILD === 'production';
 const sourceFile = 'src/index.ts';
+const l10nSourceFile = 'l10n/index.ts';
 
 const jsConfig = {
     input: sourceFile,
@@ -76,4 +77,38 @@ const dtsConfig = {
     ]
 };
 
-export default [jsConfig, esConfig, dtsConfig];
+const l10nConfig = {
+    input: l10nSourceFile,
+    output: [
+        {
+            file: pkg.exports['./l10n']['import'],
+            format: 'es'
+        },
+        {
+            file: pkg.exports['./l10n']['umd'],
+            format: 'umd',
+            name: 'paginatorjs.l10n'
+        }
+    ],
+    plugins: [
+        typescript(),
+        tsConfigPaths(),
+        nodeResolve(),
+        ...(isProduction ? [terser()] : [])
+    ]
+};
+
+const l10nDtsConfig = {
+    input: l10nSourceFile,
+    output: {
+        file: pkg.exports['./l10n']['types'],
+        format: 'es'
+    },
+    plugins: [
+        tsConfigPaths(),
+        dts(),
+        del({ hook: 'buildEnd', targets: 'dist/l10n/dts' })
+    ]
+};
+
+export default [jsConfig, esConfig, dtsConfig, l10nConfig, l10nDtsConfig];

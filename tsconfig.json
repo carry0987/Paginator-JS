@@ -16,7 +16,8 @@
         }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "l10n"
     ],
     "exclude": ["node_modules"]
 }

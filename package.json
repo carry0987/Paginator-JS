@@ -9,6 +9,11 @@
       "umd": "./dist/paginator.min.js",
       "import": "./dist/paginator.esm.js",
       "types": "./dist/index.d.ts"
+    },
+    "./l10n": {
+      "umd": "./dist/l10n/l10n.min.js",
+      "import": "./dist/l10n/l10n.esm.js",
+      "types": "./dist/l10n/index.d.ts"
     }
   },
   "scripts": {
