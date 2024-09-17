@@ -28,7 +28,6 @@ const sidebars: SidebarsConfig = {
         {
             type: 'category',
             label: '💁 Usage',
-            collapsed: false,
             items: [
                 'install',
                 'hello-world',
@@ -39,7 +38,6 @@ const sidebars: SidebarsConfig = {
         {
             type: 'category',
             label: '🛠 Config',
-            collapsed: false,
             items: [
                 'config/data',
                 'config/columns',
@@ -52,7 +50,6 @@ const sidebars: SidebarsConfig = {
         {
             type: 'category',
             label: '🌎 Localization',
-            collapsed: false,
             items: [
                 'localization/locales',
             ],
@@ -60,11 +57,55 @@ const sidebars: SidebarsConfig = {
         {
             type: 'category',
             label: '🎮 Examples',
-            collapsed: false,
             items: [
-                'examples/hello-world',
-                'examples/pagination',
-                'examples/fixed-header',
+                {
+                    type: 'category',
+                    label: 'Basic',
+                    items: [
+                        'examples/hello-world',
+                        'examples/pagination',
+                        'examples/fixed-header',
+                    ],
+                }, {
+                    type: 'category',
+                    label: 'Data Source',
+                    items: [
+                        'examples/import-json',
+                        'examples/server',
+                        'examples/import-function',
+                        'examples/import-async',
+                    ]
+                }, {
+                    type: 'category',
+                    label: 'Server-side',
+                    items: [
+                        'examples/server',
+                        'examples/server-side-pagination',
+                        'examples/custom-http-client',
+                    ]
+                }, {
+                    type: 'category',
+                    label: 'Styling',
+                    items: [
+                        'examples/css-style',
+                        'examples/css-classname',
+                        'examples/css-in-js',
+                    ]
+                }, {
+                    type: 'category',
+                    label: 'Customizing',
+                    items: [
+                        'examples/cell-formatting',
+                        'examples/html-cells',
+                    ]
+                }, {
+                    type: 'category',
+                    label: 'Advanced',
+                    items: [
+                        'examples/force-render',
+                        'examples/event-handler'
+                    ]
+                }
             ],
         }
     ]

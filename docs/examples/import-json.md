@@ -2,33 +2,45 @@
 id: import-json
 title: JSON
 keywords:
- - javascript
- - table
- - javascript table
- - paginatorjs
- - paginator js
- - import json
+    - javascript
+    - table
+    - javascript table
+    - paginatorjs
+    - paginator js
+    - import json
 ---
 
-In order to import JSON (or an array of objects), simply change the data input to `[{ key: value }, ... ]`. 
+In order to import JSON (or an array of objects), simply change the data input to `[{ key: value }, ... ]`.
 Paginator.js expects each column to have a unique `id` field which matches the keys in the `data` object:
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: [{
-     id: 'name',
-     name: 'Name'
-  }, {
-     id: 'email',
-     name: 'Email'
-  }, {
-     id: 'phoneNumber',
-     name: 'Phone Number'
-  }],
-  data: [
-    { name: 'John', email: 'john@example.com', phoneNumber: '(353) 01 222 3333' },
-    { name: 'Mark', email: 'mark@gmail.com', phoneNumber: '(01) 22 888 4444' },
-  ]
+    columns: [
+        {
+            id: 'name',
+            name: 'Name',
+        },
+        {
+            id: 'email',
+            name: 'Email',
+        },
+        {
+            id: 'phoneNumber',
+            name: 'Phone Number',
+        },
+    ],
+    data: [
+        {
+            name: 'John',
+            email: 'john@example.com',
+            phoneNumber: '(353) 01 222 3333',
+        },
+        {
+            name: 'Mark',
+            email: 'mark@gmail.com',
+            phoneNumber: '(01) 22 888 4444',
+        },
+    ],
 });
 ```
 
@@ -40,11 +52,19 @@ E.g. `Phone Number` becomes `phoneNumber`
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: ['Name', 'Email', 'Phone Number'],
-  data: [
-    { name: 'John', email: 'john@example.com', phoneNumber: '(353) 01 222 3333' },
-    { name: 'Mark', email: 'mark@gmail.com', phoneNumber: '(01) 22 888 4444' },
-  ]
+    columns: ['Name', 'Email', 'Phone Number'],
+    data: [
+        {
+            name: 'John',
+            email: 'john@example.com',
+            phoneNumber: '(353) 01 222 3333',
+        },
+        {
+            name: 'Mark',
+            email: 'mark@gmail.com',
+            phoneNumber: '(01) 22 888 4444',
+        },
+    ],
 });
 ```
 
@@ -52,10 +72,18 @@ You can also leave the `columns` config empty if you want Paginator.js to set th
 
 ```ts paginator
 const paginator = new Paginator({
-  data: [
-    { name: 'John', email: 'john@example.com', phoneNumber: '(353) 01 222 3333' },
-    { name: 'Mark', email: 'mark@gmail.com', phoneNumber: '(01) 22 888 4444' },
-  ]
+    data: [
+        {
+            name: 'John',
+            email: 'john@example.com',
+            phoneNumber: '(353) 01 222 3333',
+        },
+        {
+            name: 'Mark',
+            email: 'mark@gmail.com',
+            phoneNumber: '(01) 22 888 4444',
+        },
+    ],
 });
 ```
 
@@ -63,35 +91,41 @@ const paginator = new Paginator({
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: [{
-    data: (row) => row.name.first,
-    name: 'First Name'
-  }, {
-    data: (row) => row.name.last,
-    name: 'Last Name'
-  }, {
-    id: 'email',
-    name: 'Email'
-  }, {
-    id: 'phoneNumber',
-    name: 'Phone Number'
-  }],
-  data: [{
-      name: {
-        first: 'John',
-        last: 'Murphy'
-      },
-      email: 'john@example.com',
-      phoneNumber: '(353) 01 222 3333'
-    },
-    {
-      name: {
-        first: 'Mark',
-        last: 'Wiens'
-      },
-      email: 'mark@gmail.com',
-      phoneNumber: '(01) 22 888 4444'
-    },
-  ]
+    columns: [
+        {
+            data: (row) => row.name.first,
+            name: 'First Name',
+        },
+        {
+            data: (row) => row.name.last,
+            name: 'Last Name',
+        },
+        {
+            id: 'email',
+            name: 'Email',
+        },
+        {
+            id: 'phoneNumber',
+            name: 'Phone Number',
+        },
+    ],
+    data: [
+        {
+            name: {
+                first: 'John',
+                last: 'Murphy',
+            },
+            email: 'john@example.com',
+            phoneNumber: '(353) 01 222 3333',
+        },
+        {
+            name: {
+                first: 'Mark',
+                last: 'Wiens',
+            },
+            email: 'mark@gmail.com',
+            phoneNumber: '(01) 22 888 4444',
+        },
+    ],
 });
 ```

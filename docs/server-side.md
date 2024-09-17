@@ -20,7 +20,7 @@ const paginator = new Paginator({
     columns: ['Title', 'Director', 'Producer'],
     server: {
         url: 'https://swapi.dev/api/films/',
-        then: (data) =>
+        processData: (data) =>
             data.results.map((movie) => [
                 movie.title,
                 movie.director,
@@ -42,7 +42,9 @@ The HTTP method is implicitly set to `GET` but we can change it to `POST` using 
 ```js {4}
 const paginator = new Paginator({
     server: {
-        method: 'POST',
+        param: {
+            method: 'POST'
+        },
         // ...
     },
 });
@@ -53,14 +55,19 @@ At this point, we have a fully functional server-side table, lets take a look!
 ```ts paginator
 const paginator = new Paginator({
     columns: ['Title', 'Director', 'Producer'],
+    pageSize: 1,
     server: {
         url: 'https://swapi.dev/api/films/',
-        then: (data) =>
-            data.results.map((movie) => [
+        param: {
+            method: 'GET'
+        },
+        processData: (data) => {
+            return data.results.map((movie) => [
                 movie.title,
                 movie.director,
                 movie.producer,
-            ]),
+            ]);
+        }
     },
 });
 ```

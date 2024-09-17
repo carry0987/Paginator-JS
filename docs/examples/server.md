@@ -2,24 +2,33 @@
 id: server
 title: Import server-side data
 keywords:
- - javascript
- - table
- - javascript table
- - paginatorjs
- - paginator js
- - server side
- - server side data
+    - javascript
+    - table
+    - javascript table
+    - paginatorjs
+    - paginator js
+    - server side
+    - server side data
 ---
 
 You can use the `server` property to load data from a remote server and populate the table:
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: ['Name', 'Language', 'Released At', 'Artist'],
-  server: {
-    url: 'https://api.scryfall.com/cards/search?q=Inspiring',
-    then: data => data.data.map(card => [card.name, card.lang, card.released_at, card.artist])
-  } 
+    columns: ['Name', 'Language', 'Released At', 'Artist'],
+    server: {
+        url: 'https://api.scryfall.com/cards/search?q=Inspiring',
+        param: {
+            method: 'GET',
+        },
+        processData: (data) =>
+            data.data.map((card) => [
+                card.name,
+                card.lang,
+                card.released_at,
+                card.artist,
+            ]),
+    },
 });
 ```
 

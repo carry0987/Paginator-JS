@@ -22,39 +22,18 @@ And then use the `className` config to connect them together:
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: ['Name', 'Email', 'Phone Number'],
-  search: true,
-  data: [
-    ['John', 'john@example.com', '(353) 01 222 3333'],
-    ['Mark', 'mark@gmail.com',   '(01) 22 888 4444'],
-    ['Eoin', 'eo3n@yahoo.com',   '(05) 10 878 5554'],
-    ['Nisen', 'nis900@gmail.com',   '313 333 1923']
-  ],
-  className: {
-    container: css\`
-      * {
-        font-family: 'Tahoma';
-      }
-    \`,
-    table: css\`
-      tr:hover td {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-    \`,
-    th: css\`
-      text-align: center;
-      &:hover {
-        background-color: #999;
-        color: #fff;
-      }
-    \`,
-    td: css\`
-      color: #999;
-      &:hover {
-        color: #000;
-      }
-    \`
-  }
+    columns: ['Name', 'Email', 'Phone Number'],
+    data: [
+        ['John', 'john@example.com', '(353) 01 222 3333'],
+        ['Mark', 'mark@gmail.com', '(01) 22 888 4444'],
+        ['Eoin', 'eo3n@yahoo.com', '(05) 10 878 5554'],
+        ['Nisen', 'nis900@gmail.com', '313 333 1923'],
+    ],
+    className: {
+        container: {
+            font-family: 'Tahoma';
+        },
+    },
 });
 ```
 

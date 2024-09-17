@@ -16,7 +16,7 @@ const paginator = new Paginator({
     ],
     data: Array(5)
         .fill()
-        .map((x) => [faker.name.findName(), faker.internet.email()]),
+        .map((x) => [faker.person.fullName(), faker.internet.email()]),
 });
 ```
 

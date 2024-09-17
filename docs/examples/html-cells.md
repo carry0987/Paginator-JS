@@ -6,7 +6,7 @@ title: HTML in cells
 If you are using the ES module, import the `html` function first:
 
 ```js
-import { Paginator, html } from "@carry0987/paginator";
+import { Paginator, html } from '@carry0987/paginator';
 ```
 
 or use `paginatorjs.html(...)` if you are using the UMD export.
@@ -15,22 +15,21 @@ Then you can use that in `formatter` function or directly in `data` array:
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: [
-      { 
-        name: 'Name',
-        formatter: (cell) => html('\`<b>\${cell}</b>\`')
-      },
-      'Email',
-      { 
-        name: 'Actions',
-        formatter: (_, row) => html('\`<a href='mailto:\${row.cells[1].data}'>Email</a>\`')
-      },
-   ],
-  data: Array(5).fill().map(x => [
-    faker.name.findName(),
-    faker.internet.email(),
-    null
-  ])
+    columns: [
+        {
+            name: 'Name',
+            formatter: (cell) => html(`<b>${cell}</b>`),
+        },
+        'Email',
+        {
+            name: 'Actions',
+            formatter: (_, row) =>
+                html(`<a href='mailto:${row.cells[1].data}'>Email</a>`),
+        },
+    ],
+    data: Array(5)
+        .fill()
+        .map((x) => [faker.person.fullName(), faker.internet.email(), null]),
 });
 ```
 
@@ -42,19 +41,17 @@ to the `html` function.
 
 ```ts paginator
 const paginator = new Paginator({
-  columns: [
-    'Name',
-    'Email',
-    'Actions',
-  ],
-  data: Array(5).fill().map(x => [
-    faker.name.findName(),
-    faker.internet.email(),
-    html(
-      "<div style='padding: 2px; border: 1px solid #ccc;border-radius: 4px;'>" +
-        "<center>hello!</center>" +
-      "</div>"
-    )
-  ])
+    columns: ['Name', 'Email', 'Actions'],
+    data: Array(5)
+        .fill()
+        .map((x) => [
+            faker.person.fullName(),
+            faker.internet.email(),
+            html(
+                "<div style='padding: 2px; border: 1px solid #ccc;border-radius: 4px;'>" +
+                    '<center>hello!</center>' +
+                    '</div>'
+            ),
+        ]),
 });
 ```
