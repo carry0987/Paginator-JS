@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -13,9 +13,9 @@
       "types": "./dist/index.d.ts"
     },
     "./l10n": {
-      "umd": "./dist/l10n/l10n.min.js",
-      "import": "./dist/l10n/l10n.esm.js",
-      "types": "./dist/l10n/index.d.ts"
+      "umd": "./l10n/dist/l10n.min.js",
+      "import": "./l10n/dist/l10n.esm.js",
+      "types": "./l10n/dist/index.d.ts"
     }
   },
   "scripts": {
@@ -25,7 +25,8 @@
     "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production"
   },
   "files": [
-    "dist"
+    "dist",
+    "l10n/dist"
   ],
   "repository": {
     "type": "git",

@@ -91,8 +91,8 @@ const l10nConfig = {
         }
     ],
     plugins: [
-        typescript(),
-        tsConfigPaths(),
+        typescript({ tsconfig: 'l10n/tsconfig.json' }),
+        tsConfigPaths({ tsConfigPath: 'l10n/tsconfig.json' }),
         nodeResolve(),
         ...(isProduction ? [terser()] : [])
     ]
@@ -105,9 +105,9 @@ const l10nDtsConfig = {
         format: 'es'
     },
     plugins: [
-        tsConfigPaths(),
-        dts(),
-        del({ hook: 'buildEnd', targets: 'dist/l10n/dts' })
+        tsConfigPaths({ tsConfigPath: 'l10n/tsconfig.json' }),
+        dts({ tsconfig: 'l10n/tsconfig.json' }),
+        del({ hook: 'buildEnd', targets: 'l10n/dist/dts' })
     ]
 };
 
