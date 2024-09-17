@@ -54,4 +54,4 @@ class Utils {
     }
 }
 
-export { Utils as default, Interfaces };
+export { Utils as default, type Interfaces };
