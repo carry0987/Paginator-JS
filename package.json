@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -25,7 +25,8 @@
     "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production"
   },
   "files": [
-    "dist",
+    "dist/*",
+    "dist/theme/*",
     "l10n/dist"
   ],
   "repository": {

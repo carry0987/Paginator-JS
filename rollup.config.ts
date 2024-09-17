@@ -25,7 +25,7 @@ const jsConfig = {
     ],
     plugins: [
         postcss({
-            extract: true,
+            extract: 'theme/paginator.min.css',
             minimize: true,
             sourceMap: false
         }),
