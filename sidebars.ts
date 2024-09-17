@@ -38,10 +38,33 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: 'category',
+            label: '🛠 Config',
+            collapsed: false,
+            items: [
+                'config/data',
+                'config/columns',
+                'config/server',
+                'config/className',
+                'config/language',
+                'config/pagination',
+            ],
+        },
+        {
+            type: 'category',
             label: '🌎 Localization',
             collapsed: false,
             items: [
                 'localization/locales',
+            ],
+        },
+        {
+            type: 'category',
+            label: '🎮 Examples',
+            collapsed: false,
+            items: [
+                'examples/hello-world',
+                'examples/pagination',
+                'examples/fixed-header',
             ],
         }
     ]

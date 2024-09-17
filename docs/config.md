@@ -57,6 +57,6 @@ new Paginator({
 ```
 
 :::tip
-The [examples directory](./examples/hello-world.md) has an interactive editor that
+The [examples directory](examples/hello-world.md) has an interactive editor that
 you can use to see the effect config properties live.
 :::
