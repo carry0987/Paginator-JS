@@ -66,4 +66,25 @@ describe('Paginator class', () => {
         expect(paginator.config.options.data).toStrictEqual(config1.data);
         expect(paginator.config.options.resetPageOnUpdate).toStrictEqual(config2.resetPageOnUpdate);
     });
+
+    it('should forcefully render the paginator', () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const paginator = new Paginator({
+            columns: ['a', 'b', 'c'],
+            data: [[1, 2, 3]],
+        });
+
+        paginator.render(container);
+
+        // Assert the initial render
+        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+
+        // Call forceRender
+        paginator.forceRender();
+
+        // Assert that the paginator is re-rendered
+        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+    });
 });

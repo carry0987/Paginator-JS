@@ -44,7 +44,8 @@ const esConfig = {
     output: [
         {
             file: pkg.exports['.']['import'],
-            format: 'es'
+            format: 'es',
+            plugins: isProduction ? [terser()] : []
         }
     ],
     plugins: [
