@@ -40,7 +40,7 @@ Then pass it to the `language` setting of your Paginator.js:
 const paginator = new Paginator({
     columns: ['Name', 'Email', 'Title'],
     pageSize: 5,
-    data: Array(50).fill().map(x => [
+    data: Array(200).fill().map(x => [
         faker.person.fullName(),
         faker.internet.email(),
         faker.person.jobTitle(),
@@ -55,7 +55,7 @@ Also, you can easily customize Paginator.js messages and add your language. Simp
 const paginator = new Paginator({
     columns: ['Name', 'Email', 'Title'],
     pageSize: 5,
-    data: Array(50).fill().map(x => [
+    data: Array(200).fill().map(x => [
         faker.person.fullName(),
         faker.internet.email(),
         faker.person.jobTitle(),
