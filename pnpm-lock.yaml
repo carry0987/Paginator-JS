@@ -15,8 +15,8 @@ importers:
         specifier: ^1.3.9
         version: 1.3.9
       '@carry0987/utils':
-        specifier: ^3.7.3
-        version: 3.7.3
+        specifier: ^3.7.4
+        version: 3.7.4
       '@preact/signals':
         specifier: ^1.3.0
         version: 1.3.0(preact@10.24.0)
@@ -87,8 +87,8 @@ packages:
   '@carry0987/pipeline@1.3.9':
     resolution: {integrity: sha512-ddHAo7cqKJROAzV6q3iPyRzLbQMyv24m527oB6uGNCOSnqvQliiev4QOxZwGxOCci2/IrE2EVwx/n0rcxGF+Kg==}
 
-  '@carry0987/utils@3.7.3':
-    resolution: {integrity: sha512-qdmttllxmYzKIZieGdsEJjmIQLsUir3HrC162SJrP8+04DsPN/TdkbRqao3Sx8EtX1cHxmf+UnFjnESo2Ft+SQ==}
+  '@carry0987/utils@3.7.4':
+    resolution: {integrity: sha512-EOZd24Bnb8AthDl0us9n1IQ6nWJDJ0SytKh2UeWbaCTBAvt6vqGaykoK1DQqXvpl+DCkUGX7HLnkJaJ6LC5GPA==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -417,6 +417,9 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/estree@1.0.6':
+    resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -1777,7 +1780,7 @@ snapshots:
 
   '@carry0987/pipeline@1.3.9': {}
 
-  '@carry0987/utils@3.7.3': {}
+  '@carry0987/utils@3.7.4': {}
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -1926,7 +1929,7 @@ snapshots:
 
   '@rollup/pluginutils@5.1.0(rollup@4.21.3)':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
@@ -2001,6 +2004,8 @@ snapshots:
   '@types/aria-query@5.0.4': {}
 
   '@types/estree@1.0.5': {}
+
+  '@types/estree@1.0.6': {}
 
   '@types/glob@7.2.0':
     dependencies:
@@ -2418,7 +2423,7 @@ snapshots:
 
   estree-walker@3.0.3:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
 
   eventemitter3@4.0.7: {}
 

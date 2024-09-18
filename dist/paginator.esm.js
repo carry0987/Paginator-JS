@@ -103,14 +103,7 @@ function shallowMerge(target, ...sources) {
         if (source) {
             Object.keys(source).forEach(key => {
                 const targetKey = key;
-                const sourceValue = source[targetKey];
-                if (isObject(sourceValue) && typeof target[targetKey]?.constructor === 'function' && sourceValue instanceof target[targetKey].constructor) {
-                    // If the source value is an object and its constructor matches the target's constructor.
-                    target[targetKey] = Object.assign(Object.create(Object.getPrototypeOf(sourceValue), {}), sourceValue);
-                }
-                else {
-                    target[targetKey] = sourceValue;
-                }
+                target[targetKey] = source[targetKey];
             });
         }
     });
@@ -2164,7 +2157,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.1.3';
+    static version = '2.1.4';
     config;
     constructor(config) {
         super();

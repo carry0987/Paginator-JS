@@ -74,23 +74,37 @@ describe('Paginator class', () => {
         const paginator = new Paginator({
             columns: ['a', 'b', 'c'],
             data: [[1, 2, 3]],
-        });
-
-        paginator.render(container);
+        }).render(container);
 
         // Assert the initial render
         expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
 
-        // Destroy the current Paginator instance
+        // Call forceRender
+        paginator.updateConfig({
+            columns: ['a', 'b'],
+            data: [[1, 2]],
+        }).forceRender();
+
+        // Assert that the paginator is re-rendered
+        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+    });
+
+    it('should destroy the paginator instance', () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const paginator = new Paginator({
+            columns: ['a', 'b', 'c'],
+            data: [[1, 2, 3]],
+        }).render(container);
+
+        // Assert that paginator has been rendered
+        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+
+        // Call destroy
         paginator.destroy();
 
         // Assert that the paginator is destroyed
         expect(container.querySelector('.paginatorjs-pagination')).toBeNull();
-
-        // Call forceRender
-        paginator.forceRender();
-
-        // Assert that the paginator is re-rendered
-        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
     });
 });
