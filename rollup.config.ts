@@ -7,6 +7,7 @@ import { dts } from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
 import { createRequire } from 'module';
+import path from 'path';
 
 const pkg = createRequire(import.meta.url)('./package.json');
 const isProduction = process.env.BUILD === 'production';
@@ -25,7 +26,7 @@ const jsConfig = {
     ],
     plugins: [
         postcss({
-            extract: 'theme/paginator.min.css',
+            extract: path.resolve(pkg.exports['./theme/paginator.min.css']),
             minimize: true,
             sourceMap: false
         }),
@@ -44,8 +45,7 @@ const esConfig = {
     output: [
         {
             file: pkg.exports['.']['import'],
-            format: 'es',
-            plugins: isProduction ? [terser()] : []
+            format: 'es'
         }
     ],
     plugins: [
