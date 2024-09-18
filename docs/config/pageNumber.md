@@ -3,9 +3,8 @@ id: pageNumber
 title: pageNumber
 ---
 
-Fixes the header to the top of the table
+Default page number at initialization.
 
  - `optional`
- - Default: `false`
- - Type: `boolean`
- - Example: [Fixed Header](examples/fixed-header.md)
+ - Default: `1`
+ - Type: `number`

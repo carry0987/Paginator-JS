@@ -3,9 +3,8 @@ id: pageSize
 title: pageSize
 ---
 
-Fixes the header to the top of the table
+Number of data items per page.
 
  - `optional`
- - Default: `false`
- - Type: `boolean`
- - Example: [Fixed Header](examples/fixed-header.md)
+ - Default: `10`
+ - Type: `number`

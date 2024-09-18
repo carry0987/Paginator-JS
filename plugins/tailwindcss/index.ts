@@ -3,11 +3,25 @@ import type { Plugin, PostCssOptions } from '@docusaurus/types';
 export default async function tailwindcss(): Promise<Plugin> {
     return {
         name: 'docusaurus-tailwindcss',
-        configurePostCss(postcssOptions: PostCssOptions) {
-            // Appends TailwindCSS and AutoPrefixer.
-            postcssOptions.plugins.push(require('tailwindcss'));
-            postcssOptions.plugins.push(require('autoprefixer'));
-            return postcssOptions;
-        },
+        injectHtmlTags() {
+            return {
+                headTags: [
+                    {
+                        tagName: 'link',
+                        attributes: {
+                            rel: 'stylesheet',
+                            href: 'https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css',
+                        },
+                    },
+                    {
+                        tagName: 'link',
+                        attributes: {
+                            rel: 'stylesheet',
+                            href: 'https://rsms.me/inter/inter.css',
+                        },
+                    },
+                ],
+            };
+        }
     };
 }

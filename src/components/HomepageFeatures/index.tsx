@@ -1,113 +1,90 @@
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
-import styles from './styles.module.css';
+import { Fragment } from 'react';
 
 type FeatureItem = {
     title: string;
+    imageUrl?: string;
+    icon?: React.JSX.Element;
     description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
     {
-        title: 'Modern and Lightweight',
+        title: 'Easy to Use',
+        icon: (
+            <Fragment>
+                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+            </Fragment>
+        ),
         description: (
-            <>
-                Serapha is built with modern PHP 8 features and practices,
-                offering a lightweight, modular architecture to streamline your
-                development process.
-            </>
+            <Fragment>
+                The simplicity of Paginator.js API will help you to develop advanced
+                JavaScript tables in a few simple and straightforward steps.
+            </Fragment>
         ),
     },
     {
-        title: 'Easy Integration',
+        title: 'Extensible',
+        icon: (
+            <Fragment>
+                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </Fragment>
+        ),
         description: (
-            <>
-                Integrated with Composer for easy dependency management and
-                rapid development, Serapha allows you to leverage a wide range
-                of libraries and tools effortlessly.
-            </>
+            <Fragment>
+                Paginator.js takes advantage of an advanced pipeline to process data.
+                The pipeline is very easy to extend and improve.
+            </Fragment>
         ),
     },
     {
-        title: 'Rich Feature Set',
-        description: (
-            <>
-                Serapha includes robust features like a template engine, i18n
-                support, RESTful API integration, and advanced ORM capabilities,
-                making it suitable for diverse web development tasks.
-            </>
+        title: 'Free and open-source',
+        icon: (
+            <Fragment>
+                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+            </Fragment>
         ),
-    },
-    {
-        title: 'Dependency Injection',
         description: (
-            <>
-                Effortlessly manage your dependencies with Serapha's built-in
-                Dependency Injection container, simplifying your controller and
-                service management.
-            </>
-        ),
-    },
-    {
-        title: 'Redis Support',
-        description: (
-            <>
-                Use Serapha's built-in support for Redis to manage caching and
-                other Redis-based features effortlessly, enhancing your
-                application's performance and scalability.
-            </>
-        ),
-    },
-    {
-        title: 'Database Migration',
-        description: (
-            <>
-                Utilize <a href="https://github.com/cakephp/phinx">Phinx</a> for
-                hassle-free database schema migrations, ensuring your databases
-                stay up-to-date with versioned migrations.
-            </>
+            <Fragment>
+                Paginator.js is Free and open-source, published under MIT license.
+            </Fragment>
         ),
     }
 ];
 
-function Feature({ title, description, idx, chunkLength }: FeatureItem & { idx: number; chunkLength: number }) {
-    const offsetClass = (chunkLength === 2 && idx === 0) ? 'col--offset-2' : '';
-
+function Feature({ icon, title, description }: FeatureItem) {
     return (
-        <div className={clsx('col col--4', offsetClass)}>
-            <div className="text--center padding-horiz--md">
-                <Heading as="h3">{title}</Heading>
-                <p>{description}</p>
+        <div className="mt-10 lg:mt-0">
+            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                {icon}
+            </div>
+            <div className="mt-5">
+                <h5 className="text-lg leading-6 font-medium text-gray-900">{title}</h5>
+                <p className="mt-2 text-base leading-6 text-gray-500">
+                    {description}
+                </p>
             </div>
         </div>
     );
 }
 
 export default function HomepageFeatures(): JSX.Element {
-    const chunkLength = 3;
-    // Function to chunk the feature list into groups of three
-    const chunkArray = (arr: FeatureItem[], size: number) => {
-        const result: FeatureItem[][] = [];
-        for (let i = 0; i < arr.length; i += size) {
-            result.push(arr.slice(i, i + size));
-        }
-
-        return result;
-    };
-
-    const chunkedFeatures = chunkArray(FeatureList, chunkLength);
-
     return (
-        <section className={styles.features}>
-            <div className="container">
-                {chunkedFeatures.map((chunk, rowIndex) => (
-                    <div className="row margin-top--lg margin-bottom--lg" key={rowIndex}>
-                        {chunk.map((props, idx) => (
-                            <Feature key={idx} {...props} {...{ idx, chunkLength: chunk.length }} />
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className="py-12 bg-white">
+                <div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
+                    <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+                        {FeatureList.map((props, idx) => (
+                            <Feature key={idx} {...props} />
                         ))}
                     </div>
-                ))}
+                </div>
             </div>
-        </section>
+        </div>
     );
 }

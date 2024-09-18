@@ -50,7 +50,6 @@ const sidebars: SidebarsConfig = {
                 'config/server',
                 'config/className',
                 'config/language',
-                'config/pagination',
                 'config/resetPageOnUpdate',
             ],
         },
@@ -71,7 +70,6 @@ const sidebars: SidebarsConfig = {
                     items: [
                         'examples/hello-world',
                         'examples/pagination',
-                        'examples/fixed-header',
                     ],
                 }, {
                     type: 'category',

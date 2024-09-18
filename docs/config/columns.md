@@ -8,7 +8,7 @@ To define the columns of the table
 -   `optional` (you can render a table without the header)
 -   Type: `string[]` or `TColumn[]`
 
-```js
+```ts
 new Paginator({
     columns: ['Name', 'Email', 'Phone Number'],
 });
@@ -16,7 +16,7 @@ new Paginator({
 
 or
 
-```js
+```ts
 new Paginator({
     columns: [
         {
@@ -42,7 +42,6 @@ new Paginator({
 | data `optional`       | Cell default data       | `function` or TCell          | `(row) => row.name.firstName` or `myData`                            |
 | name                  | column name             | `string`                     | `Name`                                                               |
 | hidden `optional`     | to show/hide the column | `boolean`                    | `true` or `0`                                                        |
-| formatter `optional`  | custom cell formatting  | function                     | `(cell: TCell, row: Row<TCell>, column: TColumn) => ComponentChild;` |
 
 </div>
 

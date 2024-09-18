@@ -35,7 +35,7 @@ Here we are basically telling the instance that:
 -   Our data source is a `ServerStorage` (instead of in-memory storage).
 -   The base URL is `https://swapi.dev/api/films/`
 -   Once we have received the data, let's feed the table with `movie.title`, `movie.director` and `movie.producer` which is
-    our table columns (`then` function)
+    our table columns (`processData` function)
 
 The HTTP method is implicitly set to `GET` but we can change it to `POST` using the `method` property:
 
