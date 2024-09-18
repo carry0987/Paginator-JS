@@ -40,11 +40,18 @@ const sidebars: SidebarsConfig = {
             label: '🛠 Config',
             items: [
                 'config/data',
+                'config/pageNumber',
+                'config/pageSize',
+                'config/pageRange',
+                'config/beforeDataLoad',
+                'config/dataRender',
+                'config/display',
                 'config/columns',
                 'config/server',
                 'config/className',
                 'config/language',
                 'config/pagination',
+                'config/resetPageOnUpdate',
             ],
         },
         {

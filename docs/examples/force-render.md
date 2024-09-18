@@ -3,8 +3,6 @@ id: force-render
 title: forceRender
 ---
 
-import { useEffect, useRef } from 'react';
-
 Using `updateConfig()` and `forceRender()` functions, you can update the config of an existing instance and re-render the
 container.
 
@@ -20,7 +18,14 @@ function () {
             columns: ['Name', 'Email', 'Phone Number'],
             data: [
                 ['John', 'john@example.com', '(353) 01 222 3333'],
-            ]
+            ],
+            dataRender: (data) => {
+                return data.map((row) => {
+                    return row.map((cell) => {
+                        return cell;
+                    });
+                });
+            },
         }).render(wrapper.current);
 
         setTimeout(() => {
@@ -30,12 +35,10 @@ function () {
                     ['John', 'john@example.com', '(353) 01 222 3333'],
                     ['Mark', 'mark@gmail.com',   '(01) 22 888 4444'],
                 ]
-            }).forceRender();
+            });
         }, 2000);
     }, []);
 
-    return (
-        <div ref={wrapper} />
-    );
+    return (<div ref={wrapper} />);
 }
 ```

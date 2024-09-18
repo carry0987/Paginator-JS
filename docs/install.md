@@ -45,7 +45,7 @@ Add both JavaScript and css files:
     import {
         Paginator,
         html
-    } from "https://unpkg.com/@carry0987/paginator?module";
+    } from "https://unpkg.com/@carry0987/paginator/dist/paginator.esm.js";
 </script>
 ```
 
