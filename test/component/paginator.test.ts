@@ -81,6 +81,12 @@ describe('Paginator class', () => {
         // Assert the initial render
         expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
 
+        // Destroy the current Paginator instance
+        paginator.destroy();
+
+        // Assert that the paginator is destroyed
+        expect(container.querySelector('.paginatorjs-pagination')).toBeNull();
+
         // Call forceRender
         paginator.forceRender();
 
