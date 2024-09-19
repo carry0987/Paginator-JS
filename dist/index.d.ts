@@ -116,6 +116,7 @@ interface TColumn {
     data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
     name?: string | ComponentChild;
     hidden?: boolean;
+    formatter?: (cell: TCell, row: Row, column: TColumn) => ComponentChild;
 }
 
 declare class Header extends Base {
@@ -236,7 +237,7 @@ interface CommonOptions {
     pageSize: number;
     pageRange: number;
     beforeDataLoad?: () => void;
-    dataRender?: (response: TCell[][]) => ComponentChild;
+    dataRender?: (response: TCell[][]) => void;
     position: string;
     resetPageOnUpdate?: boolean;
 }

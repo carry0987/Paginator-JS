@@ -1,6 +1,5 @@
 import { Config } from './config';
 import { TCell } from '@/type/types';
-import { ComponentChild } from 'preact';
 
 interface CommonOptions {
     pageNumber: number;
