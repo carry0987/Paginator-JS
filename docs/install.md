@@ -27,7 +27,7 @@ Above command will install all the dependencies as well. Then include both JavaS
 
 ```js
 import { Paginator } from '@carry0987/paginator';
-import '@carry0987/paginator/dist/theme/paginator.css';
+import '@carry0987/paginator/theme/paginator.min.css';
 ```
 
 ## Browser

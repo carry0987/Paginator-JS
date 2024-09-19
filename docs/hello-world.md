@@ -15,7 +15,7 @@ call the `Paginator` class to create a new instance:
 <html lang="en">
     <head>
         <link
-            href="https://unpkg.com/@carry0987/paginator@2.1.0/dist/paginator.min.css"
+            href="https://unpkg.com/@carry0987/paginator/dist/theme/paginator.min.css"
             rel="stylesheet"
         />
     </head>
@@ -57,7 +57,7 @@ You can import `paginator` in your application using:
 
 ```js
 import { Paginator } from 'paginator';
-import '@carry0987/paginator/dist/paginator.css';
+import '@carry0987/paginator/theme/paginator.min.css';
 ```
 
 ### React
@@ -66,7 +66,7 @@ Here is an example of using Paginator.js in a React app
 
 ```jsx
 import { Paginator } from '@carry0987/paginator';
-import '@carry0987/paginator/dist/paginator.css';
+import '@carry0987/paginator/theme/paginator.min.css';
 
 function helloWorld() {
     const wrapperRef = useRef(null);
