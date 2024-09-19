@@ -1,5 +1,5 @@
 {
-  "name": "paginatorjd-website",
+  "name": "paginatorjs-website",
   "version": "1.0.0",
   "private": false,
   "scripts": {
@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@carry0987/paginator": "^2.1.4",
+    "@carry0987/paginator": "^2.1.6",
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/preset-classic": "^3.5.2",
     "@emotion/css": "^11.13.0",

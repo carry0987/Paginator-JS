@@ -26,8 +26,8 @@ npm install @carry0987/paginator --save
 Above command will install all the dependencies as well. Then include both JavaScript and CSS files:
 
 ```js
-import { Paginator } from "@carry0987/paginator";
-import "@carry0987/paginator/dist/theme/paginator.css";
+import { Paginator } from '@carry0987/paginator';
+import '@carry0987/paginator/dist/theme/paginator.css';
 ```
 
 ## Browser
