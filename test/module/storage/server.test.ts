@@ -24,15 +24,17 @@ describe('ServerStorage class', () => {
     it('should call fetchData once get is called', async () => {
         const opts: ServerStorageOptions = {
             url: 'https://example.com',
-            processData: res => [[res]],
+            processData: (res) => [[res]],
         };
         await new ServerStorage(opts).get();
 
         expect(fetchDataMock).toHaveBeenCalledTimes(1);
-        expect(fetchDataMock).toHaveBeenCalledWith(expect.objectContaining({
-            url: 'https://example.com',
-            data: new FormData(),
-        }));
+        expect(fetchDataMock).toHaveBeenCalledWith(
+            expect.objectContaining({
+                url: 'https://example.com',
+                data: new FormData(),
+            }),
+        );
     });
 
     it('should pass options to fetchData', async () => {
@@ -43,15 +45,17 @@ describe('ServerStorage class', () => {
                 'Content-Type': 'application/json',
                 'X-Test': 'HelloWorld',
             },
-            processData: res => [[res]],
+            processData: (res) => [[res]],
         };
         await new ServerStorage(opts).get();
 
         expect(fetchDataMock).toHaveBeenCalledTimes(1);
-        expect(fetchDataMock).toHaveBeenCalledWith(expect.objectContaining({
-            url: 'https://example.com',
-            data: new FormData(),
-        }));
+        expect(fetchDataMock).toHaveBeenCalledWith(
+            expect.objectContaining({
+                url: 'https://example.com',
+                data: new FormData(),
+            }),
+        );
     });
 
     it('should format the response with then callback', async () => {
@@ -62,10 +66,12 @@ describe('ServerStorage class', () => {
 
         const resp = await new ServerStorage(opts).get();
         expect(resp).toStrictEqual({
-            data: [[
-                [6, 6, 6],
-                [7, 7, 7],
-            ]],
+            data: [
+                [
+                    [6, 6, 6],
+                    [7, 7, 7],
+                ],
+            ],
             total: 0,
         });
     });
@@ -79,10 +85,12 @@ describe('ServerStorage class', () => {
 
         const resp = await new ServerStorage(opts).get();
         expect(resp).toStrictEqual({
-            data: [[
-                [6, 6, 6],
-                [7, 7, 7],
-            ]],
+            data: [
+                [
+                    [6, 6, 6],
+                    [7, 7, 7],
+                ],
+            ],
             total: 12,
         });
     });

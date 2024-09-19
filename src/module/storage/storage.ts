@@ -6,7 +6,7 @@ import { StorageResponse } from '@/interface/response';
 abstract class Storage<I> {
     /**
      * Returns all rows based on ...args
-     * 
+     *
      * @param args
      */
     abstract get(...args: any[]): Promise<StorageResponse>;

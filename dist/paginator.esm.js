@@ -349,14 +349,16 @@ function camelCase(str) {
     if (words.length === 1 && /([a-z][A-Z])+/g.test(str)) {
         return str;
     }
-    return words.map(function (word, index) {
+    return words
+        .map(function (word, index) {
         // If it is the first word, lowercase all the chars
         if (index == 0) {
             return word.toLowerCase();
         }
         // If it is not the first word only upper case the first char and lowercase the rest
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join('');
+    })
+        .join('');
 }
 
 /**
@@ -590,11 +592,12 @@ class ServerStorage extends Storage {
         if (!Utils.isFunction(opts.param?.beforeSend) && Utils.isFunction(this.beforeDataLoad)) {
             fetchParam.beforeSend = this.beforeDataLoad;
         }
-        return await Utils.fetchData(fetchParam).then(this.handler.bind(this))
+        return await Utils.fetchData(fetchParam)
+            .then(this.handler.bind(this))
             .then((res) => {
             return {
                 data: opts.processData ? opts.processData(res) : [],
-                total: typeof opts.total === 'function' ? opts.total(res) : 0
+                total: typeof opts.total === 'function' ? opts.total(res) : 0,
             };
         })
             .catch((error) => {
@@ -1514,7 +1517,7 @@ class Config {
             return this;
         this.assign(Config.fromPartialConfig({
             ...this.options,
-            ...partialConfig
+            ...partialConfig,
         }));
         return this;
     }
@@ -1536,7 +1539,7 @@ class Config {
                 hideFirstOnEllipsisShow: false,
                 hideLastOnEllipsisShow: false,
                 autoHidePrevious: false,
-                autoHideNext: false
+                autoHideNext: false,
             },
             className: {
                 container: '',
@@ -1545,8 +1548,8 @@ class Config {
                 pageList: 'pages',
                 pageButton: 'page-item',
                 prevButton: 'page-prev',
-                nextButton: 'page-next'
-            }
+                nextButton: 'page-next',
+            },
         };
     }
     static fromPartialConfig(partialConfig) {
@@ -1747,7 +1750,7 @@ const PageRenderer = k((_, ref) => {
     F(ref, () => ({
         setPage,
         currentPage: currentPage.value,
-        totalPage: getTotalPage()
+        totalPage: getTotalPage(),
     }));
     const renderPageNumbers = () => {
         const totalPage = getTotalPage(); // Calculate the total number of pages
@@ -1811,9 +1814,9 @@ const PageRenderer = k((_, ref) => {
         return pagerNumbers;
     };
     return (_$2("div", { className: classJoin(className(config.className.pageList || '')) },
-        display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && _$2(ActionButtonDisabled, { key: 'prev', config: config, text: lang('pagination.previous') })) : (_$2(ActionButton, { key: 'prev', onClick: () => goPage(currentPage.value - 1, 'prev'), config: config, text: lang('pagination.previous') })),
+        display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (_$2(ActionButtonDisabled, { key: "prev", config: config, text: lang('pagination.previous') }))) : (_$2(ActionButton, { key: "prev", onClick: () => goPage(currentPage.value - 1, 'prev'), config: config, text: lang('pagination.previous') })),
         display.showPageNumbers && renderPageNumbers(),
-        display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && _$2(ActionButtonDisabled, { key: 'next', config: config, text: lang('pagination.next') })) : (_$2(ActionButton, { key: 'next', onClick: () => goPage(currentPage.value + 1, 'next'), config: config, text: lang('pagination.next') }))));
+        display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (_$2(ActionButtonDisabled, { key: "next", config: config, text: lang('pagination.next') }))) : (_$2(ActionButton, { key: "next", onClick: () => goPage(currentPage.value + 1, 'next'), config: config, text: lang('pagination.next') }))));
 });
 
 function useStore() {
@@ -1911,8 +1914,8 @@ const SetHeader = (header) => (state) => {
 function Container() {
     const config = useConfig();
     const { dispatch } = useStore();
-    const status = useSelector(state => state.status);
-    const tabular = useSelector(state => state.tabular);
+    const status = useSelector((state) => state.status);
+    const tabular = useSelector((state) => state.tabular);
     const containerRef = m$1();
     const pageRendererRef = A$1(null);
     const processPipeline = throttle(async () => {
@@ -2157,13 +2160,11 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.1.4';
+    static version = '2.1.5';
     config;
     constructor(config) {
         super();
-        this.config = new Config()
-            .assign({ instance: this, eventEmitter: this })
-            .update(config);
+        this.config = new Config().assign({ instance: this, eventEmitter: this }).update(config);
     }
     get version() {
         return Paginator.version;

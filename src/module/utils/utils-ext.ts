@@ -12,7 +12,7 @@ import {
     deepMerge,
     shallowMerge,
     generateUUID,
-    Interfaces
+    Interfaces,
 } from '@carry0987/utils';
 
 class Utils {

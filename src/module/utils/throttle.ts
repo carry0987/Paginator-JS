@@ -1,6 +1,6 @@
 /**
  * Throttle a given function
- * 
+ *
  * @param fn Function to be called
  * @param wait Throttle timeout in milliseconds
  * @returns Throttled function

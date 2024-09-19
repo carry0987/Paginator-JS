@@ -1,7 +1,7 @@
 import { useStore } from './useStore';
 import { State } from '@/interface/state';
 import { useEffect } from 'preact/hooks';
-import { useSignal } from '@preact/signals'; 
+import { useSignal } from '@preact/signals';
 
 export function useSelector<T>(selector: (state: State) => T): T {
     const store = useStore();

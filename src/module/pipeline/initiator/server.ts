@@ -14,10 +14,7 @@ class ServerInitiator extends Processor<ServerStorageOptions, ProcessorType, Ser
     protected async _process(): Promise<ServerStorageOptions> {
         return Object.entries(this.props.serverStorageOptions)
             .filter(([_, val]) => typeof val !== 'function')
-            .reduce(
-                (acc, [k, v]) => ({ ...acc, [k]: v }),
-                {}
-            ) as ServerStorageOptions;
+            .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {}) as ServerStorageOptions;
     }
 }
 

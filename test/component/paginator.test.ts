@@ -80,10 +80,12 @@ describe('Paginator class', () => {
         expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
 
         // Call forceRender
-        paginator.updateConfig({
-            columns: ['a', 'b'],
-            data: [[1, 2]],
-        }).forceRender();
+        paginator
+            .updateConfig({
+                columns: ['a', 'b'],
+                data: [[1, 2]],
+            })
+            .forceRender();
 
         // Assert that the paginator is re-rendered
         expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();

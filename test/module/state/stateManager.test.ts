@@ -66,7 +66,7 @@ describe('Store', () => {
             },
             {
                 hello: 'world',
-            }
+            },
         );
     });
 
@@ -82,8 +82,6 @@ describe('Store', () => {
         store.subscribe(mockSubscriber2);
 
         expect(store.getListeners()).toHaveLength(2);
-        expect(store.getListeners()).toEqual(
-            expect.arrayContaining([mockSubscriber2, mockSubscriber1])
-        );
+        expect(store.getListeners()).toEqual(expect.arrayContaining([mockSubscriber2, mockSubscriber1]));
     });
 });

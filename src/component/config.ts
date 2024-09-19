@@ -27,10 +27,12 @@ class Config {
     public update(partialConfig: Partial<Options>): this {
         if (!partialConfig) return this;
 
-        this.assign(Config.fromPartialConfig({
-            ...this.options,
-            ...partialConfig
-        }));
+        this.assign(
+            Config.fromPartialConfig({
+                ...this.options,
+                ...partialConfig,
+            }),
+        );
 
         return this;
     }
@@ -53,7 +55,7 @@ class Config {
                 hideFirstOnEllipsisShow: false,
                 hideLastOnEllipsisShow: false,
                 autoHidePrevious: false,
-                autoHideNext: false
+                autoHideNext: false,
             },
             className: {
                 container: '',
@@ -62,8 +64,8 @@ class Config {
                 pageList: 'pages',
                 pageButton: 'page-item',
                 prevButton: 'page-prev',
-                nextButton: 'page-next'
-            }
+                nextButton: 'page-next',
+            },
         };
     }
 

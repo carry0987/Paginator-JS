@@ -15,7 +15,7 @@ class PipelineUtils {
             pipeline.register(
                 new ServerInitiator({
                     serverStorageOptions: config.options.server,
-                })
+                }),
             );
         }
 

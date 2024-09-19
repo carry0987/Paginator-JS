@@ -3,5 +3,5 @@ export enum ProcessorType {
     ServerLimit,
     Extractor,
     Transformer,
-    Limit
+    Limit,
 }

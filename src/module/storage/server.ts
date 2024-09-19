@@ -48,11 +48,12 @@ class ServerStorage extends Storage<ServerStorageOptions> {
             fetchParam.beforeSend = this.beforeDataLoad;
         }
 
-        return await Utils.fetchData(fetchParam).then(this.handler.bind(this))
+        return await Utils.fetchData(fetchParam)
+            .then(this.handler.bind(this))
             .then((res) => {
                 return {
                     data: opts.processData ? opts.processData(res) : [],
-                    total: typeof opts.total === 'function' ? opts.total(res) : 0
+                    total: typeof opts.total === 'function' ? opts.total(res) : 0,
                 };
             })
             .catch((error) => {

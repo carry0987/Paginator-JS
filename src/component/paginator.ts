@@ -13,9 +13,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
     constructor(config: Partial<Options>) {
         super();
-        this.config = new Config()
-            .assign({ instance: this, eventEmitter: this })
-            .update(config);
+        this.config = new Config().assign({ instance: this, eventEmitter: this }).update(config);
     }
 
     public get version(): string {
@@ -30,10 +28,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
     public forceRender(): this {
         if (!this.config || !this.config.options.container) {
-            return log.error(
-                'Container is empty. Make sure you call render() before forceRender()',
-                true
-            );
+            return log.error('Container is empty. Make sure you call render() before forceRender()', true);
         }
 
         // Destroy the current Paginator instance
@@ -63,7 +58,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
         if (container.childNodes.length > 0) {
             log.error(
-                `The container element ${container} is not empty. Make sure the container is empty and call render() again`
+                `The container element ${container} is not empty. Make sure the container is empty and call render() again`,
             );
             return this;
         }

@@ -29,9 +29,7 @@ describe('MemoryStorage class', () => {
 
         memoryStorage.set([['a', 'b', 'c']]);
 
-        expect((await memoryStorage.get()).data).toStrictEqual([
-            ['a', 'b', 'c'],
-        ]);
+        expect((await memoryStorage.get()).data).toStrictEqual([['a', 'b', 'c']]);
     });
 
     it('should set rows from a function', async () => {
@@ -39,9 +37,7 @@ describe('MemoryStorage class', () => {
 
         memoryStorage.set(() => [['a', 'b', 'c']]);
 
-        expect((await memoryStorage.get()).data).toStrictEqual([
-            ['a', 'b', 'c'],
-        ]);
+        expect((await memoryStorage.get()).data).toStrictEqual([['a', 'b', 'c']]);
     });
 
     it('should set rows from an async function', async () => {
@@ -53,8 +49,6 @@ describe('MemoryStorage class', () => {
             });
         });
 
-        expect((await memoryStorage.get()).data).toStrictEqual([
-            ['a', 'b', 'c'],
-        ]);
+        expect((await memoryStorage.get()).data).toStrictEqual([['a', 'b', 'c']]);
     });
 });

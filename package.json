@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -22,6 +22,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"test/**/*.ts\" \"l10n/**/*.ts\"",
     "start": "rollup --config rollup.config.ts --configPlugin typescript",
     "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production"
   },
@@ -55,7 +56,8 @@
     "@testing-library/preact": "^3.2.4",
     "happy-dom": "^15.7.4",
     "preact": "^10.24.0",
-    "rollup": "^4.21.3",
+    "prettier": "^3.3.3",
+    "rollup": "^4.22.0",
     "rollup-plugin-delete": "^2.1.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",

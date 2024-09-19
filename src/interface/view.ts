@@ -13,6 +13,6 @@ export interface HTMLContentProps {
 
 export interface PageRendererProps {
     setPage: (page: number) => void;
-    currentPage: number,
-    totalPage: number
+    currentPage: number;
+    totalPage: number;
 }

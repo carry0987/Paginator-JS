@@ -21,10 +21,7 @@ describe('Header Class', () => {
 
     it('should set and get columns correctly', () => {
         const header = new Header();
-        const columns: OneDArray<TColumn> = [
-            { name: 'Name' },
-            { name: 'Age', hidden: true },
-        ];
+        const columns: OneDArray<TColumn> = [{ name: 'Name' }, { name: 'Age', hidden: true }];
 
         header.columns = columns;
         expect(header.columns).toHaveLength(2);
@@ -51,7 +48,10 @@ describe('Header Class', () => {
         const data = [{ name: 'John' }, { name: 'Jane' }];
         expect(Header['isJsonPayload'](data)).toBe(true);
 
-        const nonJsonData = [[1, 2], [3, 4]];
+        const nonJsonData = [
+            [1, 2],
+            [3, 4],
+        ];
         expect(Header['isJsonPayload'](nonJsonData)).toBe(false);
     });
 
@@ -87,10 +87,7 @@ describe('Header Class', () => {
     });
 
     it('should return leaf columns correctly', () => {
-        const columns: OneDArray<TColumn> = [
-            { name: 'Name' },
-            { name: 'Email' },
-        ];
+        const columns: OneDArray<TColumn> = [{ name: 'Name' }, { name: 'Email' }];
         const leafCols = Header.leafColumns(columns);
         expect(leafCols).toHaveLength(2);
     });

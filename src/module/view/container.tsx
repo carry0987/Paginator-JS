@@ -15,8 +15,8 @@ import Tabular from '@/component/tabular';
 export function Container() {
     const config = useConfig();
     const { dispatch } = useStore();
-    const status = useSelector(state => state.status);
-    const tabular = useSelector(state => state.tabular);
+    const status = useSelector((state) => state.status);
+    const tabular = useSelector((state) => state.tabular);
     const containerRef = createRef<HTMLDivElement>();
     const pageRendererRef = useRef<PageRendererProps>(null);
 
@@ -92,5 +92,9 @@ export function Container() {
         }
     }, [status]);
 
-    return (<div ref={containerRef} className={classJoin(className('pagination'), config.className.container)}><PageRenderer ref={pageRendererRef} /></div>);
-};
+    return (
+        <div ref={containerRef} className={classJoin(className('pagination'), config.className.container)}>
+            <PageRenderer ref={pageRendererRef} />
+        </div>
+    );
+}

@@ -8,7 +8,7 @@ describe('Config', () => {
 
     beforeEach(() => {
         config = new Config().update({
-            data: [[1, 2, 3]]
+            data: [[1, 2, 3]],
         });
     });
 
@@ -57,29 +57,29 @@ describe('Config', () => {
         });
 
         expect(config.options.header.columns.map((x: any) => x.name)).toStrictEqual(cols);
-        expect(config.options.header.columns.map((x: any) => x.sort)).toStrictEqual([
-            undefined,
-            undefined,
-            undefined,
-        ]);
+        expect(config.options.header.columns.map((x: any) => x.sort)).toStrictEqual([undefined, undefined, undefined]);
     });
 
     it('should assign config keys', () => {
-        config.update({
-            data: [],
-        }).assign({
-            resetPageOnUpdate: true,
-        });
+        config
+            .update({
+                data: [],
+            })
+            .assign({
+                resetPageOnUpdate: true,
+            });
         expect(config.options.resetPageOnUpdate).toBe(true);
     });
 
     it('should update config', () => {
-        config.assign({
-            data: [],
-            resetPageOnUpdate: true,
-        }).update({
-            resetPageOnUpdate: false,
-        });
+        config
+            .assign({
+                data: [],
+                resetPageOnUpdate: true,
+            })
+            .update({
+                resetPageOnUpdate: false,
+            });
         expect(config.options.pageSize).toBe(10);
         expect(config.options.pageRange).toBe(2);
         expect(config.options.resetPageOnUpdate).toBeFalsy();

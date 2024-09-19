@@ -81,7 +81,6 @@ export const usePagination = (config: Options, initialPage: number) => {
 
     const getTotalPage = () => Math.ceil(total.value / config.pageSize);
 
-
     const goPage = (pageNumber: number, type?: string) => {
         if (type === 'prev') {
             config.eventEmitter.emit('previousClick', pageNumber);
@@ -98,7 +97,7 @@ export const usePagination = (config: Options, initialPage: number) => {
             config.eventEmitter.emit('isLastPage');
         }
         setPage(pageNumber);
-    }
+    };
 
     return {
         currentPage,

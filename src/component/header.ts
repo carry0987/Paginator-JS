@@ -37,7 +37,9 @@ class Header extends Base {
             }
 
             if (!column.id) {
-                log.error('Could not find a valid ID for one of the columns. Make sure a valid "id" is set for all columns.');
+                log.error(
+                    'Could not find a valid ID for one of the columns. Make sure a valid "id" is set for all columns.',
+                );
             }
         }
     }

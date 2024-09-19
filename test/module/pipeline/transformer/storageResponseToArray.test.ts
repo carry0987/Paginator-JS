@@ -59,7 +59,7 @@ describe('StorageResponseToArray', () => {
             ],
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config)
+            header: Header.createFromConfig(config),
         });
         const data = await transformer.process(raw);
 
@@ -98,7 +98,7 @@ describe('StorageResponseToArray', () => {
             ],
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config)
+            header: Header.createFromConfig(config),
         });
         const data = await transformer.process(raw);
 
@@ -152,7 +152,7 @@ describe('StorageResponseToArray', () => {
             ],
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config)
+            header: Header.createFromConfig(config),
         });
         const data = await transformer.process(raw);
 

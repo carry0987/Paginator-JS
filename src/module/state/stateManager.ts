@@ -41,7 +41,6 @@ export class StateManager<S = Record<string, unknown>> {
 
         this.listeners = [...this.listeners, listener];
 
-        return () =>
-            (this.listeners = this.listeners.filter((lis) => lis !== listener));
+        return () => (this.listeners = this.listeners.filter((lis) => lis !== listener));
     };
 }

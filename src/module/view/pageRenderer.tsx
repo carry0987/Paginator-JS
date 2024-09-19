@@ -11,19 +11,13 @@ export const PageRenderer = forwardRef((_, ref) => {
     const config = useConfig();
     const display = config.display;
     const lang = useTranslator();
-    const {
-        currentPage,
-        setPage,
-        goPage,
-        getTotalPage,
-        pageRange
-    } = usePagination(config, config.pageNumber);
+    const { currentPage, setPage, goPage, getTotalPage, pageRange } = usePagination(config, config.pageNumber);
 
     // Expose the methods to the parent component
     useImperativeHandle(ref, () => ({
         setPage,
         currentPage: currentPage.value,
-        totalPage: getTotalPage()
+        totalPage: getTotalPage(),
     }));
 
     const renderPageNumbers = () => {
@@ -55,7 +49,16 @@ export const PageRenderer = forwardRef((_, ref) => {
         // If pageRange is 0, iterate through all pages and push buttons for each page
         if (pageRange === 0) {
             for (let i = 1; i <= totalPage; i++) {
-                pagerNumbers.push(<PageButton page={i} isActive={currentPage.value === i} onClick={() => goPage(i)} config={config} lang={lang} text={lang('pagination.page', i + 1)} />);
+                pagerNumbers.push(
+                    <PageButton
+                        page={i}
+                        isActive={currentPage.value === i}
+                        onClick={() => goPage(i)}
+                        config={config}
+                        lang={lang}
+                        text={lang('pagination.page', i + 1)}
+                    />,
+                );
             }
 
             return pagerNumbers;
@@ -64,31 +67,53 @@ export const PageRenderer = forwardRef((_, ref) => {
         // If range start is close to the beginning, render pages directly
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
-                pagerNumbers.push(<PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />);
+                pagerNumbers.push(
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />,
+                );
             }
         } else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
-                pagerNumbers.push(<PageButton page={1} isActive={false} onClick={() => goPage(1)} config={config} lang={lang} />);
+                pagerNumbers.push(
+                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} config={config} lang={lang} />,
+                );
             }
             pagerNumbers.push(<EllipsisButton key={'ellipsis-start'} config={config} lang={lang} />);
         }
 
         // Loop through the calculated range to render page buttons
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            pagerNumbers.push(<PageButton page={i} isActive={currentPage.value === i} onClick={() => goPage(i)} config={config} lang={lang} />);
+            pagerNumbers.push(
+                <PageButton
+                    page={i}
+                    isActive={currentPage.value === i}
+                    onClick={() => goPage(i)}
+                    config={config}
+                    lang={lang}
+                />,
+            );
         }
 
         // If the range end is near the last pages, render remaining pages
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
-                pagerNumbers.push(<PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />);
+                pagerNumbers.push(
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />,
+                );
             }
         } else {
             // Render ellipsis and optionally the last page if range end is far
             pagerNumbers.push(<EllipsisButton key={'ellipsis-end'} config={config} lang={lang} />);
             if (!display.hideLastOnEllipsisShow) {
-                pagerNumbers.push(<PageButton page={totalPage} isActive={false} onClick={() => goPage(totalPage)} config={config} lang={lang} />);
+                pagerNumbers.push(
+                    <PageButton
+                        page={totalPage}
+                        isActive={false}
+                        onClick={() => goPage(totalPage)}
+                        config={config}
+                        lang={lang}
+                    />,
+                );
             }
         }
 
@@ -98,15 +123,29 @@ export const PageRenderer = forwardRef((_, ref) => {
     return (
         <div className={classJoin(className(config.className.pageList || ''))}>
             {display.showPrevious && currentPage.value <= 1 ? (
-                !display.autoHidePrevious && <ActionButtonDisabled key='prev' config={config} text={lang('pagination.previous')} />
+                !display.autoHidePrevious && (
+                    <ActionButtonDisabled key="prev" config={config} text={lang('pagination.previous')} />
+                )
             ) : (
-                <ActionButton key='prev' onClick={() => goPage(currentPage.value - 1, 'prev')} config={config} text={lang('pagination.previous')} />
+                <ActionButton
+                    key="prev"
+                    onClick={() => goPage(currentPage.value - 1, 'prev')}
+                    config={config}
+                    text={lang('pagination.previous')}
+                />
             )}
             {display.showPageNumbers && renderPageNumbers()}
             {display.showNext && currentPage.value >= getTotalPage() ? (
-                !display.autoHideNext && <ActionButtonDisabled key='next' config={config} text={lang('pagination.next')} />
+                !display.autoHideNext && (
+                    <ActionButtonDisabled key="next" config={config} text={lang('pagination.next')} />
+                )
             ) : (
-                <ActionButton key='next' onClick={() => goPage(currentPage.value + 1, 'next')} config={config} text={lang('pagination.next')} />
+                <ActionButton
+                    key="next"
+                    onClick={() => goPage(currentPage.value + 1, 'next')}
+                    config={config}
+                    text={lang('pagination.next')}
+                />
             )}
         </div>
     );

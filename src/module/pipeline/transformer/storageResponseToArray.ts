@@ -9,7 +9,11 @@ interface StorageResponseToArrayTransformerProps extends ProcessorProps {
     header: Header;
 }
 
-class StorageResponseToArrayTransformer extends Processor<ArrayResponse, ProcessorType, StorageResponseToArrayTransformerProps> {
+class StorageResponseToArrayTransformer extends Processor<
+    ArrayResponse,
+    ProcessorType,
+    StorageResponseToArrayTransformerProps
+> {
     public get type(): ProcessorType {
         return ProcessorType.Transformer;
     }
@@ -60,10 +64,12 @@ class StorageResponseToArrayTransformer extends Processor<ArrayResponse, Process
                     } else if (column.id) {
                         return row[column.id];
                     } else {
-                        log.error(`Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`);
+                        log.error(
+                            `Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`,
+                        );
                         return null;
                     }
-                })
+                }),
             );
         }
 

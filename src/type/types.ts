@@ -12,7 +12,7 @@ export enum Status {
     Loaded,
     Rendered,
     Error,
-};
+}
 
 /**
  * Table cell types

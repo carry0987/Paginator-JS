@@ -11,11 +11,10 @@ export const PageButton = ({ page, isActive, onClick, config, lang, text }: Page
         onClick={onClick}
         className={classJoin(
             isActive ? classJoin(className('currentPage'), config.className.active) : '',
-            config.className.pageButton
+            config.className.pageButton,
         )}
         title={text || lang('pagination.page', page)}
-        aria-label={text || lang('pagination.page', page)}
-    >
+        aria-label={text || lang('pagination.page', page)}>
         {lang(`${page}`)}
     </button>
 );
@@ -25,12 +24,7 @@ export const EllipsisButton = ({ key, config, lang }: EllipsisButtonProps): h.JS
         key={key}
         tabIndex={-1}
         disabled={true}
-        className={classJoin(
-            className('spread'),
-            config.className.pageButton,
-            config.className.disable
-        )}
-    >
+        className={classJoin(className('spread'), config.className.pageButton, config.className.disable)}>
         {lang('pagination.ellipsis')}
     </button>
 );
@@ -44,11 +38,10 @@ export const ActionButton = ({ key, onClick, config, text }: ActionButtonProps):
         onClick={onClick}
         className={classJoin(
             config.className.pageButton,
-            key === 'prev' ? config.className.prevButton : config.className.nextButton
+            key === 'prev' ? config.className.prevButton : config.className.nextButton,
         )}
         title={text}
-        aria-label={text}
-    >
+        aria-label={text}>
         {text}
     </button>
 );
@@ -62,11 +55,10 @@ export const ActionButtonDisabled = ({ key, config, text }: ActionButtonProps): 
             className('disabled'),
             config.className.pageButton,
             key === 'prev' ? config.className.prevButton : config.className.nextButton,
-            config.className.disable
+            config.className.disable,
         )}
         title={text}
-        aria-label={text}
-    >
+        aria-label={text}>
         {text}
     </button>
 );
