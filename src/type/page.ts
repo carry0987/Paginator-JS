@@ -1,4 +1,4 @@
-import { Options } from '@/interface/interfaces';
+import { Options } from '@/interface/options';
 
 export type PageButtonProps = {
     page: number;

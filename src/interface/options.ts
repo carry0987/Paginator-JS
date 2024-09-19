@@ -1,13 +1,13 @@
 import { Config } from './config';
 import { TCell } from '@/type/types';
-import { ComponentChildren, ComponentChild } from 'preact';
+import { ComponentChild } from 'preact';
 
 interface CommonOptions {
     pageNumber: number;
     pageSize: number;
     pageRange: number;
     beforeDataLoad?: () => void;
-    dataRender?: (response: TCell[][]) => ComponentChild;
+    dataRender?: (response: TCell[][]) => void;
     position: string;
     resetPageOnUpdate?: boolean;
 }
@@ -30,11 +30,6 @@ interface ClassName {
     pageButton: string;
     prevButton: string;
     nextButton: string;
-}
-
-export interface Instance {
-    value: Options | undefined;
-    children?: ComponentChildren;
 }
 
 export interface Options extends Config, CommonOptions {

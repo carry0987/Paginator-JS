@@ -1,4 +1,4 @@
-import { Options } from '@/interface/interfaces';
+import { Options } from '@/interface/options';
 import PaginationLimit from '@/module/pipeline/limit/pagination';
 import ServerPaginationLimit from '@/module/pipeline/limit/serverPagination';
 import Tabular from '@/component/tabular';

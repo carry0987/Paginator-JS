@@ -1,6 +1,6 @@
 import Header from './header';
 import { Status } from '@/type/types';
-import { Options } from '@/interface/interfaces';
+import { Options } from '@/interface/options';
 import { State } from '@/interface/state';
 import Utils from '@/module/utils/utils-ext';
 import { StateManager } from '@/module/state/stateManager';

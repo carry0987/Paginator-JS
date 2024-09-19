@@ -1,4 +1,4 @@
-import { Options } from '@/interface/interfaces';
+import { Options } from '@/interface/options';
 import { ConfigContext } from '@/component/config';
 import { useContext } from 'preact/hooks';
 
