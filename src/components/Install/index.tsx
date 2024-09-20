@@ -4,7 +4,7 @@ import style from './styles.module.css';
 
 export default function Install(): JSX.Element {
     return (
-        <div className="bg-white pt-8 pb-5 px-4 sm:px-6 lg:pt-12 lg:pb-14 lg:px-8">
+        <div id="install" className="pt-8 pb-5 px-4 sm:px-6 lg:pt-12 lg:pb-14 lg:px-8">
             <div className="relative max-w-lg mx-auto lg:max-w-7xl">
                 <div>
                     <h2 className="text-3xl leading-9 tracking-tight font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
@@ -36,7 +36,7 @@ export default function Install(): JSX.Element {
                             and most CDNs
                         </p>
 
-                        <div className="mt-1 flex rounded-md shadow-sm">
+                        <div className="cdn-link mt-1 flex rounded-md shadow-sm">
                             <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                 JavaScript
                             </span>
@@ -47,7 +47,7 @@ export default function Install(): JSX.Element {
                             />
                         </div>
 
-                        <div className="mt-3 flex rounded-md shadow-sm">
+                        <div className="cdn-link mt-3 flex rounded-md shadow-sm">
                             <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                 CSS
                             </span>

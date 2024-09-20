@@ -76,7 +76,7 @@ function Feature({ icon, title, description }: FeatureItem) {
 export default function HomepageFeatures(): JSX.Element {
     return (
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="py-12 bg-white">
+            <div id="features" className="py-12">
                 <div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
                     <div className="lg:grid lg:grid-cols-3 lg:gap-8">
                         {FeatureList.map((props, idx) => (

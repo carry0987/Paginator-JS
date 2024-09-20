@@ -85,6 +85,11 @@ const config: Config = {
             style: 'dark',
             copyright: `Copyright © ${new Date().getFullYear()} carry0987. Built with Docusaurus.`,
         },
+        colorMode: {
+            defaultMode: 'light',
+            disableSwitch: false,
+            respectPrefersColorScheme: true,
+        },
         prism: {
             theme: prismThemes.oneDark,
             darkTheme: prismThemes.oneDark,

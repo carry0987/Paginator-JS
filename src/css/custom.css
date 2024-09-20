@@ -55,3 +55,22 @@ ul.contents {
     list-style: none;
     border-left: 1px solid #d2d6dc;
 }
+
+#install,
+#features {
+    background-color: var(--ifm-background-color);
+}
+
+#install h2,
+#install h3,
+#install p,
+#features h5,
+#features h5 + p {
+    color: var(--ifm-heading-color);
+}
+
+.cdn-link span,
+.cdn-link input {
+    color: var(--ifm-heading-color);
+    background-color: var(--ifm-background-color);
+}
