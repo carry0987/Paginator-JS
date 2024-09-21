@@ -67,7 +67,7 @@ const config: Config = {
                     to: 'docs/examples/hello-world',
                     activeBasePath: 'docs/examples',
                     label: 'Examples',
-                    position: 'left'
+                    position: 'left',
                 },
                 {
                     href: 'https://www.npmjs.com/package/@carry0987/paginator',
@@ -100,15 +100,21 @@ const config: Config = {
              * The position of the live playground, above or under the editor
              * Possible values: "top" | "bottom"
              */
-            playgroundPosition: 'bottom'
+            playgroundPosition: 'bottom',
+        },
+        algolia: {
+            appId: 'TLWF61FQC2',
+            apiKey: '6ec45419a7334dddfbff735d9c6ccf54',
+            indexName: 'carry0987io',
+            contextualSearch: true,
+            externalUrlRegex: 'external\\.com|domain\\.com',
+            searchParameters: {},
+            searchPagePath: 'search',
+            insights: false,
         },
     } satisfies Preset.ThemeConfig,
-    themes: [
-        '@docusaurus/theme-live-codeblock',
-    ],
-    plugins: [
-        './plugins/tailwindcss/index.ts',
-    ],
+    themes: ['@docusaurus/theme-live-codeblock'],
+    plugins: ['./plugins/tailwindcss/index.ts'],
 };
 
 export default config;
