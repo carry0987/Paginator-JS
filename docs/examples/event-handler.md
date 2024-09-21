@@ -19,11 +19,11 @@ const paginator = new Paginator({
     ],
 });
 
-paginator.on('rowClick', (...args) =>
-    console.log('row: ' + JSON.stringify(args), args)
+paginator.on('rendered', () =>
+    console.log('Rendered !')
 );
-paginator.on('cellClick', (...args) =>
-    console.log('cell: ' + JSON.stringify(args), args)
+paginator.on('pageClick', (page) =>
+    console.log('pageClick, go to page: ', page)
 );
 ```
 
