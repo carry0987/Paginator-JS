@@ -72,5 +72,5 @@ ul.contents {
 .cdn-link span,
 .cdn-link input {
     color: var(--ifm-heading-color);
-    background-color: var(--ifm-background-color);
+    background-color: var(--ifm-background-surface-color);
 }
