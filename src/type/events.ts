@@ -1,4 +1,5 @@
-import { PageEvents, InternalEvents } from '@/interface/events';
+import { PageEvents } from '@/interface/events';
+import { InternalEvents } from '@/interface/internalEvents';
 
 /**
  * Paginator events

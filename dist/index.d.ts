@@ -139,9 +139,6 @@ declare class Header extends Base {
 
 interface PageEvents {
     ready: () => void;
-    go: (pageNumber: number) => void;
-}
-interface InternalEvents {
     rendered: () => void;
     pageClick: (pageNumber: number) => void;
     previousClick: (pageNumber: number) => void;
@@ -152,6 +149,10 @@ interface InternalEvents {
     afterPaging: (pageNumber: number) => void;
     beforeDestroy: () => void;
     afterDestroy: () => void;
+}
+
+interface InternalEvents {
+    go: (pageNumber: number) => void;
 }
 
 /**
