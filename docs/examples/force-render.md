@@ -42,3 +42,7 @@ function () {
     return (<div ref={wrapper} />);
 }
 ```
+
+:::warning
+**Reminder**: `updateConfig()` will only update the provided parameters. Any parameters not provided will not reset but will remain as initially configured. For example, if you initially set `pageNumber: 3` and new data results in fewer than three pages, the page may appear blank due to the initial `pageNumber` setting is `3`.
+:::
