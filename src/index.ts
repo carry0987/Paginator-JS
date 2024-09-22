@@ -3,4 +3,4 @@ import { Config } from '@/component/config';
 import { html } from '@/module/utils/html';
 import { h } from 'preact';
 
-export { Paginator, html, Config, h };
+export { Paginator, Config, html, h };
