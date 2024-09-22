@@ -15,7 +15,7 @@ import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
 import { ComponentChild } from 'preact';
 
-export interface Config {
+export interface InternalConfig {
     instance: Paginator;
     state: StateManager<State>;
     eventEmitter: EventEmitter<PaginatorEvents>;

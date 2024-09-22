@@ -218,7 +218,7 @@ declare class Translator {
     translate(message: string, ...args: any[]): string;
 }
 
-interface Config$1 {
+interface InternalConfig {
     instance: Paginator;
     state: StateManager<State>;
     eventEmitter: EventEmitter<PaginatorEvents>;
@@ -260,7 +260,7 @@ interface ClassName {
     prevButton: string;
     nextButton: string;
 }
-interface Options extends Config$1, CommonOptions {
+interface Options extends InternalConfig, CommonOptions {
     display: Partial<DisplayControls>;
     className: Partial<ClassName>;
 }

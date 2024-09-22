@@ -1,4 +1,4 @@
-import { Config } from './config';
+import { InternalConfig } from './internalConfig';
 import { TCell } from '@/type/types';
 
 interface CommonOptions {
@@ -31,7 +31,7 @@ interface ClassName {
     nextButton: string;
 }
 
-export interface Options extends Config, CommonOptions {
+export interface Options extends InternalConfig, CommonOptions {
     display: Partial<DisplayControls>;
     className: Partial<ClassName>;
 }
