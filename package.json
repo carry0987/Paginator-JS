@@ -49,7 +49,7 @@
     "@carry0987/pipeline": "^1.3.9",
     "@carry0987/utils": "^3.7.4",
     "@preact/signals": "^1.3.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
