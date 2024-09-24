@@ -103,8 +103,8 @@ const config: Config = {
             playgroundPosition: 'bottom',
         },
         algolia: {
-            appId: 'TLWF61FQC2',
-            apiKey: '6ec45419a7334dddfbff735d9c6ccf54',
+            appId: 'PNL7BHFF9Y',
+            apiKey: '416d5443af29051407b696c9eaa6a825',
             indexName: 'carry0987io',
             contextualSearch: true,
             externalUrlRegex: 'external\\.com|domain\\.com',
