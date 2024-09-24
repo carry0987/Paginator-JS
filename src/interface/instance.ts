@@ -1,7 +1,7 @@
-import { Options } from './options';
+import { Config } from '@/component/config';
 import { ComponentChildren } from 'preact';
 
 export interface Instance {
-    value: Options | undefined;
+    value: Config;
     children?: ComponentChildren;
 }

@@ -1,5 +1,5 @@
 import { PageButton, EllipsisButton, ActionButton, ActionButtonDisabled } from './button';
-import { useConfig } from '@/module/hook/useConfig';
+import { useOption } from '@/module/hook/useOption';
 import { useTranslator } from '@/module/hook/useTranslator';
 import { usePagination } from '@/module/hook/usePagination';
 import { h } from 'preact';
@@ -8,10 +8,10 @@ import { forwardRef } from 'preact/compat';
 import { classJoin, className } from '../utils/className';
 
 export const PageRenderer = forwardRef((_, ref) => {
-    const config = useConfig();
-    const display = config.display;
+    const option = useOption();
+    const display = option.display;
     const lang = useTranslator();
-    const { currentPage, setPage, goPage, getTotalPage, pageRange } = usePagination(config, config.pageNumber);
+    const { currentPage, setPage, goPage, getTotalPage, pageRange } = usePagination(option, option.pageNumber);
 
     // Expose the methods to the parent component
     useImperativeHandle(ref, () => ({
@@ -54,7 +54,7 @@ export const PageRenderer = forwardRef((_, ref) => {
                         page={i}
                         isActive={currentPage.value === i}
                         onClick={() => goPage(i)}
-                        config={config}
+                        option={option}
                         lang={lang}
                         text={lang('pagination.page', i + 1)}
                     />,
@@ -68,17 +68,17 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />,
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />,
                 );
             }
         } else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
                 pagerNumbers.push(
-                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} config={config} lang={lang} />,
+                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} option={option} lang={lang} />,
                 );
             }
-            pagerNumbers.push(<EllipsisButton key={'ellipsis-start'} config={config} lang={lang} />);
+            pagerNumbers.push(<EllipsisButton key={'ellipsis-start'} option={option} lang={lang} />);
         }
 
         // Loop through the calculated range to render page buttons
@@ -88,7 +88,7 @@ export const PageRenderer = forwardRef((_, ref) => {
                     page={i}
                     isActive={currentPage.value === i}
                     onClick={() => goPage(i)}
-                    config={config}
+                    option={option}
                     lang={lang}
                 />,
             );
@@ -98,19 +98,19 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} config={config} lang={lang} />,
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />,
                 );
             }
         } else {
             // Render ellipsis and optionally the last page if range end is far
-            pagerNumbers.push(<EllipsisButton key={'ellipsis-end'} config={config} lang={lang} />);
+            pagerNumbers.push(<EllipsisButton key={'ellipsis-end'} option={option} lang={lang} />);
             if (!display.hideLastOnEllipsisShow) {
                 pagerNumbers.push(
                     <PageButton
                         page={totalPage}
                         isActive={false}
                         onClick={() => goPage(totalPage)}
-                        config={config}
+                        option={option}
                         lang={lang}
                     />,
                 );
@@ -121,29 +121,29 @@ export const PageRenderer = forwardRef((_, ref) => {
     };
 
     return (
-        <div className={classJoin(className(config.className.pageList || ''))}>
+        <div className={classJoin(className(option.className.pageList || ''))}>
             {display.showPrevious && currentPage.value <= 1 ? (
                 !display.autoHidePrevious && (
-                    <ActionButtonDisabled key="prev" config={config} text={lang('pagination.previous')} />
+                    <ActionButtonDisabled key="prev" option={option} text={lang('pagination.previous')} />
                 )
             ) : (
                 <ActionButton
                     key="prev"
                     onClick={() => goPage(currentPage.value - 1, 'prev')}
-                    config={config}
+                    option={option}
                     text={lang('pagination.previous')}
                 />
             )}
             {display.showPageNumbers && renderPageNumbers()}
             {display.showNext && currentPage.value >= getTotalPage() ? (
                 !display.autoHideNext && (
-                    <ActionButtonDisabled key="next" config={config} text={lang('pagination.next')} />
+                    <ActionButtonDisabled key="next" option={option} text={lang('pagination.next')} />
                 )
             ) : (
                 <ActionButton
                     key="next"
                     onClick={() => goPage(currentPage.value + 1, 'next')}
-                    config={config}
+                    option={option}
                     text={lang('pagination.next')}
                 />
             )}

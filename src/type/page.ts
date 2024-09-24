@@ -4,20 +4,20 @@ export type PageButtonProps = {
     page: number;
     isActive: boolean;
     onClick: () => void;
-    config: Options;
+    option: Options;
     lang: (key: string, ...args: unknown[]) => string;
     text?: string;
 };
 
 export type EllipsisButtonProps = {
     key: string;
-    config: Options;
+    option: Options;
     lang: (key: string, ...args: unknown[]) => string;
 };
 
 export type ActionButtonProps = {
     key: string;
     onClick?: () => void;
-    config: Options;
+    option: Options;
     text?: string;
 };

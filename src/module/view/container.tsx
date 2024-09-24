@@ -1,7 +1,7 @@
 import { PageRenderer } from './pageRenderer';
 import { PageRendererProps } from '@/interface/view';
 import { Status } from '@/type/types';
-import { useConfig } from '@/module/hook/useConfig';
+import { useOption } from '@/module/hook/useOption';
 import { useStore } from '@/module/hook/useStore';
 import { useSelector } from '@/module/hook/useSelector';
 import { throttle } from '@/module/utils/throttle';
@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import Tabular from '@/component/tabular';
 
 export function Container() {
-    const config = useConfig();
+    const option = useOption();
     const { dispatch } = useStore();
     const status = useSelector((state) => state.status);
     const tabular = useSelector((state) => state.tabular);
@@ -24,7 +24,7 @@ export function Container() {
         dispatch(actions.SetLoadingData());
 
         try {
-            const result = await config.pipeline.process();
+            const result = await option.pipeline.process();
             if (result instanceof Tabular) {
                 dispatch(actions.SetData(result));
             }
@@ -40,31 +40,31 @@ export function Container() {
     // Process Pipeline
     useEffect(() => {
         // Set the initial header object
-        dispatch(actions.SetHeader(config.header));
+        dispatch(actions.SetHeader(option.header));
 
         // Process the pipeline
         processPipeline();
-        config.pipeline.on('updated', processPipeline);
+        option.pipeline.on('updated', processPipeline);
 
-        return () => config.pipeline.off('updated', processPipeline);
+        return () => option.pipeline.off('updated', processPipeline);
     }, []);
 
     // Ready
     useEffect(() => {
-        if (config.header && status === Status.Loaded && tabular?.length) {
-            config.eventEmitter.emit('ready');
+        if (option.header && status === Status.Loaded && tabular?.length) {
+            option.eventEmitter.emit('ready');
         }
-    }, [tabular, config, containerRef]);
+    }, [tabular, option, containerRef]);
 
     // Render Paginator
     useEffect(() => {
         const ele = containerRef.current;
         if (ele) {
-            if (config.container) {
-                if (config.position === 'bottom') {
-                    config.container.appendChild(ele);
+            if (option.container) {
+                if (option.position === 'bottom') {
+                    option.container.appendChild(ele);
                 } else {
-                    config.container.insertBefore(ele, config.container.firstChild);
+                    option.container.insertBefore(ele, option.container.firstChild);
                 }
             }
         }
@@ -78,22 +78,22 @@ export function Container() {
             }
         };
 
-        config.eventEmitter.on('go', handleGo);
+        option.eventEmitter.on('go', handleGo);
 
-        return () => config.eventEmitter.off('go', handleGo);
+        return () => option.eventEmitter.off('go', handleGo);
     }, [pageRendererRef]);
 
     // Render data after the paginator is rendered
     useEffect(() => {
-        if (config.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
-            config.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
-            config.dataRender(tabular.toArray());
-            config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
+        if (option.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
+            option.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
+            option.dataRender(tabular.toArray());
+            option.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
 
     return (
-        <div ref={containerRef} className={classJoin(className('pagination'), config.className.container)}>
+        <div ref={containerRef} className={classJoin(className('pagination'), option.className.container)}>
             <PageRenderer ref={pageRendererRef} />
         </div>
     );

@@ -72,7 +72,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
     private createElement(): VNode<Instance> {
         return h<Instance>(ConfigContext.Provider, {
-            value: this.config.options,
+            value: this.config,
             children: h(Container, {}),
         });
     }

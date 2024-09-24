@@ -1,8 +1,7 @@
-import { Options } from '@/interface/options';
-import { ConfigContext } from '@/component/config';
+import { Config, ConfigContext } from '@/component/config';
 import { useContext } from 'preact/hooks';
 
-export const useConfig = (): Options => {
+export const useConfig = (): Config => {
     const context = useContext(ConfigContext);
 
     if (context === undefined) {

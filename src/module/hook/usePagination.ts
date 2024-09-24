@@ -5,15 +5,15 @@ import Tabular from '@/component/tabular';
 import { useEffect, useRef } from 'preact/hooks';
 import { useSignal } from '@preact/signals';
 
-export const usePagination = (config: Options, initialPage: number) => {
+export const usePagination = (option: Options, initialPage: number) => {
     const processor = useRef<PaginationLimit | ServerPaginationLimit>();
     const currentPage = useSignal(initialPage);
     const total = useSignal(0);
-    const { server, pageRange, pageSize, resetPageOnUpdate } = config;
+    const { server, pageRange, pageSize, resetPageOnUpdate } = option;
 
     // Rendered
     useEffect(() => {
-        config.eventEmitter.emit('rendered');
+        option.eventEmitter.emit('rendered');
     }, []);
 
     // Initialize and set up the processor
@@ -26,7 +26,7 @@ export const usePagination = (config: Options, initialPage: number) => {
                 body: server.pageBody,
             });
 
-            config.pipeline.on('afterProcess', (storage) => {
+            option.pipeline.on('afterProcess', (storage) => {
                 if (storage && storage instanceof Tabular) {
                     total.value = storage.length;
                 }
@@ -45,21 +45,21 @@ export const usePagination = (config: Options, initialPage: number) => {
             });
         }
 
-        config.pipeline.register(processor.current);
-        config.pipeline.on('updated', onUpdate);
+        option.pipeline.register(processor.current);
+        option.pipeline.on('updated', onUpdate);
 
         // We need to make sure that the state is set
         // to the default props when an error happens
-        config.pipeline.on('error', () => {
+        option.pipeline.on('error', () => {
             total.value = 0;
             currentPage.value = 0;
         });
 
         return () => {
-            config.pipeline.unregister(processor.current);
-            config.pipeline.off('updated', onUpdate);
+            option.pipeline.unregister(processor.current);
+            option.pipeline.off('updated', onUpdate);
         };
-    }, [config, initialPage]);
+    }, [option, initialPage]);
 
     const onUpdate = (updatedProcessor: unknown) => {
         // This is to ensure that the current page is set to 0
@@ -79,22 +79,22 @@ export const usePagination = (config: Options, initialPage: number) => {
         processor.current?.setProps({ page });
     };
 
-    const getTotalPage = () => Math.ceil(total.value / config.pageSize);
+    const getTotalPage = () => Math.ceil(total.value / option.pageSize);
 
     const goPage = (pageNumber: number, type?: string) => {
         if (type === 'prev') {
-            config.eventEmitter.emit('previousClick', pageNumber);
+            option.eventEmitter.emit('previousClick', pageNumber);
         }
         if (type === 'next') {
-            config.eventEmitter.emit('nextClick', pageNumber);
+            option.eventEmitter.emit('nextClick', pageNumber);
         }
         if (!type) {
-            config.eventEmitter.emit('pageClick', pageNumber);
+            option.eventEmitter.emit('pageClick', pageNumber);
         }
         if (pageNumber === 1) {
-            config.eventEmitter.emit('isFirstPage');
+            option.eventEmitter.emit('isFirstPage');
         } else if (pageNumber === getTotalPage()) {
-            config.eventEmitter.emit('isLastPage');
+            option.eventEmitter.emit('isLastPage');
         }
         setPage(pageNumber);
     };

@@ -9,8 +9,6 @@ import PipelineUtils from '@/module/pipeline/pipelineUtils';
 import { Translator } from '@/module/i18n/translator';
 import { createContext } from 'preact';
 
-const ConfigContext = createContext<Options | undefined>(undefined);
-
 class Config {
     public options: Options = {} as Options;
 
@@ -91,5 +89,7 @@ class Config {
         return config.options;
     }
 }
+
+const ConfigContext = createContext<Config | undefined>(undefined);
 
 export { Config, ConfigContext };

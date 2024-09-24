@@ -1502,7 +1502,6 @@ class Translator {
     }
 }
 
-const ConfigContext = G(undefined);
 class Config {
     options = {};
     constructor() {
@@ -1569,6 +1568,7 @@ class Config {
         return config.options;
     }
 }
+const ConfigContext = G(undefined);
 
 function className(...args) {
     const prefix = 'paginatorjs';
@@ -1582,25 +1582,25 @@ function classJoin(...classNames) {
         .trim();
 }
 
-const PageButton = ({ page, isActive, onClick, config, lang, text }) => (_$2("button", { key: `page-${page}`, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), config.className.active) : '', config.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page) }, lang(`${page}`)));
-const EllipsisButton = ({ key, config, lang }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('spread'), config.className.pageButton, config.className.disable) }, lang('pagination.ellipsis')));
-const ActionButton = ({ key, onClick, config, text }) => (_$2("button", { key: key, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(config.className.pageButton, key === 'prev' ? config.className.prevButton : config.className.nextButton), title: text, "aria-label": text }, text));
-const ActionButtonDisabled = ({ key, config, text }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('disabled'), config.className.pageButton, key === 'prev' ? config.className.prevButton : config.className.nextButton, config.className.disable), title: text, "aria-label": text }, text));
+const PageButton = ({ page, isActive, onClick, option, lang, text }) => (_$2("button", { key: `page-${page}`, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), option.className.active) : '', option.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page) }, lang(`${page}`)));
+const EllipsisButton = ({ key, option, lang }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('spread'), option.className.pageButton, option.className.disable) }, lang('pagination.ellipsis')));
+const ActionButton = ({ key, onClick, option, text }) => (_$2("button", { key: key, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton), title: text, "aria-label": text }, text));
+const ActionButtonDisabled = ({ key, option, text }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('disabled'), option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton, option.className.disable), title: text, "aria-label": text }, text));
 
 var t$1,r$1,u$1,i$1,o=0,f$1=[],c$2=l$2,e$1=c$2.__b,a$1=c$2.__r,v$2=c$2.diffed,l$1=c$2.__c,m=c$2.unmount,s$1=c$2.__;function d$2(n,t){c$2.__h&&c$2.__h(r$1,n,o||t),o=0;var u=r$1.__H||(r$1.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function y$1(n,u){var i=d$2(t$1++,3);!c$2.__s&&C$1(i.__H,u)&&(i.__=n,i.i=u,r$1.__H.__h.push(i));}function _$1(n,u){var i=d$2(t$1++,4);!c$2.__s&&C$1(i.__H,u)&&(i.__=n,i.i=u,r$1.__h.push(i));}function A$1(n){return o=5,T$1(function(){return {current:n}},[])}function F(n,t,r){o=6,_$1(function(){return "function"==typeof n?(n(t()),function(){return n(null)}):n?(n.current=t(),function(){return n.current=null}):void 0},null==r?r:r.concat(n));}function T$1(n,r){var u=d$2(t$1++,7);return C$1(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function x(n){var u=r$1.context[n.__c],i=d$2(t$1++,9);return i.c=n,u?(null==i.__&&(i.__=!0,u.sub(r$1)),u.props.value):n.__}function j(){for(var n;n=f$1.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z$1),n.__H.__h.forEach(B$1),n.__H.__h=[];}catch(t){n.__H.__h=[],c$2.__e(t,n.__v);}}c$2.__b=function(n){r$1=null,e$1&&e$1(n);},c$2.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s$1&&s$1(n,t);},c$2.__r=function(n){a$1&&a$1(n),t$1=0;var i=(r$1=n.__c).__H;i&&(u$1===r$1?(i.__h=[],r$1.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.i=n.__N=void 0;})):(i.__h.forEach(z$1),i.__h.forEach(B$1),i.__h=[],t$1=0)),u$1=r$1;},c$2.diffed=function(n){v$2&&v$2(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f$1.push(t)&&i$1===c$2.requestAnimationFrame||((i$1=c$2.requestAnimationFrame)||w$2)(j)),t.__H.__.forEach(function(n){n.i&&(n.__H=n.i),n.i=void 0;})),u$1=r$1=null;},c$2.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z$1),n.__h=n.__h.filter(function(n){return !n.__||B$1(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c$2.__e(r,n.__v);}}),l$1&&l$1(n,t);},c$2.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z$1(n);}catch(n){t=n;}}),r.__H=void 0,t&&c$2.__e(t,r.__v));};var k$1="function"==typeof requestAnimationFrame;function w$2(n){var t,r=function(){clearTimeout(u),k$1&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,100);k$1&&(t=requestAnimationFrame(r));}function z$1(n){var t=r$1,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r$1=t;}function B$1(n){var t=r$1;n.__c=n.__(),r$1=t;}function C$1(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}
 
-const useConfig = () => {
+const useOption = () => {
     const context = x(ConfigContext);
     if (context === undefined) {
-        throw new Error('useConfig must be used within a ConfigProvider');
+        throw new Error('useOption must be used within a ConfigProvider');
     }
-    return context;
+    return context.options;
 };
 
 function useTranslator() {
-    const config = useConfig();
+    const option = useOption();
     return function (message, ...args) {
-        return config.translator.translate(message, ...args);
+        return option.translator.translate(message, ...args);
     };
 }
 
@@ -1646,14 +1646,14 @@ const i=Symbol.for("preact-signals");function t(){if(r>1){r--;return}let i,t=!1;
 
 function c(t,e){l$2[t]=e.bind(null,l$2[t]||(()=>{}));}let d;function h(t){if(d)d();d=t&&t.S();}function p({data:t}){const i=useSignal(t);i.value=t;const o=T$1(()=>{let t=this.__v;while(t=t.__)if(t.__c){t.__c.__$f|=4;break}this.__$u.c=()=>{var t;if(!t$2(o.peek())&&3===(null==(t=this.base)?void 0:t.nodeType))this.base.data=o.peek();else {this.__$f|=1;this.setState({});}};return w$1(()=>{let t=i.value.value;return 0===t?0:!0===t?"":t||""})},[]);return o.value}p.displayName="_st";Object.defineProperties(u.prototype,{constructor:{configurable:!0,value:void 0},type:{configurable:!0,value:p},props:{configurable:!0,get(){return {data:this}}},__b:{configurable:!0,value:1}});c("__b",(t,i)=>{if("string"==typeof i.type){let t,e=i.props;for(let n in e){if("children"===n)continue;let o=e[n];if(o instanceof u){if(!t)i.__np=t={};t[n]=o;e[n]=o.peek();}}}t(i);});c("__r",(t,i)=>{h();let e,n=i.__c;if(n){n.__$f&=-2;e=n.__$u;if(void 0===e)n.__$u=e=function(t){let i;E$1(function(){i=this;});i.c=()=>{n.__$f|=1;n.setState({});};return i}();}h(e);t(i);});c("__e",(t,i,e,n)=>{h();t(i,e,n);});c("diffed",(t,i)=>{h();let e;if("string"==typeof i.type&&(e=i.__e)){let t=i.__np,n=i.props;if(t){let i=e.U;if(i)for(let e in i){let n=i[e];if(void 0!==n&&!(e in t)){n.d();i[e]=void 0;}}else {i={};e.U=i;}for(let o in t){let r=i[o],f=t[o];if(void 0===r){r=v(e,o,f,n);i[o]=r;}else r.o(f,n);}}}t(i);});function v(t,i,e,n){const o=i in t&&void 0===t.ownerSVGElement,r=d$1(e);return {o:(t,i)=>{r.value=t;n=i;},d:E$1(()=>{const e=r.value.value;if(n[i]!==e){n[i]=e;if(o)t[i]=e;else if(e)t.setAttribute(i,e);else t.removeAttribute(i);}})}}c("unmount",(t,i)=>{if("string"==typeof i.type){let t=i.__e;if(t){const i=t.U;if(i){t.U=void 0;for(let t in i){let e=i[t];if(e)e.d();}}}}else {let t=i.__c;if(t){const i=t.__$u;if(i){t.__$u=void 0;i.d();}}}t(i);});c("__h",(t,i,e,n)=>{if(n<3||9===n)i.__$f|=2;t(i,e,n);});k$2.prototype.shouldComponentUpdate=function(t,i){const e=this.__$u;if(!(e&&void 0!==e.s||4&this.__$f))return !0;if(3&this.__$f)return !0;for(let t in i)return !0;for(let i in t)if("__source"!==i&&t[i]!==this.props[i])return !0;for(let i in this.props)if(!(i in t))return !0;return !1};function useSignal(t){return T$1(()=>d$1(t),[])}
 
-const usePagination = (config, initialPage) => {
+const usePagination = (option, initialPage) => {
     const processor = A$1();
     const currentPage = useSignal(initialPage);
     const total = useSignal(0);
-    const { server, pageRange, pageSize, resetPageOnUpdate } = config;
+    const { server, pageRange, pageSize, resetPageOnUpdate } = option;
     // Rendered
     y$1(() => {
-        config.eventEmitter.emit('rendered');
+        option.eventEmitter.emit('rendered');
     }, []);
     // Initialize and set up the processor
     y$1(() => {
@@ -1664,7 +1664,7 @@ const usePagination = (config, initialPage) => {
                 url: server.pageUrl,
                 body: server.pageBody,
             });
-            config.pipeline.on('afterProcess', (storage) => {
+            option.pipeline.on('afterProcess', (storage) => {
                 if (storage && storage instanceof Tabular) {
                     total.value = storage.length;
                 }
@@ -1682,19 +1682,19 @@ const usePagination = (config, initialPage) => {
                 total.value = storage.length;
             });
         }
-        config.pipeline.register(processor.current);
-        config.pipeline.on('updated', onUpdate);
+        option.pipeline.register(processor.current);
+        option.pipeline.on('updated', onUpdate);
         // We need to make sure that the state is set
         // to the default props when an error happens
-        config.pipeline.on('error', () => {
+        option.pipeline.on('error', () => {
             total.value = 0;
             currentPage.value = 0;
         });
         return () => {
-            config.pipeline.unregister(processor.current);
-            config.pipeline.off('updated', onUpdate);
+            option.pipeline.unregister(processor.current);
+            option.pipeline.off('updated', onUpdate);
         };
-    }, [config, initialPage]);
+    }, [option, initialPage]);
     const onUpdate = (updatedProcessor) => {
         // This is to ensure that the current page is set to 0
         // when a processor is updated for some reason
@@ -1711,22 +1711,22 @@ const usePagination = (config, initialPage) => {
         currentPage.value = page;
         processor.current?.setProps({ page });
     };
-    const getTotalPage = () => Math.ceil(total.value / config.pageSize);
+    const getTotalPage = () => Math.ceil(total.value / option.pageSize);
     const goPage = (pageNumber, type) => {
         if (type === 'prev') {
-            config.eventEmitter.emit('previousClick', pageNumber);
+            option.eventEmitter.emit('previousClick', pageNumber);
         }
         if (type === 'next') {
-            config.eventEmitter.emit('nextClick', pageNumber);
+            option.eventEmitter.emit('nextClick', pageNumber);
         }
         if (!type) {
-            config.eventEmitter.emit('pageClick', pageNumber);
+            option.eventEmitter.emit('pageClick', pageNumber);
         }
         if (pageNumber === 1) {
-            config.eventEmitter.emit('isFirstPage');
+            option.eventEmitter.emit('isFirstPage');
         }
         else if (pageNumber === getTotalPage()) {
-            config.eventEmitter.emit('isLastPage');
+            option.eventEmitter.emit('isLastPage');
         }
         setPage(pageNumber);
     };
@@ -1742,10 +1742,10 @@ const usePagination = (config, initialPage) => {
 function g(n,t){for(var e in t)n[e]=t[e];return n}function E(n,t){for(var e in n)if("__source"!==e&&!(e in t))return !0;for(var r in t)if("__source"!==r&&n[r]!==t[r])return !0;return !1}function C(n,t){this.props=n,this.context=t;}(C.prototype=new k$2).isPureReactComponent=!0,C.prototype.shouldComponentUpdate=function(n,t){return E(this.props,n)||E(this.state,t)};var R=l$2.__b;l$2.__b=function(n){n.type&&n.type.__f&&n.ref&&(n.props.ref=n.ref,n.ref=null),R&&R(n);};var w="undefined"!=typeof Symbol&&Symbol.for&&Symbol.for("react.forward_ref")||3911;function k(n){function t(t){var e=g({},t);return delete e.ref,n(e,t.ref||null)}return t.$$typeof=w,t.render=t,t.prototype.isReactComponent=t.__f=!0,t.displayName="ForwardRef("+(n.displayName||n.name)+")",t}var M=l$2.__e;l$2.__e=function(n,t,e,r){if(n.then)for(var u,o=t;o=o.__;)if((u=o.__c)&&u.__c)return null==t.__e&&(t.__e=e.__e,t.__k=e.__k),u.__c(n,t);M(n,t,e,r);};var T=l$2.unmount;function A(n,t,e){return n&&(n.__c&&n.__c.__H&&(n.__c.__H.__.forEach(function(n){"function"==typeof n.__c&&n.__c();}),n.__c.__H=null),null!=(n=g({},n)).__c&&(n.__c.__P===e&&(n.__c.__P=t),n.__c=null),n.__k=n.__k&&n.__k.map(function(n){return A(n,t,e)})),n}function D(n,t,e){return n&&e&&(n.__v=null,n.__k=n.__k&&n.__k.map(function(n){return D(n,t,e)}),n.__c&&n.__c.__P===t&&(n.__e&&e.appendChild(n.__e),n.__c.__e=!0,n.__c.__P=e)),n}function L(){this.__u=0,this.t=null,this.__b=null;}function O(n){var t=n.__.__c;return t&&t.__a&&t.__a(n)}function U(){this.u=null,this.o=null;}l$2.unmount=function(n){var t=n.__c;t&&t.__R&&t.__R(),t&&32&n.__u&&(n.type=null),T&&T(n);},(L.prototype=new k$2).__c=function(n,t){var e=t.__c,r=this;null==r.t&&(r.t=[]),r.t.push(e);var u=O(r.__v),o=!1,i=function(){o||(o=!0,e.__R=null,u?u(c):c());};e.__R=i;var c=function(){if(!--r.__u){if(r.state.__a){var n=r.state.__a;r.__v.__k[0]=D(n,n.__c.__P,n.__c.__O);}var t;for(r.setState({__a:r.__b=null});t=r.t.pop();)t.forceUpdate();}};r.__u++||32&t.__u||r.setState({__a:r.__b=r.__v.__k[0]}),n.then(i,i);},L.prototype.componentWillUnmount=function(){this.t=[];},L.prototype.render=function(n,e){if(this.__b){if(this.__v.__k){var r=document.createElement("div"),o=this.__v.__k[0].__c;this.__v.__k[0]=A(this.__b,r,o.__O=o.__P);}this.__b=null;}var i=e.__a&&_$2(b$1,null,n.fallback);return i&&(i.__u&=-33),[_$2(b$1,null,e.__a?null:n.children),i]};var V=function(n,t,e){if(++e[1]===e[0]&&n.o.delete(t),n.props.revealOrder&&("t"!==n.props.revealOrder[0]||!n.o.size))for(e=n.u;e;){for(;e.length>3;)e.pop()();if(e[1]<e[0])break;n.u=e=e[2];}};(U.prototype=new k$2).__a=function(n){var t=this,e=O(t.__v),r=t.o.get(n);return r[0]++,function(u){var o=function(){t.props.revealOrder?(r.push(u),V(t,n,r)):u();};e?e(o):o();}},U.prototype.render=function(n){this.u=null,this.o=new Map;var t=H$1(n.children);n.revealOrder&&"b"===n.revealOrder[0]&&t.reverse();for(var e=t.length;e--;)this.o.set(t[e],this.u=[1,0,this.u]);return n.children},U.prototype.componentDidUpdate=U.prototype.componentDidMount=function(){var n=this;this.o.forEach(function(t,e){V(n,e,t);});};var z="undefined"!=typeof Symbol&&Symbol.for&&Symbol.for("react.element")||60103,B=/^(?:accent|alignment|arabic|baseline|cap|clip(?!PathU)|color|dominant|fill|flood|font|glyph(?!R)|horiz|image(!S)|letter|lighting|marker(?!H|W|U)|overline|paint|pointer|shape|stop|strikethrough|stroke|text(?!L)|transform|underline|unicode|units|v|vector|vert|word|writing|x(?!C))[A-Z]/,H=/^on(Ani|Tra|Tou|BeforeInp|Compo)/,Z=/[A-Z0-9]/g,Y="undefined"!=typeof document,$=function(n){return ("undefined"!=typeof Symbol&&"symbol"==typeof Symbol()?/fil|che|rad/:/fil|che|ra/).test(n)};k$2.prototype.isReactComponent={},["componentWillMount","componentWillReceiveProps","componentWillUpdate"].forEach(function(t){Object.defineProperty(k$2.prototype,t,{configurable:!0,get:function(){return this["UNSAFE_"+t]},set:function(n){Object.defineProperty(this,t,{configurable:!0,writable:!0,value:n});}});});var J=l$2.event;function K(){}function Q(){return this.cancelBubble}function X(){return this.defaultPrevented}l$2.event=function(n){return J&&(n=J(n)),n.persist=K,n.isPropagationStopped=Q,n.isDefaultPrevented=X,n.nativeEvent=n};var tn={enumerable:!1,configurable:!0,get:function(){return this.class}},en=l$2.vnode;l$2.vnode=function(n){"string"==typeof n.type&&function(n){var t=n.props,e=n.type,u={},o=-1===e.indexOf("-");for(var i in t){var c=t[i];if(!("value"===i&&"defaultValue"in t&&null==c||Y&&"children"===i&&"noscript"===e||"class"===i||"className"===i)){var l=i.toLowerCase();"defaultValue"===i&&"value"in t&&null==t.value?i="value":"download"===i&&!0===c?c="":"translate"===l&&"no"===c?c=!1:"o"===l[0]&&"n"===l[1]?"ondoubleclick"===l?i="ondblclick":"onchange"!==l||"input"!==e&&"textarea"!==e||$(t.type)?"onfocus"===l?i="onfocusin":"onblur"===l?i="onfocusout":H.test(i)&&(i=l):l=i="oninput":o&&B.test(i)?i=i.replace(Z,"-$&").toLowerCase():null===c&&(c=void 0),"oninput"===l&&u[i=l]&&(i="oninputCapture"),u[i]=c;}}"select"==e&&u.multiple&&Array.isArray(u.value)&&(u.value=H$1(t.children).forEach(function(n){n.props.selected=-1!=u.value.indexOf(n.props.value);})),"select"==e&&null!=u.defaultValue&&(u.value=H$1(t.children).forEach(function(n){n.props.selected=u.multiple?-1!=u.defaultValue.indexOf(n.props.value):u.defaultValue==n.props.value;})),t.class&&!t.className?(u.class=t.class,Object.defineProperty(u,"className",tn)):(t.className&&!t.class||t.class&&t.className)&&(u.class=u.className=t.className),n.props=u;}(n),n.$$typeof=z,en&&en(n);};var rn=l$2.__r;l$2.__r=function(n){rn&&rn(n),n.__c;};var un=l$2.diffed;l$2.diffed=function(n){un&&un(n);var t=n.props,e=n.__e;null!=e&&"textarea"===n.type&&"value"in t&&t.value!==e.value&&(e.value=null==t.value?"":t.value);};
 
 const PageRenderer = k((_, ref) => {
-    const config = useConfig();
-    const display = config.display;
+    const option = useOption();
+    const display = option.display;
     const lang = useTranslator();
-    const { currentPage, setPage, goPage, getTotalPage, pageRange } = usePagination(config, config.pageNumber);
+    const { currentPage, setPage, goPage, getTotalPage, pageRange } = usePagination(option, option.pageNumber);
     // Expose the methods to the parent component
     F(ref, () => ({
         setPage,
@@ -1777,51 +1777,51 @@ const PageRenderer = k((_, ref) => {
         // If pageRange is 0, iterate through all pages and push buttons for each page
         if (pageRange === 0) {
             for (let i = 1; i <= totalPage; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), config: config, lang: lang, text: lang('pagination.page', i + 1) }));
+                pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang, text: lang('pagination.page', i + 1) }));
             }
             return pagerNumbers;
         }
         // If range start is close to the beginning, render pages directly
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), config: config, lang: lang }));
+                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
             }
         }
         else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
-                pagerNumbers.push(_$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), config: config, lang: lang }));
+                pagerNumbers.push(_$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), option: option, lang: lang }));
             }
-            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-start', config: config, lang: lang }));
+            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-start', option: option, lang: lang }));
         }
         // Loop through the calculated range to render page buttons
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), config: config, lang: lang }));
+            pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang }));
         }
         // If the range end is near the last pages, render remaining pages
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), config: config, lang: lang }));
+                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
             }
         }
         else {
             // Render ellipsis and optionally the last page if range end is far
-            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-end', config: config, lang: lang }));
+            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-end', option: option, lang: lang }));
             if (!display.hideLastOnEllipsisShow) {
-                pagerNumbers.push(_$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), config: config, lang: lang }));
+                pagerNumbers.push(_$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), option: option, lang: lang }));
             }
         }
         return pagerNumbers;
     };
-    return (_$2("div", { className: classJoin(className(config.className.pageList || '')) },
-        display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (_$2(ActionButtonDisabled, { key: "prev", config: config, text: lang('pagination.previous') }))) : (_$2(ActionButton, { key: "prev", onClick: () => goPage(currentPage.value - 1, 'prev'), config: config, text: lang('pagination.previous') })),
+    return (_$2("div", { className: classJoin(className(option.className.pageList || '')) },
+        display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (_$2(ActionButtonDisabled, { key: "prev", option: option, text: lang('pagination.previous') }))) : (_$2(ActionButton, { key: "prev", onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') })),
         display.showPageNumbers && renderPageNumbers(),
-        display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (_$2(ActionButtonDisabled, { key: "next", config: config, text: lang('pagination.next') }))) : (_$2(ActionButton, { key: "next", onClick: () => goPage(currentPage.value + 1, 'next'), config: config, text: lang('pagination.next') }))));
+        display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (_$2(ActionButtonDisabled, { key: "next", option: option, text: lang('pagination.next') }))) : (_$2(ActionButton, { key: "next", onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }))));
 });
 
 function useStore() {
-    const config = useConfig();
-    return config.state;
+    const option = useOption();
+    return option.state;
 }
 
 function useSelector(selector) {
@@ -1912,7 +1912,7 @@ const SetHeader = (header) => (state) => {
 };
 
 function Container() {
-    const config = useConfig();
+    const option = useOption();
     const { dispatch } = useStore();
     const status = useSelector((state) => state.status);
     const tabular = useSelector((state) => state.tabular);
@@ -1921,7 +1921,7 @@ function Container() {
     const processPipeline = throttle(async () => {
         dispatch(SetLoadingData());
         try {
-            const result = await config.pipeline.process();
+            const result = await option.pipeline.process();
             if (result instanceof Tabular) {
                 dispatch(SetData(result));
             }
@@ -1937,28 +1937,28 @@ function Container() {
     // Process Pipeline
     y$1(() => {
         // Set the initial header object
-        dispatch(SetHeader(config.header));
+        dispatch(SetHeader(option.header));
         // Process the pipeline
         processPipeline();
-        config.pipeline.on('updated', processPipeline);
-        return () => config.pipeline.off('updated', processPipeline);
+        option.pipeline.on('updated', processPipeline);
+        return () => option.pipeline.off('updated', processPipeline);
     }, []);
     // Ready
     y$1(() => {
-        if (config.header && status === Status.Loaded && tabular?.length) {
-            config.eventEmitter.emit('ready');
+        if (option.header && status === Status.Loaded && tabular?.length) {
+            option.eventEmitter.emit('ready');
         }
-    }, [tabular, config, containerRef]);
+    }, [tabular, option, containerRef]);
     // Render Paginator
     y$1(() => {
         const ele = containerRef.current;
         if (ele) {
-            if (config.container) {
-                if (config.position === 'bottom') {
-                    config.container.appendChild(ele);
+            if (option.container) {
+                if (option.position === 'bottom') {
+                    option.container.appendChild(ele);
                 }
                 else {
-                    config.container.insertBefore(ele, config.container.firstChild);
+                    option.container.insertBefore(ele, option.container.firstChild);
                 }
             }
         }
@@ -1970,18 +1970,18 @@ function Container() {
                 pageRendererRef.current.setPage(pageNumber);
             }
         };
-        config.eventEmitter.on('go', handleGo);
-        return () => config.eventEmitter.off('go', handleGo);
+        option.eventEmitter.on('go', handleGo);
+        return () => option.eventEmitter.off('go', handleGo);
     }, [pageRendererRef]);
     // Render data after the paginator is rendered
     y$1(() => {
-        if (config.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
-            config.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
-            config.dataRender(tabular.toArray());
-            config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
+        if (option.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
+            option.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
+            option.dataRender(tabular.toArray());
+            option.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
-    return (_$2("div", { ref: containerRef, className: classJoin(className('pagination'), config.className.container) },
+    return (_$2("div", { ref: containerRef, className: classJoin(className('pagination'), option.className.container) },
         _$2(PageRenderer, { ref: pageRendererRef })));
 }
 
@@ -2160,7 +2160,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.1.9';
+    static version = '2.1.10';
     config;
     constructor(config) {
         super();
@@ -2207,7 +2207,7 @@ class Paginator extends EventEmitter {
     }
     createElement() {
         return _$2(ConfigContext.Provider, {
-            value: this.config.options,
+            value: this.config,
             children: _$2(Container, {}),
         });
     }
