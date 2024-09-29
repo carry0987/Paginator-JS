@@ -10,7 +10,7 @@ import '@/style/paginator.css';
 
 class Paginator extends EventEmitter<PaginatorEvents> {
     private static version: string = '__version__';
-    public config: Config;
+    private config: Config;
 
     constructor(config: Partial<Options>) {
         super();

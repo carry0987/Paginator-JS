@@ -4,6 +4,29 @@ import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
 
+interface PageEvents {
+    ready: () => void;
+    rendered: () => void;
+    pageClick: (pageNumber: number) => void;
+    previousClick: (pageNumber: number) => void;
+    nextClick: (pageNumber: number) => void;
+    isFirstPage: () => void;
+    isLastPage: () => void;
+    beforePaging: (pageNumber: number) => void;
+    afterPaging: (pageNumber: number) => void;
+    beforeDestroy: () => void;
+    afterDestroy: () => void;
+}
+
+interface InternalEvents {
+    go: (pageNumber: number) => void;
+}
+
+/**
+ * Paginator events
+ */
+type PaginatorEvents = PageEvents & InternalEvents;
+
 type ID = string;
 declare enum Status {
     Init = 0,
@@ -111,6 +134,15 @@ interface State {
     tabular: Tabular | null;
 }
 
+declare class Config {
+    options: Options;
+    constructor();
+    assign(partialConfig: Partial<Options>): this;
+    update(partialConfig: Partial<Options>): this;
+    private static defaultConfig;
+    private static fromPartialConfig;
+}
+
 interface TColumn {
     id?: string;
     data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
@@ -136,29 +168,6 @@ declare class Header extends Base {
      */
     static leafColumns(columns: OneDArray<TColumn>): OneDArray<TColumn>;
 }
-
-interface PageEvents {
-    ready: () => void;
-    rendered: () => void;
-    pageClick: (pageNumber: number) => void;
-    previousClick: (pageNumber: number) => void;
-    nextClick: (pageNumber: number) => void;
-    isFirstPage: () => void;
-    isLastPage: () => void;
-    beforePaging: (pageNumber: number) => void;
-    afterPaging: (pageNumber: number) => void;
-    beforeDestroy: () => void;
-    afterDestroy: () => void;
-}
-
-interface InternalEvents {
-    go: (pageNumber: number) => void;
-}
-
-/**
- * Paginator events
- */
-type PaginatorEvents = PageEvents & InternalEvents;
 
 declare enum ProcessorType {
     Initiator = 0,
@@ -265,18 +274,9 @@ interface Options extends InternalConfig, CommonOptions {
     className: Partial<ClassName>;
 }
 
-declare class Config {
-    options: Options;
-    constructor();
-    assign(partialConfig: Partial<Options>): this;
-    update(partialConfig: Partial<Options>): this;
-    private static defaultConfig;
-    private static fromPartialConfig;
-}
-
 declare class Paginator extends EventEmitter<PaginatorEvents> {
     private static version;
-    config: Config;
+    private config;
     constructor(config: Partial<Options>);
     get version(): string;
     updateConfig(config: Partial<Options>): this;

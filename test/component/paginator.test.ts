@@ -37,7 +37,10 @@ describe('Paginator class', () => {
             },
         }).render(document.createElement('div'));
 
-        expect(paginator.config.options.storage).toBeInstanceOf(MemoryStorage);
+        // Use Reflect API to access private config
+        const configTest = Reflect.get(paginator, 'config');
+
+        expect(configTest.options.storage).toBeInstanceOf(MemoryStorage);
     });
 
     it('should set the config correctly', () => {
@@ -47,7 +50,10 @@ describe('Paginator class', () => {
 
         const paginator = new Paginator(config).render(document.createElement('div'));
 
-        expect(paginator.config.options.data).toStrictEqual(config.data);
+        // Use Reflect API to access private config
+        const configTest = Reflect.get(paginator, 'config');
+
+        expect(configTest.options.data).toStrictEqual(config.data);
     });
 
     it('should update the config correctly', () => {
@@ -63,8 +69,11 @@ describe('Paginator class', () => {
 
         paginator.updateConfig(config2).render(document.createElement('div'));
 
-        expect(paginator.config.options.data).toStrictEqual(config1.data);
-        expect(paginator.config.options.resetPageOnUpdate).toStrictEqual(config2.resetPageOnUpdate);
+        // Use Reflect API to access private config
+        const configTest = Reflect.get(paginator, 'config');
+
+        expect(configTest.options.data).toStrictEqual(config1.data);
+        expect(configTest.options.resetPageOnUpdate).toStrictEqual(config2.resetPageOnUpdate);
     });
 
     it('should forcefully render the paginator', () => {

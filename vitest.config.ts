@@ -12,6 +12,10 @@ export default defineConfig({
         coverage: {
             // Test coverage options (optional)
             reporter: ['text', 'json', 'html'],
+        },
+        typecheck: {
+            // Type check options (optional)
+            enabled: true,
         }
     },
 });
