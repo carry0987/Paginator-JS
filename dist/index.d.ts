@@ -293,4 +293,4 @@ interface HTMLContentProps {
 
 declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
 
-export { Config, Paginator, html };
+export { type Options, Paginator, html };

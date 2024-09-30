@@ -1,6 +1,6 @@
 import Paginator from '@/component/paginator';
-import { Config } from '@/component/config';
+import { Options } from '@/interface/options';
 import { html } from '@/module/utils/html';
 import { h } from 'preact';
 
-export { Paginator, Config, html, h };
+export { Paginator, Options, html, h };

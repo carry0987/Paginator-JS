@@ -2160,7 +2160,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.1.11';
+    static version = '2.1.12';
     config;
     constructor(config) {
         super();
@@ -2213,4 +2213,4 @@ class Paginator extends EventEmitter {
     }
 }
 
-export { Config, Paginator, _$2 as h, html };
+export { Paginator, _$2 as h, html };
