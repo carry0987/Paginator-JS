@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.1.13",
+  "version": "2.1.14",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -57,7 +57,7 @@
     "happy-dom": "^15.7.4",
     "preact": "^10.24.1",
     "prettier": "^3.3.3",
-    "rollup": "^4.22.5",
+    "rollup": "^4.23.0",
     "rollup-plugin-delete": "^2.1.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",

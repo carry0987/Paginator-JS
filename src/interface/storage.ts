@@ -3,8 +3,9 @@ import { Interfaces } from '@/module/utils/utils-ext';
 
 type ServerStorageParam = Omit<Interfaces.FetchParams, 'url'>;
 
-export interface ServerStorageOptions extends RequestInit {
+export interface ServerStorageOptions {
     url: string;
+    body?: BodyInit | null;
     // To format the data and columns
     processData?: <T = any>(data: T) => T[][];
     // To handle the response from the server. `handle` will

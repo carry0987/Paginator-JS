@@ -55,8 +55,9 @@ interface StorageResponse {
 }
 
 type ServerStorageParam = Omit<Interfaces.FetchParams, 'url'>;
-interface ServerStorageOptions extends RequestInit {
+interface ServerStorageOptions {
     url: string;
+    body?: BodyInit | null;
     processData?: <T = any>(data: T) => T[][];
     handle?: <T = StorageResponse>(response: T) => Promise<T>;
     total?: <T = any>(data: T) => number;
