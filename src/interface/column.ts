@@ -1,5 +1,4 @@
-import { TDataArrayRow, TDataObjectRow, TDataRow, TCell } from '@/type/types';
-import Row from '@/component/row';
+import { TDataArrayRow, TDataObjectRow, TCell } from '@/type/types';
 import { ComponentChild } from 'preact';
 
 // Table header cell type
@@ -10,5 +9,4 @@ export interface TColumn {
     // Column label
     name?: string | ComponentChild;
     hidden?: boolean;
-    formatter?: (cell: TCell, row: TDataRow, column: TColumn) => ComponentChild;
 }

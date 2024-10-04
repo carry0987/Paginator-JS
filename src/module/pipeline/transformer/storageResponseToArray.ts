@@ -31,10 +31,10 @@ class StorageResponseToArrayTransformer extends Processor<
 
         // If it's a 2d array already
         if (data[0] instanceof Array) {
-            return (data as TDataArray).map((row, i) => {
+            return (data as TDataArray).map((row) => {
                 let pad = 0;
 
-                return columns.map((column, j) => {
+                return columns.map((column, i) => {
                     // Default `data` is provided for this column
                     if (column.data !== undefined) {
                         pad++;
@@ -44,40 +44,28 @@ class StorageResponseToArrayTransformer extends Processor<
                         } else {
                             return column.data;
                         }
-                    } else if (column.formatter && typeof column.formatter === 'function') {
-                        return column.formatter(
-                            data[i],
-                            row,
-                            column,
-                        );
                     }
 
-                    return row[j - pad];
+                    return row[i - pad];
                 });
             });
         }
 
         // If it's an array of objects (but not array of arrays, i.e JSON payload)
         if (typeof data[0] === 'object' && !(data[0] instanceof Array)) {
-            return (data as TDataObject).map((row, i) =>
-                columns.map((column, j) => {
+            return (data as TDataObject).map((row) =>
+                columns.map((column, i) => {
                     if (column.data !== undefined) {
                         if (typeof column.data === 'function') {
                             return column.data(row);
                         } else {
                             return column.data;
                         }
-                    } else if (column.formatter && typeof column.formatter === 'function') {
-                        return column.formatter(
-                            data[i],
-                            row,
-                            column,
-                        );
                     } else if (column.id) {
                         return row[column.id];
                     } else {
                         log.error(
-                            `Could not find the correct cell for column at position ${j}. Make sure either 'id' or 'selector' is defined for all columns.`,
+                            `Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`,
                         );
                         return null;
                     }

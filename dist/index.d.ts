@@ -47,7 +47,6 @@ type TDataObjectRow = {
     [key: string]: TCell;
 };
 type TDataObject = OneDArray<TDataObjectRow>;
-type TDataRow = TDataArrayRow | TDataObjectRow;
 type TData = TDataArray | TDataObject;
 
 interface StorageResponse {
@@ -150,7 +149,6 @@ interface TColumn {
     data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
     name?: string | ComponentChild;
     hidden?: boolean;
-    formatter?: (cell: TCell, row: TDataRow, column: TColumn) => ComponentChild;
 }
 
 declare class Header extends Base {
