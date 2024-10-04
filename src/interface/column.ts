@@ -1,4 +1,4 @@
-import { TDataArrayRow, TDataObjectRow, TCell } from '@/type/types';
+import { TDataArrayRow, TDataObjectRow, TDataRow, TCell } from '@/type/types';
 import Row from '@/component/row';
 import { ComponentChild } from 'preact';
 
@@ -10,5 +10,5 @@ export interface TColumn {
     // Column label
     name?: string | ComponentChild;
     hidden?: boolean;
-    formatter?: (cell: TCell, row: Row, column: TColumn) => ComponentChild;
+    formatter?: (cell: TCell, row: TDataRow, column: TColumn) => ComponentChild;
 }

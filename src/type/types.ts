@@ -26,5 +26,7 @@ export type TDataArray = OneDArray<TDataArrayRow>;
 // Array of Objects
 export type TDataObjectRow = { [key: string]: TCell };
 export type TDataObject = OneDArray<TDataObjectRow>;
+// Row of Arrays and Objects
+export type TDataRow = TDataArrayRow | TDataObjectRow;
 // (Array of Arrays) and (Array of Objects)
 export type TData = TDataArray | TDataObject;
