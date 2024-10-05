@@ -1,3 +1,24 @@
+:root {
+    --paginatorjs-button-border: #d2d6dc;
+    --paginatorjs-button-background: #fff;
+    --paginatorjs-button-color: #3d4044;
+    --paginatorjs-button-disabled-background: #fff;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #f7f7f7;
+}
+
+html[data-theme='dark'],
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paginatorjs-button-border: #353e4d;
+        --paginatorjs-button-background: #202938;
+        --paginatorjs-button-color: #d5d6db;
+        --paginatorjs-button-disabled-background: #202938;
+        --paginatorjs-button-disabled-color: #6b7280;
+        --paginatorjs-button-current-background: #2d3747;
+    }
+}
+
 .paginatorjs *,
 .paginatorjs :after,
 .paginatorjs :before {
@@ -6,7 +27,7 @@
 
 .paginatorjs-pagination {
     display: flex;
-    color: #3d4044;
+    color: var(--paginatorjs-button-color);
     width: 100%;
     line-height: 1.6;
     font-size: 14px;
@@ -16,10 +37,12 @@
 .paginatorjs-pagination button,
 .paginatorjs-pages button {
     margin: 0;
-    border: 1px solid #d2d6dc;
+    color: inherit;
+    border: 1px solid var(--paginatorjs-button-border);
     border-right: none;
     outline: none;
     padding: 5px 14px;
+    background-color: var(--paginatorjs-button-background);
     background-image: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -29,8 +52,8 @@
 .paginatorjs-pagination .paginatorjs-pages button:disabled,
 .paginatorjs-pagination .paginatorjs-pages button:hover:disabled,
 .paginatorjs-pagination .paginatorjs-pages button[disabled] {
-    background-color: #fff;
-    color: #6b7280;
+    background-color: var(--paginatorjs-button-disabled-background);
+    color: var(--paginatorjs-button-disabled-color);
     cursor: default;
 }
 
@@ -40,40 +63,12 @@
 }
 
 .paginatorjs-pagination .paginatorjs-pages button.paginatorjs-currentPage {
-    background-color: #f7f7f7;
+    background-color: var(--paginatorjs-button-current-background);
     font-weight: 700;
 }
 
 .paginatorjs-pagination .paginatorjs-pages button:last-child {
     border-bottom-right-radius: 6px;
-    border-right: 1px solid #d2d6dc;
+    border-right: 1px solid var(--paginatorjs-button-border);
     border-top-right-radius: 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-    .paginatorjs-pagination {
-        color: #3d4044;
-    }
-
-    .paginatorjs-pagination button,
-    .paginatorjs-pages button {
-        border: 1px solid #353e4d;
-        background-color: #202938;
-        color: #d5d6db;
-    }
-
-    .paginatorjs-pagination .paginatorjs-pages button:disabled,
-    .paginatorjs-pagination .paginatorjs-pages button:hover:disabled,
-    .paginatorjs-pagination .paginatorjs-pages button[disabled] {
-        background-color: #202938;
-        color: #6b7280;
-    }
-
-    .paginatorjs-pagination .paginatorjs-pages button.paginatorjs-currentPage {
-        background-color: #2d3747;
-    }
-
-    .paginatorjs-pagination .paginatorjs-pages button:last-child {
-        border-right: 1px solid #d2d6dc;
-    }
 }
