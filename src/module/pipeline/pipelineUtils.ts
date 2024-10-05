@@ -14,8 +14,8 @@ class PipelineUtils {
         if (config.internal.storage instanceof ServerStorage) {
             pipeline.register(
                 new ServerInitiator({
-                    serverStorageOptions: config.options.server,
-                }),
+                    serverStorageOptions: config.options.server
+                })
             );
         }
 

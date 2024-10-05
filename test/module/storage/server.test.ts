@@ -10,9 +10,9 @@ describe('ServerStorage class', () => {
         const mockSuccessResponse = {
             rows: [
                 [6, 6, 6],
-                [7, 7, 7],
+                [7, 7, 7]
             ],
-            numRows: 10,
+            numRows: 10
         };
         fetchDataMock = vi.spyOn(Utils, 'fetchData').mockResolvedValue(mockSuccessResponse);
     });
@@ -24,7 +24,7 @@ describe('ServerStorage class', () => {
     it('should call fetchData once get is called', async () => {
         const opts: ServerStorageOptions = {
             url: 'https://example.com',
-            processData: (res) => [[res]],
+            processData: (res) => [[res]]
         };
         await new ServerStorage(opts).get();
 
@@ -32,8 +32,8 @@ describe('ServerStorage class', () => {
         expect(fetchDataMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 url: 'https://example.com',
-                data: new FormData(),
-            }),
+                data: new FormData()
+            })
         );
     });
 
@@ -44,10 +44,10 @@ describe('ServerStorage class', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-Test': 'HelloWorld',
+                    'X-Test': 'HelloWorld'
                 }
             },
-            processData: (res) => [[res]],
+            processData: (res) => [[res]]
         };
         await new ServerStorage(opts).get();
 
@@ -55,15 +55,15 @@ describe('ServerStorage class', () => {
         expect(fetchDataMock).toHaveBeenCalledWith(
             expect.objectContaining({
                 url: 'https://example.com',
-                data: new FormData(),
-            }),
+                data: new FormData()
+            })
         );
     });
 
     it('should format the response with then callback', async () => {
         const opts: ServerStorageOptions = {
             url: 'https://example.com',
-            processData: (data: any) => [data.rows],
+            processData: (data: any) => [data.rows]
         };
 
         const resp = await new ServerStorage(opts).get();
@@ -71,10 +71,10 @@ describe('ServerStorage class', () => {
             data: [
                 [
                     [6, 6, 6],
-                    [7, 7, 7],
-                ],
+                    [7, 7, 7]
+                ]
             ],
-            total: 0,
+            total: 0
         });
     });
 
@@ -82,7 +82,7 @@ describe('ServerStorage class', () => {
         const opts: ServerStorageOptions = {
             url: 'https://example.com',
             processData: (res: any) => [res.rows],
-            total: (res: any) => res.numRows + 2,
+            total: (res: any) => res.numRows + 2
         };
 
         const resp = await new ServerStorage(opts).get();
@@ -90,10 +90,10 @@ describe('ServerStorage class', () => {
             data: [
                 [
                     [6, 6, 6],
-                    [7, 7, 7],
-                ],
+                    [7, 7, 7]
+                ]
             ],
-            total: 12,
+            total: 12
         });
     });
 
@@ -104,20 +104,20 @@ describe('ServerStorage class', () => {
                 return {
                     data: [
                         [3, 3, 3],
-                        [9, 9, 9],
+                        [9, 9, 9]
                     ],
-                    total: 100,
+                    total: 100
                 };
-            },
+            }
         };
 
         const resp = await new ServerStorage(opts).get();
         expect(resp).toStrictEqual({
             data: [
                 [3, 3, 3],
-                [9, 9, 9],
+                [9, 9, 9]
             ],
-            total: 100,
+            total: 100
         });
 
         expect(fetchDataMock).toHaveBeenCalledTimes(0);

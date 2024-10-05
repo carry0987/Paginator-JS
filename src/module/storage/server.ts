@@ -27,12 +27,12 @@ class ServerStorage extends Storage<ServerStorageOptions> {
         // `options` is the runtime config passed by the pipeline (e.g. search component)
         const opts = {
             ...this.options,
-            ...options,
+            ...options
         };
         const fetchParam: Interfaces.SendFormDataOptions<StorageResponse> = {
             url: opts.url,
             data: Utils.encodeFormData(opts.body || {}),
-            ...opts.param,
+            ...opts.param
         };
 
         // If `options.data` is provided, the current ServerStorage
@@ -53,7 +53,7 @@ class ServerStorage extends Storage<ServerStorageOptions> {
             .then((res) => {
                 return {
                     data: opts.processData ? opts.processData(res) : [],
-                    total: typeof opts.total === 'function' ? opts.total(res) : 0,
+                    total: typeof opts.total === 'function' ? opts.total(res) : 0
                 };
             })
             .catch((error) => {

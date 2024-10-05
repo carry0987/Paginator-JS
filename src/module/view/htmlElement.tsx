@@ -3,6 +3,6 @@ import { h } from 'preact';
 
 export function HTMLElement(props: HTMLContentProps) {
     return h(props.parentElement || 'span', {
-        dangerouslySetInnerHTML: { __html: props.content },
+        dangerouslySetInnerHTML: { __html: props.content }
     });
 }

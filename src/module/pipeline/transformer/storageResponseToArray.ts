@@ -65,11 +65,11 @@ class StorageResponseToArrayTransformer extends Processor<
                         return row[column.id];
                     } else {
                         log.error(
-                            `Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`,
+                            `Could not find the correct cell for column at position ${i}. Make sure either 'id' or 'selector' is defined for all columns.`
                         );
                         return null;
                     }
-                }),
+                })
             );
         }
 
@@ -79,7 +79,7 @@ class StorageResponseToArrayTransformer extends Processor<
     protected async _process(storageResponse: StorageResponse): Promise<ArrayResponse> {
         return {
             data: this.castData(storageResponse.data),
-            total: storageResponse.total,
+            total: storageResponse.total
         };
     }
 }

@@ -17,7 +17,7 @@ export const PageRenderer = forwardRef((_, ref) => {
     useImperativeHandle(ref, () => ({
         setPage,
         currentPage: currentPage.value,
-        totalPage: getTotalPage(),
+        totalPage: getTotalPage()
     }));
 
     const renderPageNumbers = () => {
@@ -57,7 +57,7 @@ export const PageRenderer = forwardRef((_, ref) => {
                         option={option}
                         lang={lang}
                         text={lang('pagination.page', i + 1)}
-                    />,
+                    />
                 );
             }
 
@@ -68,14 +68,14 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />,
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
                 );
             }
         } else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
                 pagerNumbers.push(
-                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} option={option} lang={lang} />,
+                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} option={option} lang={lang} />
                 );
             }
             pagerNumbers.push(<EllipsisButton key={'ellipsis-start'} option={option} lang={lang} />);
@@ -90,7 +90,7 @@ export const PageRenderer = forwardRef((_, ref) => {
                     onClick={() => goPage(i)}
                     option={option}
                     lang={lang}
-                />,
+                />
             );
         }
 
@@ -98,7 +98,7 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />,
+                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
                 );
             }
         } else {
@@ -112,7 +112,7 @@ export const PageRenderer = forwardRef((_, ref) => {
                         onClick={() => goPage(totalPage)}
                         option={option}
                         lang={lang}
-                    />,
+                    />
                 );
             }
         }

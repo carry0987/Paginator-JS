@@ -11,7 +11,7 @@ export enum Status {
     Loading,
     Loaded,
     Rendered,
-    Error,
+    Error
 }
 
 /**

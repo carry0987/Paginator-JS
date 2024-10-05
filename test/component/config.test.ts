@@ -8,7 +8,7 @@ describe('Config', () => {
 
     beforeEach(() => {
         config = new Config().update({
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         });
     });
 
@@ -23,7 +23,7 @@ describe('Config', () => {
 
     it('assign should set the correct default', () => {
         config.assign({
-            position: 'top',
+            position: 'top'
         });
         expect(config.options.position).toEqual('top');
     });
@@ -38,7 +38,7 @@ describe('Config', () => {
         config.update({
             data: data,
             pageSize: 8,
-            pageRange: 5,
+            pageRange: 5
         });
 
         expect(config.options.data).toStrictEqual(data);
@@ -53,7 +53,7 @@ describe('Config', () => {
         const cols = ['a', 'b', 'c'];
         config.update({
             data: data,
-            columns: cols,
+            columns: cols
         });
 
         expect(config.internal.header.columns.map((x: any) => x.name)).toStrictEqual(cols);
@@ -63,10 +63,10 @@ describe('Config', () => {
     it('should assign config keys', () => {
         config
             .update({
-                data: [],
+                data: []
             })
             .assign({
-                resetPageOnUpdate: true,
+                resetPageOnUpdate: true
             });
         expect(config.options.resetPageOnUpdate).toBe(true);
     });
@@ -75,10 +75,10 @@ describe('Config', () => {
         config
             .assign({
                 data: [],
-                resetPageOnUpdate: true,
+                resetPageOnUpdate: true
             })
             .update({
-                resetPageOnUpdate: false,
+                resetPageOnUpdate: false
             });
         expect(config.options.pageSize).toBe(10);
         expect(config.options.pageRange).toBe(2);

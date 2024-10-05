@@ -3,9 +3,9 @@ export default {
         previous: 'Anterior',
         next: 'Siguiente',
         ellipsis: '...',
-        page: (page: number) => `Página ${page}`,
+        page: (page: number) => `Página ${page}`
     },
     loading: 'Cargando...',
     noRecordsFound: 'Sin coincidencias encontradas.',
-    error: 'Ocurrió un error al obtener los datos.',
+    error: 'Ocurrió un error al obtener los datos.'
 };

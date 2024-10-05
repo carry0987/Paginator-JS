@@ -27,7 +27,7 @@ class ServerPaginationLimit extends Processor<ServerStorageOptions, ProcessorTyp
 
         return {
             ...options,
-            ...updates,
+            ...updates
         };
     }
 }

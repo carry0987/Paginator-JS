@@ -11,7 +11,7 @@ export const PageButton = ({ page, isActive, onClick, option, lang, text }: Page
         onClick={onClick}
         className={classJoin(
             isActive ? classJoin(className('currentPage'), option.className.active) : '',
-            option.className.pageButton,
+            option.className.pageButton
         )}
         title={text || lang('pagination.page', page)}
         aria-label={text || lang('pagination.page', page)}>
@@ -38,7 +38,7 @@ export const ActionButton = ({ key, onClick, option, text }: ActionButtonProps):
         onClick={onClick}
         className={classJoin(
             option.className.pageButton,
-            key === 'prev' ? option.className.prevButton : option.className.nextButton,
+            key === 'prev' ? option.className.prevButton : option.className.nextButton
         )}
         title={text}
         aria-label={text}>
@@ -55,7 +55,7 @@ export const ActionButtonDisabled = ({ key, option, text }: ActionButtonProps): 
             className('disabled'),
             option.className.pageButton,
             key === 'prev' ? option.className.prevButton : option.className.nextButton,
-            option.className.disable,
+            option.className.disable
         )}
         title={text}
         aria-label={text}>

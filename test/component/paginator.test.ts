@@ -14,7 +14,7 @@ describe('Paginator class', () => {
 
         const paginator = new Paginator({
             columns: ['a', 'b', 'c'],
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         });
 
         paginator.render(container);
@@ -33,8 +33,8 @@ describe('Paginator class', () => {
         const paginator = new Paginator({
             data: [[1, 2, 3]],
             className: {
-                container: 'ss',
-            },
+                container: 'ss'
+            }
         }).render(document.createElement('div'));
 
         // Use Reflect API to access private config
@@ -45,7 +45,7 @@ describe('Paginator class', () => {
 
     it('should set the config correctly', () => {
         const config = {
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         };
 
         const paginator = new Paginator(config).render(document.createElement('div'));
@@ -58,11 +58,11 @@ describe('Paginator class', () => {
 
     it('should update the config correctly', () => {
         const config1 = {
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         };
 
         const config2 = {
-            resetPageOnUpdate: true,
+            resetPageOnUpdate: true
         };
 
         const paginator = new Paginator(config1);
@@ -82,7 +82,7 @@ describe('Paginator class', () => {
 
         const paginator = new Paginator({
             columns: ['a', 'b', 'c'],
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         }).render(container);
 
         // Assert the initial render
@@ -92,7 +92,7 @@ describe('Paginator class', () => {
         paginator
             .updateConfig({
                 columns: ['a', 'b'],
-                data: [[1, 2]],
+                data: [[1, 2]]
             })
             .forceRender();
 
@@ -106,7 +106,7 @@ describe('Paginator class', () => {
 
         const paginator = new Paginator({
             columns: ['a', 'b', 'c'],
-            data: [[1, 2, 3]],
+            data: [[1, 2, 3]]
         }).render(container);
 
         // Assert that paginator has been rendered

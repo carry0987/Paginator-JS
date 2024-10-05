@@ -25,7 +25,7 @@ export const usePagination = (option: Options, initialPage: number) => {
                 limit: pageSize,
                 page: currentPage.value,
                 url: server.pageUrl,
-                body: server.pageBody,
+                body: server.pageBody
             });
 
             config.pipeline.on('afterProcess', (storage) => {
@@ -36,7 +36,7 @@ export const usePagination = (option: Options, initialPage: number) => {
         } else {
             processor.current = new PaginationLimit({
                 limit: pageSize,
-                page: currentPage.value,
+                page: currentPage.value
             });
 
             // Pagination (all Limit processors) is the last step in the pipeline
@@ -106,6 +106,6 @@ export const usePagination = (option: Options, initialPage: number) => {
         setPage,
         goPage,
         getTotalPage,
-        pageRange,
+        pageRange
     };
 };

@@ -59,7 +59,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
         if (container.childNodes.length > 0) {
             log.error(
-                `The container element ${container} is not empty. Make sure the container is empty and call render() again`,
+                `The container element ${container} is not empty. Make sure the container is empty and call render() again`
             );
             return this;
         }
@@ -73,7 +73,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
     private createElement(): VNode<Instance> {
         return h<Instance>(ConfigContext.Provider, {
             value: this.config,
-            children: h(Container, {}),
+            children: h(Container, {})
         });
     }
 }

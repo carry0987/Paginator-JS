@@ -9,7 +9,7 @@ describe('StorageResponseToArray', () => {
     beforeEach(() => {
         config = new Config().update({
             data: [[1, 2, 3]],
-            columns: ['Name', 'Age', 'Location'],
+            columns: ['Name', 'Age', 'Location']
         });
     });
 
@@ -17,9 +17,9 @@ describe('StorageResponseToArray', () => {
         const raw = {
             data: [
                 [1, 2, 3],
-                ['a', 'b', 'c'],
+                ['a', 'b', 'c']
             ],
-            total: 2,
+            total: 2
         };
 
         const transformer = new StorageResponseToArrayTransformer();
@@ -29,7 +29,7 @@ describe('StorageResponseToArray', () => {
         expect(data.data).toHaveLength(2);
         expect(data.data).toStrictEqual([
             [1, 2, 3],
-            ['a', 'b', 'c'],
+            ['a', 'b', 'c']
         ]);
     });
 
@@ -38,28 +38,28 @@ describe('StorageResponseToArray', () => {
             data: [
                 {
                     name: 'boo',
-                    age: 8,
+                    age: 8
                 },
                 {
                     name: 'foo',
-                    age: 10,
-                },
+                    age: 10
+                }
             ],
-            total: 2,
+            total: 2
         };
 
         config.update({
             columns: [
                 {
-                    name: 'name',
+                    name: 'name'
                 },
                 {
-                    name: 'age',
-                },
-            ],
+                    name: 'age'
+                }
+            ]
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config),
+            header: Header.createFromConfig(config)
         });
         const data = await transformer.process(raw);
 
@@ -67,7 +67,7 @@ describe('StorageResponseToArray', () => {
         expect(data.data).toHaveLength(2);
         expect(data.data).toStrictEqual([
             ['boo', 8],
-            ['foo', 10],
+            ['foo', 10]
         ]);
     });
 
@@ -75,30 +75,30 @@ describe('StorageResponseToArray', () => {
         const raw = {
             data: [
                 [1, 2, 3],
-                ['a', 'b', 'c'],
+                ['a', 'b', 'c']
             ],
-            total: 2,
+            total: 2
         };
 
         config.update({
             columns: [
                 {
-                    name: 'a',
+                    name: 'a'
                 },
                 {
-                    name: 'b',
+                    name: 'b'
                 },
                 {
-                    name: 'c',
+                    name: 'c'
                 },
                 {
                     name: 'def',
-                    data: 42,
-                },
-            ],
+                    data: 42
+                }
+            ]
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config),
+            header: Header.createFromConfig(config)
         });
         const data = await transformer.process(raw);
 
@@ -106,7 +106,7 @@ describe('StorageResponseToArray', () => {
         expect(data.data).toHaveLength(2);
         expect(data.data).toStrictEqual([
             [1, 2, 3, 42],
-            ['a', 'b', 'c', 42],
+            ['a', 'b', 'c', 42]
         ]);
     });
 
@@ -116,49 +116,49 @@ describe('StorageResponseToArray', () => {
                 {
                     name: {
                         first: 'boo',
-                        last: 'bar',
+                        last: 'bar'
                     },
-                    _age: 8,
+                    _age: 8
                 },
                 {
                     name: {
                         first: 'foo',
-                        last: 'far',
+                        last: 'far'
                     },
-                    _age: 10,
-                },
+                    _age: 10
+                }
             ],
-            total: 2,
+            total: 2
         };
 
         config.update({
             columns: [
                 {
                     data: (row: any) => row.name.first,
-                    name: 'firstName',
+                    name: 'firstName'
                 },
                 {
                     data: (row: any) => row.name.last,
-                    name: 'lastname',
+                    name: 'lastname'
                 },
                 {
                     data: (row: any) => row.name.first + ' ' + row.name.last,
-                    name: 'firstlastname',
+                    name: 'firstlastname'
                 },
                 {
                     name: 'age',
-                    id: '_age',
-                },
-            ],
+                    id: '_age'
+                }
+            ]
         });
         const transformer = new StorageResponseToArrayTransformer({
-            header: Header.createFromConfig(config),
+            header: Header.createFromConfig(config)
         });
         const data = await transformer.process(raw);
 
         expect(data.data).toStrictEqual([
             ['boo', 'bar', 'boo bar', 8],
-            ['foo', 'far', 'foo far', 10],
+            ['foo', 'far', 'foo far', 10]
         ]);
     });
 });

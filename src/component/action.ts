@@ -6,7 +6,7 @@ export const SetStatusToRendered = () => (state: State) => {
     if (state.status === Status.Loaded) {
         return {
             ...state,
-            status: Status.Rendered,
+            status: Status.Rendered
         };
     }
 
@@ -16,7 +16,7 @@ export const SetStatusToRendered = () => (state: State) => {
 export const SetLoadingData = () => (state: State) => {
     return {
         ...state,
-        status: Status.Loading,
+        status: Status.Loading
     };
 };
 
@@ -26,7 +26,7 @@ export const SetData = (data?: State['tabular']) => (state: State) => {
     return {
         ...state,
         tabular: data,
-        status: Status.Loaded,
+        status: Status.Loaded
     };
 };
 
@@ -34,13 +34,13 @@ export const SetDataErrored = () => (state: State) => {
     return {
         ...state,
         tabular: null,
-        status: Status.Error,
+        status: Status.Error
     };
 };
 
 export const SetHeader = (header?: Header) => (state: State) => {
     return {
         ...state,
-        header: header,
+        header: header
     };
 };

@@ -4,7 +4,7 @@ import { vi, describe, it, expect } from 'vitest';
 describe('Store', () => {
     it('should set the initial state', () => {
         const stubState = {
-            a: 45,
+            a: 45
         };
         const store = new StateManager(stubState);
         expect(store.getState()).toEqual(stubState);
@@ -12,38 +12,38 @@ describe('Store', () => {
 
     it('should update the state', () => {
         const store = new StateManager({
-            hello: 'world',
+            hello: 'world'
         });
         store.dispatch((state) => {
             return {
                 ...state,
-                newKey: 42,
+                newKey: 42
             };
         });
         expect(store.getState()).toEqual({
             hello: 'world',
-            newKey: 42,
+            newKey: 42
         });
     });
 
     it('should override the state', () => {
         const store = new StateManager({
-            hello: 'world',
+            hello: 'world'
         });
         store.dispatch((state) => {
             return {
                 ...state,
-                hello: 'updated',
+                hello: 'updated'
             };
         });
         expect(store.getState()).toEqual({
-            hello: 'updated',
+            hello: 'updated'
         });
     });
 
     it('should call the subscribers', () => {
         const store = new StateManager({
-            hello: 'world',
+            hello: 'world'
         });
 
         const mockSubscriber = vi.fn();
@@ -54,7 +54,7 @@ describe('Store', () => {
             return {
                 ...state,
                 hello: 'updated',
-                newKey: 42,
+                newKey: 42
             };
         });
 
@@ -62,17 +62,17 @@ describe('Store', () => {
         expect(mockSubscriber).toBeCalledWith(
             {
                 hello: 'updated',
-                newKey: 42,
+                newKey: 42
             },
             {
-                hello: 'world',
-            },
+                hello: 'world'
+            }
         );
     });
 
     it('should return a list of subscribers', () => {
         const store = new StateManager({
-            hello: 'world',
+            hello: 'world'
         });
 
         const mockSubscriber1 = vi.fn();

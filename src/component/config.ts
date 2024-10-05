@@ -37,13 +37,11 @@ class Config {
         this.assign(
             Config.fromPartialOption({
                 ...this.options,
-                ...partialOption,
-            }),
+                ...partialOption
+            })
         );
 
-        this.assignInteral(
-            Config.fromPartialConfig(this),
-        );
+        this.assignInteral(Config.fromPartialConfig(this));
 
         return this;
     }
@@ -56,7 +54,7 @@ class Config {
         return {
             state: new StateManager<State>({
                 status: Status.Init,
-                tabular: null,
+                tabular: null
             })
         };
     }
@@ -75,7 +73,7 @@ class Config {
                 hideFirstOnEllipsisShow: false,
                 hideLastOnEllipsisShow: false,
                 autoHidePrevious: false,
-                autoHideNext: false,
+                autoHideNext: false
             },
             className: {
                 container: '',
@@ -84,26 +82,26 @@ class Config {
                 pageList: 'pages',
                 pageButton: 'page-item',
                 prevButton: 'page-prev',
-                nextButton: 'page-next',
-            },
+                nextButton: 'page-next'
+            }
         };
     }
 
     private static fromPartialConfig(config: Config) {
         config.assignInteral({
-            header: Header.createFromConfig(config),
+            header: Header.createFromConfig(config)
         });
 
         config.assignInteral({
-            storage: StorageUtils.createFromConfig(config),
+            storage: StorageUtils.createFromConfig(config)
         });
 
         config.assignInteral({
-            pipeline: PipelineUtils.createFromConfig(config),
+            pipeline: PipelineUtils.createFromConfig(config)
         });
 
         config.assignInteral({
-            translator: new Translator(config.options.language),
+            translator: new Translator(config.options.language)
         });
 
         return config.internal;

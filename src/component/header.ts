@@ -38,7 +38,7 @@ class Header extends Base {
 
             if (!column.id) {
                 log.error(
-                    'Could not find a valid ID for one of the columns. Make sure a valid "id" is set for all columns.',
+                    'Could not find a valid ID for one of the columns. Make sure a valid "id" is set for all columns.'
                 );
             }
         }
@@ -54,7 +54,7 @@ class Header extends Base {
         for (const column of columns) {
             if (typeof column === 'string' || isValidElement(column)) {
                 header.columns.push({
-                    name: column,
+                    name: column
                 });
             } else if (typeof column === 'object') {
                 const typedColumn = column as TColumn;

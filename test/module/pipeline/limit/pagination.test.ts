@@ -11,14 +11,14 @@ describe('PaginationLimit', () => {
             ['b1', 'b2', 'b3'],
             ['c1', 'c2', 'c3'],
             ['d1', 'd2', 'd3'],
-            ['e1', 'e2', 'e3'],
+            ['e1', 'e2', 'e3']
         ]);
     });
 
     it('should trim an array (go to page 1)', async () => {
         const pagination = new PaginationLimit().setProps({
             limit: 2,
-            page: 1,
+            page: 1
         });
         const newData = await pagination.process(data);
 
@@ -36,7 +36,7 @@ describe('PaginationLimit', () => {
     it('should go to page 2', async () => {
         const pagination = new PaginationLimit().setProps({
             limit: 2,
-            page: 2,
+            page: 2
         });
         const newData = await pagination.process(data);
 

@@ -10,7 +10,7 @@ describe('Header Class', () => {
     beforeEach(() => {
         config = new Config().update({
             data: [[1, 2, 3]],
-            columns: ['Name', 'Age', 'Location'],
+            columns: ['Name', 'Age', 'Location']
         });
     });
 
@@ -50,7 +50,7 @@ describe('Header Class', () => {
 
         const nonJsonData = [
             [1, 2],
-            [3, 4],
+            [3, 4]
         ];
         expect(Header['isJsonPayload'](nonJsonData)).toBe(false);
     });
@@ -59,7 +59,7 @@ describe('Header Class', () => {
         const config = new Config().update({
             data: [[1, 2]],
             options: { columns: ['User', 'Email'] },
-            columns: ['User', 'Email'],
+            columns: ['User', 'Email']
         });
         const header = Header.createFromConfig(config);
 
@@ -71,7 +71,7 @@ describe('Header Class', () => {
         config = new Config().update({
             data: [[1, 2]],
             options: { data: [[{ User: 'John', Email: 'john@example.com' }]] as TData[] },
-            columns: ['User', 'Email'],
+            columns: ['User', 'Email']
         });
         const header = Header.createFromConfig(config);
 
