@@ -14,7 +14,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
     constructor(config: Partial<Options>) {
         super();
-        this.config = new Config().assign({ instance: this, eventEmitter: this }).update(config);
+        this.config = new Config().assignInteral({ instance: this, eventEmitter: this }).update(config);
     }
 
     public get version(): string {
@@ -45,7 +45,7 @@ class Paginator extends EventEmitter<PaginatorEvents> {
 
     public destroy(): void {
         // Clear cache or perform other cleanup tasks if needed
-        this.config.options.pipeline.clearCache();
+        this.config.internal.pipeline.clearCache();
         if (!this.config.options.container) {
             return log.error('Container is empty. Make sure you call render() before destroy()', true);
         }

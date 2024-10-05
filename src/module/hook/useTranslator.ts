@@ -1,9 +1,9 @@
-import { useOption } from './useOption';
+import { useConfig } from './useConfig';
 
 export function useTranslator() {
-    const option = useOption();
+    const config = useConfig();
 
     return function (message: string, ...args: any[]): string {
-        return option.translator.translate(message, ...args);
+        return config.translator.translate(message, ...args);
     };
 }

@@ -1,7 +1,7 @@
-import { useOption } from './useOption';
+import { useConfig } from './useConfig';
 
 export function useStore() {
-    const option = useOption();
+    const config = useConfig();
 
-    return option.state;
+    return config.state;
 }
