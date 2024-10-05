@@ -40,10 +40,12 @@ describe('ServerStorage class', () => {
     it('should pass options to fetchData', async () => {
         const opts: ServerStorageOptions = {
             url: 'https://example.com',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Test': 'HelloWorld',
+            param: {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Test': 'HelloWorld',
+                }
             },
             processData: (res) => [[res]],
         };
