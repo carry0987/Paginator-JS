@@ -4,17 +4,20 @@ import log from '@/module/utils/log';
 import { PaginatorEvents } from '@/type/events';
 import { Options } from '@/interface/options';
 import { Instance } from '@/interface/instance';
-import { h, render as renderVNode, VNode } from 'preact';
+import PluginManager from '@/plugin/pluginManager';
 import { EventEmitter } from '@carry0987/event-emitter';
+import { h, render as renderVNode, VNode } from 'preact';
 import '@/style/paginator.css';
 
 class Paginator extends EventEmitter<PaginatorEvents> {
     private static version: string = '__version__';
     private config: Config;
+    public plugin: PluginManager;
 
     constructor(config: Partial<Options>) {
         super();
         this.config = new Config().assignInteral({ instance: this, eventEmitter: this }).update(config);
+        this.plugin = this.config.internal.plugin;
     }
 
     public get version(): string {

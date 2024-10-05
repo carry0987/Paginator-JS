@@ -1,4 +1,5 @@
 import { ServerStorageOptions } from './storage';
+import { Plugin } from './plugin';
 import { TCell, TData, OneDArray } from '@/type/types';
 import { Language } from '@/type/i18n';
 import { TColumn } from '@/interface/column';
@@ -10,6 +11,7 @@ interface MainOptions {
     columns: OneDArray<TColumn | string | ComponentChild>;
     server?: ServerStorageOptions;
     language: Language;
+    plugins?: Plugin<any>[];
 }
 
 interface CommonOptions {
