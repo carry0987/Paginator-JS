@@ -4,9 +4,6 @@ node_modules
 # Production
 /build
 
-# Test
-__snapshots__
-
 # Generated files
 .docusaurus
 .cache-loader
