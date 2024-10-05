@@ -49,3 +49,31 @@
     border-right: 1px solid #d2d6dc;
     border-top-right-radius: 6px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .paginatorjs-pagination {
+        color: #3d4044;
+    }
+
+    .paginatorjs-pagination button,
+    .paginatorjs-pages button {
+        border: 1px solid #353e4d;
+        background-color: #202938;
+        color: #d5d6db;
+    }
+
+    .paginatorjs-pagination .paginatorjs-pages button:disabled,
+    .paginatorjs-pagination .paginatorjs-pages button:hover:disabled,
+    .paginatorjs-pagination .paginatorjs-pages button[disabled] {
+        background-color: #202938;
+        color: #6b7280;
+    }
+
+    .paginatorjs-pagination .paginatorjs-pages button.paginatorjs-currentPage {
+        background-color: #2d3747;
+    }
+
+    .paginatorjs-pagination .paginatorjs-pages button:last-child {
+        border-right: 1px solid #d2d6dc;
+    }
+}
