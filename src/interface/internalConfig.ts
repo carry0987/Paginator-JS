@@ -8,6 +8,7 @@ import { ProcessorType } from '@/type/processor';
 import { StateManager } from '@/module/state/stateManager';
 import Storage from '@/module/storage/storage';
 import { Translator } from '@/module/i18n/translator';
+import PluginManager from '@/plugin/pluginManager';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
 
@@ -19,4 +20,5 @@ export interface InternalConfig {
     pipeline: Pipeline<Tabular | ServerStorageOptions, ProcessorType>;
     header?: Header;
     translator: Translator;
+    plugin: PluginManager;
 }

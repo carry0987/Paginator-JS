@@ -8,6 +8,7 @@ import { StateManager } from '@/module/state/stateManager';
 import StorageUtils from '@/module/storage/storageUtils';
 import PipelineUtils from '@/module/pipeline/pipelineUtils';
 import { Translator } from '@/module/i18n/translator';
+import PluginManager from '@/plugin/pluginManager';
 import { createContext } from 'preact';
 
 class Config {
@@ -55,7 +56,8 @@ class Config {
             state: new StateManager<State>({
                 status: Status.Init,
                 tabular: null
-            })
+            }),
+            plugin: new PluginManager()
         };
     }
 
@@ -88,21 +90,33 @@ class Config {
     }
 
     private static fromPartialConfig(config: Config) {
+        // Header
         config.assignInteral({
             header: Header.createFromConfig(config)
         });
 
+        // Storage
         config.assignInteral({
             storage: StorageUtils.createFromConfig(config)
         });
 
+        // Pipeline
         config.assignInteral({
             pipeline: PipelineUtils.createFromConfig(config)
         });
 
+        // Translator
         config.assignInteral({
             translator: new Translator(config.options.language)
         });
+
+        // Clear existing plugins list to prevent duplicate errors
+        config.internal.plugin = new PluginManager();
+
+        // Additional plugins
+        if (config.options.plugins) {
+            config.options.plugins.forEach((p) => config.internal.plugin.add(p));
+        }
 
         return config.internal;
     }
