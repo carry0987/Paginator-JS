@@ -1,5 +1,16 @@
-import { InternalConfig } from './internalConfig';
-import { TCell } from '@/type/types';
+import { ServerStorageOptions } from './storage';
+import { TCell, TData, OneDArray } from '@/type/types';
+import { Language } from '@/type/i18n';
+import { TColumn } from '@/interface/column';
+import { ComponentChild } from 'preact';
+
+interface MainOptions {
+    container?: Element;
+    data?: TData | (() => TData) | (() => Promise<TData>);
+    columns: OneDArray<TColumn | string | ComponentChild>;
+    server?: ServerStorageOptions;
+    language: Language;
+}
 
 interface CommonOptions {
     pageNumber: number;
@@ -31,7 +42,7 @@ interface ClassName {
     nextButton: string;
 }
 
-export interface Options extends InternalConfig, CommonOptions {
+export interface Options extends MainOptions, CommonOptions {
     display: Partial<DisplayControls>;
     className: Partial<ClassName>;
 }

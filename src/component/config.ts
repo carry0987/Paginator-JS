@@ -1,6 +1,7 @@
 import Header from './header';
 import { Status } from '@/type/types';
 import { Options } from '@/interface/options';
+import { InternalConfig } from '@/interface/internalConfig';
 import { State } from '@/interface/state';
 import Utils from '@/module/utils/utils-ext';
 import { StateManager } from '@/module/state/stateManager';
@@ -10,37 +11,58 @@ import { Translator } from '@/module/i18n/translator';
 import { createContext } from 'preact';
 
 class Config {
+    private internalConfig: InternalConfig = {} as InternalConfig;
     public options: Options = {} as Options;
 
     constructor() {
-        this.assign(Config.defaultConfig());
+        this.assign(Config.defaultOption());
+        this.assignInteral(Config.defaultConfig());
     }
 
-    public assign(partialConfig: Partial<Options>): this {
-        Utils.shallowMerge(this.options, partialConfig);
+    public assign(partialOption: Partial<Options>): this {
+        Utils.shallowMerge(this.options, partialOption);
 
         return this;
     }
 
-    public update(partialConfig: Partial<Options>): this {
-        if (!partialConfig) return this;
+    public assignInteral(partialConfig: Partial<InternalConfig>): this {
+        Utils.shallowMerge(this.internalConfig, partialConfig);
+
+        return this;
+    }
+
+    public update(partialOption: Partial<Options>): this {
+        if (!partialOption) return this;
 
         this.assign(
-            Config.fromPartialConfig({
+            Config.fromPartialOption({
                 ...this.options,
-                ...partialConfig,
+                ...partialOption,
             }),
+        );
+
+        this.assignInteral(
+            Config.fromPartialConfig(this),
         );
 
         return this;
     }
 
-    private static defaultConfig(): Partial<Options> {
+    public get internal(): InternalConfig {
+        return this.internalConfig;
+    }
+
+    private static defaultConfig(): Partial<InternalConfig> {
         return {
             state: new StateManager<State>({
                 status: Status.Init,
                 tabular: null,
-            }),
+            })
+        };
+    }
+
+    private static defaultOption(): Partial<Options> {
+        return {
             position: 'bottom',
             resetPageOnUpdate: false,
             pageNumber: 1,
@@ -67,24 +89,28 @@ class Config {
         };
     }
 
-    private static fromPartialConfig(partialConfig: Partial<Options>) {
-        const config = new Config().assign(partialConfig);
-
-        config.assign({
+    private static fromPartialConfig(config: Config) {
+        config.assignInteral({
             header: Header.createFromConfig(config),
         });
 
-        config.assign({
+        config.assignInteral({
             storage: StorageUtils.createFromConfig(config),
         });
 
-        config.assign({
+        config.assignInteral({
             pipeline: PipelineUtils.createFromConfig(config),
         });
 
-        config.assign({
+        config.assignInteral({
             translator: new Translator(config.options.language),
         });
+
+        return config.internal;
+    }
+
+    private static fromPartialOption(partialOption: Partial<Options>) {
+        const config = new Config().assign(partialOption);
 
         return config.options;
     }

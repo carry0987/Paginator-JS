@@ -30,7 +30,7 @@ describe('Config', () => {
 
     it('should return the correct values', () => {
         config.update({ data: [] });
-        expect(config.options.storage).toBeInstanceOf(Storage);
+        expect(config.internal.storage).toBeInstanceOf(Storage);
     });
 
     it('should create a userConfig', () => {
@@ -42,8 +42,8 @@ describe('Config', () => {
         });
 
         expect(config.options.data).toStrictEqual(data);
-        expect(config.options.header).toBeUndefined();
-        expect(config.options.translator).toBeInstanceOf(Translator);
+        expect(config.internal.header).toBeUndefined();
+        expect(config.internal.translator).toBeInstanceOf(Translator);
         expect(config.options.pageSize).toBe(8);
         expect(config.options.pageRange).toBe(5);
     });
@@ -56,8 +56,8 @@ describe('Config', () => {
             columns: cols,
         });
 
-        expect(config.options.header.columns.map((x: any) => x.name)).toStrictEqual(cols);
-        expect(config.options.header.columns.map((x: any) => x.sort)).toStrictEqual([undefined, undefined, undefined]);
+        expect(config.internal.header.columns.map((x: any) => x.name)).toStrictEqual(cols);
+        expect(config.internal.header.columns.map((x: any) => x.sort)).toStrictEqual([undefined, undefined, undefined]);
     });
 
     it('should assign config keys', () => {

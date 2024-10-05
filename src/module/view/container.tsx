@@ -1,6 +1,7 @@
 import { PageRenderer } from './pageRenderer';
 import { PageRendererProps } from '@/interface/view';
 import { Status } from '@/type/types';
+import { useConfig } from '@/module/hook/useConfig';
 import { useOption } from '@/module/hook/useOption';
 import { useStore } from '@/module/hook/useStore';
 import { useSelector } from '@/module/hook/useSelector';
@@ -13,6 +14,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import Tabular from '@/component/tabular';
 
 export function Container() {
+    const config = useConfig();
     const option = useOption();
     const { dispatch } = useStore();
     const status = useSelector((state) => state.status);
@@ -24,7 +26,7 @@ export function Container() {
         dispatch(actions.SetLoadingData());
 
         try {
-            const result = await option.pipeline.process();
+            const result = await config.pipeline.process();
             if (result instanceof Tabular) {
                 dispatch(actions.SetData(result));
             }
@@ -40,19 +42,19 @@ export function Container() {
     // Process Pipeline
     useEffect(() => {
         // Set the initial header object
-        dispatch(actions.SetHeader(option.header));
+        dispatch(actions.SetHeader(config.header));
 
         // Process the pipeline
         processPipeline();
-        option.pipeline.on('updated', processPipeline);
+        config.pipeline.on('updated', processPipeline);
 
-        return () => option.pipeline.off('updated', processPipeline);
+        return () => config.pipeline.off('updated', processPipeline);
     }, []);
 
     // Ready
     useEffect(() => {
-        if (option.header && status === Status.Loaded && tabular?.length) {
-            option.eventEmitter.emit('ready');
+        if (config.header && status === Status.Loaded && tabular?.length) {
+            config.eventEmitter.emit('ready');
         }
     }, [tabular, option, containerRef]);
 
@@ -78,17 +80,17 @@ export function Container() {
             }
         };
 
-        option.eventEmitter.on('go', handleGo);
+        config.eventEmitter.on('go', handleGo);
 
-        return () => option.eventEmitter.off('go', handleGo);
+        return () => config.eventEmitter.off('go', handleGo);
     }, [pageRendererRef]);
 
     // Render data after the paginator is rendered
     useEffect(() => {
         if (option.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
-            option.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
+            config.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
             option.dataRender(tabular.toArray());
-            option.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
+            config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
 

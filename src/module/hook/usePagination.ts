@@ -1,3 +1,4 @@
+import { useConfig } from './useConfig';
 import { Options } from '@/interface/options';
 import PaginationLimit from '@/module/pipeline/limit/pagination';
 import ServerPaginationLimit from '@/module/pipeline/limit/serverPagination';
@@ -6,6 +7,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import { useSignal } from '@preact/signals';
 
 export const usePagination = (option: Options, initialPage: number) => {
+    const config = useConfig();
     const processor = useRef<PaginationLimit | ServerPaginationLimit>();
     const currentPage = useSignal(initialPage);
     const total = useSignal(0);
@@ -13,7 +15,7 @@ export const usePagination = (option: Options, initialPage: number) => {
 
     // Rendered
     useEffect(() => {
-        option.eventEmitter.emit('rendered');
+        config.eventEmitter.emit('rendered');
     }, []);
 
     // Initialize and set up the processor
@@ -26,7 +28,7 @@ export const usePagination = (option: Options, initialPage: number) => {
                 body: server.pageBody,
             });
 
-            option.pipeline.on('afterProcess', (storage) => {
+            config.pipeline.on('afterProcess', (storage) => {
                 if (storage && storage instanceof Tabular) {
                     total.value = storage.length;
                 }
@@ -45,19 +47,19 @@ export const usePagination = (option: Options, initialPage: number) => {
             });
         }
 
-        option.pipeline.register(processor.current);
-        option.pipeline.on('updated', onUpdate);
+        config.pipeline.register(processor.current);
+        config.pipeline.on('updated', onUpdate);
 
         // We need to make sure that the state is set
         // to the default props when an error happens
-        option.pipeline.on('error', () => {
+        config.pipeline.on('error', () => {
             total.value = 0;
             currentPage.value = 0;
         });
 
         return () => {
-            option.pipeline.unregister(processor.current);
-            option.pipeline.off('updated', onUpdate);
+            config.pipeline.unregister(processor.current);
+            config.pipeline.off('updated', onUpdate);
         };
     }, [option, initialPage]);
 
@@ -83,18 +85,18 @@ export const usePagination = (option: Options, initialPage: number) => {
 
     const goPage = (pageNumber: number, type?: string) => {
         if (type === 'prev') {
-            option.eventEmitter.emit('previousClick', pageNumber);
+            config.eventEmitter.emit('previousClick', pageNumber);
         }
         if (type === 'next') {
-            option.eventEmitter.emit('nextClick', pageNumber);
+            config.eventEmitter.emit('nextClick', pageNumber);
         }
         if (!type) {
-            option.eventEmitter.emit('pageClick', pageNumber);
+            config.eventEmitter.emit('pageClick', pageNumber);
         }
         if (pageNumber === 1) {
-            option.eventEmitter.emit('isFirstPage');
+            config.eventEmitter.emit('isFirstPage');
         } else if (pageNumber === getTotalPage()) {
-            option.eventEmitter.emit('isLastPage');
+            config.eventEmitter.emit('isLastPage');
         }
         setPage(pageNumber);
     };

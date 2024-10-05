@@ -40,7 +40,7 @@ describe('Paginator class', () => {
         // Use Reflect API to access private config
         const configTest = Reflect.get(paginator, 'config');
 
-        expect(configTest.options.storage).toBeInstanceOf(MemoryStorage);
+        expect(configTest.internal.storage).toBeInstanceOf(MemoryStorage);
     });
 
     it('should set the config correctly', () => {

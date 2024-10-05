@@ -11,7 +11,7 @@ class PipelineUtils {
     static createFromConfig(config: Config): Pipeline<any, ProcessorType> {
         const pipeline = new Pipeline<any, ProcessorType>();
 
-        if (config.options.storage instanceof ServerStorage) {
+        if (config.internal.storage instanceof ServerStorage) {
             pipeline.register(
                 new ServerInitiator({
                     serverStorageOptions: config.options.server,
@@ -19,8 +19,8 @@ class PipelineUtils {
             );
         }
 
-        pipeline.register(new StorageExtractor({ storage: config.options.storage }));
-        pipeline.register(new StorageResponseToArrayTransformer({ header: config.options.header }));
+        pipeline.register(new StorageExtractor({ storage: config.internal.storage }));
+        pipeline.register(new StorageResponseToArrayTransformer({ header: config.internal.header }));
         pipeline.register(new ArrayToTabularTransformer());
 
         return pipeline;
