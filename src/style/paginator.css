@@ -7,8 +7,8 @@
     --paginatorjs-button-current-background: #f7f7f7;
 }
 
-html[data-theme='dark'],
 @media (prefers-color-scheme: dark) {
+    html[data-theme='dark'],
     :root {
         --paginatorjs-button-border: #353e4d;
         --paginatorjs-button-background: #202938;
