@@ -8,7 +8,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    html[data-theme='dark'],
     :root {
         --paginatorjs-button-border: #353e4d;
         --paginatorjs-button-background: #202938;
@@ -17,6 +16,15 @@
         --paginatorjs-button-disabled-color: #6b7280;
         --paginatorjs-button-current-background: #2d3747;
     }
+}
+
+html[data-theme='dark'] {
+    --paginatorjs-button-border: #353e4d;
+    --paginatorjs-button-background: #202938;
+    --paginatorjs-button-color: #d5d6db;
+    --paginatorjs-button-disabled-background: #202938;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #2d3747;
 }
 
 .paginatorjs *,
