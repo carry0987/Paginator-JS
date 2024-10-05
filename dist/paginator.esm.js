@@ -1465,13 +1465,13 @@ class ArrayToTabularTransformer extends Processor {
 class PipelineUtils {
     static createFromConfig(config) {
         const pipeline = new Pipeline();
-        if (config.options.storage instanceof ServerStorage) {
+        if (config.internal.storage instanceof ServerStorage) {
             pipeline.register(new ServerInitiator({
                 serverStorageOptions: config.options.server,
             }));
         }
-        pipeline.register(new StorageExtractor({ storage: config.options.storage }));
-        pipeline.register(new StorageResponseToArrayTransformer({ header: config.options.header }));
+        pipeline.register(new StorageExtractor({ storage: config.internal.storage }));
+        pipeline.register(new StorageResponseToArrayTransformer({ header: config.internal.header }));
         pipeline.register(new ArrayToTabularTransformer());
         return pipeline;
     }
@@ -1539,29 +1539,43 @@ class Translator {
 }
 
 class Config {
+    internalConfig = {};
     options = {};
     constructor() {
-        this.assign(Config.defaultConfig());
+        this.assign(Config.defaultOption());
+        this.assignInteral(Config.defaultConfig());
     }
-    assign(partialConfig) {
-        Utils.shallowMerge(this.options, partialConfig);
+    assign(partialOption) {
+        Utils.shallowMerge(this.options, partialOption);
         return this;
     }
-    update(partialConfig) {
-        if (!partialConfig)
+    assignInteral(partialConfig) {
+        Utils.shallowMerge(this.internalConfig, partialConfig);
+        return this;
+    }
+    update(partialOption) {
+        if (!partialOption)
             return this;
-        this.assign(Config.fromPartialConfig({
+        this.assign(Config.fromPartialOption({
             ...this.options,
-            ...partialConfig,
+            ...partialOption,
         }));
+        this.assignInteral(Config.fromPartialConfig(this));
         return this;
+    }
+    get internal() {
+        return this.internalConfig;
     }
     static defaultConfig() {
         return {
             state: new StateManager({
                 status: Status.Init,
                 tabular: null,
-            }),
+            })
+        };
+    }
+    static defaultOption() {
+        return {
             position: 'bottom',
             resetPageOnUpdate: false,
             pageNumber: 1,
@@ -1587,20 +1601,23 @@ class Config {
             },
         };
     }
-    static fromPartialConfig(partialConfig) {
-        const config = new Config().assign(partialConfig);
-        config.assign({
+    static fromPartialConfig(config) {
+        config.assignInteral({
             header: Header.createFromConfig(config),
         });
-        config.assign({
+        config.assignInteral({
             storage: StorageUtils.createFromConfig(config),
         });
-        config.assign({
+        config.assignInteral({
             pipeline: PipelineUtils.createFromConfig(config),
         });
-        config.assign({
+        config.assignInteral({
             translator: new Translator(config.options.language),
         });
+        return config.internal;
+    }
+    static fromPartialOption(partialOption) {
+        const config = new Config().assign(partialOption);
         return config.options;
     }
 }
@@ -1633,10 +1650,18 @@ const useOption = () => {
     return context.options;
 };
 
+const useConfig = () => {
+    const context = x$1(ConfigContext);
+    if (context === undefined) {
+        throw new Error('useConfig must be used within a ConfigProvider');
+    }
+    return context.internal;
+};
+
 function useTranslator() {
-    const option = useOption();
+    const config = useConfig();
     return function (message, ...args) {
-        return option.translator.translate(message, ...args);
+        return config.translator.translate(message, ...args);
     };
 }
 
@@ -1683,13 +1708,14 @@ const i=Symbol.for("preact-signals");function t(){if(r>1){r--;return}let i,t=!1;
 function c(t,e){l$2[t]=e.bind(null,l$2[t]||(()=>{}));}let d;function h(t){if(d)d();d=t&&t.S();}function p({data:t}){const i=useSignal(t);i.value=t;const o=T$1(()=>{let t=this.__v;while(t=t.__)if(t.__c){t.__c.__$f|=4;break}this.__$u.c=()=>{var t;if(!t$2(o.peek())&&3===(null==(t=this.base)?void 0:t.nodeType))this.base.data=o.peek();else {this.__$f|=1;this.setState({});}};return w$1(()=>{let t=i.value.value;return 0===t?0:!0===t?"":t||""})},[]);return o.value}p.displayName="_st";Object.defineProperties(u.prototype,{constructor:{configurable:!0,value:void 0},type:{configurable:!0,value:p},props:{configurable:!0,get(){return {data:this}}},__b:{configurable:!0,value:1}});c("__b",(t,i)=>{if("string"==typeof i.type){let t,e=i.props;for(let n in e){if("children"===n)continue;let o=e[n];if(o instanceof u){if(!t)i.__np=t={};t[n]=o;e[n]=o.peek();}}}t(i);});c("__r",(t,i)=>{h();let e,n=i.__c;if(n){n.__$f&=-2;e=n.__$u;if(void 0===e)n.__$u=e=function(t){let i;E$1(function(){i=this;});i.c=()=>{n.__$f|=1;n.setState({});};return i}();}h(e);t(i);});c("__e",(t,i,e,n)=>{h();t(i,e,n);});c("diffed",(t,i)=>{h();let e;if("string"==typeof i.type&&(e=i.__e)){let t=i.__np,n=i.props;if(t){let i=e.U;if(i)for(let e in i){let n=i[e];if(void 0!==n&&!(e in t)){n.d();i[e]=void 0;}}else {i={};e.U=i;}for(let o in t){let r=i[o],f=t[o];if(void 0===r){r=v(e,o,f,n);i[o]=r;}else r.o(f,n);}}}t(i);});function v(t,i,e,n){const o=i in t&&void 0===t.ownerSVGElement,r=d$1(e);return {o:(t,i)=>{r.value=t;n=i;},d:E$1(()=>{const e=r.value.value;if(n[i]!==e){n[i]=e;if(o)t[i]=e;else if(e)t.setAttribute(i,e);else t.removeAttribute(i);}})}}c("unmount",(t,i)=>{if("string"==typeof i.type){let t=i.__e;if(t){const i=t.U;if(i){t.U=void 0;for(let t in i){let e=i[t];if(e)e.d();}}}}else {let t=i.__c;if(t){const i=t.__$u;if(i){t.__$u=void 0;i.d();}}}t(i);});c("__h",(t,i,e,n)=>{if(n<3||9===n)i.__$f|=2;t(i,e,n);});k$1.prototype.shouldComponentUpdate=function(t,i){const e=this.__$u;if(!(e&&void 0!==e.s||4&this.__$f))return !0;if(3&this.__$f)return !0;for(let t in i)return !0;for(let i in t)if("__source"!==i&&t[i]!==this.props[i])return !0;for(let i in this.props)if(!(i in t))return !0;return !1};function useSignal(t){return T$1(()=>d$1(t),[])}
 
 const usePagination = (option, initialPage) => {
+    const config = useConfig();
     const processor = A$1();
     const currentPage = useSignal(initialPage);
     const total = useSignal(0);
     const { server, pageRange, pageSize, resetPageOnUpdate } = option;
     // Rendered
     y$1(() => {
-        option.eventEmitter.emit('rendered');
+        config.eventEmitter.emit('rendered');
     }, []);
     // Initialize and set up the processor
     y$1(() => {
@@ -1700,7 +1726,7 @@ const usePagination = (option, initialPage) => {
                 url: server.pageUrl,
                 body: server.pageBody,
             });
-            option.pipeline.on('afterProcess', (storage) => {
+            config.pipeline.on('afterProcess', (storage) => {
                 if (storage && storage instanceof Tabular) {
                     total.value = storage.length;
                 }
@@ -1718,17 +1744,17 @@ const usePagination = (option, initialPage) => {
                 total.value = storage.length;
             });
         }
-        option.pipeline.register(processor.current);
-        option.pipeline.on('updated', onUpdate);
+        config.pipeline.register(processor.current);
+        config.pipeline.on('updated', onUpdate);
         // We need to make sure that the state is set
         // to the default props when an error happens
-        option.pipeline.on('error', () => {
+        config.pipeline.on('error', () => {
             total.value = 0;
             currentPage.value = 0;
         });
         return () => {
-            option.pipeline.unregister(processor.current);
-            option.pipeline.off('updated', onUpdate);
+            config.pipeline.unregister(processor.current);
+            config.pipeline.off('updated', onUpdate);
         };
     }, [option, initialPage]);
     const onUpdate = (updatedProcessor) => {
@@ -1750,19 +1776,19 @@ const usePagination = (option, initialPage) => {
     const getTotalPage = () => Math.ceil(total.value / option.pageSize);
     const goPage = (pageNumber, type) => {
         if (type === 'prev') {
-            option.eventEmitter.emit('previousClick', pageNumber);
+            config.eventEmitter.emit('previousClick', pageNumber);
         }
         if (type === 'next') {
-            option.eventEmitter.emit('nextClick', pageNumber);
+            config.eventEmitter.emit('nextClick', pageNumber);
         }
         if (!type) {
-            option.eventEmitter.emit('pageClick', pageNumber);
+            config.eventEmitter.emit('pageClick', pageNumber);
         }
         if (pageNumber === 1) {
-            option.eventEmitter.emit('isFirstPage');
+            config.eventEmitter.emit('isFirstPage');
         }
         else if (pageNumber === getTotalPage()) {
-            option.eventEmitter.emit('isLastPage');
+            config.eventEmitter.emit('isLastPage');
         }
         setPage(pageNumber);
     };
@@ -1856,8 +1882,8 @@ const PageRenderer = w((_, ref) => {
 });
 
 function useStore() {
-    const option = useOption();
-    return option.state;
+    const config = useConfig();
+    return config.state;
 }
 
 function useSelector(selector) {
@@ -1948,6 +1974,7 @@ const SetHeader = (header) => (state) => {
 };
 
 function Container() {
+    const config = useConfig();
     const option = useOption();
     const { dispatch } = useStore();
     const status = useSelector((state) => state.status);
@@ -1957,7 +1984,7 @@ function Container() {
     const processPipeline = throttle(async () => {
         dispatch(SetLoadingData());
         try {
-            const result = await option.pipeline.process();
+            const result = await config.pipeline.process();
             if (result instanceof Tabular) {
                 dispatch(SetData(result));
             }
@@ -1973,16 +2000,16 @@ function Container() {
     // Process Pipeline
     y$1(() => {
         // Set the initial header object
-        dispatch(SetHeader(option.header));
+        dispatch(SetHeader(config.header));
         // Process the pipeline
         processPipeline();
-        option.pipeline.on('updated', processPipeline);
-        return () => option.pipeline.off('updated', processPipeline);
+        config.pipeline.on('updated', processPipeline);
+        return () => config.pipeline.off('updated', processPipeline);
     }, []);
     // Ready
     y$1(() => {
-        if (option.header && status === Status.Loaded && tabular?.length) {
-            option.eventEmitter.emit('ready');
+        if (config.header && status === Status.Loaded && tabular?.length) {
+            config.eventEmitter.emit('ready');
         }
     }, [tabular, option, containerRef]);
     // Render Paginator
@@ -2006,15 +2033,15 @@ function Container() {
                 pageRendererRef.current.setPage(pageNumber);
             }
         };
-        option.eventEmitter.on('go', handleGo);
-        return () => option.eventEmitter.off('go', handleGo);
+        config.eventEmitter.on('go', handleGo);
+        return () => config.eventEmitter.off('go', handleGo);
     }, [pageRendererRef]);
     // Render data after the paginator is rendered
     y$1(() => {
         if (option.dataRender && status === Status.Rendered && tabular?.length && pageRendererRef.current) {
-            option.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
+            config.eventEmitter.emit('beforePaging', pageRendererRef.current.currentPage);
             option.dataRender(tabular.toArray());
-            option.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
+            config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
     return (_$2("div", { ref: containerRef, className: classJoin(className('pagination'), option.className.container) },
@@ -2196,11 +2223,11 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.1.16';
+    static version = '2.2.0';
     config;
     constructor(config) {
         super();
-        this.config = new Config().assign({ instance: this, eventEmitter: this }).update(config);
+        this.config = new Config().assignInteral({ instance: this, eventEmitter: this }).update(config);
     }
     get version() {
         return Paginator.version;
@@ -2223,7 +2250,7 @@ class Paginator extends EventEmitter {
     }
     destroy() {
         // Clear cache or perform other cleanup tasks if needed
-        this.config.options.pipeline.clearCache();
+        this.config.internal.pipeline.clearCache();
         if (!this.config.options.container) {
             return log$1.error('Container is empty. Make sure you call render() before destroy()', true);
         }
