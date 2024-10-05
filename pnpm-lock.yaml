@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@carry0987/paginator':
-        specifier: ^2.2.2
-        version: 2.2.2
+        specifier: ^2.2.3
+        version: 2.2.3
       '@docusaurus/core':
         specifier: ^3.5.2
         version: 3.5.2(@docusaurus/types@3.5.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
@@ -802,8 +802,8 @@ packages:
     resolution: {integrity: sha512-vwIVdXG+j+FOpkwqHRcBgHLYNL7XMkufrlaFvL9o6Ai9sJn9+PdyIL5qa0XzTZw084c+u9LOls53eoZWP/W5WQ==}
     engines: {node: '>=6.9.0'}
 
-  '@carry0987/paginator@2.2.2':
-    resolution: {integrity: sha512-A92hRXiI6iugcgkUXjWkQojHa5u8ZhXnCuXysGNEhRYVbGj9fi3BZRoMruGli27UXqB6OoJewZHXEt5bWgugSA==}
+  '@carry0987/paginator@2.2.3':
+    resolution: {integrity: sha512-A0oUNg0rqNi4INBVDUFD5FmJMjzcGhzonDLrjwtTOm3vh+Gf2VieX645rkED2ktRiEgfR43pKSBRoHl9IpOTyg==}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -5795,7 +5795,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.7
       to-fast-properties: 2.0.0
 
-  '@carry0987/paginator@2.2.2': {}
+  '@carry0987/paginator@2.2.3': {}
 
   '@colors/colors@1.5.0':
     optional: true

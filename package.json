@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@carry0987/paginator": "^2.2.2",
+    "@carry0987/paginator": "^2.2.3",
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/preset-classic": "^3.5.2",
     "@emotion/css": "^11.13.4",
