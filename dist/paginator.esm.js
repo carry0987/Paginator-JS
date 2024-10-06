@@ -397,6 +397,13 @@ function camelCase(str) {
         .join('');
 }
 
+var PluginPosition;
+(function (PluginPosition) {
+    PluginPosition[PluginPosition["Header"] = 0] = "Header";
+    PluginPosition[PluginPosition["Footer"] = 1] = "Footer";
+    PluginPosition[PluginPosition["Cell"] = 2] = "Cell";
+})(PluginPosition || (PluginPosition = {}));
+
 /**
  * Centralized logging lib
  *
@@ -424,7 +431,7 @@ let Logger$1 = class Logger {
 };
 var log$1 = new Logger$1();
 
-var n$1,l$2,u$2,t$2,i$2,o$1,r$2,f$2,e$2,c$3,s$2,a$2,h$1={},v$3=[],p$2=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,y$2=Array.isArray;function d$3(n,l){for(var u in l)n[u]=l[u];return n}function w$3(n){n&&n.parentNode&&n.parentNode.removeChild(n);}function _$2(l,u,t){var i,o,r,f={};for(r in u)"key"==r?i=u[r]:"ref"==r?o=u[r]:f[r]=u[r];if(arguments.length>2&&(f.children=arguments.length>3?n$1.call(arguments,2):t),"function"==typeof l&&null!=l.defaultProps)for(r in l.defaultProps)void 0===f[r]&&(f[r]=l.defaultProps[r]);return g$2(l,f,i,o,null)}function g$2(n,t,i,o,r){var f={type:n,props:t,key:i,ref:o,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,constructor:void 0,__v:null==r?++u$2:r,__i:-1,__u:0};return null==r&&null!=l$2.vnode&&l$2.vnode(f),f}function m$1(){return {current:null}}function b$1(n){return n.children}function k$1(n,l){this.props=n,this.context=l;}function x$2(n,l){if(null==l)return n.__?x$2(n.__,n.__i+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?x$2(n):null}function C$1(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return C$1(n)}}function M$1(n){(!n.__d&&(n.__d=!0)&&i$2.push(n)&&!P.__r++||o$1!==l$2.debounceRendering)&&((o$1=l$2.debounceRendering)||r$2)(P);}function P(){var n,u,t,o,r,e,c,s;for(i$2.sort(f$2);n=i$2.shift();)n.__d&&(u=i$2.length,o=void 0,e=(r=(t=n).__v).__e,c=[],s=[],t.__P&&((o=d$3({},r)).__v=r.__v+1,l$2.vnode&&l$2.vnode(o),O(t.__P,o,r,t.__n,t.__P.namespaceURI,32&r.__u?[e]:null,c,null==e?x$2(r):e,!!(32&r.__u),s),o.__v=r.__v,o.__.__k[o.__i]=o,j$2(c,o,s),o.__e!=e&&C$1(o)),i$2.length>u&&i$2.sort(f$2));P.__r=0;}function S(n,l,u,t,i,o,r,f,e,c,s){var a,p,y,d,w,_=t&&t.__k||v$3,g=l.length;for(u.__d=e,$(u,l,_),e=u.__d,a=0;a<g;a++)null!=(y=u.__k[a])&&(p=-1===y.__i?h$1:_[y.__i]||h$1,y.__i=a,O(n,y,p,i,o,r,f,e,c,s),d=y.__e,y.ref&&p.ref!=y.ref&&(p.ref&&N$1(p.ref,null,y),s.push(y.ref,y.__c||d,y)),null==w&&null!=d&&(w=d),65536&y.__u||p.__k===y.__k?e=I(y,e,n):"function"==typeof y.type&&void 0!==y.__d?e=y.__d:d&&(e=d.nextSibling),y.__d=void 0,y.__u&=-196609);u.__d=e,u.__e=w;}function $(n,l,u){var t,i,o,r,f,e=l.length,c=u.length,s=c,a=0;for(n.__k=[],t=0;t<e;t++)null!=(i=l[t])&&"boolean"!=typeof i&&"function"!=typeof i?(r=t+a,(i=n.__k[t]="string"==typeof i||"number"==typeof i||"bigint"==typeof i||i.constructor==String?g$2(null,i,null,null,null):y$2(i)?g$2(b$1,{children:i},null,null,null):void 0===i.constructor&&i.__b>0?g$2(i.type,i.props,i.key,i.ref?i.ref:null,i.__v):i).__=n,i.__b=n.__b+1,o=null,-1!==(f=i.__i=L$1(i,u,r,s))&&(s--,(o=u[f])&&(o.__u|=131072)),null==o||null===o.__v?(-1==f&&a--,"function"!=typeof i.type&&(i.__u|=65536)):f!==r&&(f==r-1?a--:f==r+1?a++:(f>r?a--:a++,i.__u|=65536))):i=n.__k[t]=null;if(s)for(t=0;t<c;t++)null!=(o=u[t])&&0==(131072&o.__u)&&(o.__e==n.__d&&(n.__d=x$2(o)),V(o,o));}function I(n,l,u){var t,i;if("function"==typeof n.type){for(t=n.__k,i=0;t&&i<t.length;i++)t[i]&&(t[i].__=n,l=I(t[i],l,u));return l}n.__e!=l&&(l&&n.type&&!u.contains(l)&&(l=x$2(n)),u.insertBefore(n.__e,l||null),l=n.__e);do{l=l&&l.nextSibling;}while(null!=l&&8===l.nodeType);return l}function H$1(n,l){return l=l||[],null==n||"boolean"==typeof n||(y$2(n)?n.some(function(n){H$1(n,l);}):l.push(n)),l}function L$1(n,l,u,t){var i=n.key,o=n.type,r=u-1,f=u+1,e=l[u];if(null===e||e&&i==e.key&&o===e.type&&0==(131072&e.__u))return u;if(t>(null!=e&&0==(131072&e.__u)?1:0))for(;r>=0||f<l.length;){if(r>=0){if((e=l[r])&&0==(131072&e.__u)&&i==e.key&&o===e.type)return r;r--;}if(f<l.length){if((e=l[f])&&0==(131072&e.__u)&&i==e.key&&o===e.type)return f;f++;}}return -1}function T$2(n,l,u){"-"===l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||p$2.test(l)?u:u+"px";}function A$2(n,l,u,t,i){var o;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof t&&(n.style.cssText=t=""),t)for(l in t)u&&l in u||T$2(n.style,l,"");if(u)for(l in u)t&&u[l]===t[l]||T$2(n.style,l,u[l]);}else if("o"===l[0]&&"n"===l[1])o=l!==(l=l.replace(/(PointerCapture)$|Capture$/i,"$1")),l=l.toLowerCase()in n||"onFocusOut"===l||"onFocusIn"===l?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+o]=u,u?t?u.u=t.u:(u.u=e$2,n.addEventListener(l,o?s$2:c$3,o)):n.removeEventListener(l,o?s$2:c$3,o);else {if("http://www.w3.org/2000/svg"==i)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!=l&&"height"!=l&&"href"!=l&&"list"!=l&&"form"!=l&&"tabIndex"!=l&&"download"!=l&&"rowSpan"!=l&&"colSpan"!=l&&"role"!=l&&"popover"!=l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||!1===u&&"-"!==l[4]?n.removeAttribute(l):n.setAttribute(l,"popover"==l&&1==u?"":u));}}function F$2(n){return function(u){if(this.l){var t=this.l[u.type+n];if(null==u.t)u.t=e$2++;else if(u.t<t.u)return;return t(l$2.event?l$2.event(u):u)}}}function O(n,u,t,i,o,r,f,e,c,s){var a,h,v,p,w,_,g,m,x,C,M,P,$,I,H,L,T=u.type;if(void 0!==u.constructor)return null;128&t.__u&&(c=!!(32&t.__u),r=[e=u.__e=t.__e]),(a=l$2.__b)&&a(u);n:if("function"==typeof T)try{if(m=u.props,x="prototype"in T&&T.prototype.render,C=(a=T.contextType)&&i[a.__c],M=a?C?C.props.value:a.__:i,t.__c?g=(h=u.__c=t.__c).__=h.__E:(x?u.__c=h=new T(m,M):(u.__c=h=new k$1(m,M),h.constructor=T,h.render=q),C&&C.sub(h),h.props=m,h.state||(h.state={}),h.context=M,h.__n=i,v=h.__d=!0,h.__h=[],h._sb=[]),x&&null==h.__s&&(h.__s=h.state),x&&null!=T.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=d$3({},h.__s)),d$3(h.__s,T.getDerivedStateFromProps(m,h.__s))),p=h.props,w=h.state,h.__v=u,v)x&&null==T.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),x&&null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(x&&null==T.getDerivedStateFromProps&&m!==p&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(m,M),!h.__e&&(null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(m,h.__s,M)||u.__v===t.__v)){for(u.__v!==t.__v&&(h.props=m,h.state=h.__s,h.__d=!1),u.__e=t.__e,u.__k=t.__k,u.__k.some(function(n){n&&(n.__=u);}),P=0;P<h._sb.length;P++)h.__h.push(h._sb[P]);h._sb=[],h.__h.length&&f.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(m,h.__s,M),x&&null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(p,w,_);});}if(h.context=M,h.props=m,h.__P=n,h.__e=!1,$=l$2.__r,I=0,x){for(h.state=h.__s,h.__d=!1,$&&$(u),a=h.render(h.props,h.state,h.context),H=0;H<h._sb.length;H++)h.__h.push(h._sb[H]);h._sb=[];}else do{h.__d=!1,$&&$(u),a=h.render(h.props,h.state,h.context),h.state=h.__s;}while(h.__d&&++I<25);h.state=h.__s,null!=h.getChildContext&&(i=d$3(d$3({},i),h.getChildContext())),x&&!v&&null!=h.getSnapshotBeforeUpdate&&(_=h.getSnapshotBeforeUpdate(p,w)),S(n,y$2(L=null!=a&&a.type===b$1&&null==a.key?a.props.children:a)?L:[L],u,t,i,o,r,f,e,c,s),h.base=u.__e,u.__u&=-161,h.__h.length&&f.push(h),g&&(h.__E=h.__=null);}catch(n){if(u.__v=null,c||null!=r){for(u.__u|=c?160:32;e&&8===e.nodeType&&e.nextSibling;)e=e.nextSibling;r[r.indexOf(e)]=null,u.__e=e;}else u.__e=t.__e,u.__k=t.__k;l$2.__e(n,u,t);}else null==r&&u.__v===t.__v?(u.__k=t.__k,u.__e=t.__e):u.__e=z$2(t.__e,u,t,i,o,r,f,c,s);(a=l$2.diffed)&&a(u);}function j$2(n,u,t){u.__d=void 0;for(var i=0;i<t.length;i++)N$1(t[i],t[++i],t[++i]);l$2.__c&&l$2.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$2.__e(n,u.__v);}});}function z$2(u,t,i,o,r,f,e,c,s){var a,v,p,d,_,g,m,b=i.props,k=t.props,C=t.type;if("svg"===C?r="http://www.w3.org/2000/svg":"math"===C?r="http://www.w3.org/1998/Math/MathML":r||(r="http://www.w3.org/1999/xhtml"),null!=f)for(a=0;a<f.length;a++)if((_=f[a])&&"setAttribute"in _==!!C&&(C?_.localName===C:3===_.nodeType)){u=_,f[a]=null;break}if(null==u){if(null===C)return document.createTextNode(k);u=document.createElementNS(r,C,k.is&&k),c&&(l$2.__m&&l$2.__m(t,f),c=!1),f=null;}if(null===C)b===k||c&&u.data===k||(u.data=k);else {if(f=f&&n$1.call(u.childNodes),b=i.props||h$1,!c&&null!=f)for(b={},a=0;a<u.attributes.length;a++)b[(_=u.attributes[a]).name]=_.value;for(a in b)if(_=b[a],"children"==a);else if("dangerouslySetInnerHTML"==a)p=_;else if(!(a in k)){if("value"==a&&"defaultValue"in k||"checked"==a&&"defaultChecked"in k)continue;A$2(u,a,null,_,r);}for(a in k)_=k[a],"children"==a?d=_:"dangerouslySetInnerHTML"==a?v=_:"value"==a?g=_:"checked"==a?m=_:c&&"function"!=typeof _||b[a]===_||A$2(u,a,_,b[a],r);if(v)c||p&&(v.__html===p.__html||v.__html===u.innerHTML)||(u.innerHTML=v.__html),t.__k=[];else if(p&&(u.innerHTML=""),S(u,y$2(d)?d:[d],t,i,o,"foreignObject"===C?"http://www.w3.org/1999/xhtml":r,f,e,f?f[0]:i.__k&&x$2(i,0),c,s),null!=f)for(a=f.length;a--;)w$3(f[a]);c||(a="value","progress"===C&&null==g?u.removeAttribute("value"):void 0!==g&&(g!==u[a]||"progress"===C&&!g||"option"===C&&g!==b[a])&&A$2(u,a,g,b[a],r),a="checked",void 0!==m&&m!==u[a]&&A$2(u,a,m,b[a],r));}return u}function N$1(n,u,t){try{if("function"==typeof n){var i="function"==typeof n.__u;i&&n.__u(),i&&null==u||(n.__u=n(u));}else n.current=u;}catch(n){l$2.__e(n,t);}}function V(n,u,t){var i,o;if(l$2.unmount&&l$2.unmount(n),(i=n.ref)&&(i.current&&i.current!==n.__e||N$1(i,null,u)),null!=(i=n.__c)){if(i.componentWillUnmount)try{i.componentWillUnmount();}catch(n){l$2.__e(n,u);}i.base=i.__P=null;}if(i=n.__k)for(o=0;o<i.length;o++)i[o]&&V(i[o],u,t||"function"!=typeof n.type);t||w$3(n.__e),n.__c=n.__=n.__e=n.__d=void 0;}function q(n,l,u){return this.constructor(n,u)}function B$2(u,t,i){var o,r,f,e;l$2.__&&l$2.__(u,t),r=(o="function"==typeof i)?null:t.__k,f=[],e=[],O(t,u=(!o&&i||t).__k=_$2(b$1,null,[u]),r||h$1,h$1,t.namespaceURI,!o&&i?[i]:r?null:t.firstChild?n$1.call(t.childNodes):null,f,!o&&i?i:r?r.__e:t.firstChild,o,e),j$2(f,u,e);}function G$1(n,l){var u={__c:l="__cC"+a$2++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,t;return this.getChildContext||(u=[],(t={})[l]=this,this.getChildContext=function(){return t},this.componentWillUnmount=function(){u=null;},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(function(n){n.__e=!0,M$1(n);});},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u&&u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n$1=v$3.slice,l$2={__e:function(n,l,u,t){for(var i,o,r;l=l.__;)if((i=l.__c)&&!i.__)try{if((o=i.constructor)&&null!=o.getDerivedStateFromError&&(i.setState(o.getDerivedStateFromError(n)),r=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),r=i.__d),r)return i.__E=i}catch(l){n=l;}throw n}},u$2=0,t$2=function(n){return null!=n&&null==n.constructor},k$1.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=d$3({},this.state),"function"==typeof n&&(n=n(d$3({},u),this.props)),n&&d$3(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),M$1(this));},k$1.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),M$1(this));},k$1.prototype.render=b$1,i$2=[],r$2="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,f$2=function(n,l){return n.__v.__b-l.__v.__b},P.__r=0,e$2=0,c$3=F$2(!1),s$2=F$2(!0),a$2=0;
+var n$1,l$2,u$3,t$2,i$2,o$1,r$2,f$3,e$2,c$3,s$2,a$2,h$2={},v$3=[],p$3=/acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i,y$2=Array.isArray;function d$3(n,l){for(var u in l)n[u]=l[u];return n}function w$3(n){n&&n.parentNode&&n.parentNode.removeChild(n);}function _$2(l,u,t){var i,o,r,f={};for(r in u)"key"==r?i=u[r]:"ref"==r?o=u[r]:f[r]=u[r];if(arguments.length>2&&(f.children=arguments.length>3?n$1.call(arguments,2):t),"function"==typeof l&&null!=l.defaultProps)for(r in l.defaultProps)void 0===f[r]&&(f[r]=l.defaultProps[r]);return g$2(l,f,i,o,null)}function g$2(n,t,i,o,r){var f={type:n,props:t,key:i,ref:o,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,constructor:void 0,__v:null==r?++u$3:r,__i:-1,__u:0};return null==r&&null!=l$2.vnode&&l$2.vnode(f),f}function m$1(){return {current:null}}function b$1(n){return n.children}function k$1(n,l){this.props=n,this.context=l;}function x$2(n,l){if(null==l)return n.__?x$2(n.__,n.__i+1):null;for(var u;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e)return u.__e;return "function"==typeof n.type?x$2(n):null}function C$1(n){var l,u;if(null!=(n=n.__)&&null!=n.__c){for(n.__e=n.__c.base=null,l=0;l<n.__k.length;l++)if(null!=(u=n.__k[l])&&null!=u.__e){n.__e=n.__c.base=u.__e;break}return C$1(n)}}function M$1(n){(!n.__d&&(n.__d=!0)&&i$2.push(n)&&!P.__r++||o$1!==l$2.debounceRendering)&&((o$1=l$2.debounceRendering)||r$2)(P);}function P(){var n,u,t,o,r,e,c,s;for(i$2.sort(f$3);n=i$2.shift();)n.__d&&(u=i$2.length,o=void 0,e=(r=(t=n).__v).__e,c=[],s=[],t.__P&&((o=d$3({},r)).__v=r.__v+1,l$2.vnode&&l$2.vnode(o),O(t.__P,o,r,t.__n,t.__P.namespaceURI,32&r.__u?[e]:null,c,null==e?x$2(r):e,!!(32&r.__u),s),o.__v=r.__v,o.__.__k[o.__i]=o,j$2(c,o,s),o.__e!=e&&C$1(o)),i$2.length>u&&i$2.sort(f$3));P.__r=0;}function S(n,l,u,t,i,o,r,f,e,c,s){var a,p,y,d,w,_=t&&t.__k||v$3,g=l.length;for(u.__d=e,$(u,l,_),e=u.__d,a=0;a<g;a++)null!=(y=u.__k[a])&&(p=-1===y.__i?h$2:_[y.__i]||h$2,y.__i=a,O(n,y,p,i,o,r,f,e,c,s),d=y.__e,y.ref&&p.ref!=y.ref&&(p.ref&&N$1(p.ref,null,y),s.push(y.ref,y.__c||d,y)),null==w&&null!=d&&(w=d),65536&y.__u||p.__k===y.__k?e=I(y,e,n):"function"==typeof y.type&&void 0!==y.__d?e=y.__d:d&&(e=d.nextSibling),y.__d=void 0,y.__u&=-196609);u.__d=e,u.__e=w;}function $(n,l,u){var t,i,o,r,f,e=l.length,c=u.length,s=c,a=0;for(n.__k=[],t=0;t<e;t++)null!=(i=l[t])&&"boolean"!=typeof i&&"function"!=typeof i?(r=t+a,(i=n.__k[t]="string"==typeof i||"number"==typeof i||"bigint"==typeof i||i.constructor==String?g$2(null,i,null,null,null):y$2(i)?g$2(b$1,{children:i},null,null,null):void 0===i.constructor&&i.__b>0?g$2(i.type,i.props,i.key,i.ref?i.ref:null,i.__v):i).__=n,i.__b=n.__b+1,o=null,-1!==(f=i.__i=L$1(i,u,r,s))&&(s--,(o=u[f])&&(o.__u|=131072)),null==o||null===o.__v?(-1==f&&a--,"function"!=typeof i.type&&(i.__u|=65536)):f!==r&&(f==r-1?a--:f==r+1?a++:(f>r?a--:a++,i.__u|=65536))):i=n.__k[t]=null;if(s)for(t=0;t<c;t++)null!=(o=u[t])&&0==(131072&o.__u)&&(o.__e==n.__d&&(n.__d=x$2(o)),V(o,o));}function I(n,l,u){var t,i;if("function"==typeof n.type){for(t=n.__k,i=0;t&&i<t.length;i++)t[i]&&(t[i].__=n,l=I(t[i],l,u));return l}n.__e!=l&&(l&&n.type&&!u.contains(l)&&(l=x$2(n)),u.insertBefore(n.__e,l||null),l=n.__e);do{l=l&&l.nextSibling;}while(null!=l&&8===l.nodeType);return l}function H$1(n,l){return l=l||[],null==n||"boolean"==typeof n||(y$2(n)?n.some(function(n){H$1(n,l);}):l.push(n)),l}function L$1(n,l,u,t){var i=n.key,o=n.type,r=u-1,f=u+1,e=l[u];if(null===e||e&&i==e.key&&o===e.type&&0==(131072&e.__u))return u;if(t>(null!=e&&0==(131072&e.__u)?1:0))for(;r>=0||f<l.length;){if(r>=0){if((e=l[r])&&0==(131072&e.__u)&&i==e.key&&o===e.type)return r;r--;}if(f<l.length){if((e=l[f])&&0==(131072&e.__u)&&i==e.key&&o===e.type)return f;f++;}}return -1}function T$2(n,l,u){"-"===l[0]?n.setProperty(l,null==u?"":u):n[l]=null==u?"":"number"!=typeof u||p$3.test(l)?u:u+"px";}function A$2(n,l,u,t,i){var o;n:if("style"===l)if("string"==typeof u)n.style.cssText=u;else {if("string"==typeof t&&(n.style.cssText=t=""),t)for(l in t)u&&l in u||T$2(n.style,l,"");if(u)for(l in u)t&&u[l]===t[l]||T$2(n.style,l,u[l]);}else if("o"===l[0]&&"n"===l[1])o=l!==(l=l.replace(/(PointerCapture)$|Capture$/i,"$1")),l=l.toLowerCase()in n||"onFocusOut"===l||"onFocusIn"===l?l.toLowerCase().slice(2):l.slice(2),n.l||(n.l={}),n.l[l+o]=u,u?t?u.u=t.u:(u.u=e$2,n.addEventListener(l,o?s$2:c$3,o)):n.removeEventListener(l,o?s$2:c$3,o);else {if("http://www.w3.org/2000/svg"==i)l=l.replace(/xlink(H|:h)/,"h").replace(/sName$/,"s");else if("width"!=l&&"height"!=l&&"href"!=l&&"list"!=l&&"form"!=l&&"tabIndex"!=l&&"download"!=l&&"rowSpan"!=l&&"colSpan"!=l&&"role"!=l&&"popover"!=l&&l in n)try{n[l]=null==u?"":u;break n}catch(n){}"function"==typeof u||(null==u||!1===u&&"-"!==l[4]?n.removeAttribute(l):n.setAttribute(l,"popover"==l&&1==u?"":u));}}function F$2(n){return function(u){if(this.l){var t=this.l[u.type+n];if(null==u.t)u.t=e$2++;else if(u.t<t.u)return;return t(l$2.event?l$2.event(u):u)}}}function O(n,u,t,i,o,r,f,e,c,s){var a,h,v,p,w,_,g,m,x,C,M,P,$,I,H,L,T=u.type;if(void 0!==u.constructor)return null;128&t.__u&&(c=!!(32&t.__u),r=[e=u.__e=t.__e]),(a=l$2.__b)&&a(u);n:if("function"==typeof T)try{if(m=u.props,x="prototype"in T&&T.prototype.render,C=(a=T.contextType)&&i[a.__c],M=a?C?C.props.value:a.__:i,t.__c?g=(h=u.__c=t.__c).__=h.__E:(x?u.__c=h=new T(m,M):(u.__c=h=new k$1(m,M),h.constructor=T,h.render=q),C&&C.sub(h),h.props=m,h.state||(h.state={}),h.context=M,h.__n=i,v=h.__d=!0,h.__h=[],h._sb=[]),x&&null==h.__s&&(h.__s=h.state),x&&null!=T.getDerivedStateFromProps&&(h.__s==h.state&&(h.__s=d$3({},h.__s)),d$3(h.__s,T.getDerivedStateFromProps(m,h.__s))),p=h.props,w=h.state,h.__v=u,v)x&&null==T.getDerivedStateFromProps&&null!=h.componentWillMount&&h.componentWillMount(),x&&null!=h.componentDidMount&&h.__h.push(h.componentDidMount);else {if(x&&null==T.getDerivedStateFromProps&&m!==p&&null!=h.componentWillReceiveProps&&h.componentWillReceiveProps(m,M),!h.__e&&(null!=h.shouldComponentUpdate&&!1===h.shouldComponentUpdate(m,h.__s,M)||u.__v===t.__v)){for(u.__v!==t.__v&&(h.props=m,h.state=h.__s,h.__d=!1),u.__e=t.__e,u.__k=t.__k,u.__k.some(function(n){n&&(n.__=u);}),P=0;P<h._sb.length;P++)h.__h.push(h._sb[P]);h._sb=[],h.__h.length&&f.push(h);break n}null!=h.componentWillUpdate&&h.componentWillUpdate(m,h.__s,M),x&&null!=h.componentDidUpdate&&h.__h.push(function(){h.componentDidUpdate(p,w,_);});}if(h.context=M,h.props=m,h.__P=n,h.__e=!1,$=l$2.__r,I=0,x){for(h.state=h.__s,h.__d=!1,$&&$(u),a=h.render(h.props,h.state,h.context),H=0;H<h._sb.length;H++)h.__h.push(h._sb[H]);h._sb=[];}else do{h.__d=!1,$&&$(u),a=h.render(h.props,h.state,h.context),h.state=h.__s;}while(h.__d&&++I<25);h.state=h.__s,null!=h.getChildContext&&(i=d$3(d$3({},i),h.getChildContext())),x&&!v&&null!=h.getSnapshotBeforeUpdate&&(_=h.getSnapshotBeforeUpdate(p,w)),S(n,y$2(L=null!=a&&a.type===b$1&&null==a.key?a.props.children:a)?L:[L],u,t,i,o,r,f,e,c,s),h.base=u.__e,u.__u&=-161,h.__h.length&&f.push(h),g&&(h.__E=h.__=null);}catch(n){if(u.__v=null,c||null!=r){for(u.__u|=c?160:32;e&&8===e.nodeType&&e.nextSibling;)e=e.nextSibling;r[r.indexOf(e)]=null,u.__e=e;}else u.__e=t.__e,u.__k=t.__k;l$2.__e(n,u,t);}else null==r&&u.__v===t.__v?(u.__k=t.__k,u.__e=t.__e):u.__e=z$2(t.__e,u,t,i,o,r,f,c,s);(a=l$2.diffed)&&a(u);}function j$2(n,u,t){u.__d=void 0;for(var i=0;i<t.length;i++)N$1(t[i],t[++i],t[++i]);l$2.__c&&l$2.__c(u,n),n.some(function(u){try{n=u.__h,u.__h=[],n.some(function(n){n.call(u);});}catch(n){l$2.__e(n,u.__v);}});}function z$2(u,t,i,o,r,f,e,c,s){var a,v,p,d,_,g,m,b=i.props,k=t.props,C=t.type;if("svg"===C?r="http://www.w3.org/2000/svg":"math"===C?r="http://www.w3.org/1998/Math/MathML":r||(r="http://www.w3.org/1999/xhtml"),null!=f)for(a=0;a<f.length;a++)if((_=f[a])&&"setAttribute"in _==!!C&&(C?_.localName===C:3===_.nodeType)){u=_,f[a]=null;break}if(null==u){if(null===C)return document.createTextNode(k);u=document.createElementNS(r,C,k.is&&k),c&&(l$2.__m&&l$2.__m(t,f),c=!1),f=null;}if(null===C)b===k||c&&u.data===k||(u.data=k);else {if(f=f&&n$1.call(u.childNodes),b=i.props||h$2,!c&&null!=f)for(b={},a=0;a<u.attributes.length;a++)b[(_=u.attributes[a]).name]=_.value;for(a in b)if(_=b[a],"children"==a);else if("dangerouslySetInnerHTML"==a)p=_;else if(!(a in k)){if("value"==a&&"defaultValue"in k||"checked"==a&&"defaultChecked"in k)continue;A$2(u,a,null,_,r);}for(a in k)_=k[a],"children"==a?d=_:"dangerouslySetInnerHTML"==a?v=_:"value"==a?g=_:"checked"==a?m=_:c&&"function"!=typeof _||b[a]===_||A$2(u,a,_,b[a],r);if(v)c||p&&(v.__html===p.__html||v.__html===u.innerHTML)||(u.innerHTML=v.__html),t.__k=[];else if(p&&(u.innerHTML=""),S(u,y$2(d)?d:[d],t,i,o,"foreignObject"===C?"http://www.w3.org/1999/xhtml":r,f,e,f?f[0]:i.__k&&x$2(i,0),c,s),null!=f)for(a=f.length;a--;)w$3(f[a]);c||(a="value","progress"===C&&null==g?u.removeAttribute("value"):void 0!==g&&(g!==u[a]||"progress"===C&&!g||"option"===C&&g!==b[a])&&A$2(u,a,g,b[a],r),a="checked",void 0!==m&&m!==u[a]&&A$2(u,a,m,b[a],r));}return u}function N$1(n,u,t){try{if("function"==typeof n){var i="function"==typeof n.__u;i&&n.__u(),i&&null==u||(n.__u=n(u));}else n.current=u;}catch(n){l$2.__e(n,t);}}function V(n,u,t){var i,o;if(l$2.unmount&&l$2.unmount(n),(i=n.ref)&&(i.current&&i.current!==n.__e||N$1(i,null,u)),null!=(i=n.__c)){if(i.componentWillUnmount)try{i.componentWillUnmount();}catch(n){l$2.__e(n,u);}i.base=i.__P=null;}if(i=n.__k)for(o=0;o<i.length;o++)i[o]&&V(i[o],u,t||"function"!=typeof n.type);t||w$3(n.__e),n.__c=n.__=n.__e=n.__d=void 0;}function q(n,l,u){return this.constructor(n,u)}function B$2(u,t,i){var o,r,f,e;l$2.__&&l$2.__(u,t),r=(o="function"==typeof i)?null:t.__k,f=[],e=[],O(t,u=(!o&&i||t).__k=_$2(b$1,null,[u]),r||h$2,h$2,t.namespaceURI,!o&&i?[i]:r?null:t.firstChild?n$1.call(t.childNodes):null,f,!o&&i?i:r?r.__e:t.firstChild,o,e),j$2(f,u,e);}function G$1(n,l){var u={__c:l="__cC"+a$2++,__:n,Consumer:function(n,l){return n.children(l)},Provider:function(n){var u,t;return this.getChildContext||(u=[],(t={})[l]=this,this.getChildContext=function(){return t},this.componentWillUnmount=function(){u=null;},this.shouldComponentUpdate=function(n){this.props.value!==n.value&&u.some(function(n){n.__e=!0,M$1(n);});},this.sub=function(n){u.push(n);var l=n.componentWillUnmount;n.componentWillUnmount=function(){u&&u.splice(u.indexOf(n),1),l&&l.call(n);};}),n.children}};return u.Provider.__=u.Consumer.contextType=u}n$1=v$3.slice,l$2={__e:function(n,l,u,t){for(var i,o,r;l=l.__;)if((i=l.__c)&&!i.__)try{if((o=i.constructor)&&null!=o.getDerivedStateFromError&&(i.setState(o.getDerivedStateFromError(n)),r=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),r=i.__d),r)return i.__E=i}catch(l){n=l;}throw n}},u$3=0,t$2=function(n){return null!=n&&null==n.constructor},k$1.prototype.setState=function(n,l){var u;u=null!=this.__s&&this.__s!==this.state?this.__s:this.__s=d$3({},this.state),"function"==typeof n&&(n=n(d$3({},u),this.props)),n&&d$3(u,n),null!=n&&this.__v&&(l&&this._sb.push(l),M$1(this));},k$1.prototype.forceUpdate=function(n){this.__v&&(this.__e=!0,n&&this.__h.push(n),M$1(this));},k$1.prototype.render=b$1,i$2=[],r$2="function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout,f$3=function(n,l){return n.__v.__b-l.__v.__b},P.__r=0,e$2=0,c$3=F$2(!1),s$2=F$2(!0),a$2=0;
 
 class Header extends Base {
     _columns;
@@ -453,6 +460,17 @@ class Header extends Base {
             }
         }
     }
+    populatePlugins(pluginManager, columns) {
+        // Populate the cell columns
+        for (const column of columns) {
+            if (column.plugin !== undefined) {
+                pluginManager.add({
+                    ...column.plugin,
+                    position: PluginPosition.Cell
+                });
+            }
+        }
+    }
     static isJsonPayload(data) {
         return !!data && data instanceof Array && typeof data[0] === 'object' && !(data[0] instanceof Array);
     }
@@ -461,7 +479,7 @@ class Header extends Base {
         for (const column of columns) {
             if (typeof column === 'string' || t$2(column)) {
                 header.columns.push({
-                    name: column,
+                    name: column
                 });
             }
             else if (typeof column === 'object') {
@@ -486,6 +504,7 @@ class Header extends Base {
         }
         if (header.columns.length) {
             header.setID();
+            header.populatePlugins(config.internal.plugin, header.columns);
             return header;
         }
         return undefined;
@@ -577,7 +596,7 @@ class MemoryStorage extends Storage {
         const data = await this.data();
         return {
             data: data,
-            total: data.length,
+            total: data.length
         };
     }
     set(data) {
@@ -610,12 +629,12 @@ class ServerStorage extends Storage {
         // `options` is the runtime config passed by the pipeline (e.g. search component)
         const opts = {
             ...this.options,
-            ...options,
+            ...options
         };
         const fetchParam = {
             url: opts.url,
             data: Utils.encodeFormData(opts.body || {}),
-            ...opts.param,
+            ...opts.param
         };
         // If `options.data` is provided, the current ServerStorage
         // implementation will be ignored and we let options.data to
@@ -633,7 +652,7 @@ class ServerStorage extends Storage {
             .then((res) => {
             return {
                 data: opts.processData ? opts.processData(res) : [],
-                total: typeof opts.total === 'function' ? opts.total(res) : 0,
+                total: typeof opts.total === 'function' ? opts.total(res) : 0
             };
         })
             .catch((error) => {
@@ -1317,14 +1336,14 @@ class StorageResponseToArrayTransformer extends Processor {
     async _process(storageResponse) {
         return {
             data: this.castData(storageResponse.data),
-            total: storageResponse.total,
+            total: storageResponse.total
         };
     }
 }
 
 function HTMLElement$1(props) {
     return _$2(props.parentElement || 'span', {
-        dangerouslySetInnerHTML: { __html: props.content },
+        dangerouslySetInnerHTML: { __html: props.content }
     });
 }
 
@@ -1467,7 +1486,7 @@ class PipelineUtils {
         const pipeline = new Pipeline();
         if (config.internal.storage instanceof ServerStorage) {
             pipeline.register(new ServerInitiator({
-                serverStorageOptions: config.options.server,
+                serverStorageOptions: config.options.server
             }));
         }
         pipeline.register(new StorageExtractor({ storage: config.internal.storage }));
@@ -1482,11 +1501,11 @@ var enUS = {
         previous: 'Previous',
         next: 'Next',
         ellipsis: '...',
-        page: (page) => `Page ${page}`,
+        page: (page) => `Page ${page}`
     },
     loading: 'Loading...',
     noRecordsFound: 'No matching records found',
-    error: 'An error happened while fetching the data',
+    error: 'An error happened while fetching the data'
 };
 
 class Translator {
@@ -1538,6 +1557,45 @@ class Translator {
     }
 }
 
+class PluginManager {
+    plugins;
+    constructor() {
+        this.plugins = [];
+    }
+    get(id) {
+        return this.plugins.find((p) => p.id === id);
+    }
+    add(plugin) {
+        if (!plugin.id) {
+            log$1.error('Plugin ID cannot be empty');
+            return this;
+        }
+        if (this.get(plugin.id)) {
+            log$1.error(`Duplicate plugin ID: ${plugin.id}`);
+            return this;
+        }
+        this.plugins.push(plugin);
+        return this;
+    }
+    remove(id) {
+        const plugin = this.get(id);
+        if (plugin) {
+            this.plugins.splice(this.plugins.indexOf(plugin), 1);
+        }
+        return this;
+    }
+    list(position) {
+        let plugins;
+        if (position != null || position != undefined) {
+            plugins = this.plugins.filter((p) => p.position === position);
+        }
+        else {
+            plugins = this.plugins;
+        }
+        return plugins.sort((a, b) => (a.order && b.order ? a.order - b.order : 1));
+    }
+}
+
 class Config {
     internalConfig = {};
     options = {};
@@ -1558,7 +1616,7 @@ class Config {
             return this;
         this.assign(Config.fromPartialOption({
             ...this.options,
-            ...partialOption,
+            ...partialOption
         }));
         this.assignInteral(Config.fromPartialConfig(this));
         return this;
@@ -1570,8 +1628,9 @@ class Config {
         return {
             state: new StateManager({
                 status: Status.Init,
-                tabular: null,
-            })
+                tabular: null
+            }),
+            plugin: new PluginManager()
         };
     }
     static defaultOption() {
@@ -1588,7 +1647,7 @@ class Config {
                 hideFirstOnEllipsisShow: false,
                 hideLastOnEllipsisShow: false,
                 autoHidePrevious: false,
-                autoHideNext: false,
+                autoHideNext: false
             },
             className: {
                 container: '',
@@ -1597,23 +1656,33 @@ class Config {
                 pageList: 'pages',
                 pageButton: 'page-item',
                 prevButton: 'page-prev',
-                nextButton: 'page-next',
-            },
+                nextButton: 'page-next'
+            }
         };
     }
     static fromPartialConfig(config) {
+        // Header
         config.assignInteral({
-            header: Header.createFromConfig(config),
+            header: Header.createFromConfig(config)
         });
+        // Storage
         config.assignInteral({
-            storage: StorageUtils.createFromConfig(config),
+            storage: StorageUtils.createFromConfig(config)
         });
+        // Pipeline
         config.assignInteral({
-            pipeline: PipelineUtils.createFromConfig(config),
+            pipeline: PipelineUtils.createFromConfig(config)
         });
+        // Translator
         config.assignInteral({
-            translator: new Translator(config.options.language),
+            translator: new Translator(config.options.language)
         });
+        // Clear existing plugins list to prevent duplicate errors
+        config.internal.plugin = new PluginManager();
+        // Additional plugins
+        if (config.options.plugins) {
+            config.options.plugins.forEach((p) => config.internal.plugin.add(p));
+        }
         return config.internal;
     }
     static fromPartialOption(partialOption) {
@@ -1622,6 +1691,8 @@ class Config {
     }
 }
 const ConfigContext = G$1(undefined);
+
+var f$2=0;function u$2(e,t,n,o,i,u){t||(t={});var a,c,l=t;"ref"in t&&(a=t.ref,delete t.ref);var p={type:e,props:l,key:n,ref:a,__k:null,__:null,__b:0,__e:null,__d:void 0,__c:null,constructor:void 0,__v:--f$2,__i:-1,__u:0,__source:i,__self:u};if("function"==typeof e&&(a=e.defaultProps))for(c in a)void 0===l[c]&&(l[c]=a[c]);return l$2.vnode&&l$2.vnode(p),p}
 
 function className(...args) {
     const prefix = 'paginatorjs';
@@ -1635,12 +1706,12 @@ function classJoin(...classNames) {
         .trim();
 }
 
-const PageButton = ({ page, isActive, onClick, option, lang, text }) => (_$2("button", { key: `page-${page}`, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), option.className.active) : '', option.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page) }, lang(`${page}`)));
-const EllipsisButton = ({ key, option, lang }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('spread'), option.className.pageButton, option.className.disable) }, lang('pagination.ellipsis')));
-const ActionButton = ({ key, onClick, option, text }) => (_$2("button", { key: key, tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton), title: text, "aria-label": text }, text));
-const ActionButtonDisabled = ({ key, option, text }) => (_$2("button", { key: key, tabIndex: -1, disabled: true, className: classJoin(className('disabled'), option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton, option.className.disable), title: text, "aria-label": text }, text));
+const PageButton = ({ page, isActive, onClick, option, lang, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), option.className.active) : '', option.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page), children: lang(`${page}`) }, `page-${page}`));
+const EllipsisButton = ({ key, option, lang }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('spread'), option.className.pageButton, option.className.disable), children: lang('pagination.ellipsis') }, key));
+const ActionButton = ({ key, onClick, option, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton), title: text, "aria-label": text, children: text }, key));
+const ActionButtonDisabled = ({ key, option, text }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('disabled'), option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton, option.className.disable), title: text, "aria-label": text, children: text }, key));
 
-var t$1,r$1,u$1,i$1,o=0,f$1=[],c$2=l$2,e$1=c$2.__b,a$1=c$2.__r,v$2=c$2.diffed,l$1=c$2.__c,m=c$2.unmount,s$1=c$2.__;function d$2(n,t){c$2.__h&&c$2.__h(r$1,n,o||t),o=0;var u=r$1.__H||(r$1.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function y$1(n,u){var i=d$2(t$1++,3);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__H.__h.push(i));}function _$1(n,u){var i=d$2(t$1++,4);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__h.push(i));}function A$1(n){return o=5,T$1(function(){return {current:n}},[])}function F$1(n,t,r){o=6,_$1(function(){return "function"==typeof n?(n(t()),function(){return n(null)}):n?(n.current=t(),function(){return n.current=null}):void 0},null==r?r:r.concat(n));}function T$1(n,r){var u=d$2(t$1++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function x$1(n){var u=r$1.context[n.__c],i=d$2(t$1++,9);return i.c=n,u?(null==i.__&&(i.__=!0,u.sub(r$1)),u.props.value):n.__}function j$1(){for(var n;n=f$1.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z$1),n.__H.__h.forEach(B$1),n.__H.__h=[];}catch(t){n.__H.__h=[],c$2.__e(t,n.__v);}}c$2.__b=function(n){r$1=null,e$1&&e$1(n);},c$2.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s$1&&s$1(n,t);},c$2.__r=function(n){a$1&&a$1(n),t$1=0;var i=(r$1=n.__c).__H;i&&(u$1===r$1?(i.__h=[],r$1.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.i=n.__N=void 0;})):(i.__h.forEach(z$1),i.__h.forEach(B$1),i.__h=[],t$1=0)),u$1=r$1;},c$2.diffed=function(n){v$2&&v$2(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f$1.push(t)&&i$1===c$2.requestAnimationFrame||((i$1=c$2.requestAnimationFrame)||w$2)(j$1)),t.__H.__.forEach(function(n){n.i&&(n.__H=n.i),n.i=void 0;})),u$1=r$1=null;},c$2.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z$1),n.__h=n.__h.filter(function(n){return !n.__||B$1(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c$2.__e(r,n.__v);}}),l$1&&l$1(n,t);},c$2.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z$1(n);}catch(n){t=n;}}),r.__H=void 0,t&&c$2.__e(t,r.__v));};var k="function"==typeof requestAnimationFrame;function w$2(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,100);k&&(t=requestAnimationFrame(r));}function z$1(n){var t=r$1,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r$1=t;}function B$1(n){var t=r$1;n.__c=n.__(),r$1=t;}function C(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}
+var t$1,r$1,u$1,i$1,o=0,f$1=[],c$2=l$2,e$1=c$2.__b,a$1=c$2.__r,v$2=c$2.diffed,l$1=c$2.__c,m=c$2.unmount,s$1=c$2.__;function d$2(n,t){c$2.__h&&c$2.__h(r$1,n,o||t),o=0;var u=r$1.__H||(r$1.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function h$1(n){return o=1,p$2(D$1,n)}function p$2(n,u,i){var o=d$2(t$1++,2);if(o.t=n,!o.__c&&(o.__=[i?i(u):D$1(void 0,u),function(n){var t=o.__N?o.__N[0]:o.__[0],r=o.t(t,n);t!==r&&(o.__N=[r,o.__[1]],o.__c.setState({}));}],o.__c=r$1,!r$1.u)){var f=function(n,t,r){if(!o.__c.__H)return !0;var u=o.__c.__H.__.filter(function(n){return !!n.__c});if(u.every(function(n){return !n.__N}))return !c||c.call(this,n,t,r);var i=!1;return u.forEach(function(n){if(n.__N){var t=n.__[0];n.__=n.__N,n.__N=void 0,t!==n.__[0]&&(i=!0);}}),!(!i&&o.__c.props===n)&&(!c||c.call(this,n,t,r))};r$1.u=!0;var c=r$1.shouldComponentUpdate,e=r$1.componentWillUpdate;r$1.componentWillUpdate=function(n,t,r){if(this.__e){var u=c;c=void 0,f(n,t,r),c=u;}e&&e.call(this,n,t,r);},r$1.shouldComponentUpdate=f;}return o.__N||o.__}function y$1(n,u){var i=d$2(t$1++,3);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__H.__h.push(i));}function _$1(n,u){var i=d$2(t$1++,4);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__h.push(i));}function A$1(n){return o=5,T$1(function(){return {current:n}},[])}function F$1(n,t,r){o=6,_$1(function(){return "function"==typeof n?(n(t()),function(){return n(null)}):n?(n.current=t(),function(){return n.current=null}):void 0},null==r?r:r.concat(n));}function T$1(n,r){var u=d$2(t$1++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function x$1(n){var u=r$1.context[n.__c],i=d$2(t$1++,9);return i.c=n,u?(null==i.__&&(i.__=!0,u.sub(r$1)),u.props.value):n.__}function j$1(){for(var n;n=f$1.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z$1),n.__H.__h.forEach(B$1),n.__H.__h=[];}catch(t){n.__H.__h=[],c$2.__e(t,n.__v);}}c$2.__b=function(n){r$1=null,e$1&&e$1(n);},c$2.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s$1&&s$1(n,t);},c$2.__r=function(n){a$1&&a$1(n),t$1=0;var i=(r$1=n.__c).__H;i&&(u$1===r$1?(i.__h=[],r$1.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.i=n.__N=void 0;})):(i.__h.forEach(z$1),i.__h.forEach(B$1),i.__h=[],t$1=0)),u$1=r$1;},c$2.diffed=function(n){v$2&&v$2(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f$1.push(t)&&i$1===c$2.requestAnimationFrame||((i$1=c$2.requestAnimationFrame)||w$2)(j$1)),t.__H.__.forEach(function(n){n.i&&(n.__H=n.i),n.i=void 0;})),u$1=r$1=null;},c$2.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z$1),n.__h=n.__h.filter(function(n){return !n.__||B$1(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c$2.__e(r,n.__v);}}),l$1&&l$1(n,t);},c$2.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z$1(n);}catch(n){t=n;}}),r.__H=void 0,t&&c$2.__e(t,r.__v));};var k="function"==typeof requestAnimationFrame;function w$2(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,100);k&&(t=requestAnimationFrame(r));}function z$1(n){var t=r$1,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r$1=t;}function B$1(n){var t=r$1;n.__c=n.__(),r$1=t;}function C(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}function D$1(n,t){return "function"==typeof t?t(n):t}
 
 const useOption = () => {
     const context = x$1(ConfigContext);
@@ -1698,7 +1769,7 @@ class ServerPaginationLimit extends Processor {
         }
         return {
             ...options,
-            ...updates,
+            ...updates
         };
     }
 }
@@ -1724,7 +1795,7 @@ const usePagination = (option, initialPage) => {
                 limit: pageSize,
                 page: currentPage.value,
                 url: server.pageUrl,
-                body: server.pageBody,
+                body: server.pageBody
             });
             config.pipeline.on('afterProcess', (storage) => {
                 if (storage && storage instanceof Tabular) {
@@ -1735,7 +1806,7 @@ const usePagination = (option, initialPage) => {
         else {
             processor.current = new PaginationLimit({
                 limit: pageSize,
-                page: currentPage.value,
+                page: currentPage.value
             });
             // Pagination (all Limit processors) is the last step in the pipeline
             // and we assume that at this stage, we have the rows that we care about.
@@ -1797,7 +1868,7 @@ const usePagination = (option, initialPage) => {
         setPage,
         goPage,
         getTotalPage,
-        pageRange,
+        pageRange
     };
 };
 
@@ -1812,7 +1883,7 @@ const PageRenderer = w((_, ref) => {
     F$1(ref, () => ({
         setPage,
         currentPage: currentPage.value,
-        totalPage: getTotalPage(),
+        totalPage: getTotalPage()
     }));
     const renderPageNumbers = () => {
         const totalPage = getTotalPage(); // Calculate the total number of pages
@@ -1839,46 +1910,43 @@ const PageRenderer = w((_, ref) => {
         // If pageRange is 0, iterate through all pages and push buttons for each page
         if (pageRange === 0) {
             for (let i = 1; i <= totalPage; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang, text: lang('pagination.page', i + 1) }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang, text: lang('pagination.page', i + 1) }));
             }
             return pagerNumbers;
         }
         // If range start is close to the beginning, render pages directly
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
             }
         }
         else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
-                pagerNumbers.push(_$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), option: option, lang: lang }));
             }
-            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-start', option: option, lang: lang }));
+            pagerNumbers.push(u$2(EllipsisButton, { option: option, lang: lang }, 'ellipsis-start'));
         }
         // Loop through the calculated range to render page buttons
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            pagerNumbers.push(_$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang }));
+            pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang }));
         }
         // If the range end is near the last pages, render remaining pages
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
-                pagerNumbers.push(_$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
             }
         }
         else {
             // Render ellipsis and optionally the last page if range end is far
-            pagerNumbers.push(_$2(EllipsisButton, { key: 'ellipsis-end', option: option, lang: lang }));
+            pagerNumbers.push(u$2(EllipsisButton, { option: option, lang: lang }, 'ellipsis-end'));
             if (!display.hideLastOnEllipsisShow) {
-                pagerNumbers.push(_$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), option: option, lang: lang }));
             }
         }
         return pagerNumbers;
     };
-    return (_$2("div", { className: classJoin(className(option.className.pageList || '')) },
-        display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (_$2(ActionButtonDisabled, { key: "prev", option: option, text: lang('pagination.previous') }))) : (_$2(ActionButton, { key: "prev", onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') })),
-        display.showPageNumbers && renderPageNumbers(),
-        display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (_$2(ActionButtonDisabled, { key: "next", option: option, text: lang('pagination.next') }))) : (_$2(ActionButton, { key: "next", onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }))));
+    return (u$2("div", { className: classJoin(className(option.className.pageList || '')), children: [display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.previous') }, "prev"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') }, "prev")), display.showPageNumbers && renderPageNumbers(), display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.next') }, "next"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }, "next"))] }));
 });
 
 function useStore() {
@@ -1939,7 +2007,7 @@ const SetStatusToRendered = () => (state) => {
     if (state.status === Status.Loaded) {
         return {
             ...state,
-            status: Status.Rendered,
+            status: Status.Rendered
         };
     }
     return state;
@@ -1947,7 +2015,7 @@ const SetStatusToRendered = () => (state) => {
 const SetLoadingData = () => (state) => {
     return {
         ...state,
-        status: Status.Loading,
+        status: Status.Loading
     };
 };
 const SetData = (data) => (state) => {
@@ -1956,20 +2024,20 @@ const SetData = (data) => (state) => {
     return {
         ...state,
         tabular: data,
-        status: Status.Loaded,
+        status: Status.Loaded
     };
 };
 const SetDataErrored = () => (state) => {
     return {
         ...state,
         tabular: null,
-        status: Status.Error,
+        status: Status.Error
     };
 };
 const SetHeader = (header) => (state) => {
     return {
         ...state,
-        header: header,
+        header: header
     };
 };
 
@@ -2044,8 +2112,7 @@ function Container() {
             config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
-    return (_$2("div", { ref: containerRef, className: classJoin(className('pagination'), option.className.container) },
-        _$2(PageRenderer, { ref: pageRendererRef })));
+    return (u$2("div", { ref: containerRef, className: classJoin(className('pagination'), option.className.container), children: u$2(PageRenderer, { ref: pageRendererRef }) }));
 }
 
 class EventEmitter {
@@ -2223,11 +2290,13 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.4';
+    static version = '2.2.5';
     config;
+    plugin;
     constructor(config) {
         super();
         this.config = new Config().assignInteral({ instance: this, eventEmitter: this }).update(config);
+        this.plugin = this.config.internal.plugin;
     }
     get version() {
         return Paginator.version;
@@ -2271,9 +2340,17 @@ class Paginator extends EventEmitter {
     createElement() {
         return _$2(ConfigContext.Provider, {
             value: this.config,
-            children: _$2(Container, {}),
+            children: _$2(Container, {})
         });
     }
 }
 
-export { Paginator, _$2 as h, html };
+class Hook {
+    static useStore = useStore;
+    static useSelector = useSelector;
+    static useConfig = useConfig;
+    static useOption = useOption;
+    static useTranslator = useTranslator;
+}
+
+export { k$1 as Component, Hook as Hooks, Paginator, PluginPosition, className, _$2 as createElement, m$1 as createRef, _$2 as h, html, y$1 as useEffect, A$1 as useRef, h$1 as useState };

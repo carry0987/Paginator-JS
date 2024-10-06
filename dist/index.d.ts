@@ -1,7 +1,9 @@
-import { ComponentChild, VNode } from 'preact';
-export { h } from 'preact';
+import { ComponentChild, FunctionComponent, VNode } from 'preact';
+export { Component, createElement, createRef, h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
+import { Pipeline } from '@carry0987/pipeline';
+export { useEffect, useRef, useState } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -26,10 +28,12 @@ interface InternalEvents {
  */
 type PaginatorEvents = PageEvents & InternalEvents;
 
+type ID = string;
 /**
  * Table cell types
  */
 type OneDArray<T> = T[];
+type TwoDArray<T> = T[][];
 type TCell = number | string | boolean | ComponentChild | HTMLElement;
 type TDataArrayRow = OneDArray<TCell>;
 type TDataArray = OneDArray<TDataArrayRow>;
@@ -57,6 +61,19 @@ interface ServerStorageOptions {
     pageBody?: (prevBody: BodyInit, page: number, limit: number) => BodyInit;
 }
 
+declare enum PluginPosition {
+    Header = 0,
+    Footer = 1,
+    Cell = 2
+}
+
+interface Plugin<T extends FunctionComponent> {
+    id: string;
+    position: PluginPosition;
+    component: T;
+    order?: number;
+}
+
 type MessageFormat = (...args: any[]) => string;
 type Message = string | MessageFormat;
 type Language = {
@@ -68,6 +85,7 @@ interface TColumn {
     data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
     name?: string | ComponentChild;
     hidden?: boolean;
+    plugin?: Plugin<any>;
 }
 
 interface MainOptions {
@@ -76,6 +94,7 @@ interface MainOptions {
     columns: OneDArray<TColumn | string | ComponentChild>;
     server?: ServerStorageOptions;
     language: Language;
+    plugins?: Plugin<any>[];
 }
 interface CommonOptions {
     pageNumber: number;
@@ -109,9 +128,19 @@ interface Options extends MainOptions, CommonOptions {
     className: Partial<ClassName>;
 }
 
+declare class PluginManager {
+    private readonly plugins;
+    constructor();
+    get<T extends FunctionComponent>(id: string): Plugin<T> | undefined;
+    add<T extends FunctionComponent<any>>(plugin: Plugin<T>): this;
+    remove(id: string): this;
+    list<T extends FunctionComponent>(position?: PluginPosition): Plugin<T>[];
+}
+
 declare class Paginator extends EventEmitter<PaginatorEvents> {
     private static version;
     private config;
+    plugin: PluginManager;
     constructor(config: Partial<Options>);
     get version(): string;
     updateConfig(config: Partial<Options>): this;
@@ -121,6 +150,197 @@ declare class Paginator extends EventEmitter<PaginatorEvents> {
     private createElement;
 }
 
+declare class StateManager<S = Record<string, unknown>> {
+    private state;
+    private listeners;
+    private isDispatching;
+    constructor(initialState: S);
+    getState: () => S;
+    getListeners: () => ((current?: S, prev?: S) => void)[];
+    dispatch: (reducer: (state: S) => S) => S;
+    subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
+}
+
+declare class Base {
+    private readonly _id;
+    constructor(id?: ID);
+    get id(): ID;
+}
+
+declare class Cell extends Base {
+    data: number | string | boolean | ComponentChild;
+    constructor(data: TCell);
+    private cast;
+    /**
+     * Updates the Cell's data
+     *
+     * @param data
+     */
+    update(data: TCell): Cell;
+}
+
+declare class Row extends Base {
+    private _cells;
+    constructor(cells?: Cell[]);
+    cell(index: number): Cell;
+    get cells(): Cell[];
+    set cells(cells: Cell[]);
+    toArray(): TCell[];
+    /**
+     * Creates a new Row from an array of Cell(s)
+     * This method generates a new ID for the Row and all nested elements
+     *
+     * @param cells
+     * @returns Row
+     */
+    static fromCells(cells: Cell[]): Row;
+    get length(): number;
+}
+
+declare class Tabular extends Base {
+    private _rows;
+    private _length;
+    constructor(rows?: Row[] | Row);
+    get data(): Row[];
+    set data(rows: Row[]);
+    get length(): number;
+    set length(len: number);
+    toArray(): TCell[][];
+    /**
+     * Creates a new Tabular from an array of Row(s)
+     * This method generates a new ID for the Tabular and all nested elements
+     *
+     * @param rows
+     * @returns Tabular
+     */
+    static fromRows(rows: Row[]): Tabular;
+    /**
+     * Creates a new Tabular from a 2D array
+     * This method generates a new ID for the Tabular and all nested elements
+     *
+     * @param data
+     * @returns Tabular
+     */
+    static fromArray<T extends TCell>(data: OneDArray<T> | TwoDArray<T>): Tabular;
+}
+
+declare enum Status {
+    Init = 0,
+    Loading = 1,
+    Loaded = 2,
+    Rendered = 3,
+    Error = 4
+}
+
+interface State {
+    status: Status;
+    tabular: Tabular | null;
+    [key: string]: any;
+}
+
+declare function useStore(): StateManager<State>;
+
+declare function useSelector<T>(selector: (state: State) => T): T;
+
+declare class Config {
+    private internalConfig;
+    options: Options;
+    constructor();
+    assign(partialOption: Partial<Options>): this;
+    assignInteral(partialConfig: Partial<InternalConfig>): this;
+    update(partialOption: Partial<Options>): this;
+    get internal(): InternalConfig;
+    private static defaultConfig;
+    private static defaultOption;
+    private static fromPartialConfig;
+    private static fromPartialOption;
+}
+
+declare class Header extends Base {
+    private _columns;
+    constructor();
+    get columns(): OneDArray<TColumn>;
+    set columns(columns: OneDArray<TColumn>);
+    get visibleColumns(): OneDArray<TColumn>;
+    private setID;
+    private populatePlugins;
+    private static isJsonPayload;
+    private static fromColumns;
+    static createFromConfig(config: Config): Header | undefined;
+    /**
+     * Returns an array of leaf columns (last columns in the tree)
+     *
+     * @param columns
+     */
+    static leafColumns(columns: OneDArray<TColumn>): OneDArray<TColumn>;
+}
+
+declare enum ProcessorType {
+    Initiator = 0,
+    ServerLimit = 1,
+    Extractor = 2,
+    Transformer = 3,
+    Limit = 4
+}
+
+/**
+ * Base Storage class. All storage implementation must inherit this class
+ */
+declare abstract class Storage<I> {
+    /**
+     * Returns all rows based on ...args
+     *
+     * @param args
+     */
+    abstract get(...args: any[]): Promise<StorageResponse>;
+    /**
+     * To set all rows
+     *
+     * @param data
+     */
+    set?(data: I | ((...args: any[]) => void)): this;
+}
+
+declare class Translator {
+    private readonly _language;
+    private readonly _defaultLanguage;
+    constructor(language: Language);
+    /**
+     * Tries to split the message with "." and find
+     * the key in the given language
+     *
+     * @param message
+     * @param lang
+     */
+    private getString;
+    translate(message: string, ...args: any[]): string;
+}
+
+interface InternalConfig {
+    instance: Paginator;
+    state: StateManager<State>;
+    eventEmitter: EventEmitter<PaginatorEvents>;
+    storage: Storage<any>;
+    pipeline: Pipeline<Tabular | ServerStorageOptions, ProcessorType>;
+    header?: Header;
+    translator: Translator;
+    plugin: PluginManager;
+}
+
+declare const useConfig: () => InternalConfig;
+
+declare const useOption: () => Options;
+
+declare function useTranslator(): (message: string, ...args: any[]) => string;
+
+declare class Hook {
+    static useStore: typeof useStore;
+    static useSelector: typeof useSelector;
+    static useConfig: typeof useConfig;
+    static useOption: typeof useOption;
+    static useTranslator: typeof useTranslator;
+}
+
 interface HTMLContentProps {
     content: string;
     parentElement?: string;
@@ -128,4 +348,6 @@ interface HTMLContentProps {
 
 declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
 
-export { type Options, Paginator, html };
+declare function className(...args: string[]): string;
+
+export { Hook as Hooks, type Options, Paginator, PluginPosition, className, html };
