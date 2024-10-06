@@ -7,7 +7,7 @@ import { Instance } from '@/interface/instance';
 import PluginManager from '@/plugin/pluginManager';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { h, render as renderVNode, VNode } from 'preact';
-import '@/style/paginator.css';
+import '@/theme/paginator.scss';
 
 class Paginator extends EventEmitter<PaginatorEvents> {
     private static version: string = '__version__';

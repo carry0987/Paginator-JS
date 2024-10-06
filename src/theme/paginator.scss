@@ -1,0 +1,86 @@
+:root {
+    --paginatorjs-button-border: #d2d6dc;
+    --paginatorjs-button-background: #fff;
+    --paginatorjs-button-color: #3d4044;
+    --paginatorjs-button-disabled-background: #fff;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #f7f7f7;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paginatorjs-button-border: #353e4d;
+        --paginatorjs-button-background: #202938;
+        --paginatorjs-button-color: #d5d6db;
+        --paginatorjs-button-disabled-background: #202938;
+        --paginatorjs-button-disabled-color: #6b7280;
+        --paginatorjs-button-current-background: #2d3747;
+    }
+}
+
+html[data-theme='dark'] {
+    --paginatorjs-button-border: #353e4d;
+    --paginatorjs-button-background: #202938;
+    --paginatorjs-button-color: #d5d6db;
+    --paginatorjs-button-disabled-background: #202938;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #2d3747;
+}
+
+.paginatorjs {
+    *,
+    :after,
+    :before {
+        box-sizing: border-box;
+    }
+
+    &-pagination {
+        display: flex;
+        color: var(--paginatorjs-button-color);
+        width: 100%;
+        line-height: 1.6;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+
+        button,
+        .paginatorjs-pages button {
+            margin: 0;
+            color: inherit;
+            border: 1px solid var(--paginatorjs-button-border);
+            border-right: none;
+            outline: none;
+            padding: 5px 14px;
+            background-color: var(--paginatorjs-button-background);
+            background-image: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .paginatorjs-pages {
+            button:disabled,
+            button:hover:disabled,
+            button[disabled] {
+                background-color: var(--paginatorjs-button-disabled-background);
+                color: var(--paginatorjs-button-disabled-color);
+                cursor: default;
+            }
+
+            button:first-child {
+                border-bottom-left-radius: 6px;
+                border-top-left-radius: 6px;
+            }
+
+            button.paginatorjs-currentPage {
+                background-color: var(--paginatorjs-button-current-background);
+                font-weight: 700;
+            }
+
+            button:last-child {
+                border-bottom-right-radius: 6px;
+                border-right: 1px solid var(--paginatorjs-button-border);
+                border-top-right-radius: 6px;
+            }
+        }
+    }
+}

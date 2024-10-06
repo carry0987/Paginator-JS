@@ -70,7 +70,7 @@ const dtsConfig = {
         file: pkg.exports['.']['types'],
         format: 'es'
     },
-    external: [/\.css$/u],
+    external: [/\.scss$/u],
     plugins: [
         tsConfigPaths(),
         dts(),
