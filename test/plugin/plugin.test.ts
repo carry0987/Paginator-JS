@@ -132,7 +132,7 @@ describe('Plugin', () => {
             data: [[1, 2, 3]]
         }) as DummyConfig;
 
-        config.dummy = {
+        config.options.dummy = {
             text: 'dummyplugin'
         };
 
