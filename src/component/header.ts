@@ -3,6 +3,8 @@ import { Config } from './config';
 import { OneDArray, TData } from '@/type/types';
 import { TColumn } from '@/interface/column';
 import { camelCase } from '@/module/utils/string';
+import PluginManager from '@/plugin/pluginManager';
+import { PluginPosition } from '@/type/plugin';
 import log from '@/module/utils/log';
 import { ComponentChild, isValidElement } from 'preact';
 
@@ -40,6 +42,18 @@ class Header extends Base {
                 log.error(
                     'Could not find a valid ID for one of the columns. Make sure a valid "id" is set for all columns.'
                 );
+            }
+        }
+    }
+
+    private populatePlugins(pluginManager: PluginManager, columns: OneDArray<TColumn>): void {
+        // Populate the cell columns
+        for (const column of columns) {
+            if (column.plugin !== undefined) {
+                pluginManager.add({
+                    ...column.plugin,
+                    position: PluginPosition.Cell
+                });
             }
         }
     }
@@ -82,6 +96,7 @@ class Header extends Base {
 
         if (header.columns.length) {
             header.setID();
+            header.populatePlugins(config.internal.plugin, header.columns);
             return header;
         }
 
