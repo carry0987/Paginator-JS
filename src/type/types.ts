@@ -5,15 +5,6 @@ export type CSSDeclaration = {
     [key: string]: string | number;
 };
 
-// Container status
-export enum Status {
-    Init,
-    Loading,
-    Loaded,
-    Rendered,
-    Error
-}
-
 /**
  * Table cell types
  */

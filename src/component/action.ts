@@ -1,5 +1,5 @@
 import Header from './header';
-import { Status } from '@/type/types';
+import { Status } from '@/type/status';
 import { State } from '@/interface/state';
 
 export const SetStatusToRendered = () => (state: State) => {

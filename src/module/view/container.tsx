@@ -1,6 +1,6 @@
 import { PageRenderer } from './pageRenderer';
 import { PageRendererProps } from '@/interface/view';
-import { Status } from '@/type/types';
+import { Status } from '@/type/status';
 import { useConfig } from '@/module/hook/useConfig';
 import { useOption } from '@/module/hook/useOption';
 import { useStore } from '@/module/hook/useStore';

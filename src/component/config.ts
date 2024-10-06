@@ -1,5 +1,5 @@
 import Header from './header';
-import { Status } from '@/type/types';
+import { Status } from '@/type/status';
 import { Options } from '@/interface/options';
 import { InternalConfig } from '@/interface/internalConfig';
 import { State } from '@/interface/state';
