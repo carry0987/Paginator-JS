@@ -1,5 +1,6 @@
 import { Config, ConfigContext } from './config';
 import { Container } from '@/module/view/container';
+import { PluginContainer } from '@/module/view/plugin/pluginContainer';
 import log from '@/module/utils/log';
 import { PaginatorEvents } from '@/type/events';
 import { Options } from '@/interface/options';
@@ -43,6 +44,11 @@ class Paginator extends EventEmitter<PaginatorEvents> {
         // Recreate the Paginator instance
         renderVNode(this.createElement(), this.config.options.container);
 
+        // Render plugin container as well
+        if (this.config.options.pluginContainer) {
+            renderVNode(this.createPluginElement(), this.config.options.pluginContainer);
+        }
+
         return this;
     }
 
@@ -53,6 +59,11 @@ class Paginator extends EventEmitter<PaginatorEvents> {
             return log.error('Container is empty. Make sure you call render() before destroy()', true);
         }
         renderVNode(null, this.config.options.container);
+
+        // Destroy plugin container as well
+        if (this.config.options.pluginContainer) {
+            renderVNode(null, this.config.options.pluginContainer);
+        }
     }
 
     public render(container: Element): this {
@@ -70,7 +81,19 @@ class Paginator extends EventEmitter<PaginatorEvents> {
         this.config.options.container = container;
         renderVNode(this.createElement(), container);
 
+        // Render plugin container as well
+        if (this.config.options.pluginContainer) {
+            renderVNode(this.createPluginElement(), this.config.options.pluginContainer);
+        }
+
         return this;
+    }
+
+    private createPluginElement(): VNode<Instance> {
+        return h<Instance>(ConfigContext.Provider, {
+            value: this.config,
+            children: h(PluginContainer, {})
+        });
     }
 
     private createElement(): VNode<Instance> {

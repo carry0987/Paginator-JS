@@ -11,6 +11,10 @@ interface MainOptions {
     columns: OneDArray<TColumn | string | ComponentChild>;
     server?: ServerStorageOptions;
     language: Language;
+}
+
+interface PluginOptions {
+    pluginContainer?: Element;
     plugins?: Plugin<any>[];
 }
 
@@ -44,7 +48,7 @@ interface ClassName {
     nextButton: string;
 }
 
-export interface Options extends MainOptions, CommonOptions {
+export interface Options extends MainOptions, CommonOptions, PluginOptions {
     display: Partial<DisplayControls>;
     className: Partial<ClassName>;
 }

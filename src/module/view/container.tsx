@@ -9,9 +9,9 @@ import { throttle } from '@/module/utils/throttle';
 import { classJoin, className } from '@/module/utils/className';
 import log from '@/module/utils/log';
 import * as actions from '@/component/action';
-import { createRef, h } from 'preact';
-import { useEffect, useRef } from 'preact/hooks';
 import Tabular from '@/component/tabular';
+import { useEffect, useRef } from 'preact/hooks';
+import { createRef } from 'preact';
 
 export function Container() {
     const config = useConfig();
