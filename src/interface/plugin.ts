@@ -1,4 +1,4 @@
-import { PluginPosition } from '@/type/plugin';
+import { PluginPosition } from '@/plugin/pluginPosition';
 import { FunctionComponent } from 'preact';
 
 export interface Plugin<T extends FunctionComponent> {

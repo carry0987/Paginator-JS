@@ -3,7 +3,7 @@ import Hook from '@/component/hook';
 import { html } from '@/module/utils/html';
 import { className } from '@/module/utils/className';
 import { Options } from '@/interface/options';
-import { PluginPosition } from '@/type/plugin';
+import { PluginPosition } from '@/plugin/pluginPosition';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { h, createElement, Component, createRef } from 'preact';
 

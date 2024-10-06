@@ -2,7 +2,7 @@ import { Config, ConfigContext } from '../../src/component/config';
 import { useOption } from '../../src/module/hook/useOption';
 import PluginManager from '../../src/plugin/pluginManager';
 import { PluginRenderer } from '../../src/plugin/pluginRenderer';
-import { PluginPosition } from '../../src/type/plugin';
+import { PluginPosition } from '../../src/plugin/pluginPosition';
 import { describe, it, expect } from 'vitest';
 import { Fragment, h, render } from 'preact';
 

@@ -4,7 +4,7 @@ import { OneDArray, TData } from '@/type/types';
 import { TColumn } from '@/interface/column';
 import { camelCase } from '@/module/utils/string';
 import PluginManager from '@/plugin/pluginManager';
-import { PluginPosition } from '@/type/plugin';
+import { PluginPosition } from '@/plugin/pluginPosition';
 import log from '@/module/utils/log';
 import { ComponentChild, isValidElement } from 'preact';
 

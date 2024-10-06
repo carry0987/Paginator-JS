@@ -1,4 +1,4 @@
-import { PluginPosition } from '@/type/plugin';
+import { PluginPosition } from '@/plugin/pluginPosition';
 import { useConfig } from '@/module/hook/useConfig';
 import { h, Fragment } from 'preact';
 
