@@ -58,7 +58,9 @@ describe('Header Class', () => {
     it('should create header from config with columns', () => {
         const config = new Config().update({
             data: [[1, 2]],
-            options: { columns: ['User', 'Email'] },
+            columns: ['User', 'Email']
+        });
+        config.update({
             columns: ['User', 'Email']
         });
         const header = Header.createFromConfig(config);
@@ -70,8 +72,10 @@ describe('Header Class', () => {
     it('should create header from config with JSON data', () => {
         config = new Config().update({
             data: [[1, 2]],
-            options: { data: [[{ User: 'John', Email: 'john@example.com' }]] as TData[] },
             columns: ['User', 'Email']
+        });
+        config.update({
+            data: [[{ User: 'John', Email: 'john@example.com' }]]
         });
         const header = Header.createFromConfig(config);
 
