@@ -20,11 +20,11 @@
     "./theme/paginator.min.css": "./dist/theme/paginator.min.css"
   },
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
     "format": "prettier --write \"src/**/*.{ts,tsx}\" \"test/**/*.ts\" \"l10n/**/*.ts\"",
     "start": "rollup --config rollup.config.ts --configPlugin typescript",
-    "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production"
+    "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "files": [
     "dist/*",
