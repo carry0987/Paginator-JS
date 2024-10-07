@@ -1,6 +1,6 @@
 import Header from '../../src/component/header';
 import { Config } from '../../src/component/config';
-import { OneDArray, TData } from '../../src/type/types';
+import { OneDArray } from '../../src/type/types';
 import { TColumn } from '../../src/interface/column';
 import { describe, it, expect, beforeEach } from 'vitest';
 
