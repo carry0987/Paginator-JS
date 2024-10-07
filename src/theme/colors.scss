@@ -1,0 +1,43 @@
+$white: #fff;
+$black: #000;
+
+$gray1: #f9fafb;
+$gray2: #f7f7f7;
+$gray3: #e5e7eb;
+$gray4: #d2d6dc;
+$gray5: #6b7280;
+$gray6: #3d4044;
+
+$darkBlue1: rgb(60, 66, 87);
+
+$blue1: #9bc2f7;
+$blue2: #ebf5ff;
+
+:root {
+    --paginatorjs-button-border: #d2d6dc;
+    --paginatorjs-button-background: #fff;
+    --paginatorjs-button-color: #3d4044;
+    --paginatorjs-button-disabled-background: #fff;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #f7f7f7;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paginatorjs-button-border: #353e4d;
+        --paginatorjs-button-background: #202938;
+        --paginatorjs-button-color: #d5d6db;
+        --paginatorjs-button-disabled-background: #202938;
+        --paginatorjs-button-disabled-color: #6b7280;
+        --paginatorjs-button-current-background: #2d3747;
+    }
+}
+
+html[data-theme='dark'] {
+    --paginatorjs-button-border: #353e4d;
+    --paginatorjs-button-background: #202938;
+    --paginatorjs-button-color: #d5d6db;
+    --paginatorjs-button-disabled-background: #202938;
+    --paginatorjs-button-disabled-color: #6b7280;
+    --paginatorjs-button-current-background: #2d3747;
+}
