@@ -54,6 +54,7 @@ const sidebars: SidebarsConfig = {
                     items: [
                         'plugins/demo',
                         'plugins/writing-plugin',
+                        'plugins/advanced-plugin',
                     ],
                 },
             ],

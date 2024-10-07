@@ -34,6 +34,11 @@ const withLiveEditor = (Component: typeof CodeBlock) => {
         }
 
         if (hasPaginatorMeta(props)) {
+            let containerId = 'plugin-container';
+            if (hasPaginatorMeta(props, 'tmp')) {
+                containerId = `plugin-container-tmp`;
+            }
+
             return (
                 <Playground
                     scope={ReactLiveScope}
@@ -45,22 +50,27 @@ const withLiveEditor = (Component: typeof CodeBlock) => {
 
                                 const wrapperRef = useRef(null);
                                 const pluginWrapperRef = useRef(null);
+                                const [isPluginReady, setIsPluginReady] = useState(false); 
 
                                 useEffect(() => {
                                     if (typeof (paginator) === 'object') {
                                         if (pluginWrapperRef && pluginWrapperRef.current) {
-                                            pluginWrapperRef.current.id = 'aaa';
-                                        }
-                                        if (wrapperRef && wrapperRef.current && wrapperRef.current.childNodes.length === 0) {
-                                            paginator.render(wrapperRef.current);
+                                            pluginWrapperRef.current.id = '${containerId}';
+                                            setIsPluginReady(true); // Set the plugin as ready
                                         }
                                     }
-                                });
+                                }, []);
+
+                                useEffect(() => {
+                                    if (isPluginReady && wrapperRef && wrapperRef.current && wrapperRef.current.childNodes.length === 0) {
+                                        paginator.render(wrapperRef.current);
+                                    }
+                                }, [isPluginReady]);
 
                                 return (
                                     <Fragment>
                                         <div ref={pluginWrapperRef} />
-                                        <div ref={wrapperRef} />
+                                        {isPluginReady && <div ref={wrapperRef} />}
                                     </Fragment>
                                 );
                             }
