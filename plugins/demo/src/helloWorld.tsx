@@ -1,7 +1,12 @@
 import { FunctionComponent } from 'preact';
+import '@/theme/index.scss';
 
 const HelloWorld: FunctionComponent = () => {
-    return <div>Hello World</div>;
+    return (
+        <div class={'helloWorld'}>
+            <span>Hello World</span>
+        </div>
+    );
 };
 
 export default HelloWorld;

@@ -5,6 +5,9 @@
     "removeComments": true,
     "declaration": true,
     "declarationDir": "dist/dts/",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "index.ts",

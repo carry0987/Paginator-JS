@@ -37,6 +37,7 @@ function createPluginConfig(pluginName: string) {
             ],
             external: ['@carry0987/paginator'],
             plugins: [
+                postcss({ inject: true }),
                 typescript({ tsconfig: tsconfigPath }),
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
                 nodeResolve(),
@@ -58,6 +59,7 @@ function createPluginConfig(pluginName: string) {
             },
             external: ['@carry0987/paginator'],
             plugins: [
+                postcss({ inject: true }),
                 typescript({ tsconfig: tsconfigPath }),
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
                 nodeResolve(),
