@@ -45,13 +45,14 @@
             <div id="paginator-demo1"></div>
             <div class="data-container"></div>
             <div id="paginator-demo2"></div>
-            <div id="plugin-container"></div>
             <div class="data-container"></div>
+            <div id="plugin-container"></div>
             <div id="paginator-demo3"></div>
         </section>
     </div>
     <script src="dist/paginator.min.js"></script>
     <script src="l10n/dist/l10n.min.js"></script>
+    <script src="plugins/demo/dist/demo.min.js"></script>
     <script>
     let generateData = (number) => {
         let result = [];
@@ -150,6 +151,7 @@
             document.querySelectorAll('.data-container')[2].innerHTML = dataHtml;
         },
         pluginContainer: document.querySelector('div#plugin-container'),
+        plugins: [demoPlugin],
         language: paginatorjs.l10n.zhTW
     }).render(document.querySelector('div#paginator-demo3'));
     paginator3.on('afterPaging', (page) => {
