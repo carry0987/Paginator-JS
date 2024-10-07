@@ -1,31 +1,4 @@
-:root {
-    --paginatorjs-button-border: #d2d6dc;
-    --paginatorjs-button-background: #fff;
-    --paginatorjs-button-color: #3d4044;
-    --paginatorjs-button-disabled-background: #fff;
-    --paginatorjs-button-disabled-color: #6b7280;
-    --paginatorjs-button-current-background: #f7f7f7;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --paginatorjs-button-border: #353e4d;
-        --paginatorjs-button-background: #202938;
-        --paginatorjs-button-color: #d5d6db;
-        --paginatorjs-button-disabled-background: #202938;
-        --paginatorjs-button-disabled-color: #6b7280;
-        --paginatorjs-button-current-background: #2d3747;
-    }
-}
-
-html[data-theme='dark'] {
-    --paginatorjs-button-border: #353e4d;
-    --paginatorjs-button-background: #202938;
-    --paginatorjs-button-color: #d5d6db;
-    --paginatorjs-button-disabled-background: #202938;
-    --paginatorjs-button-disabled-color: #6b7280;
-    --paginatorjs-button-current-background: #2d3747;
-}
+@import 'colors';
 
 .paginatorjs {
     *,
