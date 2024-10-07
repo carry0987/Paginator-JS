@@ -45,6 +45,7 @@
             <div id="paginator-demo1"></div>
             <div class="data-container"></div>
             <div id="paginator-demo2"></div>
+            <div id="plugin-container"></div>
             <div class="data-container"></div>
             <div id="paginator-demo3"></div>
         </section>
@@ -148,6 +149,7 @@
             dataHtml += '</ul>';
             document.querySelectorAll('.data-container')[2].innerHTML = dataHtml;
         },
+        pluginContainer: document.querySelector('div#plugin-container'),
         language: paginatorjs.l10n.zhTW
     }).render(document.querySelector('div#paginator-demo3'));
     paginator3.on('afterPaging', (page) => {
