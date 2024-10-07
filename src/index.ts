@@ -5,11 +5,4 @@ import { pluginAPI } from '@/plugin/pluginAPI';
 import { PluginPosition } from '@/plugin/pluginPosition';
 import { h } from 'preact';
 
-export {
-    Paginator,
-    Options,
-    pluginAPI,
-    PluginPosition,
-    html,
-    h
-};
+export { Paginator, Options, pluginAPI, PluginPosition, html, h };

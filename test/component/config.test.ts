@@ -57,7 +57,11 @@ describe('Config', () => {
         });
 
         expect(config.internal.header!.columns.map((x: any) => x.name)).toStrictEqual(cols);
-        expect(config.internal.header!.columns.map((x: any) => x.sort)).toStrictEqual([undefined, undefined, undefined]);
+        expect(config.internal.header!.columns.map((x: any) => x.sort)).toStrictEqual([
+            undefined,
+            undefined,
+            undefined
+        ]);
     });
 
     it('should assign config keys', () => {
