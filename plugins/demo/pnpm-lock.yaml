@@ -1,0 +1,26 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@carry0987/paginator':
+        specifier: ../../
+        version: link:../..
+    devDependencies:
+      preact:
+        specifier: ^10.24.2
+        version: 10.24.2
+
+packages:
+
+  preact@10.24.2:
+    resolution: {integrity: sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==}
+
+snapshots:
+
+  preact@10.24.2: {}
