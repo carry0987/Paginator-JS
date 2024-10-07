@@ -6,7 +6,7 @@
  * @returns Throttled function
  */
 export const throttle = (fn: (...args: any[]) => void, wait = 100) => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout> | number;
     let lastTime = Date.now();
 
     const execute = (...args: any[]) => {
