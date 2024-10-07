@@ -1,9 +1,8 @@
 import { ComponentChild, FunctionComponent, VNode } from 'preact';
-export { Component, createElement, createRef, h } from 'preact';
+export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
-export { useEffect, useRef, useState } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -63,8 +62,9 @@ interface ServerStorageOptions {
 
 declare enum PluginPosition {
     Header = 0,
-    Footer = 1,
-    Cell = 2
+    Body = 1,
+    Footer = 2,
+    Cell = 3
 }
 
 interface Plugin<T extends FunctionComponent> {
@@ -94,6 +94,9 @@ interface MainOptions {
     columns: OneDArray<TColumn | string | ComponentChild>;
     server?: ServerStorageOptions;
     language: Language;
+}
+interface PluginOptions {
+    pluginContainer?: Element;
     plugins?: Plugin<any>[];
 }
 interface CommonOptions {
@@ -123,7 +126,7 @@ interface ClassName {
     prevButton: string;
     nextButton: string;
 }
-interface Options extends MainOptions, CommonOptions {
+interface Options extends MainOptions, CommonOptions, PluginOptions {
     display: Partial<DisplayControls>;
     className: Partial<ClassName>;
 }
@@ -147,19 +150,16 @@ declare class Paginator extends EventEmitter<PaginatorEvents> {
     forceRender(): this;
     destroy(): void;
     render(container: Element): this;
+    private createPluginElement;
     private createElement;
 }
 
-declare class StateManager<S = Record<string, unknown>> {
-    private state;
-    private listeners;
-    private isDispatching;
-    constructor(initialState: S);
-    getState: () => S;
-    getListeners: () => ((current?: S, prev?: S) => void)[];
-    dispatch: (reducer: (state: S) => S) => S;
-    subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
+interface HTMLContentProps {
+    content: string;
+    parentElement?: string;
 }
+
+declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
 
 declare class Base {
     private readonly _id;
@@ -238,10 +238,6 @@ interface State {
     [key: string]: any;
 }
 
-declare function useStore(): StateManager<State>;
-
-declare function useSelector<T>(selector: (state: State) => T): T;
-
 declare class Config {
     private internalConfig;
     options: Options;
@@ -281,6 +277,17 @@ declare enum ProcessorType {
     Extractor = 2,
     Transformer = 3,
     Limit = 4
+}
+
+declare class StateManager<S = Record<string, unknown>> {
+    private state;
+    private listeners;
+    private isDispatching;
+    constructor(initialState: S);
+    getState: () => S;
+    getListeners: () => ((current?: S, prev?: S) => void)[];
+    dispatch: (reducer: (state: S) => S) => S;
+    subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
 }
 
 /**
@@ -327,27 +334,19 @@ interface InternalConfig {
     plugin: PluginManager;
 }
 
-declare const useConfig: () => InternalConfig;
+declare function useStore(): StateManager<State>;
 
-declare const useOption: () => Options;
+declare function useSelector<T>(selector: (state: State) => T): T;
 
 declare function useTranslator(): (message: string, ...args: any[]) => string;
 
-declare class Hook {
-    static useStore: typeof useStore;
-    static useSelector: typeof useSelector;
-    static useConfig: typeof useConfig;
-    static useOption: typeof useOption;
-    static useTranslator: typeof useTranslator;
+declare class PluginAPI {
+    useStore: typeof useStore;
+    useSelector: typeof useSelector;
+    useConfig: () => InternalConfig;
+    useOption: () => Options;
+    useTranslator: typeof useTranslator;
 }
+declare const pluginAPI: PluginAPI;
 
-interface HTMLContentProps {
-    content: string;
-    parentElement?: string;
-}
-
-declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
-
-declare function className(...args: string[]): string;
-
-export { Hook as Hooks, type Options, Paginator, PluginPosition, className, html };
+export { type Options, Paginator, PluginPosition, html, pluginAPI };
