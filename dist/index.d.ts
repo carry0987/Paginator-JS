@@ -1,8 +1,10 @@
-import { ComponentChild, FunctionComponent, VNode } from 'preact';
+import { ComponentChild, FunctionComponent, VNode, JSX } from 'preact';
 export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
+import { useSignal } from '@preact/signals';
+import { useEffect } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -340,12 +342,19 @@ declare function useSelector<T>(selector: (state: State) => T): T;
 
 declare function useTranslator(): (message: string, ...args: any[]) => string;
 
+declare function className(...args: string[]): string;
+declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
+
 declare class PluginAPI {
     useStore: typeof useStore;
     useSelector: typeof useSelector;
     useConfig: () => InternalConfig;
     useOption: () => Options;
     useTranslator: typeof useTranslator;
+    classJoin: typeof classJoin;
+    className: typeof className;
+    useSignal: typeof useSignal;
+    useEffect: typeof useEffect;
 }
 declare const pluginAPI: PluginAPI;
 

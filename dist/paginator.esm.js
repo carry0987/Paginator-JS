@@ -2346,7 +2346,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.7';
+    static version = '2.2.8';
     config;
     plugin;
     constructor(config) {
@@ -2425,6 +2425,11 @@ class PluginAPI {
     useConfig = useConfig;
     useOption = useOption;
     useTranslator = useTranslator;
+    classJoin = classJoin;
+    className = className;
+    // Preact
+    useSignal = useSignal;
+    useEffect = y$1;
 }
 const pluginAPI = new PluginAPI();
 
