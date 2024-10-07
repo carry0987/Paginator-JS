@@ -1,0 +1,40 @@
+.paginatorjs-list {
+    // Ensure consistent box sizing
+    &,
+    &:after,
+    &:before { 
+        box-sizing: border-box;
+    }
+
+    & {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style: none; // Remove list bullets
+        padding: 0; // Remove default padding
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        li {
+            margin: 5px; // Space between items
+            padding: 10px 15px; // Padding for clickable area
+            background-color: #e7e6e6; // Light background
+            border-radius: 5px; // Rounded corners
+            transition: background-color 0.3s; // Smooth transition for hover effect
+
+            &:hover {
+                background-color: #aaaaaa; // Slightly darker on hover
+            }
+
+            &.active {
+                background-color: #007bff; // Highlight active page
+                color: white; // Text color for active page
+            }
+        }
+    }
+}
