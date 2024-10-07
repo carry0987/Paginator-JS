@@ -17,10 +17,10 @@
       "import": "./l10n/dist/l10n.esm.js",
       "types": "./l10n/dist/index.d.ts"
     },
-    "./plugins/demo": {
-      "umd": "./plugins/demo/dist/demo.min.js",
-      "import": "./plugins/demo/dist/demo.esm.js",
-      "types": "./plugins/demo/dist/index.d.ts"
+    "./plugins/list": {
+      "umd": "./plugins/list/dist/list.min.js",
+      "import": "./plugins/list/dist/list.esm.js",
+      "types": "./plugins/list/dist/index.d.ts"
     },
     "./theme/paginator.min.css": "./dist/theme/paginator.min.css"
   },

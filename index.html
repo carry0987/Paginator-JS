@@ -45,14 +45,13 @@
             <div id="paginator-demo1"></div>
             <div class="data-container"></div>
             <div id="paginator-demo2"></div>
-            <div class="data-container"></div>
             <div id="plugin-container"></div>
             <div id="paginator-demo3"></div>
         </section>
     </div>
     <script src="dist/paginator.min.js"></script>
     <script src="l10n/dist/l10n.min.js"></script>
-    <script src="plugins/demo/dist/demo.min.js"></script>
+    <script src="plugins/list/dist/list.min.js"></script>
     <script>
     let generateData = (number) => {
         let result = [];
@@ -102,6 +101,9 @@
         columns: ['a'],
         pageSize: 10,
         pageRange: 0,
+        beforeDataLoad: () => {
+            document.querySelectorAll('.data-container')[1].innerHTML = 'Loading data...';
+        },
         dataRender: (response) => {
             let dataHtml = '<ul>';
             response.forEach((item, index) => {
@@ -139,19 +141,8 @@
             }
         },
         pageSize: 5,
-        beforeDataLoad: () => {
-            document.querySelectorAll('.data-container')[2].innerHTML = 'Loading data...';
-        },
-        dataRender: (response) => {
-            let dataHtml = '<ul>';
-            response.forEach((item, index) => {
-                dataHtml += '<li><a href="' + item[1] + '" target="_blank">' + item[0] + '</a></li>';
-            });
-            dataHtml += '</ul>';
-            document.querySelectorAll('.data-container')[2].innerHTML = dataHtml;
-        },
         pluginContainer: document.querySelector('div#plugin-container'),
-        plugins: [demoPlugin],
+        plugins: [listPlugin],
         language: paginatorjs.l10n.zhTW
     }).render(document.querySelector('div#paginator-demo3'));
     paginator3.on('afterPaging', (page) => {
