@@ -19,21 +19,12 @@ const sidebars: SidebarsConfig = {
                 type: 'generated-index',
             },
             collapsed: false,
-            items: [
-                'index',
-                'philosophy',
-                'community',
-            ],
+            items: ['index', 'philosophy', 'community'],
         },
         {
             type: 'category',
             label: '💁 Usage',
-            items: [
-                'install',
-                'hello-world',
-                'config',
-                'server-side',
-            ],
+            items: ['install', 'hello-world', 'config', 'server-side'],
         },
         {
             type: 'category',
@@ -55,10 +46,22 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: 'category',
-            label: '🌎 Localization',
+            label: '🧩 Plugins',
             items: [
-                'localization/locales',
+                {
+                    type: 'category',
+                    label: 'Overview',
+                    items: [
+                        'plugins/demo',
+                        'plugins/writing-plugin',
+                    ],
+                },
             ],
+        },
+        {
+            type: 'category',
+            label: '🌎 Localization',
+            items: ['localization/locales'],
         },
         {
             type: 'category',
@@ -67,11 +70,9 @@ const sidebars: SidebarsConfig = {
                 {
                     type: 'category',
                     label: 'Basic',
-                    items: [
-                        'examples/hello-world',
-                        'examples/pagination',
-                    ],
-                }, {
+                    items: ['examples/hello-world', 'examples/pagination'],
+                },
+                {
                     type: 'category',
                     label: 'Data Source',
                     items: [
@@ -79,41 +80,39 @@ const sidebars: SidebarsConfig = {
                         'examples/server',
                         'examples/import-function',
                         'examples/import-async',
-                    ]
-                }, {
+                    ],
+                },
+                {
                     type: 'category',
                     label: 'Server-side',
                     items: [
                         'examples/server',
                         'examples/server-side-pagination',
                         'examples/custom-http-client',
-                    ]
-                }, {
+                    ],
+                },
+                {
                     type: 'category',
                     label: 'Styling',
                     items: [
                         'examples/css-style',
                         'examples/css-classname',
                         'examples/css-in-js',
-                    ]
-                }, {
+                    ],
+                },
+                {
                     type: 'category',
                     label: 'Customizing',
-                    items: [
-                        'examples/cell-formatting',
-                        'examples/html-cells',
-                    ]
-                }, {
+                    items: ['examples/cell-formatting', 'examples/html-cells'],
+                },
+                {
                     type: 'category',
                     label: 'Advanced',
-                    items: [
-                        'examples/force-render',
-                        'examples/event-handler'
-                    ]
-                }
+                    items: ['examples/force-render', 'examples/event-handler'],
+                },
             ],
-        }
-    ]
+        },
+    ],
 };
 
 export default sidebars;

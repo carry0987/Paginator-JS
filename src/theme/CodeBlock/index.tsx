@@ -44,15 +44,24 @@ const withLiveEditor = (Component: typeof CodeBlock) => {
                                 ${code}
 
                                 const wrapperRef = useRef(null);
+                                const pluginWrapperRef = useRef(null);
 
                                 useEffect(() => {
-                                    if (typeof (paginator) == 'object' && wrapperRef && wrapperRef.current && wrapperRef.current.childNodes.length === 0) {
-                                        paginator.render(wrapperRef.current);
+                                    if (typeof (paginator) === 'object') {
+                                        if (pluginWrapperRef && pluginWrapperRef.current) {
+                                            pluginWrapperRef.current.id = 'aaa';
+                                        }
+                                        if (wrapperRef && wrapperRef.current && wrapperRef.current.childNodes.length === 0) {
+                                            paginator.render(wrapperRef.current);
+                                        }
                                     }
                                 });
 
                                 return (
-                                    <div ref={wrapperRef} />
+                                    <Fragment>
+                                        <div ref={pluginWrapperRef} />
+                                        <div ref={wrapperRef} />
+                                    </Fragment>
                                 );
                             }
                             `;
