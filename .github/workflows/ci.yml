@@ -40,5 +40,8 @@ jobs:
       - name: Install plugins
         run: pnpm install:plugins
 
+      - name: Build
+        run: pnpm build
+
       - name: Run Vitest tests
         run: pnpm test
