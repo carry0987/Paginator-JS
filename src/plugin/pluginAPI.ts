@@ -5,7 +5,7 @@ import { useOption } from '@/module/hook/useOption';
 import { useTranslator } from '@/module/hook/useTranslator';
 
 // Preact
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useState, useRef } from 'preact/hooks';
 
 class PluginAPI {
     public useStore = useStore;
@@ -17,6 +17,7 @@ class PluginAPI {
     // Preact
     public useEffect = useEffect;
     public useState = useState;
+    public useRef = useRef;
 }
 
 export const pluginAPI = new PluginAPI();
