@@ -57,6 +57,13 @@ const sidebars: SidebarsConfig = {
                         'plugins/advanced-plugin',
                     ],
                 },
+                {
+                    type: 'category',
+                    label: 'List',
+                    items: [
+                        'plugins/list/index',
+                    ]
+                }
             ],
         },
         {
