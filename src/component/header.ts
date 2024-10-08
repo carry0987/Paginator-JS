@@ -58,6 +58,15 @@ class Header extends Base {
         }
     }
 
+    /**
+     * Creates a new Header from a Config object
+     * This method generates a new ID for the Header and all nested elements
+     * It also populates the plugin manager with the plugins from the columns
+     * 
+     * @param config
+     * 
+     * @returns Header | undefined
+     */
     public static createFromConfig(config: Config): Header | undefined {
         const header = new Header();
 
@@ -84,6 +93,8 @@ class Header extends Base {
      * Returns an array of leaf columns (last columns in the tree)
      *
      * @param columns
+     * 
+     * @returns OneDArray<TColumn>
      */
     public static leafColumns(columns: OneDArray<TColumn>): OneDArray<TColumn> {
         let result: OneDArray<TColumn> = [];
