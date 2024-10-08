@@ -28,7 +28,7 @@ function createPluginConfig(pluginName: string) {
                 {
                     file: `plugins/${pluginName}/dist/${pluginName}.min.js`,
                     format: 'umd',
-                    name: `${pluginName}Plugin`,
+                    name: `${globalName}.plugins.${pluginName}`,
                     globals: {
                         '@carry0987/paginator': globalName
                     },
@@ -82,7 +82,11 @@ function createPluginConfig(pluginName: string) {
             external: [/\.scss$/u],
             plugins: [
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
-                dts(),
+                dts({
+                    compilerOptions: {
+                        noImplicitAny: false
+                    }
+                }),
                 del({ hook: 'buildEnd', targets: `plugins/${pluginName}/dist/dts` })
             ]
         }

@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "install:plugins": "find ./plugins ! -path '*/node_modules/*' ! -path './package.json' -name 'package.json' -execdir pnpm install \\;",
-    "format": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"test/**/*.ts\" \"l10n/**/*.ts\" \"plugins/**/*.{ts,tsx,scss}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"test/**/*.{ts,tsx}\" \"l10n/**/*.ts\" \"plugins/**/*.{ts,tsx,scss}\"",
     "start": "rollup --config rollup.config.ts --configPlugin typescript",
     "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production",
     "test": "vitest run",

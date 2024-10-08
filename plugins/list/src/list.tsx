@@ -18,12 +18,11 @@ const List: FunctionComponent = () => {
     return (
         <div class={pluginAPI.className('list')}>
             <ul>
-                {signalTabular?.value && signalTabular.value.toArray().map((item, index) => (
-                    <li key={index}>{item[0]}</li>
-                ))}
+                {signalTabular?.value &&
+                    signalTabular.value.toArray().map((item, index) => <li key={index}>{item[0]}</li>)}
             </ul>
         </div>
     );
 };
 
-export default List;
+export { List };

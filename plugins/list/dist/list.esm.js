@@ -42,7 +42,8 @@ const List = () => {
             signalTabular.value = tabular;
         }
     }, [tabular]);
-    return (u("div", { class: pluginAPI.className('list'), children: u("ul", { children: signalTabular?.value && signalTabular.value.toArray().map((item, index) => (u("li", { children: item[0] }, index))) }) }));
+    return (u("div", { class: pluginAPI.className('list'), children: u("ul", { children: signalTabular?.value &&
+                signalTabular.value.toArray().map((item, index) => u("li", { children: item[0] }, index)) }) }));
 };
 
 const listPlugin = {
@@ -52,4 +53,4 @@ const listPlugin = {
     order: 1
 };
 
-export { listPlugin as default };
+export { List, listPlugin };

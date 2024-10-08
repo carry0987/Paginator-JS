@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/preact';
 import { vi, describe, it, expect } from 'vitest';
-import List from '../src/list';
+import { List } from '../src/list';
 
 // Mock the API methods necessary for testing
 vi.mock('@carry0987/paginator', () => {

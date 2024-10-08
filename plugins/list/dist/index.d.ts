@@ -1,5 +1,8 @@
 import * as preact from 'preact';
+import { FunctionComponent } from 'preact';
 import { PluginPosition } from '@carry0987/paginator';
+
+declare const List: FunctionComponent;
 
 declare const listPlugin: {
     id: string;
@@ -8,4 +11,4 @@ declare const listPlugin: {
     order: number;
 };
 
-export { listPlugin as default };
+export { List, listPlugin };

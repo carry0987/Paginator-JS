@@ -1,6 +1,15 @@
 @import 'colors';
 
-@mixin set-theme-variables($background, $border, $buttonBorder, $buttonBackground, $color, $disabledBackground, $disabledColor, $currentBackground) {
+@mixin set-theme-variables(
+    $background,
+    $border,
+    $buttonBorder,
+    $buttonBackground,
+    $color,
+    $disabledBackground,
+    $disabledColor,
+    $currentBackground
+) {
     --paginatorjs-background: #{$background};
     --paginatorjs-border: #{$border};
     --paginatorjs-button-border: #{$buttonBorder};

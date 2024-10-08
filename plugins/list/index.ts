@@ -1,4 +1,4 @@
-import List from './src/list';
+import { List } from './src/list';
 import { PluginPosition } from '@carry0987/paginator';
 
 const listPlugin = {
@@ -8,4 +8,4 @@ const listPlugin = {
     order: 1
 };
 
-export default listPlugin;
+export { listPlugin, List };
