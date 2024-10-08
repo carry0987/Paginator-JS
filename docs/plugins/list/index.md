@@ -1,6 +1,6 @@
 ---
 title: List Plugin
-sidebar_label: List Plugin
+sidebar_label: Intro
 ---
 
 List plugin is a plugin that allows you to display the data in a list view.
@@ -10,7 +10,7 @@ List plugin is a plugin that allows you to display the data in a list view.
 Import the selection plugin from `@carry0987/paginator/plugins/list`:
 
 ```ts
-import { List } from '@carry0987/paginator/plugins/list';
+import { listPlugin, List } from '@carry0987/paginator/plugins/list';
 ```
 
 or use a CDN to import the UMD format:
@@ -20,7 +20,7 @@ or use a CDN to import the UMD format:
 ```
 
 :::tip
-In UMD, the plugin globally exposed `paginatorjs.plugins.selection`, e.g:
+In UMD, the plugin globally exposed `paginatorjs.plugins.list`, e.g:
 
 ```ts
 paginatorjs.plugins.list.List

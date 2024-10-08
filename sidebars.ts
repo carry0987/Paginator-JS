@@ -62,6 +62,7 @@ const sidebars: SidebarsConfig = {
                     label: 'List',
                     items: [
                         'plugins/list/index',
+                        'plugins/list/usage',
                     ]
                 }
             ],
