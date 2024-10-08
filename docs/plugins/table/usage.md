@@ -4,13 +4,13 @@ sidebar_label: Usage
 ---
 
 :::tip
-Install the `paginatorjs-list` plugin if you haven't already. 
+Install the `paginatorjs-table` plugin if you haven't already. 
 Follow the [installation manual](./index.md).
 :::
 
 ## Example
 
-In order to install the List plugin, set pluginContainer and instantiate the plugin:
+In order to install the Table plugin, set pluginContainer and instantiate the plugin:
 
 ```ts paginator
 const paginator = new Paginator({
@@ -31,15 +31,15 @@ const paginator = new Paginator({
         {
             id: 'myList',
             position: PluginPosition.Body,
-            component: List
+            component: Table
         }
     ]
 });
 ```
 
-## listPlugin
+## tablePlugin
 
-The `listPlugin` is a plugin object, instead of a `FunctionComponent`. It can let you add **`List`** plugin directly to the `Paginator` instance.
+The `tablePlugin` is a plugin object, instead of a `FunctionComponent`. It can let you add **`Table`** plugin directly to the `Paginator` instance.
 
 ```ts paginator tmp
 const paginator = new Paginator({
@@ -56,16 +56,16 @@ const paginator = new Paginator({
     ]),
     pageSize: 5,
     pluginContainer: document.getElementById('plugin-container-tmp'),
-    plugins: [listPlugin]
+    plugins: [tablePlugin]
 });
 ```
 
-`listPlugin` has the following properties:
+`tablePlugin` has the following properties:
 ```ts
 {
-    id: 'listPlugin',
+    id: 'tablePlugin',
     position: PluginPosition.Body,
-    component: List,
+    component: Table,
     order: 1
 }
 ```

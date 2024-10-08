@@ -64,6 +64,14 @@ const sidebars: SidebarsConfig = {
                         'plugins/list/index',
                         'plugins/list/usage',
                     ]
+                },
+                {
+                    type: 'category',
+                    label: 'Table',
+                    items: [
+                        'plugins/table/index',
+                        'plugins/table/usage',
+                    ]
                 }
             ],
         },

@@ -7,7 +7,7 @@ List plugin is a plugin that allows you to display the data in a list view.
 
 ## Install
 
-Import the selection plugin from `@carry0987/paginator/plugins/list`:
+Import the list plugin from `@carry0987/paginator/plugins/list`:
 
 ```ts
 import { listPlugin, List } from '@carry0987/paginator/plugins/list';
