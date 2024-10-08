@@ -1,4 +1,4 @@
-import { PluginPosition } from '@/plugin/pluginPosition';
+import { PluginPosition } from './pluginPosition';
 import { Plugin } from '@/interface/plugin';
 import log from '@/module/utils/log';
 import { FunctionComponent } from 'preact';
