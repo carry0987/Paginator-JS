@@ -1,0 +1,23 @@
+@import 'colors';
+
+td.paginatorjs {
+    &-td {
+        border: 1px solid var(--paginatorjs-table-border);
+        padding: 12px 24px;
+        color: var(--paginatorjs-td-color);
+        background-color: var(--paginatorjs-td-background);
+        box-sizing: content-box;
+    }
+
+    &-td:first-child {
+        border-left: none;
+    }
+
+    &-td:last-child {
+        border-right: none;
+    }
+
+    &-message {
+        text-align: center;
+    }
+}

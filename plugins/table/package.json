@@ -1,0 +1,20 @@
+{
+  "name": "table",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Table plugin for @carry0987/paginator",
+  "homepage": "https://carry0987.github.io/Paginator-JS/docs/plugins/table",
+  "license": "MIT",
+  "main": "dist/table.min.js",
+  "module": "dist/table.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "dependencies": {
+    "@carry0987/paginator": "../../"
+  },
+  "peerDependencies": {
+    "preact": "^10.24.2"
+  }
+}
