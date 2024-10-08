@@ -4,24 +4,25 @@ import { List } from '../src/list';
 
 // Mock the API methods necessary for testing
 vi.mock('@carry0987/paginator', () => {
-    const mockSignal = {
-        data: [['Item 1'], ['Item 2'], ['Item 3']],
-        get value() {
-            return this;
-        },
-        set value(data: any) {
-            this.data = data;
-        },
-        toArray() {
+    // Using useState hook to manage state with toArray functionality
+    const mockData = [['Item 1'], ['Item 2'], ['Item 3']];
+    const mockState = {
+        data: mockData,
+        toArray: function() {
             return this.data;
         }
     };
 
+    let state = {...mockState};
+    const setState = (newState: any) => {
+        state = {...state, data: newState};
+    };
+
     return {
         pluginAPI: {
-            useSelector: vi.fn(() => mockSignal.data),
+            useSelector: vi.fn(() => mockState.data),
             useEffect: vi.fn((effect: () => void) => effect()),
-            useSignal: () => mockSignal,
+            useState: (initialState: any) => [state, setState], // Mocking useState
             className: (name: string) => name
         }
     };
