@@ -1,3 +1,4 @@
+import Row from '@/component/row';
 import { TDataArrayRow, TDataObjectRow, TCell } from '@/type/types';
 import { Plugin } from './plugin';
 import { ComponentChild } from 'preact';
@@ -12,4 +13,5 @@ export interface TColumn {
     hidden?: boolean;
     // Plugin
     plugin?: Plugin<any>;
+    formatter?: (cell: TCell, row: Row, column: TColumn) => ComponentChild;
 }

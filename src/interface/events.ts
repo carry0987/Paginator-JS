@@ -10,4 +10,5 @@ export interface PageEvents {
     afterPaging: (pageNumber: number) => void;
     beforeDestroy: () => void;
     afterDestroy: () => void;
+    [key: string]: any;
 }
