@@ -22,7 +22,9 @@ vi.mock('@carry0987/paginator', () => {
         pluginAPI: {
             useSelector: vi.fn(() => mockState.data),
             useEffect: vi.fn((effect: () => void) => effect()),
-            useState: (initialState: any) => [state, setState], // Mocking useState
+            useState: (initialState: any) => [state, setState] // Mocking useState
+        },
+        pluginUtil: {
             className: (name: string) => name
         }
     };
