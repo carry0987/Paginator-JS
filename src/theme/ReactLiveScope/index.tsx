@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paginator, pluginAPI, PluginPosition, html, h } from '@carry0987/paginator';
 import { jaJP } from '@carry0987/paginator/l10n';
-import helloWorldPlugin from '@carry0987/paginator/plugins/demo';
+import listPlugin from '@carry0987/paginator/plugins/list';
 import { faker } from '@faker-js/faker';
 
 // Add react-live imports you need here
@@ -11,7 +11,7 @@ const ReactLiveScope = {
     Paginator,
     pluginAPI,
     PluginPosition,
-    helloWorldPlugin,
+    listPlugin,
     html,
     h,
     jaJP,

@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@carry0987/paginator": "^2.2.6",
+    "@carry0987/paginator": "^2.2.8",
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/preset-classic": "^3.5.2",
     "@emotion/css": "^11.13.4",
@@ -36,7 +36,7 @@
     "@docusaurus/theme-live-codeblock": "^3.5.2",
     "@docusaurus/tsconfig": "^3.5.2",
     "@docusaurus/types": "^3.5.2",
-    "@types/node": "^22.7.4",
+    "@types/node": "^22.7.5",
     "@types/prismjs": "^1.26.4",
     "@types/react": "^18.3.11",
     "react-live": "^4.1.7",
