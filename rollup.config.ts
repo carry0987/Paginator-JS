@@ -82,11 +82,7 @@ function createPluginConfig(pluginName: string) {
             external: [/\.scss$/u],
             plugins: [
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
-                dts({
-                    compilerOptions: {
-                        noImplicitAny: false
-                    }
-                }),
+                dts(),
                 del({ hook: 'buildEnd', targets: `plugins/${pluginName}/dist/dts` })
             ]
         }

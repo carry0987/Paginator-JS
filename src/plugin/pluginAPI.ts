@@ -6,8 +6,7 @@ import { useTranslator } from '@/module/hook/useTranslator';
 import { classJoin, className } from '@/module/utils/className';
 
 // Preact
-import { useSignal } from '@preact/signals';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 
 class PluginAPI {
     useStore = useStore;
@@ -18,8 +17,8 @@ class PluginAPI {
     classJoin = classJoin;
     className = className;
     // Preact
-    useSignal = useSignal;
     useEffect = useEffect;
+    useState = useState;
 }
 
 export const pluginAPI = new PluginAPI();
