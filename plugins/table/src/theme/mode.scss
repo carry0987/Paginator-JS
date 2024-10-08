@@ -1,13 +1,6 @@
 @import 'colors';
 
-@mixin set-theme-variables(
-    $background,
-    $border,
-    $thBackground,
-    $thColor,
-    $tdBackground,
-    $tdColor
-) {
+@mixin set-theme-variables($background, $border, $thBackground, $thColor, $tdBackground, $tdColor) {
     --paginatorjs-table-background: #{$background};
     --paginatorjs-table-border: #{$border};
     --paginatorjs-th-background: #{$thBackground};
