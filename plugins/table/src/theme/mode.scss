@@ -1,0 +1,52 @@
+@import 'colors';
+
+@mixin set-theme-variables(
+    $background,
+    $border,
+    $thBackground,
+    $thColor,
+    $tdBackground,
+    $tdColor
+) {
+    --paginatorjs-table-background: #{$background};
+    --paginatorjs-table-border: #{$border};
+    --paginatorjs-th-background: #{$thBackground};
+    --paginatorjs-th-color: #{$thColor};
+    --paginatorjs-td-background: #{$tdBackground};
+    --paginatorjs-td-color: #{$tdColor};
+}
+
+:root {
+    @include set-theme-variables(
+        $lightBackground,
+        $lightBorder,
+        $lightThBackground,
+        $lightThColor,
+        $lightTdBackground,
+        $lightTdColor
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include set-theme-variables(
+            $darkBackground,
+            $darkBorder,
+            $darkThBackground,
+            $darkThColor,
+            $darkTdBackground,
+            $darkTdColor
+        );
+    }
+}
+
+html[data-theme='dark'] {
+    @include set-theme-variables(
+        $darkBackground,
+        $darkBorder,
+        $darkThBackground,
+        $darkThColor,
+        $darkTdBackground,
+        $darkTdColor
+    );
+}

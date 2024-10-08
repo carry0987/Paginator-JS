@@ -4,7 +4,7 @@ import { html } from '@/module/utils/html';
 import { ComponentChild } from 'preact';
 
 class Cell extends Base {
-    // because a Cell is a subset of TCell type
+    // Because a Cell is a subset of TCell type
     public data: number | string | boolean | ComponentChild;
 
     constructor(data: TCell) {
@@ -28,6 +28,7 @@ class Cell extends Base {
      */
     public update(data: TCell): Cell {
         this.data = this.cast(data);
+
         return this;
     }
 }

@@ -22,6 +22,11 @@
       "import": "./plugins/list/dist/list.esm.js",
       "types": "./plugins/list/dist/index.d.ts"
     },
+    "./plugins/table": {
+      "umd": "./plugins/table/dist/table.min.js",
+      "import": "./plugins/table/dist/table.esm.js",
+      "types": "./plugins/table/dist/index.d.ts"
+    },
     "./theme/paginator.min.css": "./dist/theme/paginator.min.css"
   },
   "scripts": {

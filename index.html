@@ -47,11 +47,14 @@
             <div id="paginator-demo2"></div>
             <div id="plugin-container"></div>
             <div id="paginator-demo3"></div>
+            <div id="plugin-container-sub"></div>
+            <div id="paginator-demo4"></div>
         </section>
     </div>
     <script src="dist/paginator.min.js"></script>
     <script src="l10n/dist/l10n.min.js"></script>
     <script src="plugins/list/dist/list.min.js"></script>
+    <script src="plugins/table/dist/table.min.js"></script>
     <script>
     let generateData = (number) => {
         let result = [];
@@ -151,6 +154,38 @@
     paginator3.on('pageClick', (page) => {
         console.log('pageClick', page);
     });
+
+    let paginator4 = new paginatorjs.Paginator({
+        columns: [
+            {
+                id: 'name',
+                name: 'Pokemon',
+            },
+            {
+                id: 'url',
+                name: 'URL',
+                formatter: (cell) => cell
+            }
+        ],
+        server: {
+            url: 'https://pokeapi.co/api/v2/pokemon',
+            param: {
+                method: 'GET'
+            },
+            processData: data => data.results,
+            total: data => data.count,
+            pageBody: (prevBody, page, limit) => {
+                return {
+                    limit: limit,
+                    offset: (page - 1) * limit
+                };
+            }
+        },
+        pageSize: 5,
+        pluginContainer: document.querySelector('div#plugin-container-sub'),
+        plugins: [paginatorjs.plugins.table.tablePlugin],
+        language: paginatorjs.l10n.zhTW
+    }).render(document.querySelector('div#paginator-demo4'));
     </script>
 </body>
 </html>

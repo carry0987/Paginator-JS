@@ -1,6 +1,6 @@
 import Base from './base';
 import { Config } from './config';
-import { OneDArray, TData } from '@/type/types';
+import { TwoDArray, OneDArray, TData } from '@/type/types';
 import { TColumn } from '@/interface/column';
 import { camelCase } from '@/module/utils/string';
 import PluginManager from '@/plugin/pluginManager';
@@ -64,8 +64,6 @@ class Header extends Base {
      * It also populates the plugin manager with the plugins from the columns
      *
      * @param config
-     *
-     * @returns Header | undefined
      */
     public static createFromConfig(config: Config): Header | undefined {
         const header = new Header();
@@ -93,8 +91,6 @@ class Header extends Base {
      * Returns an array of leaf columns (last columns in the tree)
      *
      * @param columns
-     *
-     * @returns OneDArray<TColumn>
      */
     public static leafColumns(columns: OneDArray<TColumn>): OneDArray<TColumn> {
         let result: OneDArray<TColumn> = [];
@@ -107,6 +103,15 @@ class Header extends Base {
         }
 
         return result;
+    }
+
+    /**
+     * Converts the tree-like format of Header to a tabular format
+     *
+     * @param columns
+     */
+    public static tabularFormat(columns: OneDArray<TColumn>): TwoDArray<TColumn> {
+        return columns.length ? [columns] : [];
     }
 
     private static isJsonPayload(data?: Config['options']['data']): data is TData[] {

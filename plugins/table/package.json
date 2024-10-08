@@ -1,12 +1,12 @@
 {
-  "name": "list",
+  "name": "table",
   "version": "1.0.0",
   "private": true,
-  "description": "List plugin for @carry0987/paginator",
-  "homepage": "https://carry0987.github.io/Paginator-JS/docs/plugins/list",
+  "description": "Table plugin for @carry0987/paginator",
+  "homepage": "https://carry0987.github.io/Paginator-JS/docs/plugins/table",
   "license": "MIT",
-  "main": "dist/list.min.js",
-  "module": "dist/list.esm.js",
+  "main": "dist/table.min.js",
+  "module": "dist/table.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/*"
