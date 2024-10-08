@@ -36,14 +36,14 @@ styleInject(css_248z);
 
 const List = () => {
     const tabular = pluginAPI.useSelector((state) => state.tabular);
-    const signalTabular = pluginAPI.useSignal(tabular);
+    const [data, updateData] = pluginAPI.useState(tabular);
     pluginAPI.useEffect(() => {
         if (tabular?.length) {
-            signalTabular.value = tabular;
+            updateData(tabular);
         }
     }, [tabular]);
-    return (u("div", { class: pluginAPI.className('list'), children: u("ul", { children: signalTabular?.value &&
-                signalTabular.value.toArray().map((item, index) => u("li", { children: item[0] }, index)) }) }));
+    return (u("div", { class: pluginAPI.className('list'), children: u("ul", { children: data &&
+                data.toArray().map((item, index) => u("li", { children: item[0] }, index)) }) }));
 };
 
 const listPlugin = {

@@ -3,8 +3,7 @@ export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
-import { useSignal } from '@preact/signals';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -353,8 +352,8 @@ declare class PluginAPI {
     useTranslator: typeof useTranslator;
     classJoin: typeof classJoin;
     className: typeof className;
-    useSignal: typeof useSignal;
     useEffect: typeof useEffect;
+    useState: typeof useState;
 }
 declare const pluginAPI: PluginAPI;
 
