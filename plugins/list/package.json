@@ -5,7 +5,6 @@
   "description": "List plugin for @carry0987/paginator",
   "homepage": "https://carry0987.github.io/Paginator-JS/docs/plugins/list",
   "license": "MIT",
-  "source": "index.ts",
   "main": "dist/list.min.js",
   "module": "dist/list.esm.js",
   "types": "dist/index.d.ts",
