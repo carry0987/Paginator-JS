@@ -14,8 +14,9 @@
         display: block;
 
         border-radius: 8px;
+        border-top-style: solid;
         border-top-width: 1px;
-        border-color: $gray3;
+        border-color: var(--paginatorjs-border);
 
         background-color: var(--paginatorjs-background);
     }
