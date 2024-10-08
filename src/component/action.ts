@@ -41,6 +41,6 @@ export const SetDataErrored = () => (state: State) => {
 export const SetHeader = (header?: Header) => (state: State) => {
     return {
         ...state,
-        header: header
+        header: header || null
     };
 };

@@ -55,7 +55,8 @@ class Config {
         return {
             state: new StateManager<State>({
                 status: Status.Init,
-                tabular: null
+                tabular: null,
+                header: null
             }),
             plugin: new PluginManager()
         };
