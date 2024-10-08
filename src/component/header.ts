@@ -58,29 +58,6 @@ class Header extends Base {
         }
     }
 
-    private static isJsonPayload(data?: Config['options']['data']): data is TData[] {
-        return !!data && data instanceof Array && typeof data[0] === 'object' && !(data[0] instanceof Array);
-    }
-
-    private static fromColumns(columns: OneDArray<TColumn | string | ComponentChild>): Header {
-        const header = new Header();
-
-        for (const column of columns) {
-            if (typeof column === 'string' || isValidElement(column)) {
-                header.columns.push({
-                    name: column
-                });
-            } else if (typeof column === 'object') {
-                const typedColumn = column as TColumn;
-
-                // TColumn type
-                header.columns.push(typedColumn);
-            }
-        }
-
-        return header;
-    }
-
     public static createFromConfig(config: Config): Header | undefined {
         const header = new Header();
 
@@ -119,6 +96,29 @@ class Header extends Base {
         }
 
         return result;
+    }
+
+    private static isJsonPayload(data?: Config['options']['data']): data is TData[] {
+        return !!data && data instanceof Array && typeof data[0] === 'object' && !(data[0] instanceof Array);
+    }
+
+    private static fromColumns(columns: OneDArray<TColumn | string | ComponentChild>): Header {
+        const header = new Header();
+
+        for (const column of columns) {
+            if (typeof column === 'string' || isValidElement(column)) {
+                header.columns.push({
+                    name: column
+                });
+            } else if (typeof column === 'object') {
+                const typedColumn = column as TColumn;
+
+                // TColumn type
+                header.columns.push(typedColumn);
+            }
+        }
+
+        return header;
     }
 }
 
