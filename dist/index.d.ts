@@ -1,9 +1,10 @@
+import * as preact from 'preact';
 import { ComponentChild, FunctionComponent, VNode, JSX } from 'preact';
 export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useState, useRef } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -17,6 +18,7 @@ interface PageEvents {
     afterPaging: (pageNumber: number) => void;
     beforeDestroy: () => void;
     afterDestroy: () => void;
+    [key: string]: any;
 }
 
 interface InternalEvents {
@@ -81,12 +83,49 @@ type Language = {
     [key: string]: Message | Language;
 };
 
+declare class Base {
+    private readonly _id;
+    constructor(id?: ID);
+    get id(): ID;
+}
+
+declare class Cell extends Base {
+    data: number | string | boolean | ComponentChild;
+    constructor(data: TCell);
+    private cast;
+    /**
+     * Updates the Cell's data
+     *
+     * @param data
+     */
+    update(data: TCell): Cell;
+}
+
+declare class Row extends Base {
+    private _cells;
+    constructor(cells?: Cell[]);
+    cell(index: number): Cell;
+    get cells(): Cell[];
+    set cells(cells: Cell[]);
+    toArray(): TCell[];
+    /**
+     * Creates a new Row from an array of Cell(s)
+     * This method generates a new ID for the Row and all nested elements
+     *
+     * @param cells
+     * @returns Row
+     */
+    static fromCells(cells: Cell[]): Row;
+    get length(): number;
+}
+
 interface TColumn {
     id?: string;
     data?: ((row: TDataArrayRow | TDataObjectRow) => TCell) | TCell;
     name?: string | ComponentChild;
     hidden?: boolean;
     plugin?: Plugin<any>;
+    formatter?: (cell: TCell, row: Row, column: TColumn) => ComponentChild;
 }
 
 interface MainOptions {
@@ -162,42 +201,6 @@ interface HTMLContentProps {
 
 declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
 
-declare class Base {
-    private readonly _id;
-    constructor(id?: ID);
-    get id(): ID;
-}
-
-declare class Cell extends Base {
-    data: number | string | boolean | ComponentChild;
-    constructor(data: TCell);
-    private cast;
-    /**
-     * Updates the Cell's data
-     *
-     * @param data
-     */
-    update(data: TCell): Cell;
-}
-
-declare class Row extends Base {
-    private _cells;
-    constructor(cells?: Cell[]);
-    cell(index: number): Cell;
-    get cells(): Cell[];
-    set cells(cells: Cell[]);
-    toArray(): TCell[];
-    /**
-     * Creates a new Row from an array of Cell(s)
-     * This method generates a new ID for the Row and all nested elements
-     *
-     * @param cells
-     * @returns Row
-     */
-    static fromCells(cells: Cell[]): Row;
-    get length(): number;
-}
-
 declare class Tabular extends Base {
     private _rows;
     private _length;
@@ -225,20 +228,6 @@ declare class Tabular extends Base {
     static fromArray<T extends TCell>(data: OneDArray<T> | TwoDArray<T>): Tabular;
 }
 
-declare enum Status {
-    Init = 0,
-    Loading = 1,
-    Loaded = 2,
-    Rendered = 3,
-    Error = 4
-}
-
-interface State {
-    status: Status;
-    tabular: Tabular | null;
-    [key: string]: any;
-}
-
 declare class Config {
     private internalConfig;
     options: Options;
@@ -261,8 +250,13 @@ declare class Header extends Base {
     get visibleColumns(): OneDArray<TColumn>;
     private setID;
     private populatePlugins;
-    private static isJsonPayload;
-    private static fromColumns;
+    /**
+     * Creates a new Header from a Config object
+     * This method generates a new ID for the Header and all nested elements
+     * It also populates the plugin manager with the plugins from the columns
+     *
+     * @param config
+     */
     static createFromConfig(config: Config): Header | undefined;
     /**
      * Returns an array of leaf columns (last columns in the tree)
@@ -270,6 +264,29 @@ declare class Header extends Base {
      * @param columns
      */
     static leafColumns(columns: OneDArray<TColumn>): OneDArray<TColumn>;
+    /**
+     * Converts the tree-like format of Header to a tabular format
+     *
+     * @param columns
+     */
+    static tabularFormat(columns: OneDArray<TColumn>): TwoDArray<TColumn>;
+    private static isJsonPayload;
+    private static fromColumns;
+}
+
+declare enum Status {
+    Init = 0,
+    Loading = 1,
+    Loaded = 2,
+    Rendered = 3,
+    Error = 4
+}
+
+interface State {
+    status: Status;
+    tabular: Tabular | null;
+    header: Header | null;
+    [key: string]: any;
 }
 
 declare enum ProcessorType {
@@ -341,20 +358,35 @@ declare function useSelector<T>(selector: (state: State) => T): T;
 
 declare function useTranslator(): (message: string, ...args: any[]) => string;
 
-declare function className(...args: string[]): string;
-declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
-
 declare class PluginAPI {
     useStore: typeof useStore;
     useSelector: typeof useSelector;
     useConfig: () => InternalConfig;
     useOption: () => Options;
     useTranslator: typeof useTranslator;
-    classJoin: typeof classJoin;
-    className: typeof className;
     useEffect: typeof useEffect;
     useState: typeof useState;
+    useRef: typeof useRef;
 }
 declare const pluginAPI: PluginAPI;
 
-export { type Options, Paginator, PluginPosition, html, pluginAPI };
+declare function PluginRenderer(props: {
+    props?: any;
+    pluginId?: string;
+    position?: PluginPosition;
+}): preact.VNode<preact.Attributes> | null;
+
+declare function className(...args: string[]): string;
+declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
+
+declare class PluginUtil {
+    Status: typeof Status;
+    leafColumns: typeof Header.leafColumns;
+    tabularFormat: typeof Header.tabularFormat;
+    PluginRenderer: typeof PluginRenderer;
+    classJoin: typeof classJoin;
+    className: typeof className;
+}
+declare const pluginUtil: PluginUtil;
+
+export { type Options, Paginator, PluginPosition, html, pluginAPI, pluginUtil };

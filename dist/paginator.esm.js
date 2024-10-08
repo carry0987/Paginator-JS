@@ -472,25 +472,13 @@ class Header extends Base {
             }
         }
     }
-    static isJsonPayload(data) {
-        return !!data && data instanceof Array && typeof data[0] === 'object' && !(data[0] instanceof Array);
-    }
-    static fromColumns(columns) {
-        const header = new Header();
-        for (const column of columns) {
-            if (typeof column === 'string' || t$2(column)) {
-                header.columns.push({
-                    name: column
-                });
-            }
-            else if (typeof column === 'object') {
-                const typedColumn = column;
-                // TColumn type
-                header.columns.push(typedColumn);
-            }
-        }
-        return header;
-    }
+    /**
+     * Creates a new Header from a Config object
+     * This method generates a new ID for the Header and all nested elements
+     * It also populates the plugin manager with the plugins from the columns
+     *
+     * @param config
+     */
     static createFromConfig(config) {
         const header = new Header();
         if (config.options.columns) {
@@ -524,6 +512,33 @@ class Header extends Base {
             }
         }
         return result;
+    }
+    /**
+     * Converts the tree-like format of Header to a tabular format
+     *
+     * @param columns
+     */
+    static tabularFormat(columns) {
+        return columns.length ? [columns] : [];
+    }
+    static isJsonPayload(data) {
+        return !!data && data instanceof Array && typeof data[0] === 'object' && !(data[0] instanceof Array);
+    }
+    static fromColumns(columns) {
+        const header = new Header();
+        for (const column of columns) {
+            if (typeof column === 'string' || t$2(column)) {
+                header.columns.push({
+                    name: column
+                });
+            }
+            else if (typeof column === 'object') {
+                const typedColumn = column;
+                // TColumn type
+                header.columns.push(typedColumn);
+            }
+        }
+        return header;
     }
 }
 
@@ -1353,7 +1368,7 @@ function html(content, parentElement) {
 }
 
 class Cell extends Base {
-    // because a Cell is a subset of TCell type
+    // Because a Cell is a subset of TCell type
     data;
     constructor(data) {
         super();
@@ -1629,7 +1644,8 @@ class Config {
         return {
             state: new StateManager({
                 status: Status.Init,
-                tabular: null
+                tabular: null,
+                header: null
             }),
             plugin: new PluginManager()
         };
@@ -2038,7 +2054,7 @@ const SetDataErrored = () => (state) => {
 const SetHeader = (header) => (state) => {
     return {
         ...state,
-        header: header
+        header: header || null
     };
 };
 
@@ -2346,7 +2362,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.12';
+    static version = '2.2.13';
     config;
     plugin;
     constructor(config) {
@@ -2425,12 +2441,25 @@ class PluginAPI {
     useConfig = useConfig;
     useOption = useOption;
     useTranslator = useTranslator;
-    classJoin = classJoin;
-    className = className;
     // Preact
     useEffect = y$1;
     useState = h$1;
+    useRef = A$1;
 }
 const pluginAPI = new PluginAPI();
 
-export { Paginator, PluginPosition, _$2 as h, html, pluginAPI };
+class PluginUtil {
+    // Status
+    Status = Status;
+    // Header
+    leafColumns = Header.leafColumns;
+    tabularFormat = Header.tabularFormat;
+    // Plugin
+    PluginRenderer = PluginRenderer;
+    // Style
+    classJoin = classJoin;
+    className = className;
+}
+const pluginUtil = new PluginUtil();
+
+export { Paginator, PluginPosition, _$2 as h, html, pluginAPI, pluginUtil };
