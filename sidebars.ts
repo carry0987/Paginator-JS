@@ -52,7 +52,7 @@ const sidebars: SidebarsConfig = {
                     type: 'category',
                     label: 'Overview',
                     items: [
-                        'plugins/demo',
+                        'plugins/basic',
                         'plugins/writing-plugin',
                         'plugins/advanced-plugin',
                     ],
