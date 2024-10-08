@@ -8,14 +8,14 @@ vi.mock('@carry0987/paginator', () => {
     const mockData = [['Item 1'], ['Item 2'], ['Item 3']];
     const mockState = {
         data: mockData,
-        toArray: function() {
+        toArray: function () {
             return this.data;
         }
     };
 
-    let state = {...mockState};
+    let state = { ...mockState };
     const setState = (newState: any) => {
-        state = {...state, data: newState};
+        state = { ...state, data: newState };
     };
 
     return {

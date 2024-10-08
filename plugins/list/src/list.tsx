@@ -1,4 +1,4 @@
-import { pluginAPI } from '@carry0987/paginator';
+import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 import { FunctionComponent } from 'preact';
 import '@/theme/index.scss';
 
@@ -15,11 +15,8 @@ const List: FunctionComponent = () => {
     }, [tabular]);
 
     return (
-        <div class={pluginAPI.className('list')}>
-            <ul>
-                {data &&
-                    data.toArray().map((item, index) => <li key={index}>{item[0]}</li>)}
-            </ul>
+        <div class={pluginUtil.className('list')}>
+            <ul>{data && data.toArray().map((item, index) => <li key={index}>{item[0]}</li>)}</ul>
         </div>
     );
 };
