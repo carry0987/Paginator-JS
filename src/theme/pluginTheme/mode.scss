@@ -1,20 +1,21 @@
 @import 'colors';
 
-@mixin set-theme-variables($background, $border) {
+@mixin set-theme-variables($background, $border, $text) {
     --paginatorjs-plugin-background: #{$background};
     --paginatorjs-plugin-border: #{$border};
+    --paginatorjs-plugin-text: #{$text};
 }
 
 :root {
-    @include set-theme-variables($lightBackground, $lightBorder);
+    @include set-theme-variables($lightBackground, $lightBorder, $lightText);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        @include set-theme-variables($darkBackground, $darkBorder);
+        @include set-theme-variables($darkBackground, $darkBorder, $darkText);
     }
 }
 
 html[data-theme='dark'] {
-    @include set-theme-variables($darkBackground, $darkBorder);
+    @include set-theme-variables($darkBackground, $darkBorder, $darkText);
 }

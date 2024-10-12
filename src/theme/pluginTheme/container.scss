@@ -11,7 +11,7 @@
         overflow: hidden;
         padding: 2px;
         width: 100%;
-        color: $black;
+        color: var(--paginatorjs-plugin-text);
         position: relative;
         z-index: 0;
     }
