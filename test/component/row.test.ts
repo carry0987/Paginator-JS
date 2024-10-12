@@ -1,5 +1,5 @@
-import Row from '../../src/component/row';
-import Cell from '../../src/component/cell';
+import Row from '@/component/row';
+import Cell from '@/component/cell';
 import { describe, it, expect } from 'vitest';
 
 describe('Row class', () => {

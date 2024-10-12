@@ -1,6 +1,6 @@
-import Tabular from '../../src/component/tabular';
-import Row from '../../src/component/row';
-import Cell from '../../src/component/cell';
+import Tabular from '@/component/tabular';
+import Row from '@/component/row';
+import Cell from '@/component/cell';
 import { describe, it, expect } from 'vitest';
 
 describe('Tabular class', () => {

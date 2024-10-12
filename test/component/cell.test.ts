@@ -1,4 +1,4 @@
-import Cell from '../../src/component/cell';
+import Cell from '@/component/cell';
 import { describe, it, expect } from 'vitest';
 
 describe('Cell class', () => {

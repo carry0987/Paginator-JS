@@ -16,7 +16,7 @@ export function HeaderContainer() {
 
     if (isActive.value) {
         return (
-            <div ref={headerRef} className={classJoin(className('head'))}>
+            <div ref={headerRef} className={classJoin(className('plugin', 'head'))}>
                 <PluginRenderer position={PluginPosition.Header} />
             </div>
         );

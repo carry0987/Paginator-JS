@@ -1,7 +1,7 @@
-import Header from '../../src/component/header';
-import { Config } from '../../src/component/config';
-import { OneDArray } from '../../src/type/types';
-import { TColumn } from '../../src/interface/column';
+import Header from '@/component/header';
+import { Config } from '@/component/config';
+import { OneDArray } from '@/type/types';
+import { TColumn } from '@/interface/column';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('Header Class', () => {
@@ -94,5 +94,28 @@ describe('Header Class', () => {
         const columns: OneDArray<TColumn> = [{ name: 'Name' }, { name: 'Email' }];
         const leafCols = Header.leafColumns(columns);
         expect(leafCols).toHaveLength(2);
+    });
+
+    it('should return a tabular header cell', () => {
+        const config = new Config().update({
+            data: [[1, 2]],
+            columns: [
+                {
+                    name: 'h1'
+                },
+                'h2',
+                {
+                    name: 'h3'
+                }
+            ]
+        });
+        const header = Header.createFromConfig(config);
+
+        const tabularColumns = Header.tabularFormat(header!.columns);
+        expect(tabularColumns).toHaveLength(1);
+
+        expect(tabularColumns[0][0].name).toBe('h1');
+        expect(tabularColumns[0][1].name).toBe('h2');
+        expect(tabularColumns[0][2].name).toBe('h3');
     });
 });

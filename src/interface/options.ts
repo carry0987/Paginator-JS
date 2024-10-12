@@ -16,6 +16,10 @@ interface MainOptions {
 interface PluginOptions {
     pluginContainer?: Element;
     plugins?: Plugin<any>[];
+    pluginClassName?: Partial<{
+        container: string;
+        wrapper: string;
+    }>;
 }
 
 interface CommonOptions {

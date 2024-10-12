@@ -1,5 +1,5 @@
-import ArrayToTabularTransformer from '../../../../src/module/pipeline/transformer/arrayToTabular';
-import Tabular from '../../../../src/component/tabular';
+import ArrayToTabularTransformer from '@/module/pipeline/transformer/arrayToTabular';
+import Tabular from '@/component/tabular';
 import { describe, it, expect } from 'vitest';
 
 describe('ArrayToTabularTransformer', () => {

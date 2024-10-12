@@ -1,4 +1,4 @@
-import { StateManager } from '../../../src/module/state/stateManager';
+import { StateManager } from '@/module/state/stateManager';
 import { vi, describe, it, expect } from 'vitest';
 
 describe('Store', () => {

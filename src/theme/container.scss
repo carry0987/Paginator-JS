@@ -1,13 +1,59 @@
 @import 'colors';
 
 .paginatorjs {
+    *,
+    :after,
+    :before {
+        box-sizing: border-box;
+    }
+
     &-container {
-        overflow: hidden;
-        display: inline-block;
-        padding: 2px;
+        display: flex;
+        color: var(--paginatorjs-color);
         width: 100%;
-        color: $black;
-        position: relative;
-        z-index: 0;
+        line-height: 1.6;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+
+        button,
+        .paginatorjs-pages button {
+            margin: 0;
+            color: inherit;
+            border: 1px solid var(--paginatorjs-border);
+            border-right: none;
+            outline: none;
+            padding: 5px 14px;
+            background-color: var(--paginatorjs-background);
+            background-image: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .paginatorjs-pages {
+            button:disabled,
+            button:hover:disabled,
+            button[disabled] {
+                background-color: var(--paginatorjs-disabled-background);
+                color: var(--paginatorjs-disabled-color);
+                cursor: default;
+            }
+
+            button:first-child {
+                border-bottom-left-radius: 6px;
+                border-top-left-radius: 6px;
+            }
+
+            button.paginatorjs-currentPage {
+                background-color: var(--paginatorjs-current-background);
+                font-weight: 700;
+            }
+
+            button:last-child {
+                border-bottom-right-radius: 6px;
+                border-right: 1px solid var(--paginatorjs-border);
+                border-top-right-radius: 6px;
+            }
+        }
     }
 }

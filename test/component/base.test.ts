@@ -1,4 +1,4 @@
-import Base from '../../src/component/base';
+import Base from '@/component/base';
 import { describe, it, expect } from 'vitest';
 
 describe('Base class', () => {

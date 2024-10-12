@@ -1,4 +1,4 @@
-import { camelCase } from '../../../src/module/utils/string';
+import { camelCase } from '@/module/utils/string';
 import { describe, it, expect } from 'vitest';
 
 describe('string module', () => {

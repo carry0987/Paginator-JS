@@ -1,5 +1,5 @@
-import Paginator from '../../src/component/paginator';
-import MemoryStorage from '../../src/module/storage/memory';
+import Paginator from '@/component/paginator';
+import MemoryStorage from '@/module/storage/memory';
 import { vi, describe, it, afterEach, expect } from 'vitest';
 
 describe('Paginator class', () => {

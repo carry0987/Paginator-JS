@@ -37,7 +37,7 @@ function createPluginConfig(pluginName: string) {
             ],
             external: ['@carry0987/paginator'],
             plugins: [
-                postcss({ inject: true }),
+                postcss({ inject: true, minimize: isProduction }),
                 typescript({ tsconfig: tsconfigPath }),
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
                 nodeResolve(),
@@ -59,7 +59,7 @@ function createPluginConfig(pluginName: string) {
             },
             external: ['@carry0987/paginator'],
             plugins: [
-                postcss({ inject: true }),
+                postcss({ inject: true, minimize: isProduction }),
                 typescript({ tsconfig: tsconfigPath }),
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
                 nodeResolve(),
@@ -103,7 +103,7 @@ const jsConfig = {
     plugins: [
         postcss({
             extract: path.resolve(pkg.exports['./theme/paginator.min.css']),
-            minimize: true,
+            minimize: isProduction,
             sourceMap: false
         }),
         typescript(),

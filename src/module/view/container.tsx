@@ -95,7 +95,7 @@ export function Container() {
     }, [status]);
 
     return (
-        <div ref={containerRef} className={classJoin(className('pagination'), option.className.container)}>
+        <div ref={containerRef} className={classJoin(className('container'), option.className.container)}>
             <PageRenderer ref={pageRendererRef} />
         </div>
     );

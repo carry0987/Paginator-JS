@@ -1,30 +1,15 @@
-/* Main colors */
-$white: #fff;
-$black: #000;
-$gray1: #f9fafb;
-$gray2: #f7f7f7;
-$gray3: #e5e7eb;
-$gray4: #d2d6dc;
-$gray5: #6b7280;
-$gray6: #3d4044;
-
 /* Light theme */
+$lightBorder: #d2d6dc;
 $lightBackground: #fff;
-$lightBorder: #e5e7eb;
-$lightButtonBorder: #d2d6dc;
-$lightButtonBackground: #fff;
-$lightButtonColor: #3d4044;
-$lightButtonDisabledBackground: #fff;
-$lightButtonDisabledColor: #6b7280;
-$lightButtonCurrentBackground: #f7f7f7;
+$lightColor: #3d4044;
+$lightDisabledBackground: #fff;
+$lightDisabledColor: #6b7280;
+$lightCurrentBackground: #f7f7f7;
 
 /* Dark theme */
-$darkBackground: #343942;
-$darkBorder: #2c2c2c;
-$darkButtonBorder: #353e4d;
-$darkButtonBackground: #202938;
-$darkButtonColor: #d5d6db;
-$darkButtonDisabledColor: #6b7280;
-$darkButtonDisabledBackground: #202938;
-$darkButtonCurrentBackground: #2d3747;
-$currentBackground: #2d3747;
+$darkBorder: #353e4d;
+$darkBackground: #202938;
+$darkColor: #d5d6db;
+$darkDisabledColor: #6b7280;
+$darkDisabledBackground: #202938;
+$darkCurrentBackground: #2d3747;

@@ -1,4 +1,4 @@
-import { oneDtoTwoD } from '../../../src/module/utils/array';
+import { oneDtoTwoD } from '@/module/utils/array';
 import { describe, it, expect } from 'vitest';
 
 describe('Cast module', () => {
