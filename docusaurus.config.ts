@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
     title: 'Paginator.js',
-    tagline: 'An advanced pagination plugin.',
+    tagline: 'Advanced Pagination Plugin',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here

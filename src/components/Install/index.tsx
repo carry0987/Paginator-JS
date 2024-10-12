@@ -19,7 +19,7 @@ export default function Install(): JSX.Element {
                 <div className="mt-12 grid gap-16 border-t-2 border-gray-100 pt-12 lg:grid-cols-2 lg:col-gap-5 lg:row-gap-12">
                     <div>
                         <h3 className="mt-4 text-xl leading-7 font-semibold text-gray-900">
-                            <span className="inline-flex px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase bg-blue-100 text-blue-600">
+                            <span className="inline-flex align-bottom px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase bg-blue-100 text-blue-600">
                                 1
                             </span>{' '}
                             Include the JavaScript and CSS
@@ -60,7 +60,7 @@ export default function Install(): JSX.Element {
                     </div>
                     <div>
                         <h3 className="mt-4 text-xl leading-7 font-semibold text-gray-900">
-                            <span className="inline-flex px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase bg-blue-100 text-blue-600">
+                            <span className="inline-flex align-top px-4 py-1 rounded-full text-sm leading-5 font-semibold tracking-wide uppercase bg-blue-100 text-blue-600">
                                 2
                             </span>{' '}
                             Call the <code>render()</code> method

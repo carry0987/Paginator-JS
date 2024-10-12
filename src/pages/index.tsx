@@ -39,6 +39,9 @@ const HomepageHeader = () => {
                     {siteConfig.title}
                 </Heading>
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
+                <a href="https://www.npmjs.com/package/@carry0987/paginator" target='_blank' rel='noopener noreferrer' className="inline-block">
+                    <img src="https://img.shields.io/npm/v/@carry0987/paginator.svg" alt="NPM version badge" className="mx-auto" />
+                </a>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-center">
                     <div className="rounded-md shadow">
                         <a href="docs"

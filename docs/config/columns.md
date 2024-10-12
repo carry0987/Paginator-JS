@@ -36,12 +36,13 @@ new Paginator({
 
 <div className="full-width">
 
-| Name                  | Description             | Type                         | Example                                                              |
-| --------------------- | ----------------------- | ---------------------------- | -------------------------------------------------------------------- |
-| id `optional`         | column ID               | `string`                     | `phoneNumber`                                                        |
-| data `optional`       | Cell default data       | `function` or TCell          | `(row) => row.name.firstName` or `myData`                            |
-| name                  | column name             | `string`                     | `Name`                                                               |
-| hidden `optional`     | to show/hide the column | `boolean`                    | `true` or `0`                                                        |
+| Name                  | Description                          | Type                         | Example                                                              |
+| --------------------- | ------------------------------------ | ---------------------------- | -------------------------------------------------------------------- |
+| id `optional`         | Column ID                            | `string`                     | `phoneNumber`                                                        |
+| data `optional`       | Cell default data                    | `function` or TCell          | `(row) => row.name.firstName` or `myData`                            |
+| name                  | Column name                          | `string`                     | `Name`                                                               |
+| hidden `optional`     | To show/hide the column              | `boolean`                    | `true` or `0`                                                        |
+| formatter `optional`  | (For plugin) Custom cell formatting  | `function`                   | `(cell: TCell, row: Row<TCell>, column: TColumn) => ComponentChild;` |
 
 </div>
 
