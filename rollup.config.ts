@@ -1,3 +1,4 @@
+import { RollupOptions } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
@@ -16,7 +17,7 @@ const globalName = 'paginatorjs';
 const sourceFile = 'src/index.ts';
 const l10nSourceFile = 'l10n/index.ts';
 
-function createPluginConfig(pluginName: string) {
+function createPluginConfig(pluginName: string): RollupOptions[] {
     const inputPath = `plugins/${pluginName}/index.ts`;
     const tsconfigPath = `plugins/${pluginName}/tsconfig.json`;
 
@@ -90,7 +91,7 @@ function createPluginConfig(pluginName: string) {
 }
 
 // JS config
-const jsConfig = {
+const jsConfig: RollupOptions = {
     input: sourceFile,
     output: [
         {
@@ -117,7 +118,7 @@ const jsConfig = {
 };
 
 // ES Module config
-const esConfig = {
+const esConfig: RollupOptions = {
     input: sourceFile,
     output: [
         {
@@ -142,7 +143,7 @@ const esConfig = {
 };
 
 // DTS config
-const dtsConfig = {
+const dtsConfig: RollupOptions = {
     input: sourceFile,
     output: {
         file: pkg.exports['.']['types'],
@@ -157,7 +158,7 @@ const dtsConfig = {
 };
 
 // I10n config
-const l10nConfig = {
+const l10nConfig: RollupOptions = {
     input: l10nSourceFile,
     output: [
         {
@@ -179,7 +180,7 @@ const l10nConfig = {
 };
 
 // DTS config for l10n
-const l10nDtsConfig = {
+const l10nDtsConfig: RollupOptions = {
     input: l10nSourceFile,
     output: {
         file: pkg.exports['./l10n']['types'],
