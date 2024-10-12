@@ -1,8 +1,6 @@
 @import 'colors';
 
 @mixin set-theme-variables(
-    $background,
-    $border,
     $buttonBorder,
     $buttonBackground,
     $color,
@@ -10,53 +8,45 @@
     $disabledColor,
     $currentBackground
 ) {
-    --paginatorjs-background: #{$background};
-    --paginatorjs-border: #{$border};
-    --paginatorjs-button-border: #{$buttonBorder};
-    --paginatorjs-button-background: #{$buttonBackground};
-    --paginatorjs-button-color: #{$color};
-    --paginatorjs-button-disabled-background: #{$disabledBackground};
-    --paginatorjs-button-disabled-color: #{$disabledColor};
-    --paginatorjs-button-current-background: #{$currentBackground};
+    --paginatorjs-border: #{$buttonBorder};
+    --paginatorjs-background: #{$buttonBackground};
+    --paginatorjs-color: #{$color};
+    --paginatorjs-disabled-background: #{$disabledBackground};
+    --paginatorjs-disabled-color: #{$disabledColor};
+    --paginatorjs-current-background: #{$currentBackground};
 }
 
 :root {
     @include set-theme-variables(
-        $lightBackground,
         $lightBorder,
-        $lightButtonBorder,
-        $lightButtonBackground,
-        $lightButtonColor,
-        $lightButtonDisabledBackground,
-        $lightButtonDisabledColor,
-        $lightButtonCurrentBackground
+        $lightBackground,
+        $lightColor,
+        $lightDisabledBackground,
+        $lightDisabledColor,
+        $lightCurrentBackground
     );
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         @include set-theme-variables(
-            $darkBackground,
             $darkBorder,
-            $darkButtonBorder,
-            $darkButtonBackground,
-            $darkButtonColor,
-            $darkButtonBackground,
-            $darkButtonDisabledColor,
-            $currentBackground
+            $darkBackground,
+            $darkColor,
+            $darkBackground,
+            $darkDisabledColor,
+            $darkCurrentBackground
         );
     }
 }
 
 html[data-theme='dark'] {
     @include set-theme-variables(
-        $darkBackground,
         $darkBorder,
-        $darkButtonBorder,
-        $darkButtonBackground,
-        $darkButtonColor,
-        $darkButtonBackground,
-        $darkButtonDisabledColor,
-        $currentBackground
+        $darkBackground,
+        $darkColor,
+        $darkBackground,
+        $darkDisabledColor,
+        $darkCurrentBackground
     );
 }

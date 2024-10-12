@@ -15,15 +15,15 @@ export function PluginContainer() {
         <div
             role="complementary"
             className={classJoin(
-                className('container'),
-                status === Status.Loading ? className('loading') : null,
-                option.className.container
+                className('plugin', 'container'),
+                status === Status.Loading ? className('plugin', 'loading') : null,
+                option.pluginClassName?.container
             )}>
-            {status === Status.Loading && <div className={className('loading-bar')} />}
+            {status === Status.Loading && <div className={className('plugin', 'loading-bar')} />}
 
             <HeaderContainer />
 
-            <div className={className('wrapper')}>
+            <div className={classJoin(className('plugin', 'wrapper'), option.pluginClassName?.wrapper)}>
                 <PluginRenderer position={PluginPosition.Body} />
             </div>
 

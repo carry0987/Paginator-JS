@@ -16,7 +16,7 @@ export function FooterContainer() {
 
     if (isActive.value) {
         return (
-            <div ref={footerRef} className={classJoin(className('footer'))}>
+            <div ref={footerRef} className={classJoin(className('plugin', 'footer'))}>
                 <PluginRenderer position={PluginPosition.Footer} />
             </div>
         );

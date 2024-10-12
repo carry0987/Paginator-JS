@@ -1,6 +1,6 @@
 @import 'colors';
 
-.paginatorjs {
+.paginatorjs-plugin {
     &-wrapper {
         position: relative;
         z-index: 1;
@@ -16,9 +16,9 @@
         border-radius: 8px;
         border-top-style: solid;
         border-top-width: 1px;
-        border-color: var(--paginatorjs-border);
+        border-color: var(--paginatorjs-plugin-border);
 
-        background-color: var(--paginatorjs-background);
+        background-color: var(--paginatorjs-plugin-background);
     }
 
     &-wrapper:nth-last-of-type(2) {
