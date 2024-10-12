@@ -183,9 +183,13 @@
         },
         pageSize: 5,
         pluginContainer: document.querySelector('div#plugin-container-sub'),
-        plugins: [paginatorjs.plugins.table.tablePlugin],
         language: paginatorjs.l10n.zhTW
     }).render(document.querySelector('div#paginator-demo4'));
+    paginator4.plugin.add({
+        id: 'table',
+        position: paginatorjs.PluginPosition.Body,
+        component: paginatorjs.plugins.table.Table
+    });
     </script>
 </body>
 </html>

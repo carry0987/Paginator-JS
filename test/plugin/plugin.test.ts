@@ -12,9 +12,13 @@ interface DummyConfig extends Config {
     };
 }
 
+interface TestProps {
+    test: string;
+}
+
 describe('Plugin', () => {
     function DummyPlugin<T extends DummyConfig>() {
-        const option = useOption() as T;
+        const option = useOption() as unknown as T;
 
         return h('b', {}, option?.dummy?.text || 'hello!');
     }
@@ -24,10 +28,13 @@ describe('Plugin', () => {
 
         expect(manager.list()).toHaveLength(0);
 
-        manager.add({
+        manager.add<TestProps>({
             id: 'dummy',
             position: PluginPosition.Header,
-            component: DummyPlugin
+            component: DummyPlugin,
+            props: {
+                test: 'test'
+            }
         });
 
         manager.add({
@@ -121,8 +128,8 @@ describe('Plugin', () => {
 
         const plugin = manager.get('dummy');
 
-        expect(plugin.component).toBe(component);
-        expect(plugin.position).toBe(PluginPosition.Header);
+        expect(plugin!.component).toBe(component);
+        expect(plugin!.position).toBe(PluginPosition.Header);
 
         expect(manager.get('doesnexist')).toBeUndefined();
     });
@@ -132,7 +139,7 @@ describe('Plugin', () => {
             data: [[1, 2, 3]]
         }) as DummyConfig;
 
-        config.options.dummy = {
+        (config.options as any).dummy = {
             text: 'dummyplugin'
         };
 

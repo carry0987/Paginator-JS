@@ -59,7 +59,7 @@
   "devDependencies": {
     "@carry0987/event-emitter": "^1.4.7",
     "@carry0987/pipeline": "^1.3.9",
-    "@carry0987/utils": "^3.7.7",
+    "@carry0987/utils": "^3.7.8",
     "@preact/signals": "^1.3.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-replace": "^6.0.1",
@@ -74,7 +74,7 @@
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-tsconfig-paths": "^1.5.2",
-    "sass": "^1.79.4",
+    "sass": "^1.79.5",
     "tslib": "^2.7.0",
     "vitest": "^2.1.2"
   }

@@ -22,7 +22,8 @@ export function PluginRenderer(props: {
             {},
             h(plugin.component, {
                 plugin: plugin,
-                ...props.props
+                ...props.props,
+                ...plugin.props
             })
         );
     } else if (props.position !== undefined) {
@@ -31,7 +32,7 @@ export function PluginRenderer(props: {
             Fragment,
             {},
             config.plugin.list(props.position).map((p) => {
-                return h(p.component, { plugin: p, ...props.props });
+                return h(p.component, { plugin: p, ...props.props, ...p.props });
             })
         );
     }

@@ -14,7 +14,7 @@ class PluginManager {
         return this.plugins.find((p) => p.id === id);
     }
 
-    public add<T extends FunctionComponent<any>>(plugin: Plugin<T>): this {
+    public add<P = any, T extends FunctionComponent<P> = FunctionComponent<P>>(plugin: Plugin<T, P>): this {
         if (!plugin.id) {
             log.error('Plugin ID cannot be empty');
             return this;
@@ -25,7 +25,10 @@ class PluginManager {
             return this;
         }
 
-        this.plugins.push(plugin);
+        this.plugins.push({
+            ...plugin,
+            props: plugin.props
+        });
 
         return this;
     }
