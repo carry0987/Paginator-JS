@@ -6,4 +6,7 @@ import { pluginUtil } from '@/plugin/pluginUtil';
 import { PluginPosition } from '@/plugin/pluginPosition';
 import { h } from 'preact';
 
+// Styles
+import '@/theme/index.scss';
+
 export { Paginator, Options, pluginAPI, pluginUtil, PluginPosition, html, h };
