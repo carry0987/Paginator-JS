@@ -70,10 +70,11 @@ declare enum PluginPosition {
     Cell = 3
 }
 
-interface Plugin<T extends FunctionComponent> {
+interface Plugin<T extends FunctionComponent<P>, P = any> {
     id: string;
     position: PluginPosition;
     component: T;
+    props?: P;
     order?: number;
 }
 
@@ -175,7 +176,7 @@ declare class PluginManager {
     private readonly plugins;
     constructor();
     get<T extends FunctionComponent>(id: string): Plugin<T> | undefined;
-    add<T extends FunctionComponent<any>>(plugin: Plugin<T>): this;
+    add<P = any, T extends FunctionComponent<P> = FunctionComponent<P>>(plugin: Plugin<T, P>): this;
     remove(id: string): this;
     list<T extends FunctionComponent>(position?: PluginPosition): Plugin<T>[];
 }

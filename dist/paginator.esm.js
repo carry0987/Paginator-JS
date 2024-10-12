@@ -99,9 +99,9 @@ function deepMerge(target, ...sources) {
     return deepMerge(target, ...sources);
 }
 function shallowMerge(target, ...sources) {
-    sources.forEach(source => {
+    sources.forEach((source) => {
         if (source) {
-            Object.keys(source).forEach(key => {
+            Object.keys(source).forEach((key) => {
                 const targetKey = key;
                 target[targetKey] = source[targetKey];
             });
@@ -122,7 +122,7 @@ function setUrlParam(url, params, overwrite = true) {
     if (typeof url === 'object') {
         originalUrl = url.url; // Extract the URL string
         if (Array.isArray(url.ignore)) {
-            ignoreArray = url.ignore.map(part => {
+            ignoreArray = url.ignore.map((part) => {
                 return part.startsWith('?') || part.startsWith('&') ? part.substring(1) : part;
             });
         }
@@ -161,7 +161,10 @@ function setUrlParam(url, params, overwrite = true) {
         }
         urlSearchParams.set(paramName, valueStr);
     }
-    const newSearchParams = ignoredParams.concat(urlSearchParams.toString().split('&').filter(p => p));
+    const newSearchParams = ignoredParams.concat(urlSearchParams
+        .toString()
+        .split('&')
+        .filter((p) => p));
     const finalSearchString = newSearchParams.join('&');
     urlObj.search = finalSearchString ? '?' + finalSearchString : '';
     return urlObj.toString();
@@ -183,7 +186,7 @@ function appendFormData(options, formData = new FormData()) {
         }
         else {
             // Traverse object properties
-            Object.keys(data).forEach(key => {
+            Object.keys(data).forEach((key) => {
                 const value = data[key];
                 const formKey = parentKey ? `${parentKey}[${key}]` : key;
                 if (value !== null && typeof value === 'object') {
@@ -240,7 +243,10 @@ function bodyToURLParams(body) {
     else if (typeof body === 'object') {
         // Handle generic object by iterating over its keys
         Object.entries(body).forEach(([key, value]) => {
-            if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null) {
+            if (typeof value === 'string' ||
+                typeof value === 'number' ||
+                typeof value === 'boolean' ||
+                value === null) {
                 params[key] = value;
             }
             else {
@@ -299,7 +305,7 @@ async function doFetch(options) {
             if (typeof success === 'function') {
                 // Clone the response and parse the clone
                 const clonedResponse = response.clone();
-                const responseData = await clonedResponse.json();
+                const responseData = (await clonedResponse.json());
                 success?.(responseData);
             }
         }
@@ -324,7 +330,7 @@ async function sendData(options) {
         cache: cache,
         mode: mode,
         credentials: credentials,
-        body: (encode && method.toUpperCase() !== 'GET') ? encodeFormData(data) : data,
+        body: encode && method.toUpperCase() !== 'GET' ? encodeFormData(data) : data,
         beforeSend: beforeSend,
         success: success,
         error: error
@@ -1590,7 +1596,10 @@ class PluginManager {
             log$1.error(`Duplicate plugin ID: ${plugin.id}`);
             return this;
         }
-        this.plugins.push(plugin);
+        this.plugins.push({
+            ...plugin,
+            props: plugin.props
+        });
         return this;
     }
     remove(id) {
@@ -2141,13 +2150,14 @@ function PluginRenderer(props) {
             return null;
         return _$2(b$1, {}, _$2(plugin.component, {
             plugin: plugin,
-            ...props.props
+            ...props.props,
+            ...plugin.props
         }));
     }
     else if (props.position !== undefined) {
         // Render using a specific plugin position
         return _$2(b$1, {}, config.plugin.list(props.position).map((p) => {
-            return _$2(p.component, { plugin: p, ...props.props });
+            return _$2(p.component, { plugin: p, ...props.props, ...p.props });
         }));
     }
     return null;
@@ -2362,7 +2372,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.13';
+    static version = '2.2.14';
     config;
     plugin;
     constructor(config) {
