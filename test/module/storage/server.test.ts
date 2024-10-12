@@ -1,6 +1,6 @@
-import ServerStorage from '../../../src/module/storage/server';
-import { ServerStorageOptions } from '../../../src/interface/storage';
-import Utils from '../../../src/module/utils/utils-ext';
+import ServerStorage from '@/module/storage/server';
+import { ServerStorageOptions } from '@/interface/storage';
+import Utils from '@/module/utils/utils-ext';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
 describe('ServerStorage class', () => {

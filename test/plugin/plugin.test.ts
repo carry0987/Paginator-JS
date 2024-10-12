@@ -1,8 +1,8 @@
-import { Config, ConfigContext } from '../../src/component/config';
-import { useOption } from '../../src/module/hook/useOption';
-import PluginManager from '../../src/plugin/pluginManager';
-import { PluginRenderer } from '../../src/plugin/pluginRenderer';
-import { PluginPosition } from '../../src/plugin/pluginPosition';
+import { Config, ConfigContext } from '@/component/config';
+import { useOption } from '@/module/hook/useOption';
+import PluginManager from '@/plugin/pluginManager';
+import { pluginUtil } from '@/plugin/pluginUtil';
+import { PluginPosition } from '@/plugin/pluginPosition';
 import { describe, it, expect } from 'vitest';
 import { Fragment, h, render } from 'preact';
 
@@ -134,47 +134,6 @@ describe('Plugin', () => {
         expect(manager.get('doesnexist')).toBeUndefined();
     });
 
-    it('should render the plugins', async () => {
-        const config = new Config().update({
-            data: [[1, 2, 3]]
-        }) as DummyConfig;
-
-        (config.options as any).dummy = {
-            text: 'dummyplugin'
-        };
-
-        config.internal.plugin.add({
-            id: 'dummyheader',
-            position: PluginPosition.Header,
-            component: DummyPlugin
-        });
-
-        config.internal.plugin.add({
-            id: 'dummyfooter',
-            position: PluginPosition.Footer,
-            component: DummyPlugin
-        });
-
-        const container = document.createElement('div');
-        document.body.appendChild(container);
-
-        render(
-            h(
-                ConfigContext.Provider,
-                { value: config },
-                h(
-                    Fragment,
-                    null,
-                    h(PluginRenderer, { position: PluginPosition.Header }),
-                    h(PluginRenderer, { position: PluginPosition.Footer })
-                )
-            ),
-            container
-        );
-
-        expect(container.innerHTML).toMatchSnapshot();
-    });
-
     it('should create a userConfig with custom plugin', () => {
         const config = new Config().update({
             data: [[1, 2, 3]],
@@ -190,6 +149,61 @@ describe('Plugin', () => {
         expect(config.internal.plugin.get('dummyheader')).toMatchObject({
             id: 'dummyheader',
             position: PluginPosition.Header
+        });
+    });
+
+    describe('pluginUtil', () => {
+        describe('pluginRenderer', () => {
+            it('should render the plugins', async () => {
+                const config = new Config().update({
+                    data: [[1, 2, 3]]
+                }) as DummyConfig;
+
+                (config.options as any).dummy = {
+                    text: 'dummyplugin'
+                };
+
+                config.internal.plugin.add({
+                    id: 'dummyheader',
+                    position: PluginPosition.Header,
+                    component: DummyPlugin
+                });
+
+                config.internal.plugin.add({
+                    id: 'dummyfooter',
+                    position: PluginPosition.Footer,
+                    component: DummyPlugin
+                });
+
+                const container = document.createElement('div');
+                document.body.appendChild(container);
+
+                render(
+                    h(
+                        ConfigContext.Provider,
+                        { value: config },
+                        h(
+                            Fragment,
+                            null,
+                            h(pluginUtil.PluginRenderer, { position: PluginPosition.Header }),
+                            h(pluginUtil.PluginRenderer, { position: PluginPosition.Footer })
+                        )
+                    ),
+                    container
+                );
+
+                expect(container.innerHTML).toMatchSnapshot();
+            });
+        });
+
+        describe('className', () => {
+            it('should accept two or more args', () => {
+                expect(pluginUtil.className('boo', 'foo', 'bar')).toBe('paginatorjs-plugin-boo-foo-bar');
+            });
+
+            it('should generate classNames', () => {
+                expect(pluginUtil.className('boo')).toBe('paginatorjs-plugin-boo');
+            });
         });
     });
 });

@@ -1,5 +1,5 @@
-import StorageExtractor from '../../../../src/module/pipeline/extractor/storage';
-import MemoryStorage from '../../../../src/module/storage/memory';
+import StorageExtractor from '@/module/pipeline/extractor/storage';
+import MemoryStorage from '@/module/storage/memory';
 import { describe, it, expect } from 'vitest';
 
 describe('StorageExtractor', () => {

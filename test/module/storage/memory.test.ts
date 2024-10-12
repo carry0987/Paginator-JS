@@ -1,4 +1,4 @@
-import MemoryStorage from '../../../src/module/storage/memory';
+import MemoryStorage from '@/module/storage/memory';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('MemoryStorage class', () => {

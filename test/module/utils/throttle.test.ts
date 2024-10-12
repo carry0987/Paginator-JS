@@ -1,4 +1,4 @@
-import { throttle } from '../../../src/module/utils/throttle';
+import { throttle } from '@/module/utils/throttle';
 import { vi, describe, it, expect } from 'vitest';
 
 const sleep = (wait: number) => new Promise((r) => setTimeout(r, wait));

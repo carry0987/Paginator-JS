@@ -1,6 +1,6 @@
-import { Config } from '../../src/component/config';
-import Storage from '../../src/module/storage/storage';
-import { Translator } from '../../src/module/i18n/translator';
+import { Config } from '@/component/config';
+import Storage from '@/module/storage/storage';
+import { Translator } from '@/module/i18n/translator';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('Config', () => {

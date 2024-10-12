@@ -1,4 +1,4 @@
-import { classJoin, className } from '../../../src/module/utils/className';
+import { classJoin, className } from '@/module/utils/className';
 import { describe, it, expect } from 'vitest';
 
 describe('className', () => {

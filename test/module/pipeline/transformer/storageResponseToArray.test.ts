@@ -1,6 +1,6 @@
-import { Config } from '../../../../src/component/config';
-import StorageResponseToArrayTransformer from '../../../../src/module/pipeline/transformer/storageResponseToArray';
-import Header from '../../../../src/component/header';
+import { Config } from '@/component/config';
+import StorageResponseToArrayTransformer from '@/module/pipeline/transformer/storageResponseToArray';
+import Header from '@/component/header';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('StorageResponseToArray', () => {

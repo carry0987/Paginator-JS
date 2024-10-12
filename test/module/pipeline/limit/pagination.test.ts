@@ -1,5 +1,5 @@
-import Tabular from '../../../../src/component/tabular';
-import PaginationLimit from '../../../../src/module/pipeline/limit/pagination';
+import Tabular from '@/component/tabular';
+import PaginationLimit from '@/module/pipeline/limit/pagination';
 import { describe, it, expect, beforeAll } from 'vitest';
 
 describe('PaginationLimit', () => {
