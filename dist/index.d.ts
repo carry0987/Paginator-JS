@@ -139,6 +139,10 @@ interface MainOptions {
 interface PluginOptions {
     pluginContainer?: Element;
     plugins?: Plugin<any>[];
+    pluginClassName?: Partial<{
+        container: string;
+        wrapper: string;
+    }>;
 }
 interface CommonOptions {
     pageNumber: number;
@@ -377,7 +381,6 @@ declare function PluginRenderer(props: {
     position?: PluginPosition;
 }): preact.VNode<preact.Attributes> | null;
 
-declare function className(...args: string[]): string;
 declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
 
 declare class PluginUtil {
@@ -386,7 +389,7 @@ declare class PluginUtil {
     tabularFormat: typeof Header.tabularFormat;
     PluginRenderer: typeof PluginRenderer;
     classJoin: typeof classJoin;
-    className: typeof className;
+    className: (...args: string[]) => string;
 }
 declare const pluginUtil: PluginUtil;
 

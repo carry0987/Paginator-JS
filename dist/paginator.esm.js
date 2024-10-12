@@ -2138,7 +2138,7 @@ function Container() {
             config.eventEmitter.emit('afterPaging', pageRendererRef.current.currentPage);
         }
     }, [status]);
-    return (u$2("div", { ref: containerRef, className: classJoin(className('pagination'), option.className.container), children: u$2(PageRenderer, { ref: pageRendererRef }) }));
+    return (u$2("div", { ref: containerRef, className: classJoin(className('container'), option.className.container), children: u$2(PageRenderer, { ref: pageRendererRef }) }));
 }
 
 function PluginRenderer(props) {
@@ -2172,7 +2172,7 @@ function HeaderContainer() {
         }
     }, [headerRef]);
     if (isActive.value) {
-        return (u$2("div", { ref: headerRef, className: classJoin(className('head')), children: u$2(PluginRenderer, { position: PluginPosition.Header }) }));
+        return (u$2("div", { ref: headerRef, className: classJoin(className('plugin', 'head')), children: u$2(PluginRenderer, { position: PluginPosition.Header }) }));
     }
     return null;
 }
@@ -2186,7 +2186,7 @@ function FooterContainer() {
         }
     }, [footerRef]);
     if (isActive.value) {
-        return (u$2("div", { ref: footerRef, className: classJoin(className('footer')), children: u$2(PluginRenderer, { position: PluginPosition.Footer }) }));
+        return (u$2("div", { ref: footerRef, className: classJoin(className('plugin', 'footer')), children: u$2(PluginRenderer, { position: PluginPosition.Footer }) }));
     }
     return null;
 }
@@ -2194,7 +2194,7 @@ function FooterContainer() {
 function PluginContainer() {
     const option = useOption();
     const status = useSelector((state) => state.status);
-    return (u$2("div", { role: "complementary", className: classJoin(className('container'), status === Status.Loading ? className('loading') : null, option.className.container), children: [status === Status.Loading && u$2("div", { className: className('loading-bar') }), u$2(HeaderContainer, {}), u$2("div", { className: className('wrapper'), children: u$2(PluginRenderer, { position: PluginPosition.Body }) }), u$2(FooterContainer, {})] }));
+    return (u$2("div", { role: "complementary", className: classJoin(className('plugin', 'container'), status === Status.Loading ? className('plugin', 'loading') : null, option.pluginClassName?.container), children: [status === Status.Loading && u$2("div", { className: className('plugin', 'loading-bar') }), u$2(HeaderContainer, {}), u$2("div", { className: classJoin(className('plugin', 'wrapper'), option.pluginClassName?.wrapper), children: u$2(PluginRenderer, { position: PluginPosition.Body }) }), u$2(FooterContainer, {})] }));
 }
 
 class EventEmitter {
@@ -2372,7 +2372,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.14';
+    static version = '2.2.15';
     config;
     plugin;
     constructor(config) {
@@ -2468,7 +2468,7 @@ class PluginUtil {
     PluginRenderer = PluginRenderer;
     // Style
     classJoin = classJoin;
-    className = className;
+    className = (...args) => className('plugin', ...args);
 }
 const pluginUtil = new PluginUtil();
 

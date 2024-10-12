@@ -31,7 +31,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".paginatorjs-list, .paginatorjs-list:after, .paginatorjs-list:before {\n  box-sizing: border-box;\n}\n.paginatorjs-list {\n  display: flex;\n  justify-content: center;\n  margin: 20px 0;\n  margin-bottom: 10px;\n}\n.paginatorjs-list ul {\n  list-style: none;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n}\n.paginatorjs-list ul li {\n  margin: 5px;\n  padding: 10px 15px;\n  background-color: #e7e6e6;\n  border-radius: 5px;\n  transition: background-color 0.3s;\n}\n.paginatorjs-list ul li:hover {\n  background-color: #aaaaaa;\n}\n.paginatorjs-list ul li.active {\n  background-color: #007bff;\n  color: white;\n}";
+var css_248z = ".paginatorjs-plugin-list,.paginatorjs-plugin-list:after,.paginatorjs-plugin-list:before{box-sizing:border-box}.paginatorjs-plugin-list{display:flex;justify-content:center;margin:20px 0 10px}.paginatorjs-plugin-list ul{display:flex;flex-direction:column;list-style:none;padding:0;width:100%}.paginatorjs-plugin-list ul li{background-color:#e7e6e6;border-radius:5px;margin:5px;padding:10px 15px;transition:background-color .3s}.paginatorjs-plugin-list ul li:hover{background-color:#aaa}.paginatorjs-plugin-list ul li.active{background-color:#007bff;color:#fff}";
 styleInject(css_248z);
 
 const List = () => {
