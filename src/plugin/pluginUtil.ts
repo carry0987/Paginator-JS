@@ -16,7 +16,7 @@ class PluginUtil {
 
     // Style
     public classJoin = classJoin;
-    public className = className;
+    public className = (...args: string[]) => className('plugin', ...args);
 }
 
 export const pluginUtil = new PluginUtil();
