@@ -20,7 +20,7 @@ describe('Paginator class', () => {
         paginator.render(container);
 
         // Assert based on rendered content
-        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+        expect(container.querySelector('.paginatorjs-container')).not.toBeNull();
     });
 
     it('should raise an exception with empty config', () => {
@@ -86,7 +86,7 @@ describe('Paginator class', () => {
         }).render(container);
 
         // Assert the initial render
-        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+        expect(container.querySelector('.paginatorjs-container')).not.toBeNull();
 
         // Call forceRender
         paginator
@@ -97,7 +97,7 @@ describe('Paginator class', () => {
             .forceRender();
 
         // Assert that the paginator is re-rendered
-        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+        expect(container.querySelector('.paginatorjs-container')).not.toBeNull();
     });
 
     it('should destroy the paginator instance', () => {
@@ -110,12 +110,12 @@ describe('Paginator class', () => {
         }).render(container);
 
         // Assert that paginator has been rendered
-        expect(container.querySelector('.paginatorjs-pagination')).not.toBeNull();
+        expect(container.querySelector('.paginatorjs-container')).not.toBeNull();
 
         // Call destroy
         paginator.destroy();
 
         // Assert that the paginator is destroyed
-        expect(container.querySelector('.paginatorjs-pagination')).toBeNull();
+        expect(container.querySelector('.paginatorjs-container')).toBeNull();
     });
 });
