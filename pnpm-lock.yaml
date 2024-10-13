@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@carry0987/paginator':
-        specifier: ^2.2.18
-        version: 2.2.18
+        specifier: ^2.2.19
+        version: 2.2.19
       '@docusaurus/core':
         specifier: ^3.5.2
         version: 3.5.2(@docusaurus/types@3.5.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
@@ -729,8 +729,8 @@ packages:
     resolution: {integrity: sha512-JWtuCu8VQsMladxVz/P4HzHUGCAwpuqacmowgXFs5XjxIgKuNjnLokQzuVjlTvIzODaDmpjT3oxcC48vyk9EWg==}
     engines: {node: '>=6.9.0'}
 
-  '@carry0987/paginator@2.2.18':
-    resolution: {integrity: sha512-y99RX4JpSQhqWTM2lrgPx8nBM4bw727kcE07zU+LSEgdhDAoxfE6lVwiKWbbsFNgNc8EP6t28NdKpPZuhz0M3Q==}
+  '@carry0987/paginator@2.2.19':
+    resolution: {integrity: sha512-0hAdSDFjQn9RboX/uNlTm6SqxcGb+zHo30QfZo6ZA+SvSDxqyexnmtNm5Y18DZcAbpe6V3/WnpPdTv0woC3+2w==}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -4737,8 +4737,8 @@ packages:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
 
-  yaml@2.5.1:
-    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
+  yaml@2.6.0:
+    resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
     engines: {node: '>= 14'}
     hasBin: true
 
@@ -5625,7 +5625,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.7
       to-fast-properties: 2.0.0
 
-  '@carry0987/paginator@2.2.18': {}
+  '@carry0987/paginator@2.2.19': {}
 
   '@colors/colors@1.5.0':
     optional: true
@@ -9486,7 +9486,7 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.4.47):
     dependencies:
       lilconfig: 3.1.2
-      yaml: 2.5.1
+      yaml: 2.6.0
     optionalDependencies:
       postcss: 8.4.47
 
@@ -10818,7 +10818,7 @@ snapshots:
 
   yaml@1.10.2: {}
 
-  yaml@2.5.1: {}
+  yaml@2.6.0: {}
 
   yocto-queue@0.1.0: {}
 
