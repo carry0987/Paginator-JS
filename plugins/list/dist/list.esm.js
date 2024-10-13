@@ -42,7 +42,7 @@ const List = () => {
             updateData(tabular);
         }
     }, [tabular]);
-    return (u("div", { class: pluginUtil.className('list'), children: u("ul", { children: data && data.toArray().map((item, index) => u("li", { children: item[0] }, index)) }) }));
+    return (u("div", { class: pluginUtil.className('list'), children: u("ul", { children: data && data.toArray().map((item, index) => u("li", { children: item[0] }, `li-${index}`)) }) }));
 };
 
 const listPlugin = {

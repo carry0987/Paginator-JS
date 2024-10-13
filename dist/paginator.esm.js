@@ -1732,10 +1732,10 @@ function classJoin(...classNames) {
         .trim();
 }
 
-const PageButton = ({ page, isActive, onClick, option, lang, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), option.className.active) : '', option.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page), children: lang(`${page}`) }, `page-${page}`));
-const EllipsisButton = ({ key, option, lang }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('spread'), option.className.pageButton, option.className.disable), children: lang('pagination.ellipsis') }, key));
-const ActionButton = ({ key, onClick, option, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton), title: text, "aria-label": text, children: text }, key));
-const ActionButtonDisabled = ({ key, option, text }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('disabled'), option.className.pageButton, key === 'prev' ? option.className.prevButton : option.className.nextButton, option.className.disable), title: text, "aria-label": text, children: text }, key));
+const PageButton = ({ page, isActive, onClick, option, lang, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(isActive ? classJoin(className('currentPage'), option.className.active) : '', option.className.pageButton), title: text || lang('pagination.page', page), "aria-label": text || lang('pagination.page', page), children: lang(`${page}`) }));
+const EllipsisButton = ({ option, lang }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('spread'), option.className.pageButton, option.className.disable), children: lang('pagination.ellipsis') }));
+const ActionButton = ({ act, onClick, option, text }) => (u$2("button", { tabIndex: 0, role: "button", type: "button", onClick: onClick, className: classJoin(option.className.pageButton, act === 'prevBtn' ? option.className.prevButton : option.className.nextButton), title: text, "aria-label": text, children: text }));
+const ActionButtonDisabled = ({ act, option, text }) => (u$2("button", { tabIndex: -1, disabled: true, className: classJoin(className('disabled'), option.className.pageButton, act === 'prevBtn' ? option.className.prevButton : option.className.nextButton, option.className.disable), title: text, "aria-label": text, children: text }));
 
 var t$1,r$1,u$1,i$1,o=0,f$1=[],c$2=l$2,e$1=c$2.__b,a$1=c$2.__r,v$2=c$2.diffed,l$1=c$2.__c,m=c$2.unmount,s$1=c$2.__;function d$2(n,t){c$2.__h&&c$2.__h(r$1,n,o||t),o=0;var u=r$1.__H||(r$1.__H={__:[],__h:[]});return n>=u.__.length&&u.__.push({}),u.__[n]}function h$1(n){return o=1,p$2(D$1,n)}function p$2(n,u,i){var o=d$2(t$1++,2);if(o.t=n,!o.__c&&(o.__=[i?i(u):D$1(void 0,u),function(n){var t=o.__N?o.__N[0]:o.__[0],r=o.t(t,n);t!==r&&(o.__N=[r,o.__[1]],o.__c.setState({}));}],o.__c=r$1,!r$1.u)){var f=function(n,t,r){if(!o.__c.__H)return !0;var u=o.__c.__H.__.filter(function(n){return !!n.__c});if(u.every(function(n){return !n.__N}))return !c||c.call(this,n,t,r);var i=!1;return u.forEach(function(n){if(n.__N){var t=n.__[0];n.__=n.__N,n.__N=void 0,t!==n.__[0]&&(i=!0);}}),!(!i&&o.__c.props===n)&&(!c||c.call(this,n,t,r))};r$1.u=!0;var c=r$1.shouldComponentUpdate,e=r$1.componentWillUpdate;r$1.componentWillUpdate=function(n,t,r){if(this.__e){var u=c;c=void 0,f(n,t,r),c=u;}e&&e.call(this,n,t,r);},r$1.shouldComponentUpdate=f;}return o.__N||o.__}function y$1(n,u){var i=d$2(t$1++,3);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__H.__h.push(i));}function _$1(n,u){var i=d$2(t$1++,4);!c$2.__s&&C(i.__H,u)&&(i.__=n,i.i=u,r$1.__h.push(i));}function A$1(n){return o=5,T$1(function(){return {current:n}},[])}function F$1(n,t,r){o=6,_$1(function(){return "function"==typeof n?(n(t()),function(){return n(null)}):n?(n.current=t(),function(){return n.current=null}):void 0},null==r?r:r.concat(n));}function T$1(n,r){var u=d$2(t$1++,7);return C(u.__H,r)&&(u.__=n(),u.__H=r,u.__h=n),u.__}function x$1(n){var u=r$1.context[n.__c],i=d$2(t$1++,9);return i.c=n,u?(null==i.__&&(i.__=!0,u.sub(r$1)),u.props.value):n.__}function j$1(){for(var n;n=f$1.shift();)if(n.__P&&n.__H)try{n.__H.__h.forEach(z$1),n.__H.__h.forEach(B$1),n.__H.__h=[];}catch(t){n.__H.__h=[],c$2.__e(t,n.__v);}}c$2.__b=function(n){r$1=null,e$1&&e$1(n);},c$2.__=function(n,t){n&&t.__k&&t.__k.__m&&(n.__m=t.__k.__m),s$1&&s$1(n,t);},c$2.__r=function(n){a$1&&a$1(n),t$1=0;var i=(r$1=n.__c).__H;i&&(u$1===r$1?(i.__h=[],r$1.__h=[],i.__.forEach(function(n){n.__N&&(n.__=n.__N),n.i=n.__N=void 0;})):(i.__h.forEach(z$1),i.__h.forEach(B$1),i.__h=[],t$1=0)),u$1=r$1;},c$2.diffed=function(n){v$2&&v$2(n);var t=n.__c;t&&t.__H&&(t.__H.__h.length&&(1!==f$1.push(t)&&i$1===c$2.requestAnimationFrame||((i$1=c$2.requestAnimationFrame)||w$2)(j$1)),t.__H.__.forEach(function(n){n.i&&(n.__H=n.i),n.i=void 0;})),u$1=r$1=null;},c$2.__c=function(n,t){t.some(function(n){try{n.__h.forEach(z$1),n.__h=n.__h.filter(function(n){return !n.__||B$1(n)});}catch(r){t.some(function(n){n.__h&&(n.__h=[]);}),t=[],c$2.__e(r,n.__v);}}),l$1&&l$1(n,t);},c$2.unmount=function(n){m&&m(n);var t,r=n.__c;r&&r.__H&&(r.__H.__.forEach(function(n){try{z$1(n);}catch(n){t=n;}}),r.__H=void 0,t&&c$2.__e(t,r.__v));};var k="function"==typeof requestAnimationFrame;function w$2(n){var t,r=function(){clearTimeout(u),k&&cancelAnimationFrame(t),setTimeout(n);},u=setTimeout(r,100);k&&(t=requestAnimationFrame(r));}function z$1(n){var t=r$1,u=n.__c;"function"==typeof u&&(n.__c=void 0,u()),r$1=t;}function B$1(n){var t=r$1;n.__c=n.__(),r$1=t;}function C(n,t){return !n||n.length!==t.length||t.some(function(t,r){return t!==n[r]})}function D$1(n,t){return "function"==typeof t?t(n):t}
 
@@ -1936,43 +1936,43 @@ const PageRenderer = w((_, ref) => {
         // If pageRange is 0, iterate through all pages and push buttons for each page
         if (pageRange === 0) {
             for (let i = 1; i <= totalPage; i++) {
-                pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang, text: lang('pagination.page', i + 1) }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang, text: lang('pagination.page', i + 1) }, `page-${i}`));
             }
             return pagerNumbers;
         }
         // If range start is close to the beginning, render pages directly
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
-                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }, `page-${i}`));
             }
         }
         else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
-                pagerNumbers.push(u$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: 1, isActive: false, onClick: () => goPage(1), option: option, lang: lang }, 'page-1'));
             }
             pagerNumbers.push(u$2(EllipsisButton, { option: option, lang: lang }, 'ellipsis-start'));
         }
         // Loop through the calculated range to render page buttons
         for (let i = rangeStart; i <= rangeEnd; i++) {
-            pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang }));
+            pagerNumbers.push(u$2(PageButton, { page: i, isActive: currentPage.value === i, onClick: () => goPage(i), option: option, lang: lang }, `page-${i}`));
         }
         // If the range end is near the last pages, render remaining pages
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
-                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: i, isActive: false, onClick: () => goPage(i), option: option, lang: lang }, `page-${i}`));
             }
         }
         else {
             // Render ellipsis and optionally the last page if range end is far
             pagerNumbers.push(u$2(EllipsisButton, { option: option, lang: lang }, 'ellipsis-end'));
             if (!display.hideLastOnEllipsisShow) {
-                pagerNumbers.push(u$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), option: option, lang: lang }));
+                pagerNumbers.push(u$2(PageButton, { page: totalPage, isActive: false, onClick: () => goPage(totalPage), option: option, lang: lang }, `page-${totalPage}`));
             }
         }
         return pagerNumbers;
     };
-    return (u$2("div", { className: classJoin(className('pages'), option.className.pageList), children: [display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.previous') }, "prev"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') }, "prev")), display.showPageNumbers && renderPageNumbers(), display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.next') }, "next"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }, "next"))] }));
+    return (u$2("div", { className: classJoin(className('pages'), option.className.pageList), children: [display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (u$2(ActionButtonDisabled, { act: 'prevBtn', option: option, text: lang('pagination.previous') }, 'prev'))) : (u$2(ActionButton, { act: 'prevBtn', onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') }, 'prev')), display.showPageNumbers && renderPageNumbers(), display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (u$2(ActionButtonDisabled, { act: 'nextBtn', option: option, text: lang('pagination.next') }, 'next'))) : (u$2(ActionButton, { act: 'nextBtn', onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }, 'next'))] }));
 });
 
 function useStore() {
@@ -2374,7 +2374,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.18';
+    static version = '2.2.19';
     config;
     plugin;
     constructor(config) {
