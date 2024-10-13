@@ -1,5 +1,5 @@
-import { Language, MessageFormat } from '@/type/i18n';
 import enUS from './en_US';
+import { Language, MessageFormat } from '@/type/i18n';
 
 export class Translator {
     private readonly _language: Language;
