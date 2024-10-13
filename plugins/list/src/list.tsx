@@ -16,7 +16,7 @@ const List: FunctionComponent = () => {
 
     return (
         <div class={pluginUtil.className('list')}>
-            <ul>{data && data.toArray().map((item, index) => <li key={index}>{item[0]}</li>)}</ul>
+            <ul>{data && data.toArray().map((item, index) => <li key={`li-${index}`}>{item[0]}</li>)}</ul>
         </div>
     );
 };

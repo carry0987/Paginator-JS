@@ -4,7 +4,6 @@ import { h } from 'preact';
 
 export const PageButton = ({ page, isActive, onClick, option, lang, text }: PageButtonProps): h.JSX.Element => (
     <button
-        key={`page-${page}`}
         tabIndex={0}
         role="button"
         type="button"
@@ -19,9 +18,8 @@ export const PageButton = ({ page, isActive, onClick, option, lang, text }: Page
     </button>
 );
 
-export const EllipsisButton = ({ key, option, lang }: EllipsisButtonProps): h.JSX.Element => (
+export const EllipsisButton = ({ option, lang }: EllipsisButtonProps): h.JSX.Element => (
     <button
-        key={key}
         tabIndex={-1}
         disabled={true}
         className={classJoin(className('spread'), option.className.pageButton, option.className.disable)}>
@@ -29,16 +27,15 @@ export const EllipsisButton = ({ key, option, lang }: EllipsisButtonProps): h.JS
     </button>
 );
 
-export const ActionButton = ({ key, onClick, option, text }: ActionButtonProps): h.JSX.Element => (
+export const ActionButton = ({ act, onClick, option, text }: ActionButtonProps): h.JSX.Element => (
     <button
-        key={key}
         tabIndex={0}
         role="button"
         type="button"
         onClick={onClick}
         className={classJoin(
             option.className.pageButton,
-            key === 'prev' ? option.className.prevButton : option.className.nextButton
+            act === 'prevBtn' ? option.className.prevButton : option.className.nextButton
         )}
         title={text}
         aria-label={text}>
@@ -46,15 +43,14 @@ export const ActionButton = ({ key, onClick, option, text }: ActionButtonProps):
     </button>
 );
 
-export const ActionButtonDisabled = ({ key, option, text }: ActionButtonProps): h.JSX.Element => (
+export const ActionButtonDisabled = ({ act, option, text }: ActionButtonProps): h.JSX.Element => (
     <button
-        key={key}
         tabIndex={-1}
         disabled={true}
         className={classJoin(
             className('disabled'),
             option.className.pageButton,
-            key === 'prev' ? option.className.prevButton : option.className.nextButton,
+            act === 'prevBtn' ? option.className.prevButton : option.className.nextButton,
             option.className.disable
         )}
         title={text}

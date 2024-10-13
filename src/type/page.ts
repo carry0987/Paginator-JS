@@ -10,13 +10,12 @@ export type PageButtonProps = {
 };
 
 export type EllipsisButtonProps = {
-    key: string;
     option: Options;
     lang: (key: string, ...args: unknown[]) => string;
 };
 
 export type ActionButtonProps = {
-    key: string;
+    act: string;
     onClick?: () => void;
     option: Options;
     text?: string;

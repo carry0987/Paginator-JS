@@ -51,6 +51,7 @@ export const PageRenderer = forwardRef((_, ref) => {
             for (let i = 1; i <= totalPage; i++) {
                 pagerNumbers.push(
                     <PageButton
+                        key={`page-${i}`}
                         page={i}
                         isActive={currentPage.value === i}
                         onClick={() => goPage(i)}
@@ -68,14 +69,14 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeStart <= 3) {
             for (let i = 1; i < rangeStart; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
+                    <PageButton key={`page-${i}`} page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
                 );
             }
         } else {
             // Render ellipsis and optionally the first page if range start is far
             if (!display.hideFirstOnEllipsisShow) {
                 pagerNumbers.push(
-                    <PageButton page={1} isActive={false} onClick={() => goPage(1)} option={option} lang={lang} />
+                    <PageButton key={'page-1'} page={1} isActive={false} onClick={() => goPage(1)} option={option} lang={lang} />
                 );
             }
             pagerNumbers.push(<EllipsisButton key={'ellipsis-start'} option={option} lang={lang} />);
@@ -85,6 +86,7 @@ export const PageRenderer = forwardRef((_, ref) => {
         for (let i = rangeStart; i <= rangeEnd; i++) {
             pagerNumbers.push(
                 <PageButton
+                    key={`page-${i}`}
                     page={i}
                     isActive={currentPage.value === i}
                     onClick={() => goPage(i)}
@@ -98,7 +100,7 @@ export const PageRenderer = forwardRef((_, ref) => {
         if (rangeEnd >= totalPage - 2) {
             for (let i = rangeEnd + 1; i <= totalPage; i++) {
                 pagerNumbers.push(
-                    <PageButton page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
+                    <PageButton key={`page-${i}`} page={i} isActive={false} onClick={() => goPage(i)} option={option} lang={lang} />
                 );
             }
         } else {
@@ -107,6 +109,7 @@ export const PageRenderer = forwardRef((_, ref) => {
             if (!display.hideLastOnEllipsisShow) {
                 pagerNumbers.push(
                     <PageButton
+                        key={`page-${totalPage}`}
                         page={totalPage}
                         isActive={false}
                         onClick={() => goPage(totalPage)}
@@ -124,11 +127,12 @@ export const PageRenderer = forwardRef((_, ref) => {
         <div className={classJoin(className('pages'), option.className.pageList)}>
             {display.showPrevious && currentPage.value <= 1 ? (
                 !display.autoHidePrevious && (
-                    <ActionButtonDisabled key="prev" option={option} text={lang('pagination.previous')} />
+                    <ActionButtonDisabled key={'prev'} act={'prevBtn'} option={option} text={lang('pagination.previous')} />
                 )
             ) : (
                 <ActionButton
-                    key="prev"
+                    key={'prev'}
+                    act={'prevBtn'}
                     onClick={() => goPage(currentPage.value - 1, 'prev')}
                     option={option}
                     text={lang('pagination.previous')}
@@ -137,11 +141,12 @@ export const PageRenderer = forwardRef((_, ref) => {
             {display.showPageNumbers && renderPageNumbers()}
             {display.showNext && currentPage.value >= getTotalPage() ? (
                 !display.autoHideNext && (
-                    <ActionButtonDisabled key="next" option={option} text={lang('pagination.next')} />
+                    <ActionButtonDisabled key={'next'} act={'nextBtn'} option={option} text={lang('pagination.next')} />
                 )
             ) : (
                 <ActionButton
-                    key="next"
+                    key={'next'}
+                    act={'nextBtn'}
                     onClick={() => goPage(currentPage.value + 1, 'next')}
                     option={option}
                     text={lang('pagination.next')}
