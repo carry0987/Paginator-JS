@@ -30,9 +30,11 @@ const paginator = new Paginator({
         ['Nisen', 'nis900@gmail.com', '313 333 1923'],
     ],
     className: {
-        container: {
-            font-family: 'Tahoma';
-        },
+        container: css`
+            * {
+                font-family: 'Tahoma';
+            }
+        `
     },
 });
 ```
