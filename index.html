@@ -183,7 +183,10 @@
         },
         pageSize: 5,
         pluginContainer: document.querySelector('div#plugin-container-sub'),
-        language: paginatorjs.l10n.zhTW
+        language: paginatorjs.l10n.zhTW,
+        className: {
+            container: 'test-container',
+        }
     }).render(document.querySelector('div#paginator-demo4'));
     paginator4.plugin.add({
         id: 'table',

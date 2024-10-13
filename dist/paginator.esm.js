@@ -1972,7 +1972,7 @@ const PageRenderer = w((_, ref) => {
         }
         return pagerNumbers;
     };
-    return (u$2("div", { className: classJoin(className(option.className.pageList || '')), children: [display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.previous') }, "prev"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') }, "prev")), display.showPageNumbers && renderPageNumbers(), display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.next') }, "next"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }, "next"))] }));
+    return (u$2("div", { className: classJoin(className('pages'), option.className.pageList), children: [display.showPrevious && currentPage.value <= 1 ? (!display.autoHidePrevious && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.previous') }, "prev"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value - 1, 'prev'), option: option, text: lang('pagination.previous') }, "prev")), display.showPageNumbers && renderPageNumbers(), display.showNext && currentPage.value >= getTotalPage() ? (!display.autoHideNext && (u$2(ActionButtonDisabled, { option: option, text: lang('pagination.next') }, "next"))) : (u$2(ActionButton, { onClick: () => goPage(currentPage.value + 1, 'next'), option: option, text: lang('pagination.next') }, "next"))] }));
 });
 
 function useStore() {
@@ -2164,6 +2164,7 @@ function PluginRenderer(props) {
 }
 
 function HeaderContainer() {
+    const option = useOption();
     const isActive = useSignal(true);
     const headerRef = A$1(null);
     y$1(() => {
@@ -2172,12 +2173,13 @@ function HeaderContainer() {
         }
     }, [headerRef]);
     if (isActive.value) {
-        return (u$2("div", { ref: headerRef, className: classJoin(className('plugin', 'head')), children: u$2(PluginRenderer, { position: PluginPosition.Header }) }));
+        return (u$2("div", { ref: headerRef, className: classJoin(className('plugin', 'head'), option.pluginClassName?.header), children: u$2(PluginRenderer, { position: PluginPosition.Header }) }));
     }
     return null;
 }
 
 function FooterContainer() {
+    const option = useOption();
     const isActive = useSignal(true);
     const footerRef = A$1(null);
     y$1(() => {
@@ -2186,7 +2188,7 @@ function FooterContainer() {
         }
     }, [footerRef]);
     if (isActive.value) {
-        return (u$2("div", { ref: footerRef, className: classJoin(className('plugin', 'footer')), children: u$2(PluginRenderer, { position: PluginPosition.Footer }) }));
+        return (u$2("div", { ref: footerRef, className: classJoin(className('plugin', 'footer'), option.pluginClassName?.footer), children: u$2(PluginRenderer, { position: PluginPosition.Footer }) }));
     }
     return null;
 }
@@ -2372,7 +2374,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.17';
+    static version = '2.2.18';
     config;
     plugin;
     constructor(config) {

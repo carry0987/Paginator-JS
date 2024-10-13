@@ -19,6 +19,8 @@ interface PluginOptions {
     pluginClassName?: Partial<{
         container: string;
         wrapper: string;
+        footer: string;
+        header: string;
     }>;
 }
 

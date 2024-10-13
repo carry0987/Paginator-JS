@@ -121,7 +121,7 @@ export const PageRenderer = forwardRef((_, ref) => {
     };
 
     return (
-        <div className={classJoin(className(option.className.pageList || ''))}>
+        <div className={classJoin(className('pages'), option.className.pageList)}>
             {display.showPrevious && currentPage.value <= 1 ? (
                 !display.autoHidePrevious && (
                     <ActionButtonDisabled key="prev" option={option} text={lang('pagination.previous')} />
