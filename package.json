@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.2.19",
+  "version": "2.2.20",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -67,7 +67,7 @@
     "@rollup/plugin-typescript": "^12.1.0",
     "@testing-library/preact": "^3.2.4",
     "happy-dom": "^15.7.4",
-    "preact": "^10.24.2",
+    "preact": "^10.24.3",
     "prettier": "^3.3.3",
     "rollup": "^4.24.0",
     "rollup-plugin-delete": "^2.1.0",
@@ -76,6 +76,6 @@
     "rollup-plugin-tsconfig-paths": "^1.5.2",
     "sass": "^1.79.5",
     "tslib": "^2.7.0",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.3"
   }
 }
