@@ -1,4 +1,4 @@
-@import 'colors';
+@use 'colors';
 
 th.paginatorjs-plugin {
     &-th {
@@ -30,19 +30,23 @@ th.paginatorjs-plugin {
         }
 
         &-sort:hover {
-            background-color: $gray3;
+
+            background-color: colors.$gray3;
         }
 
         &-sort:focus {
-            background-color: $gray3;
+
+            background-color: colors.$gray3;
         }
 
         &-fixed {
             position: sticky;
-            box-shadow: 0 1px 0 0 $gray3;
+
+            box-shadow: 0 1px 0 0 colors.$gray3;
 
             @supports (-moz-appearance: none) {
-                box-shadow: 0 0 0 1px $gray3;
+
+                box-shadow: 0 0 0 1px colors.$gray3;
             }
         }
     }

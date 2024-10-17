@@ -1,4 +1,4 @@
-@import 'colors';
+@use 'colors';
 
 @mixin set-theme-variables(
     $buttonBorder,
@@ -18,35 +18,35 @@
 
 :root {
     @include set-theme-variables(
-        $lightBorder,
-        $lightBackground,
-        $lightColor,
-        $lightDisabledBackground,
-        $lightDisabledColor,
-        $lightCurrentBackground
+        colors.$lightBorder,
+        colors.$lightBackground,
+        colors.$lightColor,
+        colors.$lightDisabledBackground,
+        colors.$lightDisabledColor,
+        colors.$lightCurrentBackground
     );
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         @include set-theme-variables(
-            $darkBorder,
-            $darkBackground,
-            $darkColor,
-            $darkBackground,
-            $darkDisabledColor,
-            $darkCurrentBackground
+            colors.$darkBorder,
+            colors.$darkBackground,
+            colors.$darkColor,
+            colors.$darkBackground,
+            colors.$darkDisabledColor,
+            colors.$darkCurrentBackground
         );
     }
 }
 
 html[data-theme='dark'] {
     @include set-theme-variables(
-        $darkBorder,
-        $darkBackground,
-        $darkColor,
-        $darkBackground,
-        $darkDisabledColor,
-        $darkCurrentBackground
+        colors.$darkBorder,
+        colors.$darkBackground,
+        colors.$darkColor,
+        colors.$darkBackground,
+        colors.$darkDisabledColor,
+        colors.$darkCurrentBackground
     );
 }
