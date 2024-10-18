@@ -4,7 +4,7 @@ export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
-import { useEffect, useState, useRef } from 'preact/hooks';
+import { useEffect, useCallback, useState, useRef } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -372,6 +372,7 @@ declare class PluginAPI {
     useOption: () => Options;
     useTranslator: typeof useTranslator;
     useEffect: typeof useEffect;
+    useCallback: typeof useCallback;
     useState: typeof useState;
     useRef: typeof useRef;
 }
@@ -390,6 +391,8 @@ declare class PluginUtil {
     leafColumns: typeof Header.leafColumns;
     tabularFormat: typeof Header.tabularFormat;
     PluginRenderer: typeof PluginRenderer;
+    debounce: <F extends (...args: any[]) => any>(func: F, waitFor: number) => (...args: Parameters<F>) => Promise<ReturnType<F>>;
+    throttle: (fn: (...args: any[]) => void, wait?: number) => (...args: any[]) => void;
     classJoin: typeof classJoin;
     className: (...args: string[]) => string;
 }
