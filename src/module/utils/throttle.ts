@@ -3,7 +3,7 @@
  *
  * @param fn Function to be called
  * @param wait Throttle timeout in milliseconds
- * 
+ *
  * @returns Throttled function
  */
 export const throttle = (fn: (...args: any[]) => void, wait = 100) => {
