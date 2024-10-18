@@ -1,6 +1,8 @@
 import { PluginRenderer } from './pluginRenderer';
 import { Status } from '@/type/status';
 import Header from '@/component/header';
+import { debounce } from '@/module/utils/debounce';
+import { throttle } from '@/module/utils/throttle';
 import { classJoin, className } from '@/module/utils/className';
 
 class PluginUtil {
@@ -13,6 +15,12 @@ class PluginUtil {
 
     // Plugin
     public PluginRenderer = PluginRenderer;
+
+    // Debounce
+    public debounce = debounce;
+
+    // Throttle
+    public throttle = throttle;
 
     // Style
     public classJoin = classJoin;
