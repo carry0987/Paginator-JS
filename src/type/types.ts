@@ -1,9 +1,9 @@
 import { ComponentChild } from 'preact';
 
+/**
+ * ID type for unique identification
+ */
 export type ID = string;
-export type CSSDeclaration = {
-    [key: string]: string | number;
-};
 
 /**
  * Table cell types

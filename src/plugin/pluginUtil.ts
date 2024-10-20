@@ -1,30 +1,47 @@
 import { PluginRenderer } from './pluginRenderer';
 import { Status } from '@/type/status';
+import { TColumn } from '@/interface/column';
+import Base from '@/component/base';
 import Header from '@/component/header';
+import Cell from '@/component/cell';
+import Row from '@/component/row';
 import { debounce } from '@/module/utils/debounce';
 import { throttle } from '@/module/utils/throttle';
 import { classJoin, className } from '@/module/utils/className';
 
 class PluginUtil {
     // Status
-    public Status = Status;
+    public static Status = Status;
+
+    // Base
+    public static Base = Base;
 
     // Header
-    public leafColumns = Header.leafColumns;
-    public tabularFormat = Header.tabularFormat;
+    public static leafColumns = Header.leafColumns;
+    public static tabularFormat = Header.tabularFormat;
+
+    // Cell
+    public static Cell = Cell;
+
+    // Row
+    public static Row = Row;
 
     // Plugin
-    public PluginRenderer = PluginRenderer;
+    public static PluginRenderer = PluginRenderer;
 
     // Debounce
-    public debounce = debounce;
+    public static debounce = debounce;
 
     // Throttle
-    public throttle = throttle;
+    public static throttle = throttle;
 
     // Style
-    public classJoin = classJoin;
-    public className = (...args: string[]) => className('plugin', ...args);
+    public static classJoin = classJoin;
+    public static className = (...args: string[]) => className('plugin', ...args);
 }
 
-export const pluginUtil = new PluginUtil();
+namespace PluginUtil {
+    export type Column = TColumn;
+}
+
+export { PluginUtil as pluginUtil };
