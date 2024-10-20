@@ -1,12 +1,13 @@
-import { CSSDeclaration } from '@/type/types';
+import { TColumn } from '@/interface/interfaces';
+import { CSSDeclaration, TRow, TCell } from '@/type/types';
 import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 import { ComponentChild, JSX } from 'preact';
 
 export function TD(
     props: {
-        cell: any;
-        row?: any;
-        column?: any;
+        cell: TCell;
+        row?: TRow;
+        column?: TColumn;
         style?: CSSDeclaration;
         messageCell?: boolean;
     } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>
@@ -14,7 +15,7 @@ export function TD(
     const config = pluginAPI.useConfig();
 
     const content = (): ComponentChild => {
-        if (props.column && typeof props.column.formatter === 'function') {
+        if (props.row && props.column && typeof props.column.formatter === 'function') {
             return props.column.formatter(props.cell.data, props.row, props.column);
         }
 

@@ -1,5 +1,6 @@
 import { TR } from './tr';
 import { MessageRow } from './messageRow';
+import { TRow } from '@/type/types';
 import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 
 export function TBody() {
@@ -22,7 +23,7 @@ export function TBody() {
     return (
         <tbody className={pluginUtil.classJoin(pluginUtil.className('tbody'))}>
             {tabular &&
-                tabular.data.map((row: any) => {
+                tabular.data.map((row: TRow) => {
                     return <TR key={row.id} row={row} />;
                 })}
 

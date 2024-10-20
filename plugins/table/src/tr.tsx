@@ -1,12 +1,14 @@
 import { TD } from './td';
+import { TColumn } from '@/interface/interfaces';
+import { TRow, TCell } from '@/type/types';
 import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 import { JSX, ComponentChildren } from 'preact';
 
-export function TR(props: { row?: any; messageRow?: boolean; children?: ComponentChildren }) {
+export function TR(props: { row?: TRow; messageRow?: boolean; children?: ComponentChildren }) {
     const config = pluginAPI.useConfig();
     const header = pluginAPI.useSelector((state) => state.header);
 
-    const getColumn = (cellIndex: number) => {
+    const getColumn = (cellIndex: number): TColumn | undefined => {
         if (header) {
             const cols = pluginUtil.leafColumns(header.columns);
 
@@ -15,7 +17,7 @@ export function TR(props: { row?: any; messageRow?: boolean; children?: Componen
             }
         }
 
-        return null;
+        return undefined;
     };
 
     const getChildren = (): ComponentChildren => {
@@ -23,7 +25,7 @@ export function TR(props: { row?: any; messageRow?: boolean; children?: Componen
             return props.children;
         }
 
-        return props.row.cells.map((cell: any, i: number) => {
+        return props.row && props.row.cells.map((cell: TCell, i: number) => {
             const column = getColumn(i);
 
             if (column && column.hidden) return null;

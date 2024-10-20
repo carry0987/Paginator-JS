@@ -1,3 +1,4 @@
+import { TColumn } from '@/interface/interfaces';
 import { CSSDeclaration } from '@/type/types';
 import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 import { ComponentChild, JSX } from 'preact';
@@ -5,7 +6,7 @@ import { ComponentChild, JSX } from 'preact';
 export function TH(
     props: {
         index: number;
-        column: any;
+        column: TColumn;
         style?: CSSDeclaration;
     } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>
 ) {
@@ -43,10 +44,6 @@ export function TH(
             className={pluginUtil.classJoin(pluginUtil.className('th'))}
             onClick={onClick}
             style={{
-                ...{
-                    minWidth: props.column.minWidth,
-                    width: props.column.width
-                },
                 ...props.style
             }}
             rowSpan={typeof props.rowSpan === 'number' && props.rowSpan > 1 ? props.rowSpan : undefined}

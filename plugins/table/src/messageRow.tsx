@@ -9,9 +9,7 @@ export function MessageRow(props: { message: string; colSpan?: number; className
                 role="alert"
                 colSpan={props.colSpan}
                 messageCell={true}
-                cell={{
-                    data: props.message
-                }}
+                cell={new pluginUtil.Cell(props.message)}
                 className={pluginUtil.classJoin(
                     pluginUtil.className('message'),
                     props.className ? props.className : null
