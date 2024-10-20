@@ -1,3 +1,3 @@
 import { pluginUtil } from '@carry0987/paginator';
 
-export interface TColumn extends pluginUtil.Column {};
+export interface TColumn extends pluginUtil.Column {}

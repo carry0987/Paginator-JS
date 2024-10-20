@@ -3,7 +3,11 @@ import { TH } from './th';
 import { TColumn } from '@/interface/interfaces';
 import { pluginAPI, pluginUtil } from '@carry0987/paginator';
 
-function calculateRowColSpans(column: TColumn[], rowIndex: number, totalRows: number): { rowSpan: number; colSpan: number } {
+function calculateRowColSpans(
+    column: TColumn[],
+    rowIndex: number,
+    totalRows: number
+): { rowSpan: number; colSpan: number } {
     const depth = column.length - 1;
     const remainingRows = totalRows - rowIndex;
     const rowSpan = Math.floor(remainingRows - depth - depth / remainingRows);

@@ -25,13 +25,16 @@ export function TR(props: { row?: TRow; messageRow?: boolean; children?: Compone
             return props.children;
         }
 
-        return props.row && props.row.cells.map((cell: TCell, i: number) => {
-            const column = getColumn(i);
+        return (
+            props.row &&
+            props.row.cells.map((cell: TCell, i: number) => {
+                const column = getColumn(i);
 
-            if (column && column.hidden) return null;
+                if (column && column.hidden) return null;
 
-            return <TD key={cell.id} cell={cell} row={props.row} column={column} />;
-        });
+                return <TD key={cell.id} cell={cell} row={props.row} column={column} />;
+            })
+        );
     };
 
     const handleClick = (e: JSX.TargetedMouseEvent<HTMLTableRowElement>): void => {
