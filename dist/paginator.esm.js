@@ -2375,7 +2375,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.23';
+    static version = '2.2.24';
     config;
     plugin;
     constructor(config) {
@@ -2483,20 +2483,25 @@ const debounce = (func, waitFor) => {
 
 class PluginUtil {
     // Status
-    Status = Status;
+    static Status = Status;
+    // Base
+    static Base = Base;
     // Header
-    leafColumns = Header.leafColumns;
-    tabularFormat = Header.tabularFormat;
+    static leafColumns = Header.leafColumns;
+    static tabularFormat = Header.tabularFormat;
+    // Cell
+    static Cell = Cell;
+    // Row
+    static Row = Row;
     // Plugin
-    PluginRenderer = PluginRenderer;
+    static PluginRenderer = PluginRenderer;
     // Debounce
-    debounce = debounce;
+    static debounce = debounce;
     // Throttle
-    throttle = throttle;
+    static throttle = throttle;
     // Style
-    classJoin = classJoin;
-    className = (...args) => className('plugin', ...args);
+    static classJoin = classJoin;
+    static className = (...args) => className('plugin', ...args);
 }
-const pluginUtil = new PluginUtil();
 
-export { Paginator, PluginPosition, _$2 as h, html, pluginAPI, pluginUtil };
+export { Paginator, PluginPosition, _$2 as h, html, pluginAPI, PluginUtil as pluginUtil };

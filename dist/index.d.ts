@@ -30,6 +30,9 @@ interface InternalEvents {
  */
 type PaginatorEvents = PageEvents & InternalEvents;
 
+/**
+ * ID type for unique identification
+ */
 type ID = string;
 /**
  * Table cell types
@@ -387,15 +390,20 @@ declare function PluginRenderer(props: {
 declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
 
 declare class PluginUtil {
-    Status: typeof Status;
-    leafColumns: typeof Header.leafColumns;
-    tabularFormat: typeof Header.tabularFormat;
-    PluginRenderer: typeof PluginRenderer;
-    debounce: <F extends (...args: any[]) => any>(func: F, waitFor: number) => (...args: Parameters<F>) => Promise<ReturnType<F>>;
-    throttle: (fn: (...args: any[]) => void, wait?: number) => (...args: any[]) => void;
-    classJoin: typeof classJoin;
-    className: (...args: string[]) => string;
+    static Status: typeof Status;
+    static Base: typeof Base;
+    static leafColumns: typeof Header.leafColumns;
+    static tabularFormat: typeof Header.tabularFormat;
+    static Cell: typeof Cell;
+    static Row: typeof Row;
+    static PluginRenderer: typeof PluginRenderer;
+    static debounce: <F extends (...args: any[]) => any>(func: F, waitFor: number) => (...args: Parameters<F>) => Promise<ReturnType<F>>;
+    static throttle: (fn: (...args: any[]) => void, wait?: number) => (...args: any[]) => void;
+    static classJoin: typeof classJoin;
+    static className: (...args: string[]) => string;
 }
-declare const pluginUtil: PluginUtil;
+declare namespace PluginUtil {
+    type Column = TColumn;
+}
 
-export { type Options, Paginator, PluginPosition, html, pluginAPI, pluginUtil };
+export { type Options, Paginator, PluginPosition, html, pluginAPI, PluginUtil as pluginUtil };

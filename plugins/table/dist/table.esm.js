@@ -7,7 +7,7 @@ var f=0;function u(e,t,n,o,i,u){t||(t={});var a,c,l$1=t;"ref"in t&&(a=t.ref,dele
 function TD(props) {
     const config = pluginAPI.useConfig();
     const content = () => {
-        if (props.column && typeof props.column.formatter === 'function') {
+        if (props.row && props.column && typeof props.column.formatter === 'function') {
             return props.column.formatter(props.cell.data, props.row, props.column);
         }
         if (props.column && props.column.plugin) {
@@ -39,18 +39,19 @@ function TR(props) {
                 return cols[cellIndex];
             }
         }
-        return null;
+        return undefined;
     };
     const getChildren = () => {
         if (props.children) {
             return props.children;
         }
-        return props.row.cells.map((cell, i) => {
-            const column = getColumn(i);
-            if (column && column.hidden)
-                return null;
-            return u(TD, { cell: cell, row: props.row, column: column }, cell.id);
-        });
+        return (props.row &&
+            props.row.cells.map((cell, i) => {
+                const column = getColumn(i);
+                if (column && column.hidden)
+                    return null;
+                return u(TD, { cell: cell, row: props.row, column: column }, cell.id);
+            }));
     };
     const handleClick = (e) => {
         if (props.messageRow)
@@ -77,10 +78,6 @@ function TH(props) {
         return null;
     };
     return (u("th", { ref: thRef, "data-column-id": props.column && props.column.id, className: pluginUtil.classJoin(pluginUtil.className('th')), onClick: onClick, style: {
-            ...{
-                minWidth: props.column.minWidth,
-                width: props.column.width
-            },
             ...props.style
         }, rowSpan: typeof props.rowSpan === 'number' && props.rowSpan > 1 ? props.rowSpan : undefined, colSpan: typeof props.colSpan === 'number' && props.colSpan > 1 ? props.colSpan : undefined, children: u("div", { className: pluginUtil.className('th', 'content'), children: content() }) }));
 }
@@ -89,7 +86,7 @@ function calculateRowColSpans(column, rowIndex, totalRows) {
     const depth = column.length - 1;
     const remainingRows = totalRows - rowIndex;
     const rowSpan = Math.floor(remainingRows - depth - depth / remainingRows);
-    const colSpan = (column.columns && column.columns.length) || 1;
+    const colSpan = 1;
     return {
         rowSpan: rowSpan,
         colSpan: colSpan
@@ -98,7 +95,7 @@ function calculateRowColSpans(column, rowIndex, totalRows) {
 function THead() {
     const header = pluginAPI.useSelector((state) => state.header);
     const renderColumn = (column, rowIndex, columnIndex, totalRows) => {
-        const { rowSpan, colSpan } = calculateRowColSpans(column, rowIndex, totalRows);
+        const { rowSpan, colSpan } = calculateRowColSpans([column], rowIndex, totalRows);
         return u(TH, { column: column, index: columnIndex, colSpan: colSpan, rowSpan: rowSpan });
     };
     const renderRow = (row, rowIndex, totalRows) => {
@@ -122,9 +119,7 @@ function THead() {
 }
 
 function MessageRow(props) {
-    return (u(TR, { messageRow: true, children: u(TD, { role: "alert", colSpan: props.colSpan, messageCell: true, cell: {
-                data: props.message
-            }, className: pluginUtil.classJoin(pluginUtil.className('message'), props.className ? props.className : null) }) }));
+    return (u(TR, { messageRow: true, children: u(TD, { role: "alert", colSpan: props.colSpan, messageCell: true, cell: new pluginUtil.Cell(props.message), className: pluginUtil.classJoin(pluginUtil.className('message'), props.className ? props.className : null) }) }));
 }
 
 function TBody() {
