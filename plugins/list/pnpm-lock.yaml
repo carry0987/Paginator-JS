@@ -9,17 +9,17 @@ importers:
   .:
     dependencies:
       '@carry0987/paginator':
-        specifier: ../../
+        specifier: link:../..
         version: link:../..
       preact:
         specifier: ^10.24.2
-        version: 10.24.2
+        version: 10.24.3
 
 packages:
 
-  preact@10.24.2:
-    resolution: {integrity: sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==}
+  preact@10.24.3:
+    resolution: {integrity: sha512-Z2dPnBnMUfyQfSQ+GBdsGa16hz35YmLmtTLhM169uW944hYL6xzTYkJjC07j+Wosz733pMWx0fgON3JNw1jJQA==}
 
 snapshots:
 
-  preact@10.24.2: {}
+  preact@10.24.3: {}
