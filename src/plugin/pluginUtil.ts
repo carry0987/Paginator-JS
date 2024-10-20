@@ -10,6 +10,10 @@ import { throttle } from '@/module/utils/throttle';
 import { classJoin, className } from '@/module/utils/className';
 
 class PluginUtil {
+    private constructor() {
+        // Prevent instantiation of this static utility class
+    }
+
     // Status
     public static Status = Status;
 
@@ -44,4 +48,4 @@ namespace PluginUtil {
     export type Column = TColumn;
 }
 
-export { PluginUtil as pluginUtil };
+export { PluginUtil };

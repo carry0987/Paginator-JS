@@ -1,7 +1,7 @@
 import { TD } from './td';
 import { TColumn } from '@/interface/interfaces';
 import { TRow, TCell } from '@/type/types';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 import { JSX, ComponentChildren } from 'preact';
 
 export function TR(props: { row?: TRow; messageRow?: boolean; children?: ComponentChildren }) {
@@ -10,7 +10,7 @@ export function TR(props: { row?: TRow; messageRow?: boolean; children?: Compone
 
     const getColumn = (cellIndex: number): TColumn | undefined => {
         if (header) {
-            const cols = pluginUtil.leafColumns(header.columns);
+            const cols = PluginUtil.leafColumns(header.columns);
 
             if (cols[cellIndex]) {
                 return cols[cellIndex];
@@ -44,7 +44,7 @@ export function TR(props: { row?: TRow; messageRow?: boolean; children?: Compone
     };
 
     return (
-        <tr className={pluginUtil.classJoin(pluginUtil.className('tr'))} onClick={handleClick}>
+        <tr className={PluginUtil.classJoin(PluginUtil.className('tr'))} onClick={handleClick}>
             {getChildren()}
         </tr>
     );

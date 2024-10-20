@@ -1,4 +1,4 @@
-import { pluginAPI, pluginUtil, PluginPosition } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil, PluginPosition } from '@carry0987/paginator';
 
 var l;l={__e:function(n,l,u,t){for(var i,o,r;l=l.__;)if((i=l.__c)&&!i.__)try{if((o=i.constructor)&&null!=o.getDerivedStateFromError&&(i.setState(o.getDerivedStateFromError(n)),r=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),r=i.__d),r)return i.__E=i}catch(l){n=l;}throw n}},"function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout;
 
@@ -42,7 +42,7 @@ const List = () => {
             updateData(tabular);
         }
     }, [tabular]);
-    return (u("div", { class: pluginUtil.className('list'), children: u("ul", { children: data && data.toArray().map((item, index) => u("li", { children: item[0] }, `li-${index}`)) }) }));
+    return (u("div", { class: PluginUtil.className('list'), children: u("ul", { children: data && data.toArray().map((item, index) => u("li", { children: item[0] }, `li-${index}`)) }) }));
 };
 
 const listPlugin = {

@@ -1,10 +1,10 @@
 import { TR } from './tr';
 import { MessageRow } from './messageRow';
 import { TRow } from '@/type/types';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 
 export function TBody() {
-    const Status = pluginUtil.Status;
+    const Status = PluginUtil.Status;
 
     // Hooks
     const tabular = pluginAPI.useSelector((state) => state.tabular);
@@ -21,7 +21,7 @@ export function TBody() {
     };
 
     return (
-        <tbody className={pluginUtil.classJoin(pluginUtil.className('tbody'))}>
+        <tbody className={PluginUtil.classJoin(PluginUtil.className('tbody'))}>
             {tabular &&
                 tabular.data.map((row: TRow) => {
                     return <TR key={row.id} row={row} />;
@@ -31,7 +31,7 @@ export function TBody() {
                 <MessageRow
                     message={lang('loading')}
                     colSpan={headerLength()}
-                    className={pluginUtil.classJoin(pluginUtil.className('loading'))}
+                    className={PluginUtil.classJoin(PluginUtil.className('loading'))}
                 />
             )}
 
@@ -39,7 +39,7 @@ export function TBody() {
                 <MessageRow
                     message={lang('noRecordsFound')}
                     colSpan={headerLength()}
-                    className={pluginUtil.classJoin(pluginUtil.className('notfound'))}
+                    className={PluginUtil.classJoin(PluginUtil.className('notfound'))}
                 />
             )}
 
@@ -47,7 +47,7 @@ export function TBody() {
                 <MessageRow
                     message={lang('error')}
                     colSpan={headerLength()}
-                    className={pluginUtil.classJoin(pluginUtil.className('error'))}
+                    className={PluginUtil.classJoin(PluginUtil.className('error'))}
                 />
             )}
         </tbody>

@@ -1,7 +1,7 @@
 import { THead } from './thead';
 import { TBody } from './tbody';
 import * as actions from '@/component/action';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 import { FunctionComponent } from 'preact';
 import '@/theme/index.scss';
 
@@ -15,7 +15,7 @@ const Table: FunctionComponent = () => {
     }, [tableRef]);
 
     return (
-        <table ref={tableRef} role="table" className={pluginUtil.classJoin(pluginUtil.className('table'))}>
+        <table ref={tableRef} role="table" className={PluginUtil.classJoin(PluginUtil.className('table'))}>
             <THead />
             <TBody />
         </table>

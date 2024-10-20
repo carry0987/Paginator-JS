@@ -390,6 +390,7 @@ declare function PluginRenderer(props: {
 declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
 
 declare class PluginUtil {
+    private constructor();
     static Status: typeof Status;
     static Base: typeof Base;
     static leafColumns: typeof Header.leafColumns;
@@ -406,4 +407,4 @@ declare namespace PluginUtil {
     type Column = TColumn;
 }
 
-export { type Options, Paginator, PluginPosition, html, pluginAPI, PluginUtil as pluginUtil };
+export { type Options, Paginator, PluginPosition, PluginUtil, html, pluginAPI };

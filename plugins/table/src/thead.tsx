@@ -1,7 +1,7 @@
 import { TR } from './tr';
 import { TH } from './th';
 import { TColumn } from '@/interface/interfaces';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 
 function calculateRowColSpans(
     column: TColumn[],
@@ -32,7 +32,7 @@ export function THead() {
         if (!header) return null;
 
         // Because the only sortable columns are leaf columns (not parents)
-        const leafColumns = pluginUtil.leafColumns(header.columns);
+        const leafColumns = PluginUtil.leafColumns(header.columns);
 
         return (
             <TR>
@@ -46,14 +46,14 @@ export function THead() {
     };
 
     const renderRows = () => {
-        const rows = pluginUtil.tabularFormat(header?.columns || []);
+        const rows = PluginUtil.tabularFormat(header?.columns || []);
 
         return rows.map((row, rowIndex) => renderRow(row, rowIndex, rows.length));
     };
 
     if (header) {
         return (
-            <thead key={header.id} className={pluginUtil.classJoin(pluginUtil.className('thead'))}>
+            <thead key={header.id} className={PluginUtil.classJoin(PluginUtil.className('thead'))}>
                 {renderRows()}
             </thead>
         );

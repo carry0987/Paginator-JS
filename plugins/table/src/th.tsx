@@ -1,6 +1,6 @@
 import { TColumn } from '@/interface/interfaces';
 import { CSSDeclaration } from '@/type/types';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 import { ComponentChild, JSX } from 'preact';
 
 export function TH(
@@ -25,7 +25,7 @@ export function TH(
 
         if (props.column.plugin !== undefined) {
             return (
-                <pluginUtil.PluginRenderer
+                <PluginUtil.PluginRenderer
                     pluginId={props.column.plugin.id}
                     props={{
                         column: props.column
@@ -41,14 +41,14 @@ export function TH(
         <th
             ref={thRef}
             data-column-id={props.column && props.column.id}
-            className={pluginUtil.classJoin(pluginUtil.className('th'))}
+            className={PluginUtil.classJoin(PluginUtil.className('th'))}
             onClick={onClick}
             style={{
                 ...props.style
             }}
             rowSpan={typeof props.rowSpan === 'number' && props.rowSpan > 1 ? props.rowSpan : undefined}
             colSpan={typeof props.colSpan === 'number' && props.colSpan > 1 ? props.colSpan : undefined}>
-            <div className={pluginUtil.className('th', 'content')}>{content()}</div>
+            <div className={PluginUtil.className('th', 'content')}>{content()}</div>
         </th>
     );
 }

@@ -1,4 +1,4 @@
-import { pluginAPI, pluginUtil, PluginPosition } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil, PluginPosition } from '@carry0987/paginator';
 
 var l;l={__e:function(n,l,u,t){for(var i,o,r;l=l.__;)if((i=l.__c)&&!i.__)try{if((o=i.constructor)&&null!=o.getDerivedStateFromError&&(i.setState(o.getDerivedStateFromError(n)),r=i.__d),null!=i.componentDidCatch&&(i.componentDidCatch(n,t||{}),r=i.__d),r)return i.__E=i}catch(l){n=l;}throw n}},"function"==typeof Promise?Promise.prototype.then.bind(Promise.resolve()):setTimeout;
 
@@ -11,7 +11,7 @@ function TD(props) {
             return props.column.formatter(props.cell.data, props.row, props.column);
         }
         if (props.column && props.column.plugin) {
-            return (u(pluginUtil.PluginRenderer, { pluginId: props.column.id, props: {
+            return (u(PluginUtil.PluginRenderer, { pluginId: props.column.id, props: {
                     column: props.column,
                     cell: props.cell,
                     row: props.row
@@ -24,7 +24,7 @@ function TD(props) {
             return;
         config.eventEmitter.emit('cellClick', e, props.cell, props.column, props.row);
     };
-    return (u("td", { role: props.role, colSpan: props.colSpan, "data-column-id": props.column && props.column.id, className: pluginUtil.classJoin(pluginUtil.className('td')), style: {
+    return (u("td", { role: props.role, colSpan: props.colSpan, "data-column-id": props.column && props.column.id, className: PluginUtil.classJoin(PluginUtil.className('td')), style: {
             ...props.style
         }, onClick: handleClick, children: content() }));
 }
@@ -34,7 +34,7 @@ function TR(props) {
     const header = pluginAPI.useSelector((state) => state.header);
     const getColumn = (cellIndex) => {
         if (header) {
-            const cols = pluginUtil.leafColumns(header.columns);
+            const cols = PluginUtil.leafColumns(header.columns);
             if (cols[cellIndex]) {
                 return cols[cellIndex];
             }
@@ -58,7 +58,7 @@ function TR(props) {
             return;
         config.eventEmitter.emit('rowClick', e, props.row);
     };
-    return (u("tr", { className: pluginUtil.classJoin(pluginUtil.className('tr')), onClick: handleClick, children: getChildren() }));
+    return (u("tr", { className: PluginUtil.classJoin(PluginUtil.className('tr')), onClick: handleClick, children: getChildren() }));
 }
 
 function TH(props) {
@@ -71,15 +71,15 @@ function TH(props) {
             return props.column.name;
         }
         if (props.column.plugin !== undefined) {
-            return (u(pluginUtil.PluginRenderer, { pluginId: props.column.plugin.id, props: {
+            return (u(PluginUtil.PluginRenderer, { pluginId: props.column.plugin.id, props: {
                     column: props.column
                 } }));
         }
         return null;
     };
-    return (u("th", { ref: thRef, "data-column-id": props.column && props.column.id, className: pluginUtil.classJoin(pluginUtil.className('th')), onClick: onClick, style: {
+    return (u("th", { ref: thRef, "data-column-id": props.column && props.column.id, className: PluginUtil.classJoin(PluginUtil.className('th')), onClick: onClick, style: {
             ...props.style
-        }, rowSpan: typeof props.rowSpan === 'number' && props.rowSpan > 1 ? props.rowSpan : undefined, colSpan: typeof props.colSpan === 'number' && props.colSpan > 1 ? props.colSpan : undefined, children: u("div", { className: pluginUtil.className('th', 'content'), children: content() }) }));
+        }, rowSpan: typeof props.rowSpan === 'number' && props.rowSpan > 1 ? props.rowSpan : undefined, colSpan: typeof props.colSpan === 'number' && props.colSpan > 1 ? props.colSpan : undefined, children: u("div", { className: PluginUtil.className('th', 'content'), children: content() }) }));
 }
 
 function calculateRowColSpans(column, rowIndex, totalRows) {
@@ -101,7 +101,7 @@ function THead() {
     const renderRow = (row, rowIndex, totalRows) => {
         if (!header)
             return null;
-        const leafColumns = pluginUtil.leafColumns(header.columns);
+        const leafColumns = PluginUtil.leafColumns(header.columns);
         return (u(TR, { children: row.map((col) => {
                 if (col.hidden)
                     return null;
@@ -109,21 +109,21 @@ function THead() {
             }) }));
     };
     const renderRows = () => {
-        const rows = pluginUtil.tabularFormat(header?.columns || []);
+        const rows = PluginUtil.tabularFormat(header?.columns || []);
         return rows.map((row, rowIndex) => renderRow(row, rowIndex, rows.length));
     };
     if (header) {
-        return (u("thead", { className: pluginUtil.classJoin(pluginUtil.className('thead')), children: renderRows() }, header.id));
+        return (u("thead", { className: PluginUtil.classJoin(PluginUtil.className('thead')), children: renderRows() }, header.id));
     }
     return null;
 }
 
 function MessageRow(props) {
-    return (u(TR, { messageRow: true, children: u(TD, { role: "alert", colSpan: props.colSpan, messageCell: true, cell: new pluginUtil.Cell(props.message), className: pluginUtil.classJoin(pluginUtil.className('message'), props.className ? props.className : null) }) }));
+    return (u(TR, { messageRow: true, children: u(TD, { role: "alert", colSpan: props.colSpan, messageCell: true, cell: new PluginUtil.Cell(props.message), className: PluginUtil.classJoin(PluginUtil.className('message'), props.className ? props.className : null) }) }));
 }
 
 function TBody() {
-    const Status = pluginUtil.Status;
+    const Status = PluginUtil.Status;
     const tabular = pluginAPI.useSelector((state) => state.tabular);
     const status = pluginAPI.useSelector((state) => state.status);
     const header = pluginAPI.useSelector((state) => state.header);
@@ -135,10 +135,10 @@ function TBody() {
         }
         return 0;
     };
-    return (u("tbody", { className: pluginUtil.classJoin(pluginUtil.className('tbody')), children: [tabular &&
+    return (u("tbody", { className: PluginUtil.classJoin(PluginUtil.className('tbody')), children: [tabular &&
                 tabular.data.map((row) => {
                     return u(TR, { row: row }, row.id);
-                }), status === Status.Loading && (!data || data.length === 0) && (u(MessageRow, { message: lang('loading'), colSpan: headerLength(), className: pluginUtil.classJoin(pluginUtil.className('loading')) })), status === Status.Rendered && data && data.length === 0 && (u(MessageRow, { message: lang('noRecordsFound'), colSpan: headerLength(), className: pluginUtil.classJoin(pluginUtil.className('notfound')) })), status === Status.Error && (u(MessageRow, { message: lang('error'), colSpan: headerLength(), className: pluginUtil.classJoin(pluginUtil.className('error')) }))] }));
+                }), status === Status.Loading && (!data || data.length === 0) && (u(MessageRow, { message: lang('loading'), colSpan: headerLength(), className: PluginUtil.classJoin(PluginUtil.className('loading')) })), status === Status.Rendered && data && data.length === 0 && (u(MessageRow, { message: lang('noRecordsFound'), colSpan: headerLength(), className: PluginUtil.classJoin(PluginUtil.className('notfound')) })), status === Status.Error && (u(MessageRow, { message: lang('error'), colSpan: headerLength(), className: PluginUtil.classJoin(PluginUtil.className('error')) }))] }));
 }
 
 const SetTableRef = (tableRef) => (state) => {
@@ -185,7 +185,7 @@ const Table = () => {
         if (tableRef)
             dispatch(SetTableRef(tableRef));
     }, [tableRef]);
-    return (u("table", { ref: tableRef, role: "table", className: pluginUtil.classJoin(pluginUtil.className('table')), children: [u(THead, {}), u(TBody, {})] }));
+    return (u("table", { ref: tableRef, role: "table", className: PluginUtil.classJoin(PluginUtil.className('table')), children: [u(THead, {}), u(TBody, {})] }));
 };
 
 const tablePlugin = {

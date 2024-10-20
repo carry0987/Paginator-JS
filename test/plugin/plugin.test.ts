@@ -1,7 +1,7 @@
 import { Config, ConfigContext } from '@/component/config';
 import { useOption } from '@/module/hook/useOption';
 import PluginManager from '@/plugin/pluginManager';
-import { pluginUtil } from '@/plugin/pluginUtil';
+import { PluginUtil } from '@/plugin/pluginUtil';
 import { PluginPosition } from '@/plugin/pluginPosition';
 import { describe, it, expect } from 'vitest';
 import { Fragment, h, render } from 'preact';
@@ -185,8 +185,8 @@ describe('Plugin', () => {
                         h(
                             Fragment,
                             null,
-                            h(pluginUtil.PluginRenderer, { position: PluginPosition.Header }),
-                            h(pluginUtil.PluginRenderer, { position: PluginPosition.Footer })
+                            h(PluginUtil.PluginRenderer, { position: PluginPosition.Header }),
+                            h(PluginUtil.PluginRenderer, { position: PluginPosition.Footer })
                         )
                     ),
                     container
@@ -198,11 +198,11 @@ describe('Plugin', () => {
 
         describe('className', () => {
             it('should accept two or more args', () => {
-                expect(pluginUtil.className('boo', 'foo', 'bar')).toBe('paginatorjs-plugin-boo-foo-bar');
+                expect(PluginUtil.className('boo', 'foo', 'bar')).toBe('paginatorjs-plugin-boo-foo-bar');
             });
 
             it('should generate classNames', () => {
-                expect(pluginUtil.className('boo')).toBe('paginatorjs-plugin-boo');
+                expect(PluginUtil.className('boo')).toBe('paginatorjs-plugin-boo');
             });
         });
     });

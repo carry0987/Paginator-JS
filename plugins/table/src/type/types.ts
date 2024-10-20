@@ -1,8 +1,8 @@
-import { pluginUtil } from '@carry0987/paginator';
+import { PluginUtil } from '@carry0987/paginator';
 
 export type CSSDeclaration = {
     [key: string]: string | number;
 };
 
-export type TRow = InstanceType<typeof pluginUtil.Row>;
-export type TCell = InstanceType<typeof pluginUtil.Cell>;
+export type TRow = InstanceType<typeof PluginUtil.Row>;
+export type TCell = InstanceType<typeof PluginUtil.Cell>;

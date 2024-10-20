@@ -1,6 +1,6 @@
 import { TColumn } from '@/interface/interfaces';
 import { CSSDeclaration, TRow, TCell } from '@/type/types';
-import { pluginAPI, pluginUtil } from '@carry0987/paginator';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 import { ComponentChild, JSX } from 'preact';
 
 export function TD(
@@ -21,7 +21,7 @@ export function TD(
 
         if (props.column && props.column.plugin) {
             return (
-                <pluginUtil.PluginRenderer
+                <PluginUtil.PluginRenderer
                     pluginId={props.column.id}
                     props={{
                         column: props.column,
@@ -46,7 +46,7 @@ export function TD(
             role={props.role}
             colSpan={props.colSpan}
             data-column-id={props.column && props.column.id}
-            className={pluginUtil.classJoin(pluginUtil.className('td'))}
+            className={PluginUtil.classJoin(PluginUtil.className('td'))}
             style={{
                 ...props.style
             }}

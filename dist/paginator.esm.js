@@ -2375,7 +2375,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.24';
+    static version = '2.2.25';
     config;
     plugin;
     constructor(config) {
@@ -2482,6 +2482,9 @@ const debounce = (func, waitFor) => {
 };
 
 class PluginUtil {
+    constructor() {
+        // Prevent instantiation of this static utility class
+    }
     // Status
     static Status = Status;
     // Base
@@ -2504,4 +2507,4 @@ class PluginUtil {
     static className = (...args) => className('plugin', ...args);
 }
 
-export { Paginator, PluginPosition, _$2 as h, html, pluginAPI, PluginUtil as pluginUtil };
+export { Paginator, PluginPosition, PluginUtil, _$2 as h, html, pluginAPI };
