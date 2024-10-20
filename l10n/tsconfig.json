@@ -2,8 +2,9 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "rootDir": ".",
-        "declarationDir": "dist/dts/",
+        "outDir": "dist",
         "removeComments": true
     },
-    "include": ["index.ts"]
+    "include": ["index.ts"],
+    "exclude": ["node_modules", "dist"]
 }

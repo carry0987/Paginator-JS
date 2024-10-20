@@ -6,7 +6,6 @@ import tsConfigPaths from 'rollup-plugin-tsconfig-paths';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import { dts } from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
-import del from 'rollup-plugin-delete';
 import { createRequire } from 'module';
 import path from 'path';
 import fs from 'fs';
@@ -83,8 +82,7 @@ function createPluginConfig(pluginName: string): RollupOptions[] {
             external: [/\.scss$/u],
             plugins: [
                 tsConfigPaths({ tsConfigPath: tsconfigPath }),
-                dts(),
-                del({ hook: 'buildEnd', targets: `plugins/${pluginName}/dist/dts` })
+                dts()
             ]
         }
     ];
@@ -152,8 +150,7 @@ const dtsConfig: RollupOptions = {
     external: [/\.scss$/u],
     plugins: [
         tsConfigPaths(),
-        dts(),
-        del({ hook: 'buildEnd', targets: 'dist/dts' })
+        dts()
     ]
 };
 
@@ -188,8 +185,7 @@ const l10nDtsConfig: RollupOptions = {
     },
     plugins: [
         tsConfigPaths({ tsConfigPath: 'l10n/tsconfig.json' }),
-        dts({ tsconfig: 'l10n/tsconfig.json' }),
-        del({ hook: 'buildEnd', targets: 'l10n/dist/dts' })
+        dts({ tsconfig: 'l10n/tsconfig.json' })
     ]
 };
 
