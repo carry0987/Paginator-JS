@@ -32,6 +32,14 @@ const paginator = new Paginator({
         pageUrl: (prev, page, limit) =>
             `${prev}?limit=${limit}&offset=${page * limit}`,
     },
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item[0] + '</span> ' + item[1].props.content + '</li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[0].innerHTML = dataHtml;
+    }
 });
 ```
 

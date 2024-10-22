@@ -87,7 +87,7 @@ const sidebars: SidebarsConfig = {
                 {
                     type: 'category',
                     label: 'Basic',
-                    items: ['examples/hello-world', 'examples/pagination'],
+                    items: ['examples/hello-world'],
                 },
                 {
                     type: 'category',

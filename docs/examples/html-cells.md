@@ -30,6 +30,14 @@ const paginator = new Paginator({
     data: Array(5)
         .fill()
         .map((x) => [faker.person.fullName(), faker.internet.email(), null]),
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[0].innerHTML = dataHtml;
+    }
 });
 ```
 
@@ -53,5 +61,13 @@ const paginator = new Paginator({
                     '</div>'
             ),
         ]),
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[1].innerHTML = dataHtml;
+    }
 });
 ```

@@ -29,6 +29,14 @@ const paginator = new Paginator({
                 card.artist,
             ]),
     },
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[0].innerHTML = dataHtml;
+    }
 });
 ```
 

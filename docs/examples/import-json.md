@@ -41,6 +41,14 @@ const paginator = new Paginator({
             phoneNumber: '(01) 22 888 4444',
         },
     ],
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[0].innerHTML = dataHtml;
+    }
 });
 ```
 
@@ -65,6 +73,14 @@ const paginator = new Paginator({
             phoneNumber: '(01) 22 888 4444',
         },
     ],
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[1].innerHTML = dataHtml;
+    }
 });
 ```
 
@@ -84,6 +100,14 @@ const paginator = new Paginator({
             phoneNumber: '(01) 22 888 4444',
         },
     ],
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[2].innerHTML = dataHtml;
+    }
 });
 ```
 
@@ -127,5 +151,13 @@ const paginator = new Paginator({
             phoneNumber: '(01) 22 888 4444',
         },
     ],
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item.join(' : ') + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelectorAll('div.list-container')[3].innerHTML = dataHtml;
+    }
 });
 ```

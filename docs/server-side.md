@@ -69,6 +69,14 @@ const paginator = new Paginator({
             ]);
         }
     },
+    dataRender: (response) => {
+        let dataHtml = '<ul>';
+        response.forEach((item, index) => {
+            dataHtml += '<li><span>' + item[1] + ' : ' + item[0] + '</span></li>';
+        });
+        dataHtml += '</ul>';
+        document.querySelector('div.list-container').innerHTML = dataHtml;
+    }
 });
 ```
 

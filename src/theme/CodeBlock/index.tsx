@@ -69,6 +69,7 @@ const withLiveEditor = (Component: typeof CodeBlock) => {
 
                                 return (
                                     <Fragment>
+                                        <div className="list-container" />
                                         <div ref={pluginWrapperRef} />
                                         {isPluginReady && <div ref={wrapperRef} />}
                                     </Fragment>
