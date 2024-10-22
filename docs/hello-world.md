@@ -47,7 +47,7 @@ new paginatorjs.Paginator({
 }).render(document.getElementById('wrapper'));
 ```
 
-<a target="_blank" rel="noreferrer" href="https://codesandbox.io/s/paginator-hello-world-o65fb?fontsize=14&hidenavigation=1&theme=dark">
+<a target="_blank" rel="noreferrer" href="https://codesandbox.io/s/paginatorjs-hello-world-ng9v8q?fontsize=14&hidenavigation=1&theme=dark">
   <img alt="Edit paginator-hello-world" src="https://codesandbox.io/static/img/play-codesandbox.svg" />
 </a>
 
@@ -55,7 +55,7 @@ new paginatorjs.Paginator({
 
 You can import `paginator` in your application using:
 
-```js
+```ts
 import { Paginator } from 'paginator';
 import '@carry0987/paginator/theme/paginator.min.css';
 ```
@@ -64,7 +64,7 @@ import '@carry0987/paginator/theme/paginator.min.css';
 
 Here is an example of using Paginator.js in a React app
 
-```jsx
+```tsx
 import { Paginator } from '@carry0987/paginator';
 import '@carry0987/paginator/theme/paginator.min.css';
 
