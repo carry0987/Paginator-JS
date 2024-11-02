@@ -12,7 +12,7 @@ importers:
         specifier: link:../..
         version: link:../..
       preact:
-        specifier: ^10.24.3
+        specifier: ^10.24.2
         version: 10.24.3
 
 packages:

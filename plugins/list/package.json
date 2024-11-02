@@ -12,7 +12,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@carry0987/paginator": "link:../..",
-    "preact": "^10.24.3"
+    "@carry0987/paginator": "link:../.."
+  },
+  "peerDependencies": {
+    "preact": "^10.24.2"
   }
 }
