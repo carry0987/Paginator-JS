@@ -31,6 +31,9 @@
   },
   "scripts": {
     "install:plugins": "find ./plugins ! -path '*/node_modules/*' ! -path './package.json' -name 'package.json' -execdir pnpm up -S \\;",
+    "clear:dist": "rm -rvf dist/*",
+    "clear:plugins": "rm -rvf plugins/*/dist/*",
+    "clear": "find . -path '*/node_modules' -type d -prune -exec rm -rf '{}' +",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"test/**/*.{ts,tsx}\" \"l10n/**/*.ts\" \"plugins/**/*.{ts,tsx,scss}\"",
     "start": "rollup --config rollup.config.ts --configPlugin typescript",
     "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production",
