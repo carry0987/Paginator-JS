@@ -4,7 +4,7 @@ export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
-import { useEffect, useCallback, useState, useRef } from 'preact/hooks';
+import { useEffect, useCallback, useState, useRef, useMemo, useReducer } from 'preact/hooks';
 
 interface PageEvents {
     ready: () => void;
@@ -378,6 +378,8 @@ declare class PluginAPI {
     useCallback: typeof useCallback;
     useState: typeof useState;
     useRef: typeof useRef;
+    useMemo: typeof useMemo;
+    useReducer: typeof useReducer;
 }
 declare const pluginAPI: PluginAPI;
 

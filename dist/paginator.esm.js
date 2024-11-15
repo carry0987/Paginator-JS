@@ -2375,7 +2375,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.30';
+    static version = '2.2.31';
     config;
     plugin;
     constructor(config) {
@@ -2459,6 +2459,8 @@ class PluginAPI {
     useCallback = q;
     useState = h$1;
     useRef = A$1;
+    useMemo = T$1;
+    useReducer = p$2;
 }
 const pluginAPI = new PluginAPI();
 
