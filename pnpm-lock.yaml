@@ -40,7 +40,7 @@ importers:
         version: 22.9.0
       happy-dom:
         specifier: ^15.11.2
-        version: 15.11.2
+        version: 15.11.6
       preact:
         specifier: ^10.24.3
         version: 10.24.3
@@ -67,7 +67,7 @@ importers:
         version: 2.8.1
       vitest:
         specifier: ^2.1.4
-        version: 2.1.5(@types/node@22.9.0)(happy-dom@15.11.2)(sass@1.81.0)(terser@5.36.0)
+        version: 2.1.5(@types/node@22.9.0)(happy-dom@15.11.6)(sass@1.81.0)(terser@5.36.0)
 
 packages:
 
@@ -803,8 +803,8 @@ packages:
   gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
 
-  happy-dom@15.11.2:
-    resolution: {integrity: sha512-MZ8kazOz+8i9G+olnJS836mNaF96UhOTzuECmxdE56+1+juiubqaJHTJUf+1WZ6Vs09lKLdmfX2AxGslfj1XFg==}
+  happy-dom@15.11.6:
+    resolution: {integrity: sha512-elX7iUTu+5+3b2+NGQc0L3eWyq9jKhuJJ4GpOMxxT/c2pg9O3L5H3ty2VECX0XXZgRmmRqXyOK8brA2hDI6LsQ==}
     engines: {node: '>=18.0.0'}
 
   has-bigints@1.0.2:
@@ -2229,7 +2229,7 @@ snapshots:
     dependencies:
       get-intrinsic: 1.2.4
 
-  happy-dom@15.11.2:
+  happy-dom@15.11.6:
     dependencies:
       entities: 4.5.0
       webidl-conversions: 7.0.0
@@ -2902,7 +2902,7 @@ snapshots:
       sass: 1.81.0
       terser: 5.36.0
 
-  vitest@2.1.5(@types/node@22.9.0)(happy-dom@15.11.2)(sass@1.81.0)(terser@5.36.0):
+  vitest@2.1.5(@types/node@22.9.0)(happy-dom@15.11.6)(sass@1.81.0)(terser@5.36.0):
     dependencies:
       '@vitest/expect': 2.1.5
       '@vitest/mocker': 2.1.5(vite@5.4.11(@types/node@22.9.0)(sass@1.81.0)(terser@5.36.0))
@@ -2926,7 +2926,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.9.0
-      happy-dom: 15.11.2
+      happy-dom: 15.11.6
     transitivePeerDependencies:
       - less
       - lightningcss
