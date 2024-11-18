@@ -13,13 +13,12 @@ In this example, we have a table of Name (string) and Salary (double), and our c
 
 ```tsx
 import { pluginAPI } from '@carry0987/paginator';
-import { useState, useEffect } from 'preact/hooks';
 
 function TotalSalaryPlugin() {
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = pluginAPI.useState(0);
     const data = pluginAPI.useSelector((state) => state.tabular);
 
-    useEffect(() => {
+    pluginAPI.useEffect(() => {
         if (!data) return;
 
         setTotal(data.toArray().reduce((sum, row) => sum + row[1], 0));
@@ -91,6 +90,16 @@ Paginator.js provides the following hooks for building and customizing your plug
 - `useTranslator`: Get the Paginator.js Translator function
 - `useStore`: Retrieve the Paginator.js internal Store object
 - `useConfig`: Retrieve the current Paginator.js config object
+
+Also, the Preact hooks like `useState`, `useEffect`, and `useRef` and others are available for use in your Paginator.js plugins via `pluginAPI`.
+Here is the list of hooks available in `pluginAPI`:
+
+- `useEffect`
+- `useCallback`
+- `useState`
+- `useRef`
+- `useMemo`
+- `useReducer`
 
 :::warning
 Actually, `useConfig` is for advanced use only, and you should use `useOption` instead
