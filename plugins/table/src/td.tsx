@@ -8,6 +8,7 @@ export function TD(
         cell: TCell;
         row?: TRow;
         column?: TColumn;
+        colSpan?: number;
         style?: CSSDeclaration;
         messageCell?: boolean;
     } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>

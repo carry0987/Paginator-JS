@@ -7,6 +7,8 @@ export function TH(
     props: {
         index: number;
         column: TColumn;
+        rowSpan?: number;
+        colSpan?: number;
         style?: CSSDeclaration;
     } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>
 ) {
