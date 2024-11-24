@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@carry0987/event-emitter':
-        specifier: ^1.4.8
-        version: 1.4.8
+        specifier: ^1.4.9
+        version: 1.4.9
       '@carry0987/pipeline':
-        specifier: ^1.3.10
-        version: 1.3.10
+        specifier: ^1.3.12
+        version: 1.3.12
       '@carry0987/utils':
         specifier: ^3.8.3
         version: 3.8.3
@@ -83,11 +83,11 @@ packages:
     resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
 
-  '@carry0987/event-emitter@1.4.8':
-    resolution: {integrity: sha512-fdLIlZZm/L+HHNBTDVvkG9kI3V7r4CPoTQG0fnXnBTXo5RI29nrVr7NQoLxR6Cztpr5kJc2B4m4P4JPNzISVYw==}
+  '@carry0987/event-emitter@1.4.9':
+    resolution: {integrity: sha512-y1g6g5oZei/12SPbVEJ2k1MPP949O6j7S+WmsE81NCjrJpCtJ7KGYSmyUprEVXbNoCe1H9WmH3eY648+noerXw==}
 
-  '@carry0987/pipeline@1.3.10':
-    resolution: {integrity: sha512-5AnntIWkQ6JVdH+o84yLANGmioszuW7N7tZHzw5SVmXgxbNg99ayP3AnvncFZFxixF46lfOZdUSaSwK+zQgDSA==}
+  '@carry0987/pipeline@1.3.12':
+    resolution: {integrity: sha512-eswGkzV6C/rBdcgWjS8CLHyI9+XtHwbnp4WSvG+TdLHT1+9gViaVizqpNLpCviTMD0o2kFWvwsHOrDha9x3FLg==}
 
   '@carry0987/utils@3.8.3':
     resolution: {integrity: sha512-Ps4IO873mUYEZhMYVUvRZ/w18Y/0vDa2ifOtw3SPCLdWZXBKzGs+DOg6yA5LcpWClWE9wsnLRMsvGSYV3cghzQ==}
@@ -1574,9 +1574,9 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@carry0987/event-emitter@1.4.8': {}
+  '@carry0987/event-emitter@1.4.9': {}
 
-  '@carry0987/pipeline@1.3.10': {}
+  '@carry0987/pipeline@1.3.12': {}
 
   '@carry0987/utils@3.8.3': {}
 
