@@ -2,10 +2,10 @@ import { PageButton, EllipsisButton, ActionButton, ActionButtonDisabled } from '
 import { useOption } from '@/module/hook/useOption';
 import { useTranslator } from '@/module/hook/useTranslator';
 import { usePagination } from '@/module/hook/usePagination';
+import { classJoin, className } from '@/module/utils/className';
 import { h } from 'preact';
 import { useImperativeHandle } from 'preact/hooks';
 import { forwardRef } from 'preact/compat';
-import { classJoin, className } from '../utils/className';
 
 export const PageRenderer = forwardRef((_, ref) => {
     const option = useOption();
