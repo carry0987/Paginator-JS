@@ -1,22 +1,23 @@
 import { Options } from '@/interface/options';
+import { VNode } from 'preact';
 
 export type PageButtonProps = {
     page: number;
     isActive: boolean;
     onClick: () => void;
     option: Options;
-    lang: (key: string, ...args: unknown[]) => string;
-    text?: string;
+    lang: (key: string, ...args: unknown[]) => VNode | string;
+    text?: VNode | string;
 };
 
 export type EllipsisButtonProps = {
     option: Options;
-    lang: (key: string, ...args: unknown[]) => string;
+    lang: (key: string, ...args: unknown[]) => VNode | string;
 };
 
 export type ActionButtonProps = {
     act: string;
     onClick?: () => void;
     option: Options;
-    text?: string;
+    text?: VNode | string;
 };

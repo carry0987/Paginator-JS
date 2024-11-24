@@ -1,24 +1,30 @@
 import { classJoin, className } from '@/module/utils/className';
+import Utils from '@/module/utils/utils-ext';
 import { PageButtonProps, EllipsisButtonProps, ActionButtonProps } from '@/type/page';
-import { h } from 'preact';
+import { JSX } from 'preact';
 
-export const PageButton = ({ page, isActive, onClick, option, lang, text }: PageButtonProps): h.JSX.Element => (
-    <button
-        tabIndex={0}
-        role="button"
-        type="button"
-        onClick={onClick}
-        className={classJoin(
-            isActive ? classJoin(className('currentPage'), option.className.active) : '',
-            option.className.pageButton
-        )}
-        title={text || lang('pagination.page', page)}
-        aria-label={text || lang('pagination.page', page)}>
-        {lang(`${page}`)}
-    </button>
-);
+export const PageButton = ({ page, isActive, onClick, option, lang, text }: PageButtonProps): JSX.Element => {
+    const content = text || lang('pagination.page', page);
+    const textString = Utils.isString(content) ? content : '';
 
-export const EllipsisButton = ({ option, lang }: EllipsisButtonProps): h.JSX.Element => (
+    return (
+        <button
+            tabIndex={0}
+            role="button"
+            type="button"
+            onClick={onClick}
+            className={classJoin(
+                isActive ? classJoin(className('currentPage'), option.className.active) : '',
+                option.className.pageButton
+            )}
+            title={textString}
+            aria-label={textString}>
+            {lang(`${page}`)}
+        </button>
+    );
+};
+
+export const EllipsisButton = ({ option, lang }: EllipsisButtonProps): JSX.Element => (
     <button
         tabIndex={-1}
         disabled={true}
@@ -27,34 +33,42 @@ export const EllipsisButton = ({ option, lang }: EllipsisButtonProps): h.JSX.Ele
     </button>
 );
 
-export const ActionButton = ({ act, onClick, option, text }: ActionButtonProps): h.JSX.Element => (
-    <button
-        tabIndex={0}
-        role="button"
-        type="button"
-        onClick={onClick}
-        className={classJoin(
-            option.className.pageButton,
-            act === 'prevBtn' ? option.className.prevButton : option.className.nextButton
-        )}
-        title={text}
-        aria-label={text}>
-        {text}
-    </button>
-);
+export const ActionButton = ({ act, onClick, option, text }: ActionButtonProps): JSX.Element => {
+    const textString = Utils.isString(text) ? text : '';
 
-export const ActionButtonDisabled = ({ act, option, text }: ActionButtonProps): h.JSX.Element => (
-    <button
-        tabIndex={-1}
-        disabled={true}
-        className={classJoin(
-            className('disabled'),
-            option.className.pageButton,
-            act === 'prevBtn' ? option.className.prevButton : option.className.nextButton,
-            option.className.disable
-        )}
-        title={text}
-        aria-label={text}>
-        {text}
-    </button>
-);
+    return (
+        <button
+            tabIndex={0}
+            role="button"
+            type="button"
+            onClick={onClick}
+            className={classJoin(
+                option.className.pageButton,
+                act === 'prevBtn' ? option.className.prevButton : option.className.nextButton
+            )}
+            title={textString}
+            aria-label={textString}>
+            {text}
+        </button>
+    );
+};
+
+export const ActionButtonDisabled = ({ act, option, text }: ActionButtonProps): JSX.Element => {
+    const textString = Utils.isString(text) ? text : '';
+
+    return (
+        <button
+            tabIndex={-1}
+            disabled={true}
+            className={classJoin(
+                className('disabled'),
+                option.className.pageButton,
+                act === 'prevBtn' ? option.className.prevButton : option.className.nextButton,
+                option.className.disable
+            )}
+            title={textString}
+            aria-label={textString}>
+            {text}
+        </button>
+    );
+};
