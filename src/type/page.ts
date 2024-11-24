@@ -1,3 +1,4 @@
+import { MessageFormat } from './i18n';
 import { Options } from '@/interface/options';
 import { VNode } from 'preact';
 
@@ -6,18 +7,18 @@ export type PageButtonProps = {
     isActive: boolean;
     onClick: () => void;
     option: Options;
-    lang: (key: string, ...args: unknown[]) => VNode | string;
-    text?: VNode | string;
+    lang: (key: string, ...args: unknown[]) => ReturnType<MessageFormat>;
+    text?: ReturnType<MessageFormat>;
 };
 
 export type EllipsisButtonProps = {
     option: Options;
-    lang: (key: string, ...args: unknown[]) => VNode | string;
+    lang: (key: string, ...args: unknown[]) => ReturnType<MessageFormat>;
 };
 
 export type ActionButtonProps = {
     act: string;
     onClick?: () => void;
     option: Options;
-    text?: VNode | string;
+    text?: ReturnType<MessageFormat>;
 };

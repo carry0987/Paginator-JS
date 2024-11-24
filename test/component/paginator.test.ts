@@ -1,4 +1,5 @@
 import Paginator from '@/component/paginator';
+import { html } from '@/module/utils/html';
 import MemoryStorage from '@/module/storage/memory';
 import { vi, describe, it, afterEach, expect } from 'vitest';
 
@@ -21,6 +22,50 @@ describe('Paginator class', () => {
 
         // Assert based on rendered content
         expect(container.querySelector('.paginatorjs-container')).not.toBeNull();
+    });
+
+    it('should render paginator with i18n via string', () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const paginator = new Paginator({
+            columns: ['a', 'b', 'c'],
+            data: [[1, 2, 3]],
+            language: {
+                pagination: {
+                    previous: 'Trước',
+                    next: 'Sau'
+                }
+            }
+        });
+
+        paginator.render(container);
+
+        // Assert the language translation
+        expect(container.querySelector('.page-prev')?.textContent).toBe('Trước');
+        expect(container.querySelector('.page-next')?.textContent).toBe('Sau');
+    });
+
+    it('should render paginator with i18n via VNode', () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const paginator = new Paginator({
+            columns: ['a', 'b', 'c'],
+            data: [[1, 2, 3]],
+            language: {
+                pagination: {
+                    previous: html('Trước','h1'),
+                    next: html('Sau', 'h1')
+                }
+            }
+        });
+
+        paginator.render(container);
+
+        // Assert the language translation
+        expect(container.querySelector('.page-prev')?.innerHTML).toBe('<h1>Trước</h1>');
+        expect(container.querySelector('.page-next')?.innerHTML).toBe('<h1>Sau</h1>');
     });
 
     it('should raise an exception with empty config', () => {

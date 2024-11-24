@@ -1,9 +1,10 @@
 import { TR } from './tr';
 import { TD } from './td';
-import { PluginUtil } from '@carry0987/paginator';
-import { VNode } from 'preact';
+import { pluginAPI, PluginUtil } from '@carry0987/paginator';
 
-export function MessageRow(props: { message: VNode | string; colSpan?: number; className?: string }) {
+type MessageFormat = ReturnType<ReturnType<typeof pluginAPI.useTranslator>>;
+
+export function MessageRow(props: { message: MessageFormat; colSpan?: number; className?: string }) {
     return (
         <TR messageRow={true}>
             <TD

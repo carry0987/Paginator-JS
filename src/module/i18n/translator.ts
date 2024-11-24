@@ -1,6 +1,7 @@
 import enUS from './en_US';
+import { HTMLContentProps } from '@/interface/view';
 import { Language, MessageFormat } from '@/type/i18n';
-import { VNode, isValidElement } from 'preact';
+import { VNode, isValidElement as validator } from 'preact';
 
 export class Translator {
     private readonly _language: Language;
@@ -18,7 +19,7 @@ export class Translator {
      * @param message
      * @param lang
      */
-    private getString(message: string, lang: Language): MessageFormat | VNode | null {
+    private getString(message: string, lang: Language): MessageFormat | VNode<HTMLContentProps> | null {
         if (!lang || !message) return null;
 
         const splitted = message.split('.');
@@ -27,7 +28,7 @@ export class Translator {
         if (lang[key]) {
             const val = lang[key];
 
-            if (isValidElement(val)) {
+            if (this.isValidElement(val)) {
                 return val;
             } else if (typeof val === 'string') {
                 return (): string => val;
@@ -42,13 +43,22 @@ export class Translator {
     }
 
     /**
+     * Checks if the given value is a valid VNode
+     *
+     * @param val
+     */
+    private isValidElement(val: any): val is VNode<HTMLContentProps> {
+        return validator(val);
+    }
+
+    /**
      * Translates the given message using the current language.
      * Falls back to the default language if the translation is not available.
      *
      * @param message
      * @param args
      */
-    public translate(message: string, ...args: any[]): VNode | string {
+    public translate(message: string, ...args: any[]): VNode<HTMLContentProps> | string {
         const translated = this.getString(message, this._language);
         let messageFormat;
 
