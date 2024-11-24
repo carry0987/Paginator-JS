@@ -38,6 +38,13 @@ export class Translator {
         return null;
     }
 
+    /**
+     * Translates the given message using the current language.
+     * Falls back to the default language if the translation is not available.
+     *
+     * @param message
+     * @param args
+     */
     public translate(message: string, ...args: any[]): string {
         const translated = this.getString(message, this._language);
         let messageFormat;
