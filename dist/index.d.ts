@@ -3,6 +3,8 @@ import { ComponentChild, FunctionComponent, VNode, JSX } from 'preact';
 export { h } from 'preact';
 import { Interfaces } from '@carry0987/utils';
 import { EventEmitter } from '@carry0987/event-emitter';
+import * as _carry0987_state_manager from '@carry0987/state-manager';
+import { StateManager } from '@carry0987/state-manager';
 import { Pipeline } from '@carry0987/pipeline';
 import { useEffect, useCallback, useState, useRef, useMemo, useReducer } from 'preact/hooks';
 
@@ -307,17 +309,6 @@ declare enum ProcessorType {
     Limit = 4
 }
 
-declare class StateManager<S = Record<string, unknown>> {
-    private state;
-    private listeners;
-    private isDispatching;
-    constructor(initialState: S);
-    getState: () => S;
-    getListeners: () => ((current?: S, prev?: S) => void)[];
-    dispatch: (reducer: (state: S) => S) => S;
-    subscribe: (listener: (current?: S, prev?: S) => void) => (() => void);
-}
-
 /**
  * Base Storage class. All storage implementation must inherit this class
  */
@@ -362,7 +353,7 @@ interface InternalConfig {
     plugin: PluginManager;
 }
 
-declare function useStore(): StateManager<State>;
+declare function useStore(): _carry0987_state_manager.StateManager<State>;
 
 declare function useSelector<T>(selector: (state: State) => T): T;
 

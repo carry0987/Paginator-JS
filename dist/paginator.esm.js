@@ -558,44 +558,6 @@ var Status;
     Status[Status["Error"] = 4] = "Error";
 })(Status || (Status = {}));
 
-class StateManager {
-    state;
-    listeners = [];
-    isDispatching = false;
-    constructor(initialState) {
-        this.state = initialState;
-    }
-    getState = () => this.state;
-    getListeners = () => this.listeners;
-    dispatch = (reducer) => {
-        if (typeof reducer !== 'function') {
-            throw new Error('Reducer is not a function');
-        }
-        if (this.isDispatching) {
-            throw new Error('Reducers may not dispatch actions');
-        }
-        this.isDispatching = true;
-        const prevState = this.state;
-        try {
-            this.state = reducer(this.state);
-        }
-        finally {
-            this.isDispatching = false;
-        }
-        for (const listener of this.listeners) {
-            listener(this.state, prevState);
-        }
-        return this.state;
-    };
-    subscribe = (listener) => {
-        if (typeof listener !== 'function') {
-            throw new Error('Listener is not a function');
-        }
-        this.listeners = [...this.listeners, listener];
-        return () => (this.listeners = this.listeners.filter((lis) => lis !== listener));
-    };
-}
-
 /**
  * Base Storage class. All storage implementation must inherit this class
  */
@@ -867,7 +829,7 @@ let EventEmitter$1 = class EventEmitter {
             return false;
         }
         // Get all results
-        const results = this.callbacks[eventName].map(callback => {
+        const results = this.callbacks[eventName].map((callback) => {
             try {
                 // Execute callback and capture the result
                 const result = callback(...args);
@@ -881,10 +843,12 @@ let EventEmitter$1 = class EventEmitter {
             }
         });
         // Check if any result is a promise
-        const hasPromise = results.some(result => result instanceof Promise);
+        const hasPromise = results.some((result) => result instanceof Promise);
         // If there is at least one promise, return a promise that resolves when all promises resolve
         if (hasPromise) {
-            return Promise.all(results).then(() => true).catch((e) => {
+            return Promise.all(results)
+                .then(() => true)
+                .catch((e) => {
                 console.error(`Error handling promises for event: ${eventName}`, e); // Logging error
                 return false;
             });
@@ -1078,7 +1042,7 @@ class Pipeline extends EventEmitter$1 {
     async processInParallel(data) {
         const steps = this.steps;
         // No need for processor index check because all processors run in parallel
-        const results = await Promise.all(steps.map(processor => processor.process(data)));
+        const results = await Promise.all(steps.map((processor) => processor.process(data)));
         results.forEach((result, index) => this.cache.set(steps[index].id, result));
         this.lastProcessorIndexUpdated = steps.length;
         this.emit('afterProcess', results);
@@ -1138,7 +1102,7 @@ class Pipeline extends EventEmitter$1 {
      * @param index
      */
     clearCacheAfterProcessorIndex(index) {
-        this.steps.slice(index).forEach(processor => {
+        this.steps.slice(index).forEach((processor) => {
             this.cache.delete(processor.id);
         });
     }
@@ -1266,7 +1230,7 @@ class Processor extends EventEmitter$1 {
     setProps(props) {
         const updatedProps = {
             ...this._props,
-            ...props,
+            ...props
         };
         if (!deepEqual(updatedProps, this._props)) {
             this._props = updatedProps;
@@ -1619,6 +1583,68 @@ class PluginManager {
         }
         return plugins.sort((a, b) => (a.order && b.order ? a.order - b.order : 1));
     }
+}
+
+class StateManager {
+    state;
+    listeners = [];
+    isDispatching = false;
+    constructor(initialState) {
+        this.state = initialState;
+    }
+    /**
+     * Retrieves the current state.
+     *
+     * @returns The current state.
+     */
+    getState = () => this.state;
+    /**
+     * Retrieves the list of current listeners.
+     *
+     * @returns An array of listener functions.
+     */
+    getListeners = () => this.listeners;
+    /**
+     * Dispatches an action to the state manager by executing the provided reducer function.
+     * It prevents nested dispatches.
+     *
+     * @param reducer A function that takes the current state and returns the new state.
+     * @returns The new state after applying the reducer.
+     */
+    dispatch = (reducer) => {
+        if (typeof reducer !== 'function') {
+            throw new Error('Reducer is not a function');
+        }
+        if (this.isDispatching) {
+            throw new Error('Reducers may not dispatch actions');
+        }
+        this.isDispatching = true;
+        const prevState = this.state;
+        try {
+            this.state = reducer(this.state);
+        }
+        finally {
+            this.isDispatching = false;
+        }
+        for (const listener of this.listeners) {
+            listener(this.state, prevState);
+        }
+        return this.state;
+    };
+    /**
+     * Subscribes a listener to state changes.
+     * The listener is called whenever the state changes, with both the current and previous state.
+     *
+     * @param listener A function that will be called when the state changes.
+     * @returns A function that can be called to unsubscribe the listener.
+     */
+    subscribe = (listener) => {
+        if (typeof listener !== 'function') {
+            throw new Error('Listener is not a function');
+        }
+        this.listeners = [...this.listeners, listener];
+        return () => (this.listeners = this.listeners.filter((lis) => lis !== listener));
+    };
 }
 
 class Config {
@@ -2326,7 +2352,7 @@ class EventEmitter {
             return false;
         }
         // Get all results
-        const results = this.callbacks[eventName].map(callback => {
+        const results = this.callbacks[eventName].map((callback) => {
             try {
                 // Execute callback and capture the result
                 const result = callback(...args);
@@ -2340,10 +2366,12 @@ class EventEmitter {
             }
         });
         // Check if any result is a promise
-        const hasPromise = results.some(result => result instanceof Promise);
+        const hasPromise = results.some((result) => result instanceof Promise);
         // If there is at least one promise, return a promise that resolves when all promises resolve
         if (hasPromise) {
-            return Promise.all(results).then(() => true).catch((e) => {
+            return Promise.all(results)
+                .then(() => true)
+                .catch((e) => {
                 console.error(`Error handling promises for event: ${eventName}`, e); // Logging error
                 return false;
             });
@@ -2375,7 +2403,7 @@ class EventEmitter {
 }
 
 class Paginator extends EventEmitter {
-    static version = '2.2.32';
+    static version = '2.2.33';
     config;
     plugin;
     constructor(config) {
