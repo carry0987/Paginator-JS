@@ -1,5 +1,6 @@
 import enUS from './en_US';
 import { Language, MessageFormat } from '@/type/i18n';
+import { VNode, isValidElement } from 'preact';
 
 export class Translator {
     private readonly _language: Language;
@@ -17,7 +18,7 @@ export class Translator {
      * @param message
      * @param lang
      */
-    private getString(message: string, lang: Language): MessageFormat | null {
+    private getString(message: string, lang: Language): MessageFormat | VNode | null {
         if (!lang || !message) return null;
 
         const splitted = message.split('.');
@@ -26,7 +27,9 @@ export class Translator {
         if (lang[key]) {
             const val = lang[key];
 
-            if (typeof val === 'string') {
+            if (isValidElement(val)) {
+                return val;
+            } else if (typeof val === 'string') {
                 return (): string => val;
             } else if (typeof val === 'function') {
                 return val;
@@ -45,7 +48,7 @@ export class Translator {
      * @param message
      * @param args
      */
-    public translate(message: string, ...args: any[]): string {
+    public translate(message: string, ...args: any[]): VNode | string {
         const translated = this.getString(message, this._language);
         let messageFormat;
 
@@ -56,7 +59,7 @@ export class Translator {
         }
 
         if (messageFormat) {
-            return messageFormat(...args);
+            return typeof messageFormat === 'function' ? messageFormat(...args) : messageFormat;
         }
 
         return message;

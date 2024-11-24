@@ -1,8 +1,9 @@
 import { TR } from './tr';
 import { TD } from './td';
 import { PluginUtil } from '@carry0987/paginator';
+import { VNode } from 'preact';
 
-export function MessageRow(props: { message: string; colSpan?: number; className?: string }) {
+export function MessageRow(props: { message: VNode | string; colSpan?: number; className?: string }) {
     return (
         <TR messageRow={true}>
             <TD
