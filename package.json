@@ -15,10 +15,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@carry0987/paginator": "^2.2.31",
-    "@docusaurus/core": "^3.6.1",
-    "@docusaurus/preset-classic": "^3.6.1",
-    "@emotion/css": "^11.13.4",
+    "@carry0987/paginator": "^2.2.32",
+    "@docusaurus/core": "^3.6.3",
+    "@docusaurus/preset-classic": "^3.6.3",
+    "@emotion/css": "^11.13.5",
     "@faker-js/faker": "^9.2.0",
     "@mdx-js/react": "^3.1.0",
     "autoprefixer": "^10.4.20",
@@ -30,18 +30,18 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.6.1",
-    "@docusaurus/theme-classic": "^3.6.1",
-    "@docusaurus/theme-common": "^3.6.1",
-    "@docusaurus/theme-live-codeblock": "^3.6.1",
-    "@docusaurus/tsconfig": "^3.6.1",
-    "@docusaurus/types": "^3.6.1",
-    "@types/node": "^22.9.0",
+    "@docusaurus/module-type-aliases": "^3.6.3",
+    "@docusaurus/theme-classic": "^3.6.3",
+    "@docusaurus/theme-common": "^3.6.3",
+    "@docusaurus/theme-live-codeblock": "^3.6.3",
+    "@docusaurus/tsconfig": "^3.6.3",
+    "@docusaurus/types": "^3.6.3",
+    "@types/node": "^22.9.3",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^18.3.12",
-    "react-live": "^4.1.7",
+    "react-live": "^4.1.8",
     "tailwindcss": "^3.4.15",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "browserslist": {
     "production": [
