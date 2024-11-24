@@ -1,6 +1,5 @@
 import { useConfig } from './useConfig';
 import { MessageFormat } from '@/type/i18n';
-import { VNode } from 'preact';
 
 export function useTranslator() {
     const config = useConfig();
