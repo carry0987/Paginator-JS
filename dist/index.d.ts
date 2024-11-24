@@ -83,8 +83,13 @@ interface Plugin<T extends FunctionComponent<P>, P = any> {
     order?: number;
 }
 
-type MessageFormat = (...args: any[]) => string;
-type Message = string | MessageFormat;
+interface HTMLContentProps {
+    content: string;
+    parentElement?: string;
+}
+
+type MessageFormat = (...args: any[]) => VNode<HTMLContentProps> | string;
+type Message = ReturnType<MessageFormat> | MessageFormat;
 type Language = {
     [key: string]: Message | Language;
 };
@@ -204,11 +209,6 @@ declare class Paginator extends EventEmitter<PaginatorEvents> {
     render(container: Element): this;
     private createPluginElement;
     private createElement;
-}
-
-interface HTMLContentProps {
-    content: string;
-    parentElement?: string;
 }
 
 declare function html(content: string, parentElement?: string): VNode<HTMLContentProps>;
@@ -339,7 +339,20 @@ declare class Translator {
      * @param lang
      */
     private getString;
-    translate(message: string, ...args: any[]): string;
+    /**
+     * Checks if the given value is a valid VNode
+     *
+     * @param val
+     */
+    private isValidElement;
+    /**
+     * Translates the given message using the current language.
+     * Falls back to the default language if the translation is not available.
+     *
+     * @param message
+     * @param args
+     */
+    translate(message: string, ...args: any[]): VNode<HTMLContentProps> | string;
 }
 
 interface InternalConfig {
@@ -357,7 +370,7 @@ declare function useStore(): _carry0987_state_manager.StateManager<State>;
 
 declare function useSelector<T>(selector: (state: State) => T): T;
 
-declare function useTranslator(): (message: string, ...args: any[]) => string;
+declare function useTranslator(): (message: string, ...args: any[]) => ReturnType<MessageFormat>;
 
 declare class PluginAPI {
     useStore: typeof useStore;
