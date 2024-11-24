@@ -4,11 +4,11 @@ import { Options } from '@/interface/options';
 import { InternalConfig } from '@/interface/internalConfig';
 import { State } from '@/interface/state';
 import Utils from '@/module/utils/utils-ext';
-import { StateManager } from '@/module/state/stateManager';
 import StorageUtils from '@/module/storage/storageUtils';
 import PipelineUtils from '@/module/pipeline/pipelineUtils';
 import { Translator } from '@/module/i18n/translator';
 import PluginManager from '@/plugin/pluginManager';
+import { StateManager } from '@carry0987/state-manager';
 import { createContext } from 'preact';
 
 class Config {

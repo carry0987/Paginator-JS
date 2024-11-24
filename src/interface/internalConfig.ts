@@ -5,10 +5,10 @@ import Tabular from '@/component/tabular';
 import Header from '@/component/header';
 import { PaginatorEvents } from '@/type/events';
 import { ProcessorType } from '@/type/processor';
-import { StateManager } from '@/module/state/stateManager';
 import Storage from '@/module/storage/storage';
 import { Translator } from '@/module/i18n/translator';
 import PluginManager from '@/plugin/pluginManager';
+import { StateManager } from '@carry0987/state-manager';
 import { EventEmitter } from '@carry0987/event-emitter';
 import { Pipeline } from '@carry0987/pipeline';
 
