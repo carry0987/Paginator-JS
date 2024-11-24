@@ -1,6 +1,5 @@
 import { MessageFormat } from './i18n';
 import { Options } from '@/interface/options';
-import { VNode } from 'preact';
 
 export type PageButtonProps = {
     page: number;
