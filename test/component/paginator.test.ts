@@ -55,7 +55,7 @@ describe('Paginator class', () => {
             data: [[1, 2, 3]],
             language: {
                 pagination: {
-                    previous: html('Trước','h1'),
+                    previous: html('Trước', 'h1'),
                     next: html('Sau', 'h1')
                 }
             }
