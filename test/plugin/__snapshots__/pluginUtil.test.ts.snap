@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`pluginUtil > pluginRenderer > should render the plugins 1`] = `"<b>dummyplugin</b><b>dummyplugin</b>"`;
