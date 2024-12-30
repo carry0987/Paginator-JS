@@ -71,7 +71,7 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@testing-library/preact": "^3.2.4",
     "@types/node": "^22.10.2",
-    "happy-dom": "^15.11.7",
+    "happy-dom": "^16.2.0",
     "preact": "^10.25.3",
     "prettier": "^3.4.2",
     "rollup": "^4.28.1",
