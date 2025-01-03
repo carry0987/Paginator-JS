@@ -13,13 +13,13 @@ importers:
         version: link:../..
       preact:
         specifier: ^10.25.0
-        version: 10.25.3
+        version: 10.25.4
 
 packages:
 
-  preact@10.25.3:
-    resolution: {integrity: sha512-dzQmIFtM970z+fP9ziQ3yG4e3ULIbwZzJ734vaMVUTaKQ2+Ru1Ou/gjshOYVHCcd1rpAelC6ngjvjDXph98unQ==}
+  preact@10.25.4:
+    resolution: {integrity: sha512-jLdZDb+Q+odkHJ+MpW/9U5cODzqnB+fy2EiHSZES7ldV5LK7yjlVzTp7R8Xy6W6y75kfK8iWYtFVH7lvjwrCMA==}
 
 snapshots:
 
-  preact@10.25.3: {}
+  preact@10.25.4: {}

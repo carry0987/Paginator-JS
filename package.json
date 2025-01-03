@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator",
-  "version": "2.2.39",
+  "version": "2.2.40",
   "description": "An advanced pagination library",
   "type": "module",
   "main": "dist/paginator.min.js",
@@ -70,8 +70,8 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@testing-library/preact": "^3.2.4",
-    "@types/node": "^22.10.2",
-    "happy-dom": "^16.2.6",
+    "@types/node": "^22.10.5",
+    "happy-dom": "^16.3.0",
     "preact": "^10.25.4",
     "prettier": "^3.4.2",
     "rollup": "^4.29.1",
