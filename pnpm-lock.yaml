@@ -43,7 +43,7 @@ importers:
         version: 22.10.7
       happy-dom:
         specifier: ^16.6.0
-        version: 16.6.0
+        version: 16.7.0
       preact:
         specifier: ^10.25.4
         version: 10.25.4
@@ -70,7 +70,7 @@ importers:
         version: 2.8.1
       vitest:
         specifier: ^3.0.2
-        version: 3.0.2(@types/node@22.10.7)(happy-dom@16.6.0)(sass@1.83.4)(terser@5.37.0)
+        version: 3.0.2(@types/node@22.10.7)(happy-dom@16.7.0)(sass@1.83.4)(terser@5.37.0)
 
 packages:
 
@@ -843,8 +843,8 @@ packages:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
 
-  happy-dom@16.6.0:
-    resolution: {integrity: sha512-Zz5S9sog8a3p8XYZbO+eI1QMOAvCNnIoyrH8A8MLX+X2mJrzADTy+kdETmc4q+uD9AGAvQYGn96qBAn2RAciKw==}
+  happy-dom@16.7.0:
+    resolution: {integrity: sha512-vxjSgX/beuuVfuhEfxFfnOyYg4mLQHHomzVNumYyVqI23IMyjYI7RtmIFr9xnWiWyR2m7TS2BXa5Vht+J76VHQ==}
     engines: {node: '>=18.0.0'}
 
   has-bigints@1.1.0:
@@ -2334,7 +2334,7 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  happy-dom@16.6.0:
+  happy-dom@16.7.0:
     dependencies:
       webidl-conversions: 7.0.0
       whatwg-mimetype: 3.0.0
@@ -3050,7 +3050,7 @@ snapshots:
       sass: 1.83.4
       terser: 5.37.0
 
-  vitest@3.0.2(@types/node@22.10.7)(happy-dom@16.6.0)(sass@1.83.4)(terser@5.37.0):
+  vitest@3.0.2(@types/node@22.10.7)(happy-dom@16.7.0)(sass@1.83.4)(terser@5.37.0):
     dependencies:
       '@vitest/expect': 3.0.2
       '@vitest/mocker': 3.0.2(vite@6.0.7(@types/node@22.10.7)(sass@1.83.4)(terser@5.37.0))
@@ -3074,7 +3074,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.10.7
-      happy-dom: 16.6.0
+      happy-dom: 16.7.0
     transitivePeerDependencies:
       - jiti
       - less
