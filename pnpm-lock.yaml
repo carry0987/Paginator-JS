@@ -19,7 +19,7 @@ importers:
         version: 1.0.0
       '@carry0987/utils':
         specifier: ^3.8.4
-        version: 3.8.4
+        version: 3.8.5
       '@preact/signals':
         specifier: ^2.0.1
         version: 2.0.1(preact@10.26.2)
@@ -95,8 +95,8 @@ packages:
   '@carry0987/state-manager@1.0.0':
     resolution: {integrity: sha512-7nX7AAcHUnjBOyag53NUDkCNuPt3WHsujZd/crW5F4sNqApVbOki+yJXcc3wV//ghBtLgx7bDb+i4AHuvL1z6g==}
 
-  '@carry0987/utils@3.8.4':
-    resolution: {integrity: sha512-+zsb7wwYPeidMAlplKcm80wr6K5/c9BDirQ34TSVWUgJlx1679pIxCOLCg6h2mGngyc+P+2cDNOpFUAjZDgmyw==}
+  '@carry0987/utils@3.8.5':
+    resolution: {integrity: sha512-pjmQyT3KGOhNaZhTlX9yEbA0Co/rtDUNy32oMJzEZF+VfWoJzGeSA/1Qiu2lw+nFTibqTAY2QZU2wKWFApk+0g==}
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -1653,7 +1653,7 @@ snapshots:
 
   '@carry0987/state-manager@1.0.0': {}
 
-  '@carry0987/utils@3.8.4': {}
+  '@carry0987/utils@3.8.5': {}
 
   '@esbuild/aix-ppc64@0.24.2':
     optional: true
