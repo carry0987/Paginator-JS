@@ -76,16 +76,16 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@testing-library/preact": "^3.2.4",
-    "@types/node": "^22.13.8",
-    "happy-dom": "^17.1.8",
+    "@types/node": "^22.13.9",
+    "happy-dom": "^17.4.0",
     "preact": "^10.26.4",
-    "prettier": "^3.5.2",
-    "rollup": "^4.34.9",
+    "prettier": "^3.5.3",
+    "rollup": "^4.35.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-tsconfig-paths": "^1.5.2",
     "sass": "^1.85.1",
     "tslib": "^2.8.1",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.8"
   }
 }
