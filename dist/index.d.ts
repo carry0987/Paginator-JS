@@ -413,4 +413,5 @@ declare namespace PluginUtil {
     type Column = TColumn;
 }
 
-export { type Options, Paginator, PluginPosition, PluginUtil, html, pluginAPI };
+export { Paginator, PluginPosition, PluginUtil, html, pluginAPI };
+export type { Options };
