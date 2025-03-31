@@ -80,12 +80,12 @@
     "happy-dom": "^17.4.4",
     "preact": "^10.26.4",
     "prettier": "^3.5.3",
-    "rollup": "^4.37.0",
+    "rollup": "^4.38.0",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-tsconfig-paths": "^1.5.2",
     "sass": "^1.86.0",
     "tslib": "^2.8.1",
-    "vitest": "^3.0.9"
+    "vitest": "^3.1.1"
   }
 }
