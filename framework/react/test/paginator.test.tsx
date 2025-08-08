@@ -2,7 +2,7 @@ import { Paginator } from '@/paginator';
 import { render, screen } from '@testing-library/react';
 import { vi, describe, it, afterEach, expect } from 'vitest';
 
-describe('Paginator class', () => {
+describe('Paginator component', () => {
     afterEach(() => {
         vi.restoreAllMocks();
         vi.clearAllMocks();

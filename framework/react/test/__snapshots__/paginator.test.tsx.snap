@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Paginator class > should render paginator with given data 1`] = `
+exports[`Paginator component > should render paginator with given data 1`] = `
 [
   <button
     aria-label="Previous"
