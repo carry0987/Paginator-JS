@@ -1,6 +1,6 @@
 {
   "name": "@carry0987/paginator-react",
-  "version": "2.2.49",
+  "version": "2.2.50",
   "description": "React component for @carry0987/paginator",
   "type": "module",
   "main": "dist/paginator.min.js",
