@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Paginator class > should render paginator with given data 1`] = `
+[
+  <button
+    aria-label="Previous"
+    class="paginatorjs-disabled page-item page-prev disabled"
+    disabled=""
+    tabindex="-1"
+    title="Previous"
+  >
+    Previous
+  </button>,
+  <button
+    aria-label="Next"
+    class="paginatorjs-disabled page-item page-next disabled"
+    disabled=""
+    tabindex="-1"
+    title="Next"
+  >
+    Next
+  </button>,
+]
+`;

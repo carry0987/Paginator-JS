@@ -1,0 +1,64 @@
+{
+  "name": "@carry0987/paginator-react",
+  "version": "3.0.0",
+  "description": "React component for @carry0987/paginator",
+  "type": "module",
+  "main": "dist/paginator.min.js",
+  "module": "dist/paginator.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "umd": "./dist/paginator.min.js",
+      "import": "./dist/paginator.esm.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "clear:dist": "rm -rvf dist/*",
+    "clear": "find . -path '*/node_modules' -type d -prune -exec rm -rf '{}' +",
+    "lint": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"test/**/*.{ts,tsx}\"",
+    "start": "rollup --config rollup.config.ts --configPlugin typescript",
+    "build": "rollup --config rollup.config.ts --configPlugin typescript --environment BUILD:production",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carry0987/Paginator-JS.git"
+  },
+  "keywords": [
+    "paginator"
+  ],
+  "author": "carry0987",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carry0987/Paginator-JS/issues"
+  },
+  "homepage": "https://github.com/carry0987/Paginator-JS#readme",
+  "peerDependencies": {
+    "@carry0987/paginator": "workspace:root",
+    "react": ">=18.x"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^24.2.0",
+    "@types/react": "^19.1.9",
+    "happy-dom": "^18.0.1",
+    "prettier": "^3.6.2",
+    "rollup": "^4.46.2",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-tsconfig-paths": "^1.5.2",
+    "tslib": "^2.8.1",
+    "vitest": "^3.2.4"
+  }
+}
