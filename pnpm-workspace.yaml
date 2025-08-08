@@ -1,3 +1,7 @@
 packages:
-  - '.'
+  - .
   - '!**/test/**'
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
