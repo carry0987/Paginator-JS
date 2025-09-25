@@ -1,5 +1,6 @@
 # Paginator-JS
-[![version](https://img.shields.io/npm/v/@carry0987/paginator.svg)](https://www.npmjs.com/package/@carry0987/paginator) ![CI](https://github.com/carry0987/Paginator-JS/actions/workflows/ci.yml/badge.svg)  
+[![version](https://img.shields.io/npm/v/@carry0987/paginator.svg)](https://www.npmjs.com/package/@carry0987/paginator)
+![CI](https://github.com/carry0987/Paginator-JS/actions/workflows/ci.yml/badge.svg)  
 
 **A pagination library that works everywhere**
 - Simple and lightweight implementation
