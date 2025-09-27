@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, coverageConfigDefaults } from 'vitest/config';
 import path from 'path';
 
 export default defineConfig({
@@ -42,8 +42,11 @@ export default defineConfig({
             }
         ],
         coverage: {
-            // Test coverage options (optional)
-            reporter: ['text', 'json', 'html']
+            // Test coverage options
+            enabled: true,
+            provider: 'v8',
+            reporter: ['text', 'json', 'html'],
+            exclude: [...coverageConfigDefaults.exclude, 'src/module/view/**', '**/dist/**', 'l10n/**']
         },
         typecheck: {
             // Type check options (optional)

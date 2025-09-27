@@ -22,3 +22,7 @@ node_modules
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
