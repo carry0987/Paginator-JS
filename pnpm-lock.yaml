@@ -133,24 +133,6 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.8.1)(happy-dom@18.0.1)(sass@1.93.2)(terser@5.44.0)
 
-  plugins/list:
-    dependencies:
-      '@carry0987/paginator':
-        specifier: link:../..
-        version: link:../..
-      preact:
-        specifier: ^10.25.0
-        version: 10.27.2
-
-  plugins/table:
-    dependencies:
-      '@carry0987/paginator':
-        specifier: link:../..
-        version: link:../..
-      preact:
-        specifier: ^10.25.0
-        version: 10.27.2
-
 packages:
 
   '@ampproject/remapping@2.3.0':
