@@ -2,7 +2,7 @@ import { TD } from './td';
 import { TColumn } from '@/interface/interfaces';
 import { TRow, TCell } from '@/type/types';
 import { pluginAPI, PluginUtil } from '@carry0987/paginator';
-import { JSX, ComponentChildren } from 'preact';
+import { TargetedMouseEvent, ComponentChildren } from 'preact';
 
 export function TR(props: { row?: TRow; messageRow?: boolean; children?: ComponentChildren }) {
     const config = pluginAPI.useConfig();
@@ -37,7 +37,7 @@ export function TR(props: { row?: TRow; messageRow?: boolean; children?: Compone
         );
     };
 
-    const handleClick = (e: JSX.TargetedMouseEvent<HTMLTableRowElement>): void => {
+    const handleClick = (e: TargetedMouseEvent<HTMLTableRowElement>): void => {
         if (props.messageRow) return;
 
         config.eventEmitter.emit('rowClick', e, props.row);

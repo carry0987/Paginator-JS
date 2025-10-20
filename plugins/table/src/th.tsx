@@ -1,7 +1,7 @@
 import { TColumn } from '@/interface/interfaces';
 import { CSSDeclaration } from '@/type/types';
 import { pluginAPI, PluginUtil } from '@carry0987/paginator';
-import { ComponentChild, JSX } from 'preact';
+import { ComponentChild, HTMLAttributes, TargetedMouseEvent, TargetedKeyboardEvent } from 'preact';
 
 export function TH(
     props: {
@@ -10,12 +10,12 @@ export function TH(
         rowSpan?: number;
         colSpan?: number;
         style?: CSSDeclaration;
-    } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>
+    } & Omit<HTMLAttributes<HTMLTableCellElement>, 'style'>
 ) {
     const thRef = pluginAPI.useRef(null);
 
     const onClick = (
-        e: JSX.TargetedMouseEvent<HTMLTableCellElement> | JSX.TargetedKeyboardEvent<HTMLTableCellElement>
+        e: TargetedMouseEvent<HTMLTableCellElement> | TargetedKeyboardEvent<HTMLTableCellElement>
     ) => {
         e.stopPropagation();
     };

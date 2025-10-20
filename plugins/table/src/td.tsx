@@ -1,7 +1,7 @@
 import { TColumn } from '@/interface/interfaces';
 import { CSSDeclaration, TRow, TCell } from '@/type/types';
 import { pluginAPI, PluginUtil } from '@carry0987/paginator';
-import { ComponentChild, JSX } from 'preact';
+import { ComponentChild, HTMLAttributes, TargetedMouseEvent } from 'preact';
 
 export function TD(
     props: {
@@ -11,7 +11,7 @@ export function TD(
         colSpan?: number;
         style?: CSSDeclaration;
         messageCell?: boolean;
-    } & Omit<JSX.HTMLAttributes<HTMLTableCellElement>, 'style'>
+    } & Omit<HTMLAttributes<HTMLTableCellElement>, 'style'>
 ) {
     const config = pluginAPI.useConfig();
 
@@ -36,7 +36,7 @@ export function TD(
         return props.cell.data;
     };
 
-    const handleClick = (e: JSX.TargetedMouseEvent<HTMLTableCellElement>): void => {
+    const handleClick = (e: TargetedMouseEvent<HTMLTableCellElement>): void => {
         if (props.messageCell) return;
 
         config.eventEmitter.emit('cellClick', e, props.cell, props.column, props.row);
