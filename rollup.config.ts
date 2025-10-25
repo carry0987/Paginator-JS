@@ -150,6 +150,7 @@ const dtsConfig: RollupOptions = {
     external: [/\.scss$/u],
     plugins: [
         tsConfigPaths(),
+        nodeResolve(),
         dts()
     ]
 };
