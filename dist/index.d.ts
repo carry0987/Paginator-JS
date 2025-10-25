@@ -1,7 +1,7 @@
 import * as preact from 'preact';
-import { ComponentChild, FunctionComponent, VNode, JSX } from 'preact';
+import { ComponentChild, FunctionComponent, VNode, SignalLike } from 'preact';
 export { h } from 'preact';
-import { Interfaces } from '@carry0987/utils';
+import { FetchParams } from '@carry0987/utils/interfaces';
 import { EventEmitter } from '@carry0987/event-emitter';
 import * as _carry0987_state_manager from '@carry0987/state-manager';
 import { StateManager } from '@carry0987/state-manager';
@@ -55,7 +55,7 @@ interface StorageResponse {
     total: number;
 }
 
-type ServerStorageParam = Omit<Interfaces.FetchParams, 'url'>;
+type ServerStorageParam = Omit<FetchParams, 'url'>;
 interface ServerStorageOptions {
     url: string;
     body?: BodyInit | null;
@@ -393,7 +393,7 @@ declare function PluginRenderer(props: {
     position?: PluginPosition;
 }): preact.VNode<preact.Attributes> | null;
 
-declare function classJoin(...classNames: (undefined | null | string | JSX.SignalLike<string>)[]): string;
+declare function classJoin(...classNames: (undefined | null | string | SignalLike<string>)[]): string;
 
 declare class PluginUtil {
     private constructor();

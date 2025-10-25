@@ -2,7 +2,7 @@
     "compilerOptions": {
         "module": "ESNext",
         "target": "ESNext",
-        "moduleResolution": "Node",
+        "moduleResolution": "Bundler",
         "esModuleInterop": true,
         "importHelpers": true,
         "strict": true,

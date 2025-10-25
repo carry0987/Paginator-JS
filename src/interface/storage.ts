@@ -1,7 +1,7 @@
 import { StorageResponse } from '@/interface/response';
-import { Interfaces } from '@/module/utils/utils-ext';
+import { FetchParams } from '@carry0987/utils/interfaces';
 
-type ServerStorageParam = Omit<Interfaces.FetchParams, 'url'>;
+type ServerStorageParam = Omit<FetchParams, 'url'>;
 
 export interface ServerStorageOptions {
     url: string;

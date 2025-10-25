@@ -1,8 +1,9 @@
 import Storage from './storage';
 import { ServerStorageOptions } from '@/interface/storage';
 import { StorageResponse } from '@/interface/response';
-import Utils, { Interfaces } from '@/module/utils/utils-ext';
+import Utils from '@/module/utils/utils-ext';
 import log from '@/module/utils/log';
+import { SendFormDataOptions } from '@carry0987/utils/interfaces';
 
 class ServerStorage extends Storage<ServerStorageOptions> {
     private readonly options: ServerStorageOptions;
@@ -29,7 +30,7 @@ class ServerStorage extends Storage<ServerStorageOptions> {
             ...this.options,
             ...options
         };
-        const fetchParam: Interfaces.SendFormDataOptions<StorageResponse> = {
+        const fetchParam: SendFormDataOptions<StorageResponse> = {
             url: opts.url,
             data: Utils.encodeFormData(opts.body || {}),
             ...opts.param

@@ -11,8 +11,7 @@ import {
     encodeFormData,
     deepMerge,
     shallowMerge,
-    generateUUID,
-    Interfaces
+    generateUUID
 } from '@carry0987/utils';
 
 class Utils {
@@ -54,4 +53,4 @@ class Utils {
     }
 }
 
-export { Utils as default, type Interfaces };
+export { Utils as default };
