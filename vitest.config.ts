@@ -43,7 +43,7 @@ export default defineConfig({
         ],
         coverage: {
             // Test coverage options
-            enabled: true,
+            enabled: false,
             provider: 'v8',
             reporter: ['text', 'json', 'html'],
             exclude: [...coverageConfigDefaults.exclude, 'src/module/view/**', '**/dist/**', 'l10n/**']
